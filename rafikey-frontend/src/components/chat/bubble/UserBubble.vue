@@ -1,4 +1,25 @@
 <script setup lang="ts">
+import {computed, onMounted} from "vue";
+
+export interface UserBubbleProps  {
+  userName: string
+  userMessage: string
+  createdAt: string
+  isTyping?: boolean
+  isCopyable?: boolean
+  hasError?: boolean
+  picture?: string
+  isGeneratingResponse: boolean
+}
+
+onMounted(() => {
+  console.log('User bubble message', props.userMessage)
+})
+
+const props = defineProps<UserBubbleProps>()
+const hasText = computed(() => {
+  return props.userMessage.length > 0
+})
 
 </script>
 
@@ -11,12 +32,14 @@
           src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
       </div>
     </div>
-    <div class="chat-header">
+    <div class="chat-header text-xs md:text-sm">
       Anakin
-      <time class="text-xs opacity-50 text-red-500">12:46</time>
+      <time class="text-xs md:text-sm opacity-50">{{props.createdAt}}</time>
     </div>
-    <div class="chat-bubble">I hate you!</div>
-    <div class="chat-footer opacity-50">Seen at 12:46</div>
+    <div class="chat-bubble bg-peach-200  py-4 rounded-2xl">
+      <div v-if="hasText" v-html="props.userMessage" class="lg:text-xl text-lg"></div>
+    </div>
+<!--    <div class="chat-footer opacity-50">Seen at 12:46</div>-->
   </div>
 </template>
 

@@ -1,11 +1,68 @@
+import daisyui from "daisyui";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}"
   ],
+  // darkMode: false,
   theme: {
     extend: {
+      colors: {
+        'peach': {
+          '50': '#fff9ed',
+          '100': '#fff2d5',
+          '200': '#ffe5b4',
+          '300': '#ffcb72',
+          '400': '#fda93a',
+          '500': '#fc8e13',
+          '600': '#ed7209',
+          '700': '#c4560a',
+          '800': '#9c4310',
+          '900': '#7d3911',
+          '950': '#441b06',
+        },
+        'madang': {
+          '50': '#eefff0',
+          '100': '#d8ffdf',
+          '200': '#b4ffc0',
+          '300': '#78fd8f',
+          '400': '#36f257',
+          '500': '#0cdb31',
+          '600': '#03b623',
+          '700': '#078e1f',
+          '800': '#0b701e',
+          '900': '#0c5b1c',
+          '950': '#00330b',
+        },
+        'perano': {
+          '50': '#eff4ff',
+          '100': '#dae6ff',
+          '200': '#b4ceff',
+          '300': '#91baff',
+          '400': '#5e96fc',
+          '500': '#386ef9',
+          '600': '#224eee',
+          '700': '#1a3adb',
+          '800': '#1c30b1',
+          '900': '#1c2e8c',
+          '950': '#161e55',
+        },
+        'lavender-rose': {
+          '50': '#fff4fe',
+          '100': '#ffe7fd',
+          '200': '#ffcefa',
+          '300': '#ffb4f4',
+          '400': '#fe74e8',
+          '500': '#f540d7',
+          '600': '#d920b6',
+          '700': '#b41794',
+          '800': '#931577',
+          '900': '#781760',
+          '950': '#51013e',
+        },
+      },
       fontFamily: {
         'sf-pro': ['SF Pro Regular', 'Ubuntu', 'sans-serif'],
         'sf-pro-medium': ['SF Pro Medium', 'Ubuntu', 'sans-serif'],
@@ -20,10 +77,10 @@ export default {
     },
   },
   plugins: [
-    require("daisyui")
+    daisyui
   ],
   daisyui: {
-    themes: ["bumblebee", "dark", "emerald", "forest", "lofi", "synthwave", "retro", "cyberpunk", "halloween", "valentine", "garden", "forest", "dracula", "corporate", "winter", "wireframe", "black"]
+    themes: ["light", "winter"]
   }
 }
 
