@@ -1,0 +1,21 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+  <label class="form-control">
+    <div class="label">
+      <span class="label-text">Your bio</span>
+      <span class="label-text-alt">Alt label</span>
+    </div>
+    <textarea class="textarea textarea-bordered h-24" placeholder="Bio"></textarea>
+    <div class="label">
+      <span class="label-text-alt">Your bio</span>
+      <span class="label-text-alt">Alt label</span>
+    </div>
+  </label>
+</template>
+
+<style scoped>
+
+</style>
