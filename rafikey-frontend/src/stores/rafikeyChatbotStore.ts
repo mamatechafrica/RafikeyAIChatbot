@@ -7,7 +7,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
 const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: string) {
-    console.log('Endpoint:', RAFIKEY_CHATBOT_URL)
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}`, {
         method: 'POST',
