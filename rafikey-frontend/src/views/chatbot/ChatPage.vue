@@ -333,7 +333,7 @@ watch(conversation.value, () => {
       <div class="pt-10 h-full ">
         <RafikeyBubble
           :chatbot-name="'Rafikey'"
-          :original-message="'Hello buddy how can I help?'"
+          :original-message="'Hello Rafiki how can I help?'"
           :key="1"
           :is-typing="false"
           :is-copyable="false"
