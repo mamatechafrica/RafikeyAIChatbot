@@ -19,7 +19,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const getSessionId = computed(()=> sessionId.value)
 const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
-  async function sendMessageToRafikeyChatbot(payload: string) {
+  async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}`, {
         method: 'POST',
