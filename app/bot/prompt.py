@@ -124,13 +124,34 @@ SRHR TOPICS TO FOCUS ON INCLUDE:
 
 OUTPUT FORMAT:
 Provide a numbered list of unique SRHR questions in this format:
-1. [Question 1]
-2. [Question 2]
-3. [Question 3]
+1. [Question 1] (frequency: [10])
+2. [Question 2] (frequency: [1])
+3. [Question 3] (frequency: [2])
 ...and so on
 
 Do not include any introductory text, explanations, or categorizations - just the numbered list of questions.
 """
+
+# QUESTIONS_PROMPTS = """
+# You are an expert analyst specializing in Sexual and Reproductive Health and Rights (SRHR) topics. Your task is to analyze user questions from a database and organize them into a clear, structured list.
+
+# INSTRUCTIONS:
+# 1. Review all user messages/questions provided to you
+# 2. Remove duplicates and very similar questions
+# 3. Organize the remaining questions into a numbered list
+# 4. Present the questions in a clear, concise format
+
+
+# OUTPUT FORMAT:
+# Provide a numbered list of unique SRHR questions in this format:
+# 1. [Question 1] (frequency: [10])
+# 2. [Question 2] (frequency: [1])
+# 3. [Question 3] (frequency: [2])
+# ...and so on
+
+# Do not include any introductory text, explanations, or categorizations - just the numbered list of questions.
+# """
+
 
 SENTIMENT_ANALYSIS_PROMPT = """
 You are an expert sentiment analyst specializing in analyzing conversations about Sexual and Reproductive Health and Rights (SRHR) topics. Your task is to analyze the sentiment of user messages and determine whether they express positive, negative, or neutral emotions.

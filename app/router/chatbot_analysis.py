@@ -74,8 +74,60 @@ def extract_json_from_response(response_text: str):
     # If all parsing attempts fail, return None
     return None
 
+def parse_ai_questions_response(ai_response: str) -> list[dict]:
+    """
+    Parse the AI response containing questions with frequencies into a structured list.
+    
+    Example input:
+    "1. How do I know my periods are almost coming? (frequency: 1)\n2. Can I take any medication? (frequency: 1)"
+    
+    Example output:
+    [
+        {"question": "How do I know my periods are almost coming?", "frequency": 1},
+        {"question": "Can I take any medication?", "frequency": 1}
+    ]
+    """
+    result = []
+    
+    # Split the response into lines for each question
+    lines = ai_response.strip().split('\n')
+    
+    for line in lines:
+        # Skip empty lines
+        if not line.strip():
+            continue
+            
+        # Extract the question part and frequency part
+        try:
+            # Remove the numbering prefix (e.g., "1. ")
+            # The regex \d+\.\s* would match things like "1. ", "42. " etc.
+            import re
+            line_without_prefix = re.sub(r'^\d+\.\s*', '', line)
+            
+            # Split by the frequency part
+            parts = line_without_prefix.split("(frequency:")
+            
+            if len(parts) >= 2:
+                question = parts[0].strip()
+                # Extract the frequency number
+                frequency_str = parts[1].strip()
+                frequency = int(re.search(r'\d+', frequency_str).group())
+                
+                result.append({
+                    "question": question,
+                    "frequency": frequency
+                })
+        except Exception as e:
+            # If there's an error parsing a line, add it with an error flag
+            result.append({
+                "question": line.strip(),
+                "frequency": 0,
+                "error": f"Failed to parse: {str(e)}"
+            })
+    
+    return result
 
-summary = create_react_agent(
+summary_agent = create_react_agent(
     llm, 
     tools=[],
     prompt=QUESTIONS_PROMPTS
@@ -207,15 +259,16 @@ async def get_questions(session: SessionDep):
     questions = session.exec(select(Conversations.user_message)).all()
     
     # Get the AI to process and organize the questions
-    filtered_questions = summary.invoke({"messages": questions})
+    filtered_questions = summary_agent.invoke({"messages": questions})
     
     # Extract the AI's response text
     ai_response = filtered_questions['messages'][-1].content
     
     # Parse the response to extract the list of questions with counts
-    questions_with_counts = extract_questions_with_counts(ai_response)
+    parsed_questions = parse_ai_questions_response(ai_response)
+
     
-    return questions_with_counts
+    return parsed_questions
 
 
 @router.get('/sentiment_analysis')
@@ -228,9 +281,4 @@ async def get_sentiment_analysis(session: SessionDep):
     # Extract JSON from the response
     sentiment_data = extract_json_from_response(ai_response)
     
-    if sentiment_data:
-        # If we successfully extracted JSON, return it directly
-        return sentiment_data
-    else:
-        # If JSON extraction failed, return the raw response
-        return {"raw_response": ai_response}
+    return sentiment_data
