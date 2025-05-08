@@ -12,6 +12,11 @@ const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
 
+  const setSessionId = (value: string) => {
+    sessionId.value = value
+  }
+
+  const getSessionId = computed(()=> sessionId.value)
 const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: string) {
