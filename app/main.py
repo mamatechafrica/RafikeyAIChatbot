@@ -1,5 +1,5 @@
 from fastapi import FastAPI 
-from app.router import bot_router
+from app.router import bot_router, chatbot_analysis
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os 
@@ -30,8 +30,11 @@ app.add_middleware(
 
 @app.get('/health')
 def health():
-    return {'status': groq_api_key}
+    return {'status': "ok"}
+
+
 
 
 # //Add routers
 app.include_router(bot_router.router)
+app.include_router(chatbot_analysis.router) 
