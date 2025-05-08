@@ -19,7 +19,7 @@ export interface Conversation {
   uniqueId: string | number
 }
 
-const rafikeyChatbot = useRafikeyChatbotStore()
+const rafikeyChatbotStore = useRafikeyChatbotStore()
 const conversation = ref<Conversation []>([])
 const isGeneratingResponse = ref(false)
 const now = moment().format('LT')
@@ -276,7 +276,12 @@ const handleUserInput = (
   conversation.value.map((conv) => {
     console.log(conv.message)
   })
-  rafikeyChatbot.sendMessageToRafikeyChatbot(formatted)
+  rafikeyChatbotStore.sendMessageToRafikeyChatbot(
+    {
+      message: formatted,
+      sessionId: rafikeyChatbotStore.getSessionId,
+    }
+  )
     .then((res) => {
       console.log('Rafikey response', res)
       const rafikeyAllObject = conversation.value.filter((conv) => !conv.isUser)
@@ -285,8 +290,6 @@ const handleUserInput = (
       if (currentRafikeyObject) {
         currentRafikeyObject.message = res as string
       }
-
-
     })
     .catch((err) => {
       console.log('There is an error in rafikey response', err)
@@ -314,6 +317,9 @@ watch(conversation.value, () => {
     conversationContainerHeight.value = conversationContainerRef.value.clientHeight || 0
   }
   scrollToBottom()
+})
+onMounted(()=>{
+  rafikeyChatbotStore.setSessionId(uuidv4())
 })
 </script>
 
