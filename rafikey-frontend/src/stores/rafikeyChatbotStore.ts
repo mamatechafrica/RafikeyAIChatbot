@@ -1,6 +1,13 @@
 import { defineStore } from 'pinia'
-import {ref} from "vue";
+import { computed, ref } from 'vue'
+import {useStorage} from "@vueuse/core";
+import { get } from 'lodash';
 
+
+interface ChatbotConversationPayload {
+  message: string
+  sessionId: string
+}
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
 
