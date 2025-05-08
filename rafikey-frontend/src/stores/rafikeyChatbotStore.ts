@@ -28,7 +28,8 @@ const rafikeyResponse = ref<string>('')
           mode: 'no-cors',
         },
         body: JSON.stringify({
-          message: payload
+          message: payload.message,
+          session_id: payload.sessionId,
         }),
       })
 
