@@ -32,7 +32,6 @@ const rafikeyResponse = ref<string>('')
           session_id: payload.sessionId,
         }),
       })
-
       if(!response.body){
         console.log('No response body')
         return
@@ -66,6 +65,9 @@ const rafikeyResponse = ref<string>('')
 
 
   return {
-    sendMessageToRafikeyChatbot
+    sendMessageToRafikeyChatbot,
+    sessionId,
+    setSessionId,
+    getSessionId
   }
 })
