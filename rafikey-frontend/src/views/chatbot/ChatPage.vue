@@ -9,7 +9,7 @@ import hljs from 'highlight.js'
 import {marked, type RendererObject, type Tokens} from 'marked'
 import {useRafikeyChatbotStore} from "@/stores";
 import moment from "moment";
-import {v4 as uuidv4} from 'uuid'
+import {v4 as uuidV4} from 'uuid'
 
 export interface Conversation {
   message: string
@@ -319,7 +319,7 @@ watch(conversation.value, () => {
   scrollToBottom()
 })
 onMounted(()=>{
-  rafikeyChatbotStore.setSessionId(uuidv4())
+  rafikeyChatbotStore.setSessionId(uuidV4())
 })
 </script>
 
