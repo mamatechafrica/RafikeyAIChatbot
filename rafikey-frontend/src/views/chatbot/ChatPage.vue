@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import RafikeyBubble from '@/components/chat/bubble/RafikeyBubble.vue'
 import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import TextArea from "@/components/chat/UserInput.vue";
@@ -9,7 +9,7 @@ import hljs from 'highlight.js'
 import {marked, type RendererObject, type Tokens} from 'marked'
 import {useRafikeyChatbotStore} from "@/stores";
 import moment from "moment";
-
+import {v4 as uuidv4} from 'uuid'
 
 export interface Conversation {
   message: string
