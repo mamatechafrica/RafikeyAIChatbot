@@ -33,11 +33,11 @@ const hasText = computed(() => {
       </div>
     </div>
     <div class="chat-header text-xs md:text-sm">
-      Anakin
+      {{props.userName}}
       <time class="text-xs md:text-sm opacity-50">{{props.createdAt}}</time>
     </div>
     <div class="chat-bubble bg-peach-200  py-4 rounded-2xl">
-      <div v-if="hasText" v-html="props.userMessage" class="lg:text-xl text-lg"></div>
+      <div v-if="hasText" v-html="props.userMessage" class="lg:text-xl md:text-lg text-sm"></div>
     </div>
 <!--    <div class="chat-footer opacity-50">Seen at 12:46</div>-->
   </div>
