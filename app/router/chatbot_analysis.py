@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import json
 from fastapi import APIRouter
 from sqlmodel import func, select
-from app.bot.prompt import QUESTIONS_PROMPTS, SENTIMENT_ANALYSIS_PROMPT
+from app.bot.prompt import QUESTIONS_PROMPTS, SENTIMENT_ANALYSIS_PROMPT, TOPIC_EXTRACTION_PROMPT
 from app.models import Hero, Conversations
 from app.core.database import SessionDep
 from langgraph.prebuilt import create_react_agent
@@ -139,7 +139,11 @@ sentiment_agent = create_react_agent(
     prompt=SENTIMENT_ANALYSIS_PROMPT
 )
 
-
+topics_agent = create_react_agent(
+    llm, 
+    tools=[],
+    prompt=TOPIC_EXTRACTION_PROMPT
+)
 
 @router.get('/')
 def get_heroes(session: SessionDep):
@@ -282,3 +286,109 @@ async def get_sentiment_analysis(session: SessionDep):
     sentiment_data = extract_json_from_response(ai_response)
     
     return sentiment_data
+
+
+@router.get('/topics')
+async def get_topics(session: SessionDep):
+    # Query the database to get all questions 
+    questions = session.exec(select(Conversations.user_message)).all()
+    topics = topics_agent.invoke({"messages": questions})
+    ai_response = topics['messages'][-1].content
+
+    # Extract JSON from the response
+    topic_data = extract_json_from_response(ai_response)
+
+    return topic_data
+
+# @router.get('/thread_activity')
+# async def get_thread_activity(
+#     session: SessionDep,
+#     days: int = 30  # Number of days to look back
+# ):
+#     # Calculate the start date based on the number of days to look back
+#     start_date = datetime.utcnow() - timedelta(days=days)
+    
+#     # Query to get thread IDs and their timestamps
+#     query = select(
+#         Conversations.thread_id,
+#         Conversations.timestamp
+#     ).where(
+#         Conversations.timestamp >= start_date
+#     ).order_by(
+#         Conversations.timestamp
+#     )
+    
+#     # Execute the query
+#     results = session.exec(query).all()
+    
+#     # Format the results for plotting
+#     thread_activity = [
+#         {
+#             "thread_id": result.thread_id,
+#             "timestamp": result.timestamp.isoformat()
+#         }
+#         for result in results
+#     ]
+    
+#     return {
+#         "days_range": days,
+#         "data": thread_activity
+#     }
+
+
+@router.get('/thread_activity')
+async def get_thread_activity(
+    session: SessionDep,
+    days: int = 30,  # Number of days to look back
+    mode: str = "all"  # Options: "creation" (first message) or "all" (all messages)
+):
+    # Calculate the start date based on the number of days to look back
+    start_date = datetime.utcnow() - timedelta(days=days)
+    
+    if mode == "creation":
+        # For each thread_id, get only the timestamp of its first message
+        # This subquery finds the minimum timestamp for each thread_id
+        subquery = select(
+            Conversations.thread_id,
+            func.min(Conversations.timestamp).label('first_timestamp')
+        ).where(
+            Conversations.timestamp >= start_date
+        ).group_by(
+            Conversations.thread_id
+        ).subquery()
+        
+        # Main query joins with the subquery to get the thread_id and its first timestamp
+        query = select(
+            subquery.c.thread_id,
+            subquery.c.first_timestamp.label('timestamp')
+        ).order_by(
+            subquery.c.first_timestamp
+        )
+    else:
+        # Get all thread_id and timestamp pairs
+        query = select(
+            Conversations.thread_id,
+            Conversations.timestamp
+        ).where(
+            Conversations.timestamp >= start_date
+        ).order_by(
+            Conversations.timestamp
+        )
+    
+    # Execute the query
+    results = session.exec(query).all()
+    
+    # Format the results for plotting
+    thread_activity = [
+        {
+            "thread_id": result.thread_id,
+            "timestamp": result.timestamp.isoformat()
+        }
+        for result in results
+    ]
+    
+    return {
+        "days_range": days,
+        "mode": mode,
+        "data": thread_activity
+    }

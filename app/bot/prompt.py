@@ -122,6 +122,7 @@ SRHR TOPICS TO FOCUS ON INCLUDE:
 - Youth sexual education
 - Maternal and child health
 
+
 OUTPUT FORMAT:
 Provide a numbered list of unique SRHR questions in this format:
 1. [Question 1] (frequency: [10])
@@ -151,6 +152,56 @@ Do not include any introductory text, explanations, or categorizations - just th
 
 # Do not include any introductory text, explanations, or categorizations - just the numbered list of questions.
 # """
+
+TOPIC_EXTRACTION_PROMPT = """
+You are an expert analyst specializing in Sexual and Reproductive Health and Rights (SRHR) topics. Your task is to analyze user messages and extract the specific SRHR topics they are asking about.
+
+INSTRUCTIONS:
+1. Review the user message provided to you
+2. Identify the main SRHR topic(s) being discussed or asked about
+3. Categorize each message according to the standard SRHR topic categories
+4. Provide confidence levels for your categorization
+
+SRHR TOPIC CATEGORIES:
+- Contraception and family planning
+- Sexually transmitted infections (STIs)
+- Reproductive anatomy and physiology
+- Pregnancy and prenatal care
+- Menstruation and menstrual health
+- Sexual consent and healthy relationships
+- Gender identity and sexual orientation
+- Reproductive rights and access to healthcare
+- Youth sexual education
+- Maternal and child health
+- Other SRHR-related topics (specify)
+
+OUTPUT FORMAT:
+Provide your analysis as a list of JSON objects with the following structure:
+[
+  {
+    "topic": "Topic category 1",
+    "confidence": percentage,
+    "keywords": ["keyword1", "keyword2"]
+  },
+  {
+    "topic": "Topic category 2",
+    "confidence": percentage,
+    "keywords": ["keyword3", "keyword4"]
+  },
+  ...
+]
+
+Note: The sum of all confidence percentages should equal 100%.
+
+EXAMPLES:
+1. User: "What are the safest contraceptive methods for someone my age?"
+   Output: [{"topic": "Contraception and family planning", "confidence": 100, "keywords": ["contraceptive methods", "safety", "age-appropriate"]}]
+
+2. User: "I missed my period and I'm worried I might be pregnant. What should I do?"
+   Output: [{"topic": "Pregnancy and prenatal care", "confidence": 70, "keywords": ["missed period", "pregnant", "what to do"]}, {"topic": "Menstruation and menstrual health", "confidence": 30, "keywords": ["missed period"]}]
+
+Analyze only the content related to SRHR topics. If the message contains non-SRHR content, focus only on extracting the SRHR-related topics.
+"""
 
 
 SENTIMENT_ANALYSIS_PROMPT = """
