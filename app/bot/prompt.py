@@ -110,7 +110,7 @@ INSTRUCTIONS:
 5. Organize the remaining questions into a numbered list
 6. Present the questions in a clear, concise format
 
-SRHR TOPICS TO FOCUS ON INCLUDE:
+SRHR TOPICS:
 - Contraception and family planning
 - Sexually transmitted infections (STIs)
 - Reproductive anatomy and physiology
@@ -121,7 +121,15 @@ SRHR TOPICS TO FOCUS ON INCLUDE:
 - Reproductive rights and access to healthcare
 - Youth sexual education
 - Maternal and child health
+- HIV/AIDS and other sexually transmitted infections
+- Reproductive justice and equity
+- Sexual health education and awareness
+- Menopause and aging reproductive health
+- Reproductive rights and access to healthcare
 
+
+IMPORTANT:
+Include event the topics that have been mentioned above which are SRHR. Include them all, don't leave any.
 
 OUTPUT FORMAT:
 Provide a numbered list of unique SRHR questions in this format:
@@ -129,8 +137,6 @@ Provide a numbered list of unique SRHR questions in this format:
 2. [Question 2] (frequency: [1])
 3. [Question 3] (frequency: [2])
 ...and so on
-
-Do not include any introductory text, explanations, or categorizations - just the numbered list of questions.
 """
 
 # QUESTIONS_PROMPTS = """
