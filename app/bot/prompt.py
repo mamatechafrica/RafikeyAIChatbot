@@ -200,7 +200,7 @@ EXAMPLES:
 2. User: "I missed my period and I'm worried I might be pregnant. What should I do?"
    Output: [{"topic": "Pregnancy and prenatal care", "confidence": 70, "keywords": ["missed period", "pregnant", "what to do"]}, {"topic": "Menstruation and menstrual health", "confidence": 30, "keywords": ["missed period"]}]
 
-Analyze only the content related to SRHR topics. If the message contains non-SRHR content, focus only on extracting the SRHR-related topics.
+Also include a "Other SRHR-related topics" category for messages that don't fit into the standard categories.
 """
 
 
