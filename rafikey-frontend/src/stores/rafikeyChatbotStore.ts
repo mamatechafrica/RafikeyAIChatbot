@@ -21,7 +21,7 @@ const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
     try {
-      const response = await fetch(`${RAFIKEY_CHATBOT_URL}`, {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
