@@ -7,9 +7,11 @@ import UserInput from "@/components/chat/UserInput.vue";
 import _ from 'lodash'
 import hljs from 'highlight.js'
 import {marked, type RendererObject, type Tokens} from 'marked'
-import {useRafikeyChatbotStore} from "@/stores";
+import {useNotificationStore, useRafikeyChatbotStore} from "@/stores";
 import moment from "moment";
 import {v4 as uuidV4} from 'uuid'
+import ToastContainer from "@/components/toasts/ToastContainer.vue";
+import ToastAlert from "@/components/toasts/ToastAlert.vue";
 
 export interface Conversation {
   message: string
@@ -26,6 +28,7 @@ const now = moment().format('LT')
 const isBottom = ref(false)
 const conversationContainerRef = ref<HTMLDivElement | null>()
 const isScrollable = ref(false)
+const notificationStore = useNotificationStore()
 
 // scrolltop bottom when rafikey chatbot is typing
 
@@ -398,6 +401,19 @@ onMounted(()=>{
 
 
       </div>
+    <Teleport to="body">
+      <ToastContainer v-if="notificationStore.hasNotifications">
+        <template v-for="notification in notificationStore.getNotifications" :key="notification.id">
+          <ToastAlert
+            v-if="notification.id && notification.isShown"
+            :id="notification.id"
+            :is-shown="notification.isShown"
+            :message="notification.message"
+            :type="notification.type"
+          />
+        </template>
+      </ToastContainer>
+    </Teleport>
 
 
     </div>
