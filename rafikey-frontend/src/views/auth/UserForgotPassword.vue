@@ -40,8 +40,11 @@
                   </label>
                 </div>
                 <div
-                  class="btn btn-sm bg-casablanca-400 hover:bg-casablanca-300 text-lg rounded-2xl py-6">
-                  <span>Submit</span>
+                  @click="forgotPasswordHandler"
+                  :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
+                  class="btn btn-sm  text-lg rounded-2xl py-6">
+                  <span v-if="!isLoading">Submit</span>
+                  <span v-else class="loading loading-spinner loading-sm"></span>
                 </div>
               </form>
             </div>
@@ -85,8 +88,11 @@
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
-            class="btn w-full btn-sm bg-casablanca-300 hover:bg-casablanca-400 text-lg rounded-2xl py-6">
-            Submit
+            @click="forgotPasswordHandler"
+            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
+            class="btn w-full btn-sm  text-lg rounded-2xl py-6">
+            <span v-if="!isLoading">Submit</span>
+            <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
 
