@@ -23,6 +23,11 @@ export interface LoginPayload {
   password: string
 }
 
+export interface ResetPassword {
+  token: string
+  newPassword: string
+}
+
 const BASE_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 
 export const useAuthStore = defineStore('authStore', () => {
