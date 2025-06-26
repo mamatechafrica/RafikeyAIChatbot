@@ -1,4 +1,63 @@
 <script setup lang="ts">
+import { reactive, watch, computed, ref } from 'vue'
+import { useField } from 'vee-validate'
+import { useAuthStore } from '@/stores'
+import { showSweetAlert } from '@/modules/alert.ts'
+import { useRouter } from 'vue-router'
+
+
+const isPasswordVisible = ref<boolean>(false)
+const isConfirmPasswordVisible = ref<boolean>(false)
+const togglePasswordVisibility = computed(() => isPasswordVisible.value? 'text': 'password')
+const toggleConfirmPasswordVisibility = computed(() => isConfirmPasswordVisible.value ? 'text' : 'password')
+const isLoading = ref(false)
+const authStore = useAuthStore()
+const router = useRouter()
+
+
+const props = defineProps<{
+  token: string
+}>()
+
+
+const resetPassword = reactive({
+  newPassword: '',
+  confirmPassword: ''
+})
+
+const passwordValidator = (value: string) => {
+  if (!value) {
+    return 'Password is required'
+  }
+  const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
+  if( !passwordRegExp.test(value)) {
+    return 'Password must contain at least 6 characters, one uppercase letter, one lowercase letter and one number'
+  }
+  return true
+}
+
+const {
+  value: password,
+  errorMessage: passwordErrorMessage,
+  meta: passwordMeta,
+} = useField('password', passwordValidator)
+
+watch(()=> resetPassword.newPassword, value => {
+    if (value) {
+      password.value = value
+    }
+  },
+)
+
+const confirmPasswordValidator = (value: string) => {
+  if (!value) {
+    return 'Confirm Password is required'
+  }
+  if (value !== password.value) {
+    return 'Passwords do not match'
+  }
+  return true
+}
 
 import LoadingPage_2 from '@/views/auth/welcomepages/LoadingPage_2.vue'
 import LoadingPage_3 from '@/views/auth/welcomepages/LoadingPage_3.vue'
