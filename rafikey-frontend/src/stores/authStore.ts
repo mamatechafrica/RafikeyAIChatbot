@@ -114,6 +114,72 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  // forgot password function
+  async function forgotPassword(email: string) {
+    try{
+      const response = await fetch(`${BASE_URL}/auth/forgot-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email
+        })
+      })
+      const data = await response.json()
+      if (!response.ok) {
+        return {
+          result: 'error',
+          message: data.detail
+        }
+      } else {
+        return {
+          result: 'ok',
+          message: data.message
+        }
+      }
+    }
+    catch (error) {
+      console.error('Error sending forgot password request:', error)
+      return
+    }
+  }
+
+  // resetPassword function
+  async function resetPassword(payload:  ResetPassword ) {
+    console.log('Reset Password Payload:', payload)
+    try {
+      const response = await fetch(`${BASE_URL}/auth/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: payload.token,
+          new_password: payload.newPassword
+        })
+      })
+
+      const data = await  response.json()
+
+      if( !response.ok ) {
+        return {
+          result: 'error',
+          message: data.detail
+        }
+      } else{
+        return {
+          result: 'ok',
+          message: data.message
+        }
+      }
+    }
+    catch(error){
+      console.log('Error sending forgot password request:', error)
+      return
+    }
+  }
+
 
   return {
     user,
