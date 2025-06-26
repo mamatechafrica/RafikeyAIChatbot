@@ -137,36 +137,40 @@ const resetPasswordHandler = ()=>{
             </div>
 
             <div>
-              <form class="flex flex-col space-y-12 w-10/12">
+              <form class="flex flex-col space-y-12 w-10/12" @submit.prevent="resetPasswordHandler">
                 <div class="relative">
                   <input
-                    id="newPassword"
-                    type="password"
+                    v-model="resetPassword.newPassword"
+                    id="newPassword-1"
+                    :type="togglePasswordVisibility"
                     required
                     class="w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm"
                   />
                   <label
                     class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white"
-                    for="newPassword">
+                    for="newPassword-1">
                     Create Password
                   </label>
-                  <!--                <span class="material-icons-outlined absolute right-3 top-6">visibility_off</span>-->
-                  <span class="material-icons-outlined absolute right-3 top-6">visibility</span>
+                  <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 top-6">visibility_off</span>
+                  <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-6">visibility</span>
+                  <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
                 </div>
                 <div class="relative">
                   <input
-                    id="confirmPassword"
-                    type="password"
+                    v-model="resetPassword.confirmPassword"
+                    id="confirmPassword-1"
+                    :type="toggleConfirmPasswordVisibility"
                     required
                     class="w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm"
                   />
                   <label
                     class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white"
-                    for="confirmPassword">
+                    for="confirmPassword-1">
                     Re-enter Password
                   </label>
-                  <!--                <span class="material-icons-outlined absolute right-3 top-6">visibility_off</span>-->
-                  <span class="material-icons-outlined absolute right-3 top-6">visibility</span>
+                  <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
+                  <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="material-icons-outlined absolute cursor-pointer right-3 top-6">visibility_off</span>
+                  <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-6">visibility</span>
                 </div>
                 <button
                   type="submit"
@@ -209,33 +213,38 @@ const resetPasswordHandler = ()=>{
         <div class="border-b border-gray-400 w-full"></div>
         <form class="space-y-8">
           <div class="relative">
-            <label class="text-gray-950 text-lg" for="password">
+            <label class="text-gray-950 text-lg" for="newPassword-2">
               Create Password
             </label>
             <input
-              id="password"
-              type="password"
+              v-model="resetPassword.newPassword"
+              id="newPassword-2"
+              :type="togglePasswordVisibility"
               class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
               required
               placeholder="1234567@Hello"
             />
-            <!--                <span class="material-icons-outlined absolute right-3 top-6">visibility_off</span>-->
-            <span class="material-icons-outlined absolute right-3 top-10 cursor-pointer">visibility</span>
+            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility_off</span>
+            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility</span>
+            <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
           </div>
 
           <div class="relative">
-            <label class="text-gray-950 text-lg" for="password">
+            <label class="text-gray-950 text-lg" for="confirmPassword-2">
               Confirm Password
             </label>
             <input
-              id="password"
-              type="password"
+              v-model="resetPassword.confirmPassword"
+              :type="toggleConfirmPasswordVisibility"
+              id="confirmPassword-2"
               class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
               required
               placeholder="1234567@Hello"
             />
-            <!--                <span class="material-icons-outlined absolute right-3 top-6">visibility_off</span>-->
-            <span class="material-icons-outlined absolute right-3 top-10 cursor-pointer">visibility</span>
+            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility_off</span>
+            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility</span>
+            <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
+
           </div>
         </form>
         <div class="border-b border-gray-400 w-full pt-6"></div>
@@ -252,9 +261,6 @@ const resetPasswordHandler = ()=>{
       </div>
     </div>
   </div>
-  <!--<LoadingPage_2 />-->
-  <!--  <LoadingPage_3 />-->
-<!--  <LoadingPage_4 />-->
 </template>
 
 <style scoped>
