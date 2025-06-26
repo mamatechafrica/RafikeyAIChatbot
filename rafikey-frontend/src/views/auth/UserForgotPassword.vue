@@ -19,7 +19,7 @@
               <span class="text-lg font-light">Back to login</span>
             </div>
             <div class="flex flex-col space-y-6">
-              <h2 class="lg:text-4xl text-2xl font-semibold">Forgot your password?</h2>
+              <h2 class="lg:text-3xl text-xl font-semibold">Forgot your password?</h2>
               <p class="lg:text-xl text-lg text-gray-700">Don't worry, happens to all of us. Enter
                 your email bellow to recover your password</p>
             </div>
@@ -28,6 +28,7 @@
               <form class="flex flex-col space-y-12 w-10/12">
                 <div class="relative">
                   <input
+                    v-model="emailData"
                     id="email"
                     type="email"
                     required
@@ -39,6 +40,8 @@
                     for="email">
                     Email address
                   </label>
+                  <span v-if="emailMeta.validated && !emailMeta.valid"  class="text-rose-500">{{emailErrorMessage}}</span>
+
                 </div>
                 <div
                   @click="forgotPasswordHandler"
@@ -77,12 +80,15 @@
 
           <div class="space-y-3">
             <label for="email" class="text-black text-lg ">Email</label>
-            <input id="email"
+            <input
+                  v-model="emailData"
+                  id="email"
                    type="email"
                    class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
                    required
                    placeholder="Enter your email"
             />
+            <span v-if="emailMeta.validated && !emailMeta.valid"  class="text-rose-500">{{emailErrorMessage}}</span>
           </div>
         </form>
         <div class="border-b border-gray-400 w-full pt-6"></div>
