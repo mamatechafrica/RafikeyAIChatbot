@@ -1,4 +1,81 @@
 <script setup lang="ts">
+import { ref, watch, computed } from 'vue'
+import { useField } from 'vee-validate'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores'
+import { showSweetAlert } from '@/modules/alert.ts'
+
+const router = useRouter()
+const emailData = ref<string>('')
+const isLoading = ref(false)
+const authStore = useAuthStore()
+
+const emailValidator = (value: string) => {
+  if (!value) {
+    return 'Email is required'
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+  if (!emailRegex.test(value)) {
+    return 'Email must be valid'
+  }
+  if (value.length > 30) {
+    return 'Email too long'
+  }
+  return true
+}
+
+const {
+  value: email,
+  errorMessage: emailErrorMessage,
+  meta: emailMeta,
+} = useField('email', emailValidator)
+
+watch(()=> emailData.value, value => {
+    if (value) {
+      email.value = value
+    }
+  },
+)
+
+// before going to know you page, check if all fields are valid
+const everyThingOk = computed(()=>{
+  return emailMeta.validated && emailMeta.valid
+})
+
+const forgotPasswordHandler = () =>{
+  if(everyThingOk.value){
+    isLoading.value = true
+    authStore.forgotPassword(email.value)
+      .then(response =>{
+        if(response?.result === 'ok'){
+          showSweetAlert({
+           type: 'success',
+            message: response.message
+          })
+        } else{
+          showSweetAlert({
+            type: 'error',
+            message: 'An error occurred please try again later'
+          })
+        }
+      })
+      .catch(()=>{
+        showSweetAlert({
+          type: 'error',
+          message: 'An error occurred please try again later'
+        })
+      })
+      .finally(()=>{
+        isLoading.value = false
+      })
+
+
+  }
+}
+
+
+
 
 </script>
 
