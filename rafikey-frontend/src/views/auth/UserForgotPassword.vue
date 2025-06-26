@@ -13,6 +13,7 @@
           </div>
           <div class="flex flex-col space-y-12">
             <div
+              @click="router.go(-1)"
               class="flex  cursor-pointer text-gray-1000 justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
               <span class="material-icons-outlined">chevron_left</span>
               <span class="text-lg font-light">Back to login</span>
