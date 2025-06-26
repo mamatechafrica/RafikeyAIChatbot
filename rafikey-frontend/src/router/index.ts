@@ -66,8 +66,14 @@ const routes = [
       },
       {
         name: 'reset-password',
-        path: 'reset-password',
-        component: ()=> import('@/views/auth/UserResetPassword.vue')
+        path: 'reset-password/:token',
+        component: ()=> import('@/views/auth/UserResetPassword.vue'),
+        props:(route: RouteLocationNormalizedLoaded )=>{
+          const { query} = route
+          return {
+            token: query.token
+          }
+        }
       }
     ]
   },
