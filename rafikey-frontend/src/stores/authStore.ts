@@ -188,6 +188,8 @@ export const useAuthStore = defineStore('authStore', () => {
     tokenExpiry,
     isLoggedIn,
     createAccount,
-    login
+    login,
+    forgotPassword,
+    resetPassword,
   }
 })
