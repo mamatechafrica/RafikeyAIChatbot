@@ -59,9 +59,65 @@ const confirmPasswordValidator = (value: string) => {
   return true
 }
 
-import LoadingPage_2 from '@/views/auth/welcomepages/LoadingPage_2.vue'
-import LoadingPage_3 from '@/views/auth/welcomepages/LoadingPage_3.vue'
-import LoadingPage_4 from '@/views/auth/welcomepages/LoadingPage_4.vue'
+const {
+  value: confirmPassword,
+  errorMessage: confirmPasswordErrorMessage,
+  meta: confirmPasswordMeta,
+} = useField('confirmPassword', confirmPasswordValidator)
+
+watch(()=> resetPassword.confirmPassword, value => {
+  if (value) {
+    confirmPassword.value = value
+  }
+})
+
+const everyThingOk = computed(() => {
+  return passwordMeta.validated && passwordMeta.valid && confirmPasswordMeta.validated && confirmPasswordMeta.valid
+})
+
+const resetPasswordHandler = ()=>{
+  console.log("Clicking the buttoon")
+  if(everyThingOk.value){
+    isLoading.value = true
+    authStore.resetPassword({
+      token: props.token,
+      newPassword: resetPassword.newPassword,
+    })
+      .then(response =>{
+        if(response?.result === 'ok'){
+          showSweetAlert({
+            type: 'success',
+            message: response.message
+          })
+          setTimeout(()=>{
+            router.push({
+              name: 'login'
+            })
+          }, 3000)
+        }
+        else{
+          showSweetAlert({
+            type: 'error',
+            message: response?.message
+          })
+        }
+      })
+      .catch(() =>{
+        showSweetAlert({
+          type: 'error',
+          message: 'Something went wrong, please try again',
+        })
+      })
+      .finally(()=>{
+        isLoading.value = false
+      })
+
+
+  }
+
+}
+
+
 </script>
 
 <template>
