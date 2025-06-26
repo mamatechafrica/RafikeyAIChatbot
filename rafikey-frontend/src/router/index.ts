@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from "@/views/chatbot/ChatPage.vue"
+import { createRouter, createWebHistory, type RouteLocationNormalizedLoaded } from 'vue-router'
+
 
 
 const routes = [
