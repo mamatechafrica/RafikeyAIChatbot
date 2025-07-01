@@ -76,12 +76,12 @@ export const useAuthStore = defineStore('authStore', () => {
           ...payload
         })
       })
-      const data = await response.json()
+      const {message, user, detail} = await response.json()
       if (!response.ok) {
         console.log('An error has occurred please try again later')
         return {
           result: 'error',
-          message: data.detail
+          message: detail
           // message: data.message
         }
       } else {
