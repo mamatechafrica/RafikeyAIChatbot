@@ -13,6 +13,7 @@ const loginData = reactive({
 
 const router = useRouter()
 const isLoading = ref(false)
+const appLoading = ref(true)
 const isPasswordVisible = ref(false)
 const loginError = reactive({
   isError: false,
