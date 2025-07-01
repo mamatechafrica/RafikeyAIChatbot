@@ -1,5 +1,14 @@
  <script setup lang="ts">
 
+ import { computed } from 'vue'
+ import imageDark from '@/assets/images/rafikey-icon-black.png'
+ import imageLight from '@/assets/images/rafikey-icon.png'
+
+ const isDark = localStorage.getItem('darkMode')
+ console.log("we have mode", isDark)
+ const toggleImage = computed(()=>{
+   return isDark? imageDark : imageLight
+ })
 
 </script>
 
