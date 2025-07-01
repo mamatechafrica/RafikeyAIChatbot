@@ -285,6 +285,9 @@ onMounted(()=>{
       </div>
     </div>
   </div>
+  <div v-else>
+    <LoadingPage_1 />
+  </div>
 </template>
 
 <style scoped>
