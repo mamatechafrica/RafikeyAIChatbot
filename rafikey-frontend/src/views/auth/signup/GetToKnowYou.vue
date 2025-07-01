@@ -141,7 +141,7 @@ const createAccountHandler = () =>{
       .then((response) => {
         if(response.result === 'ok'){
           router.push({
-            name:'chat-page'
+            name:'login'
           })
           createAccountFormStore.clearProfile()
         }
