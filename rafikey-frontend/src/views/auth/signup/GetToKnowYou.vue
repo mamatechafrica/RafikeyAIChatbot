@@ -180,144 +180,151 @@ onBeforeMount(()=>{
 </script>
 
 <template>
-  <div>
-    <div class="h-screen w-full hidden lg:block">
-      <div>
-        <img src="@/assets/images/rafikey-icon.png" alt="rafikey-logo" />
+
+    <div class="h-screen w-full hidden lg:flex items-center justify-center dark:bg-lightgray">
+      <div class="bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-2xl pb-10">
+        <div>
+          <div>
+            <img :src="toggleImage" alt="rafikey-logo" />
+          </div>
+          <div class="w-10/12 rounded-2xl   mx-auto space-y-8">
+            <div class="flex flex-col items-center">
+              <h2 class="text-4xl  font-semibold dark:text-white">Let's Get To Know You Better</h2>
+            </div>
+            <div class="border-b border-gray-400 w-1/2 xl:w-1/4 mx-auto dark:border-stone-400"></div>
+            <div class="space-y-4">
+              <div class="flex flex-col items-center">
+                <p class="text-xl dark:text-white">How old are you</p>
+                <span class="text-lg text-gray-700 dark:text-stone-300">So we can tailor content and support</span>
+              </div>
+              <div class="">
+                <RadioGroup :radio-type="ageRange"  @change="selectedRadio"/>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="flex justify-center">
+                <p class="text-xl text-white">Which gender are you</p>
+              </div>
+              <div class="">
+                <RadioGroup :radio-type="genderSet" @change="selectedRadio"/>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-center flex-col items-center">
+                <p class="text-xl text-white">Are you in a relationship?</p>
+                <span class="text-lg text-gray-700 dark:text-stone-300">Helps with personalized advice</span>
+              </div>
+
+              <div class="">
+                <RadioGroup :radio-type="relationshipStatus" @change="selectedRadio"/>
+              </div>
+            </div>
+            <div v-if="signupError.isError" class="flex gap-2">
+              <span class="material-icons-outlined text-rose-500">error</span>
+              <span class="text-rose-500">{{signupError.message}}</span>
+            </div>
+            <div class="border-b border-gray-400 w-1/2 xl:w-1/4  mx-auto dark:border-stone-400"></div>
+            <div class="flex flex-col">
+              <div class="flex gap-1 xl:gap-1 justify-center">
+                <input type="checkbox" v-model="getToKnowYouData.isTermsCondition" class="checkbox text-casablanca-400 border-slate-800 dark:border-white" />
+                <p class="text-center dark:text-white">
+                  We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be shared
+                  without your consent.
+                </p>
+              </div>
+
+              <div class="flex justify-center">
+                <span class="pe-1 dark:text-white">Read our full</span>
+                <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600"
+                >Terms of Use
+                </router-link>
+                <span class="px-1 dark:text-white">and</span>
+                <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600">
+                  Privacy Policy
+                </router-link>
+              </div>
+            </div>
+<!--            <div class="w-3/4 mx-auto flex justify-between items-center"></div>-->
+            <div class="flex justify-center">
+              <button
+                @click="createAccountHandler"
+
+                :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
+                class="btn w-full xl:w-1/2  btn-sm text-lg rounded-2xl py-6"
+              >
+                <span v-if="!isLoading" class="">Sign up</span>
+                <span v-else class="loading loading-spinner loading-sm"></span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
-      <div class="w-6/12 mx-auto space-y-8">
-        <div class="flex flex-col items-center">
-          <h2 class="lg:text-3xl text-xl font-semibold">Let's Get To Know You Better</h2>
-        </div>
-        <div class="border-b border-gray-400 w-3/4 mx-auto"></div>
-        <div class="space-y-4">
-          <div class="flex flex-col items-center">
-            <p class="lg:text-xl text-lg">How old are you</p>
-            <span class="text-lg text-gray-700">So we can tailor content and support</span>
-          </div>
-          <div class="">
-            <RadioGroup :radio-type="ageRange"  @change="selectedRadio"/>
-          </div>
-        </div>
 
-        <div class="space-y-4">
-          <div class="flex justify-center">
-            <p class="lg:text-xl text-lg">Which gender are you</p>
-          </div>
-          <div class="">
-            <RadioGroup :radio-type="genderSet" @change="selectedRadio"/>
-          </div>
-        </div>
-        <div class="space-y-4">
-          <div class="flex justify-center flex-col items-center">
-            <p class="lg:text-xl text-lg">Are you in a relationship?</p>
-            <span class="text-lg text-gray-700">Helps with personalized advice</span>
-          </div>
-
-          <div class="">
-            <RadioGroup :radio-type="relationshipStatus" @change="selectedRadio"/>
-          </div>
-        </div>
-        <div v-if="signupError.isError" class="flex gap-2">
-          <span class="material-icons-outlined text-rose-500">error</span>
-          <span class="text-rose-500">{{signupError.message}}</span>
-        </div>
-        <div class="border-b border-gray-400 w-3/4 mx-auto"></div>
-        <div class="flex flex-col">
-          <div class="flex gap-1 xl:gap-1 justify-center">
-            <input type="checkbox" v-model="getToKnowYouData.isTermsCondition" class="checkbox text-casablanca-400 border-slate-800" />
-            <p class="text-center">
-              We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be shared
-              without your consent.
-            </p>
-          </div>
-
-          <div class="flex justify-center">
-            <span class="pe-1">Read our full</span>
-            <router-link to="/auth/privacy-policy-1" class="cursor-pointer text-casablanca-600"
-              >Terms of Use
-            </router-link>
-            <span class="px-1">and</span>
-            <router-link to="/auth/privacy-policy-1" class="cursor-pointer text-casablanca-600">
-              Privacy Policy
-            </router-link>
-          </div>
-        </div>
-        <div class="w-3/4 mx-auto flex justify-between items-center"></div>
-        <div class="flex justify-center">
-          <button
-            @click="createAccountHandler"
-            :disabled="!everyThingOk"
-            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full xl:w-1/2  btn-sm text-lg rounded-2xl py-6"
-          >
-            <span v-if="!isLoading">Sign up</span>
-            <span v-else class="loading loading-spinner loading-sm"></span>
-          </button>
-        </div>
-
-      </div>
     </div>
-  </div>
+
 
   <!--    Small screen -->
-  <div class="lg:hidden block h-screen w-full">
+  <div class="lg:hidden block h-screen w-full dark:bg-darkgray">
     <div class="flex justify-center">
       <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
     </div>
     <div class="px-20 space-y-6">
       <div>
-        <h2 class="text-2xl font-semibold text-center">Let's Know You Better</h2>
+        <h2 class="text-4xl font-semibold text-center dark:text-white">Let's Know You Better</h2>
       </div>
-      <div class="border-b border-gray-400 smx-auto"></div>
+      <div class="border-b border-gray-400 smx-auto dark:border-stone-400"></div>
 
-      <div>
-        <p class="text-gray-950 text-lg">Age Range</p>
+      <div  class="space-y-2">
+        <p class="text-gray-950 text-lg dark:text-white">Age Range</p>
         <LisxBox :list-items="ageRange" :place-holder="ageRangePlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg">
+        <p class="text-gray-400 text-lg dark:text-stone-300">
           This helps us give you the right kind of support and info for your age
         </p>
       </div>
-      <div>
-        <p class="text-gray-950 text-lg">Gender</p>
+      <div class="space-y-2">
+        <p class="text-gray-950 text-lg dark:text-white">Gender</p>
         <LisxBox :list-items="genderSet" :place-holder="genderPlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg">
+        <p class="text-gray-400 text-lg dark:text-stone-300">
           This helps us give you the right kind of support and info for your age
         </p>
       </div>
-      <div>
-        <p class="text-gray-950 text-lg">Are you in a relationship</p>
+      <div class="space-y-2">
+        <p class="text-gray-950 text-lg dark:text-white">Are you in a relationship</p>
         <LisxBox :list-items="relationshipStatus" :place-holder="relationshipPlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg">Optional - help with personalized advice.</p>
+        <p class="text-gray-400 text-lg dark:text-stone-300">Optional - help with personalized advice.</p>
       </div>
       <div v-if="signupError.isError" class="flex gap-2">
         <span class="material-icons-outlined text-rose-500">error</span>
         <span class="text-rose-500">{{signupError.message}}</span>
       </div>
-      <div class="border-b border-gray-400 mx-auto"></div>
+      <div class="border-b border-gray-400 mx-auto dark:border-stone-400"></div>
       <div>
-        <p class="text-gray-950 text-lg">
+        <p class="text-gray-950 text-lg dark:text-white">
           We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be shared
           without your consent.
         </p>
       </div>
       <div class="">
-        <input type="checkbox" v-model="getToKnowYouData.isTermsCondition" class="checkbox text-casablanca-400 border-slate-800" />
-        <span class="text-gray-950 text-lg ps-4"
+        <input type="checkbox" v-model="getToKnowYouData.isTermsCondition" class="checkbox text-casablanca-400 border-slate-800 dark:border-white" />
+        <span class="text-gray-950 dark:text-white text-lg ps-4"
           >Creating an account means you are okay with our</span
         >
-        <router-link to="/auth/privacy-policy-1" class="cursor-pointer text-casablanca-600">
+        <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600">
           Terms of Use
         </router-link>
-        <span class=""> and</span>
-        <router-link to="/auth/privacy-policy-1" class="cursor-pointer text-casablanca-600">
+        <span class="dark:text-white"> and</span>
+        <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600">
           Privacy Policy
         </router-link>
       </div>
       <div class="w-3/4 mx-auto flex justify-between items-center">
         <button
           @click="createAccountHandler"
-          :disabled="!everyThingOk"
+
           :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
           class="btn w-full btn-sm 0 text-lg rounded-2xl py-6"
         >
