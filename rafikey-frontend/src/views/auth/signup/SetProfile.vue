@@ -73,7 +73,9 @@ const {
   meta: usernameMeta,
 } = useField('username', usernameValidator)
 
-watch(() => setProfileData.username, value => {
+watch(
+  () => setProfileData.username,
+  (value) => {
     if (value) {
       username.value = value
     }
@@ -84,14 +86,11 @@ const emailValidator = (value: string) => {
   if (!value) {
     return 'Email is required'
   }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-  if (!emailRegex.test(value)) {
-    return 'Email must be valid'
-  }
-  if (value.length > 30) {
-    return 'Email too long'
-  }
+  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  //
+  // if (!emailRegex.test(value)) {
+  //   return 'Email must be valid'
+  // }
   return true
 }
 
@@ -101,7 +100,9 @@ const {
   meta: emailMeta,
 } = useField('email', emailValidator)
 
-watch(()=> setProfileData.email, value => {
+watch(
+  () => setProfileData.email,
+  (value) => {
     if (value) {
       email.value = value
     }
@@ -113,7 +114,7 @@ const passwordValidator = (value: string) => {
     return 'Password is required'
   }
   const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
-  if( !passwordRegExp.test(value)) {
+  if (!passwordRegExp.test(value)) {
     return 'Password must contain at least 6 characters, one uppercase letter, one lowercase letter and one number'
   }
   return true
@@ -125,7 +126,9 @@ const {
   meta: passwordMeta,
 } = useField('password', passwordValidator)
 
-watch(()=> setProfileData.password, value => {
+watch(
+  () => setProfileData.password,
+  (value) => {
     if (value) {
       password.value = value
     }
@@ -148,25 +151,32 @@ const {
   meta: confirmPasswordMeta,
 } = useField('confirmPassword', confirmPasswordValidator)
 
-watch(()=> setProfileData.confirmPassword, value => {
+watch(
+  () => setProfileData.confirmPassword,
+  (value) => {
     if (value) {
       confirmPassword.value = value
     }
-})
+  },
+)
 
 // before going to know you page, check if all fields are valid
-const everyThingOk = computed(()=>{
-  return(
-    usernameMeta.validated && usernameMeta.valid &&
-    emailMeta.validated && emailMeta.valid &&
-    passwordMeta.validated && passwordMeta.valid &&
-    confirmPasswordMeta.validated && confirmPasswordMeta.valid
+const everyThingOk = computed(() => {
+  return (
+    usernameMeta.validated &&
+    usernameMeta.valid &&
+    emailMeta.validated &&
+    emailMeta.valid &&
+    passwordMeta.validated &&
+    passwordMeta.valid &&
+    confirmPasswordMeta.validated &&
+    confirmPasswordMeta.valid
   )
 })
 
 // persist the profile data to the store if no errors on the form
-const goToKnowYou = ()=>{
-  if(everyThingOk.value){
+const goToKnowYou = () => {
+  if (everyThingOk.value) {
     createAccountFormStore.setProfile({
       username: setProfileData.username,
       email: setProfileData.email,
@@ -175,10 +185,10 @@ const goToKnowYou = ()=>{
     console.log('Profile************', createAccountFormStore.getProfile)
     isAnonymous.value = false
     isLoading.value = true
-    setTimeout(()=>{
+    setTimeout(() => {
       isLoading.value = false
       router.push({
-        name: 'get-to-know-you'
+        name: 'get-to-know-you',
       })
     }, 3000)
   }
