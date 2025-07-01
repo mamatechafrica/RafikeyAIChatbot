@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import  { useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+import imageLight from '../../../assets/images/rafikey-icon.png'
+import imageDark from '../../../assets/images/rafikey-icon-black.png'
 
 const router = useRouter()
+const isDark = localStorage.getItem('darkMode')
+console.log('we have mode', isDark)
+const toggleImage = computed(() => {
+  return isDark ? imageDark : imageLight
+})
 </script>
 
 <template>
