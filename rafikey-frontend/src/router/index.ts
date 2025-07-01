@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, type RouteLocationNormalizedLoaded } from 'vue-router'
+import { useAuthStore } from '@/stores'
 
 
 
@@ -81,7 +82,9 @@ const routes = [
     name: 'chat-page',
     path: '/chat-page',
     component: ()=> import('@/views/chatbot/ChatPage.vue'),
-
+    meta: {
+      requiresAuth: true
+    }
   }
 
 ]
@@ -90,6 +93,33 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  const  isRequiresAuth =  to.meta.requiresAuth as boolean
+  //   check if  routes requires authentication
+  // check if user has ever logged in if so direct them to login page no welcome pages
+  // If user is not logged in redirect them to loggin page
+  if(!isRequiresAuth){
+
+    if(authStore.isEverLoggedIn && to.name != 'login'){
+      next({
+        name: 'login'
+      })
+    } else{
+      next()
+    }
+  } else{
+    if(!authStore.userIsLoggedIn && to.name != 'login'){
+      console.log('Auth needed but no token')
+      next({
+        name: 'login'
+      })
+    } else{
+      next()
+    }
+  }
 })
 
 
