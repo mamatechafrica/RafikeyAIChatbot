@@ -17,17 +17,17 @@ const router = useRouter()
 const createAccountFormStore = useCreateAccountFormStore()
 const isPasswordVisible = ref<boolean>(false)
 const isConfirmPasswordVisible = ref<boolean>(false)
-const togglePasswordVisibility = computed(() => isPasswordVisible.value? 'text': 'password')
-const toggleConfirmPasswordVisibility = computed(() => isConfirmPasswordVisible.value ? 'text' : 'password')
-const setProfileData = reactive(
-  {
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    remainAnonymous: false,
-  }
+const togglePasswordVisibility = computed(() => (isPasswordVisible.value ? 'text' : 'password'))
+const toggleConfirmPasswordVisibility = computed(() =>
+  isConfirmPasswordVisible.value ? 'text' : 'password',
 )
+const setProfileData = reactive({
+  username: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+  remainAnonymous: false,
+})
 
 const isAnonymous = ref<boolean>(false)
 const isLoading = ref(false)

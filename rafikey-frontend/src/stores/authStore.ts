@@ -28,6 +28,16 @@ export interface ResetPassword {
   newPassword: string
 }
 
+export interface UserData {
+  id: number,
+  username: string
+  email: string
+  age: string
+  gender: string
+  relationship_status: string
+  createAt: string
+}
+
 const BASE_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 
 export const useAuthStore = defineStore('authStore', () => {
