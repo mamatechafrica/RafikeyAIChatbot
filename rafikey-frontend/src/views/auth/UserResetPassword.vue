@@ -4,6 +4,8 @@ import { useField } from 'vee-validate'
 import { useAuthStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
+import imageDark from '@/assets/images/rafikey-icon-black.png'
+import imageLight from '@/assets/images/rafikey-icon.png'
 
 
 const isPasswordVisible = ref<boolean>(false)
@@ -14,6 +16,12 @@ const isLoading = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
 
+
+const isDark = localStorage.getItem('darkMode')
+console.log("we have mode", isDark)
+const toggleImage = computed(()=>{
+  return isDark? imageDark : imageLight
+})
 
 const props = defineProps<{
   token: string
@@ -111,10 +119,7 @@ const resetPasswordHandler = ()=>{
       .finally(()=>{
         isLoading.value = false
       })
-
-
   }
-
 }
 
 
