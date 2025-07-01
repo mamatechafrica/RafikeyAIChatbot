@@ -96,6 +96,16 @@ const loginHandler = ()=>{
   }
 }
 
+
+onMounted(()=>{
+
+  setTimeout(()=>{
+    appLoading.value = false
+    console.log("App loading finished")
+  }, 3000)
+
+})
+
 </script>
 
 <template>
