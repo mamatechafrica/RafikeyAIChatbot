@@ -37,9 +37,9 @@ watch(()=>
     <Listbox v-model="selectedListItem">
       <div class="relative mt-1">
         <ListboxButton
-          class="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-casablanca-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-casablanca-300 sm:text-sm"
+          class="relative w-full cursor-default rounded-lg bg-transparent py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-casablanca-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-casablanca-300 sm:text-sm"
         >
-          <span v-if="selectedListItem" class="block truncate text-gray-950 text-lg">{{ selectedListItem.name}}</span>
+          <span v-if="selectedListItem" class="block truncate text-gray-950 dark:text-stone-400  text-lg">{{ selectedListItem.name}}</span>
           <span v-else class="block truncate text-gray-400 text-lg ">{{props.placeHolder}}</span>
 
           <span
@@ -58,7 +58,7 @@ watch(()=>
           leave-to-class="opacity-0"
         >
           <ListboxOptions
-            class="absolute mt-1 max-h-60 z-40 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+            class="absolute mt-1 max-h-60 z-40 w-full overflow-auto rounded-md bg-white dark:bg-darkgray py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
           >
             <ListboxOption
               v-slot="{ active, selected }"
@@ -69,7 +69,7 @@ watch(()=>
             >
               <li
                 :class="[
-                  active ? 'bg-amber-100 text-casablanca-900 text-lg' : 'text-gray-900 text-lg',
+                  active ? 'bg-amber-100 text-casablanca-900 text-lg' : 'text-gray-900 dark:text-stone-400   text-lg',
                   'relative cursor-default select-none py-2 pl-10 pr-4',
                 ]"
               >
