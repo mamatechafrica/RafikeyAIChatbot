@@ -91,23 +91,23 @@ const forgotPasswordHandler = () =>{
 
 <template>
   <div>
-    <div class="h-screen w-full hidden lg:block">
+    <div class="h-screen w-full hidden lg:block dark:bg-lightgray">
       <div class="w-10/12 grid grid-cols-2 mx-auto">
         <!--      left-side-->
         <div class="col-span-1">
           <div>
-            <img src="@/assets/images/rafikey-icon.png" alt="rafikey-icon" />
+            <img :src="toggleImage " alt="rafikey-icon" />
           </div>
           <div class="flex flex-col space-y-12">
             <div
               @click="router.go(-1)"
               class="flex  cursor-pointer text-gray-1000 justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
-              <span class="material-icons-outlined">chevron_left</span>
-              <span class="text-lg font-light">Back to login</span>
+              <span class="material-icons-outlined dark:text-white">chevron_left</span>
+              <span class="text-lg font-light dark:text-white">Back to login</span>
             </div>
             <div class="flex flex-col space-y-6">
-              <h2 class="lg:text-3xl text-xl font-semibold">Forgot your password?</h2>
-              <p class="lg:text-xl text-lg text-gray-700">Don't worry, happens to all of us. Enter
+              <h2 class="lg:text-3xl text-xl font-semibold dark:text-white">Forgot your password?</h2>
+              <p class="lg:text-xl text-lg text-gray-700 dark:text-stone-300">Don't worry, happens to all of us. Enter
                 your email bellow to recover your password</p>
             </div>
             <!--          forgot password form-->
@@ -119,11 +119,11 @@ const forgotPasswordHandler = () =>{
                     id="email"
                     type="email"
                     required
-                    class="w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm"
+                    class="w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
                     placeholder="johndoe@gmail.com"
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white"
+                    class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white dark:bg-lightgray dark:text-white"
                     for="email">
                     Email address
                   </label>
@@ -143,35 +143,38 @@ const forgotPasswordHandler = () =>{
         </div>
         <!--      right--side-->
         <div class="col-span-1 flex items-center justify-center h-screen">
-          <img src="@/assets/images/forgot-password.png" alt="forgot-password-image" />
+          <div class="bg-gray-100 rounded-2xl dark:bg-transparent">
+            <img src="@/assets/images/forgot-password.png" alt="forgot-password-image" />
+          </div>
+
         </div>
       </div>
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block h-screen w-full">
+    <div class="lg:hidden block h-screen w-full dark:bg-lightgray">
 
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col px-20 space-y-8">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="text-2xl font-semibold">Forgot Password</h2>
+          <h2 class="text-2xl font-semibold dark:text-white">Forgot Password</h2>
           <div class="space-y-2">
-            <p class="text-lg text-gray-700 text-center">Don't worry. Happens to all of us. </p>
-            <p class="text-lg text-gray-700 text-center">Enter your Email below to recover your password</p>
+            <p class="text-lg text-gray-700 text-center dark:text-stone-300">Don't worry. Happens to all of us. </p>
+            <p class="text-lg text-gray-700 text-center dark:text-stone-300">Enter your Email below to recover your password</p>
           </div>
         </div>
         <div class="border-b border-gray-400 w-full"></div>
         <form class="space-y-8">
 
           <div class="space-y-3">
-            <label for="email" class="text-black text-lg ">Email</label>
+            <label for="email" class="text-black text-lg  dark:text-white">Email</label>
             <input
                   v-model="emailData"
                   id="email"
                    type="email"
-                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
+                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
                    required
                    placeholder="Enter your email"
             />
