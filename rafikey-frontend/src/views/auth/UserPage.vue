@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import { useDark, useStorage } from '@vueuse/core'
+
+const isDark = useDark()
+const darkMode = useStorage('darkMode', isDark.value)
+
 
 </script>
 
