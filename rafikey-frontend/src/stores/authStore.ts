@@ -211,6 +211,43 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  // set user data on local storage
+  async function setUserData(userData: UserData){
+    user.value = JSON.stringify({
+      id: userData.id,
+      username: userData.username,
+      email: userData.email,
+      age: userData.age,
+      gender: userData.gender,
+      relationship_status: userData.relationship_status,
+      createAt: userData.createAt
+    })
+    return userData
+
+
+  }
+
+  function setToken(value: string){
+    try{
+      token.value = value
+      isLoggedIn.value = true
+      setEverLoggedIn()
+    }
+    catch(error){
+      console.log(error)
+      return
+    }
+  }
+
+  const logout = () =>{
+    isLoggedIn.value = false
+    token.value = null
+  }
+
+  const setEverLoggedIn = () =>{
+    isEverLoggedIn.value = true
+  }
+
 
   return {
     user,
