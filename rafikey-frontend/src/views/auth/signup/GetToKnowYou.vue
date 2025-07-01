@@ -5,7 +5,14 @@ import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
 import {range} from "lodash";
 import {useAuthStore, useCreateAccountFormStore} from "@/stores";
-import { showSweetAlert } from '@/modules/alert.ts'
+import imageLight from '../../../assets/images/rafikey-icon.png'
+import imageDark from '../../../assets/images/rafikey-icon-black.png'
+
+const isDark = localStorage.getItem('darkMode')
+console.log('we have mode', isDark)
+const toggleImage = computed(() => {
+  return isDark ? imageDark : imageLight
+})
 
 interface Buttons {
   name: string
