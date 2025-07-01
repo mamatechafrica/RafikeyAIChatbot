@@ -97,7 +97,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
         return {
           result: 'ok',
-          message: data.message
+          message: message
         }
       }
     } catch (error) {
@@ -129,9 +129,10 @@ export const useAuthStore = defineStore('authStore', () => {
           // message: data.message
         }
       } else {
+        setToken(data.accesstoken)
         return {
           result: 'ok',
-          message: data.access_token
+          message: 'Logged in successfully'
         }
       }
     }
