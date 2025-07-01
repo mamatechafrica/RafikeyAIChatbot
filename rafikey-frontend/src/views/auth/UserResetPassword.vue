@@ -132,7 +132,7 @@ const resetPasswordHandler = ()=>{
         <!--      left side-->
         <div class="col-span-1">
           <div>
-            <img src="@/assets/images/rafikey-icon.png" alt="rafikey-icon" />
+            <img :src=" toggleImage" alt="rafikey-icon" />
           </div>
           <div class="flex flex-col space-y-12">
             <div class="flex flex-col space-y-6">
