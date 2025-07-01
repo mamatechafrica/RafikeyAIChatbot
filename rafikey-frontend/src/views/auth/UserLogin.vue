@@ -190,6 +190,9 @@ onMounted(()=>{
 
                 <div
                   @click="loginHandler"
+                  :class="[
+                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
+                ]"
 
                   class="btn btn-sm bg-casablanca-400 hover:bg-casablanca-300 text-lg rounded-2xl py-6">
                   <span  v-if="!isLoading">Login</span>
@@ -278,6 +281,9 @@ onMounted(()=>{
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
+            :class="[
+                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
+                ]"
             @click="loginHandler"
             :disabled="!everyThingOk"
             class="btn w-full btn-sm bg-casablanca-300 hover:bg-casablanca-400 text-lg rounded-2xl py-6">
