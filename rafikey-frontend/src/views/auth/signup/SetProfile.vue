@@ -47,23 +47,21 @@ watch(
   },
 )
 
-onMounted(()=>{
+onMounted(() => {
   setProfileData.username = createAccountFormStore.getProfile.username
   setProfileData.email = createAccountFormStore.getProfile.email
   setProfileData.password = ''
   setProfileData.confirmPassword = ''
 })
 
-
-
-const usernameValidator = (value: string) =>{
-  if(!value){
+const usernameValidator = (value: string) => {
+  if (!value) {
     return 'Username is required'
   }
-  if(value.length > 10){
+  if (value.length > 20) {
     return 'Username too long'
   }
-  if(value.length < 3){
+  if (value.length < 3) {
     return 'Username too short'
   }
   return true
