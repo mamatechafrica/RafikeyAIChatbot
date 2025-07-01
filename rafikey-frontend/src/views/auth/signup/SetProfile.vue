@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import  { useField } from 'vee-validate'
+import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted } from 'vue'
-import {useRouter} from "vue-router";
-import LoadingSpinner from "@/views/auth/welcomepages/LoadingSpinner.vue";
-import {useCreateAccountFormStore} from "@/stores";
+import { useRouter } from 'vue-router'
+import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
+import { useCreateAccountFormStore } from '@/stores'
+import imageLight from '../../../assets/images/rafikey-icon.png'
+import imageDark from '../../../assets/images/rafikey-icon-black.png'
+
+const isDark = localStorage.getItem('darkMode')
+console.log('we have mode', isDark)
+const toggleImage = computed(() => {
+  return isDark ? imageDark : imageLight
+})
 
 const router = useRouter()
 const createAccountFormStore = useCreateAccountFormStore()
