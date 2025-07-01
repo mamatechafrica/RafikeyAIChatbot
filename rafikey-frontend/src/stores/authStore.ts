@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
-import { reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { useCreateAccountFormStore } from '@/stores'
+import moment from 'moment'
 
 export interface UserInfo {
   username: string
@@ -46,7 +47,17 @@ export const useAuthStore = defineStore('authStore', () => {
   const token = useStorage('rafikey-token', '')
   const isEverLoggedIn = useStorage('rafikey-ever-logged-in', false)
   const tokenExpiry = useStorage('rafikey-token-expiry', '')
-  const isLoggedIn = useStorage('rafikey-is-logged-in', false)
+  const isLoggedIn  = ref(false)
+  const userIsLoggedIn =  computed(()=>{
+    const expiry = moment.unix(Number(tokenExpiry.value)).utc()
+    const now = moment().utc()
+    const isValid = token.value && expiry.isAfter(now)
+    if(!isValid){
+      logout()
+    }
+    return  isValid
+
+  })
   const userPayload = reactive({})
 
 //   actions
