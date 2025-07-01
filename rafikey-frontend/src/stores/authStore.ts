@@ -85,7 +85,16 @@ export const useAuthStore = defineStore('authStore', () => {
           // message: data.message
         }
       } else {
-        console.log('Account created successfully', data)
+        await setUserData({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          age: user.age,
+          gender: user.gender,
+          relationship_status: user.relationship_status,
+          createAt: user.created_at
+        })
+
         return {
           result: 'ok',
           message: data.message
