@@ -1,9 +1,20 @@
 <script setup lang="ts">
 
-import { reactive, ref, computed, watch} from 'vue'
+import { reactive, ref, computed, watch, onMounted} from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore } from '@/stores'
 import { useRouter } from 'vue-router'
+import imageLight from '@/assets/images/rafikey-icon.png'
+import imageDark from '@//assets/images/rafikey-icon-black.png'
+import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
+
+
+const isDark = localStorage.getItem('darkMode')
+console.log("we have mode", isDark)
+const toggleImage = computed(()=>{
+  return isDark? imageDark : imageLight
+})
+
 
 const authStore = useAuthStore()
 const loginData = reactive({
