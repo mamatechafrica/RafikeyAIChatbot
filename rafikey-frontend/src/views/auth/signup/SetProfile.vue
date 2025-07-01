@@ -32,19 +32,20 @@ const setProfileData = reactive({
 const isAnonymous = ref<boolean>(false)
 const isLoading = ref(false)
 
-watch(() => isAnonymous.value, (value) => {
-  isLoading.value = true
-  if(value){
-
-    setTimeout(()=>{
-      isLoading.value = false
-      router.push({
-        name: 'chat-page'
-      })
-    }, 3000)
-
-  }
-})
+watch(
+  () => isAnonymous.value,
+  (value) => {
+    isLoading.value = true
+    if (value) {
+      setTimeout(() => {
+        isLoading.value = false
+        router.push({
+          name: 'chat-page',
+        })
+      }, 3000)
+    }
+  },
+)
 
 onMounted(()=>{
   setProfileData.username = createAccountFormStore.getProfile.username
