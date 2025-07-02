@@ -3,6 +3,7 @@ import { useStorage } from '@vueuse/core'
 import { computed, reactive, ref } from 'vue'
 import { useCreateAccountFormStore } from '@/stores'
 import moment from 'moment'
+import { jwtDecode } from 'jwt-decode'
 
 export interface UserInfo {
   username: string
@@ -228,8 +229,10 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   function setToken(value: string){
+    const {exp} = jwtDecode(value)
     try{
       token.value = value
+      tokenExpiry.value = exp as number
       isLoggedIn.value = true
       setEverLoggedIn()
     }
