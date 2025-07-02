@@ -311,136 +311,171 @@ const goToKnowYou = () => {
                         >{{ confirmPasswordErrorMessage }}</span
                       >
 
-                  <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility_off</span>
-                  <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility</span>
+                      <span
+                        v-if="isConfirmPasswordVisible"
+                        @click="isConfirmPasswordVisible = false"
+                        class="material-icons-outlined absolute cursor-pointer right-3 top-12 dark:text-white"
+                        >visibility_off</span
+                      >
+                      <span
+                        v-else
+                        @click="isConfirmPasswordVisible = true"
+                        class="material-icons-outlined absolute cursor-pointer right-3 top-12 dark:text-white"
+                        >visibility</span
+                      >
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
-          </form>
-        </div>
-        <div class="border-b  border-gray-400 w-3/4 mx-auto"></div>
-        <div class="w-3/4 mx-auto flex justify-between items-center">
-          <button
-            @click="goToKnowYou"
-            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full btn-sm text-lg rounded-2xl py-6 ">
-            Next
-          </button>
+            <div class="border-b border-gray-400 w-3/4 mx-auto dark:border-stone-400"></div>
+            <div class="w-3/4 mx-auto flex justify-between items-center">
+              <button
+                @click="goToKnowYou"
+                :class="[
+                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
+                ]"
+                class="btn w-full btn-sm text-lg rounded-2xl py-6"
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-
-
-
-
-
     <!--    Small screens-->
-    <div class="lg:hidden block h-screen w-full">
-
+    <div class="lg:hidden block h-screen w-full dark:bg-lightgray">
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col px-20 space-y-10">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="text-2xl font-semibold">Set up your profile</h2>
-          <p class="text-lg text-gray-700 text-center">Let's get you set up so you can access your
-            personal account for a more personalized experience</p>
+          <h2 class="text-4xl font-semibold dark:text-white">Set up your profile</h2>
+          <p class="md:text-xl text-lg text-gray-700 text-center dark:text-stone-300">
+            Let's get you set up so you can access your personal account for a more personalized
+            experience
+          </p>
         </div>
-        <div class="border-b border-gray-400 w-full"></div>
-        <form class="space-y-4">
-          <div>
-            <label for="username" class="text-black  text-lg">Username</label>
+        <div class="border-b border-gray-400 dark:border-stone-400 w-full"></div>
+        <form class="space-y-2">
+          <div class="space-y-1">
+            <label for="username" class="text-black dark:text-white text-lg">Username</label>
             <input
               v-model="setProfileData.username"
               id="username"
-                   type="text"
-                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
-                   required
-                   placeholder="Choose a username"
+              type="text"
+              class="w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
+              required
+              placeholder="Choose a username"
             />
             <div v-if="usernameMeta.validated && !usernameMeta.valid">
-              <span class="text-rose-500">{{usernameErrorMessage}}</span>
+              <span class="text-rose-500">{{ usernameErrorMessage }}</span>
             </div>
           </div>
           <div class="space-x-2">
             <input
-              id="checkbox" v-model="isAnonymous"
-
-              type="checkbox" class="checkbox rounded-full  peer-checked:bg-black border-slate-800"/>
-            <span class="text-lg">Remain Anonymous</span>
-
-
+              id="checkbox"
+              v-model="isAnonymous"
+              type="checkbox"
+              class="checkbox rounded-full peer-checked:bg-black border-slate-800 dark:border-white"
+            />
+            <span class="text-lg dark:text-white">Remain Anonymous</span>
           </div>
 
-          <div>
-            <label for="email" class="text-black  text-lg">Email</label>
+          <div class="space-y-1">
+            <label for="email" class="text-black dark:text-white text-lg">Email</label>
             <input
               v-model="setProfileData.email"
               id="email"
-                   type="email"
-                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
-                   required
-                   placeholder="Enter your email"
+              type="email"
+              class="w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
+              required
+              placeholder="Enter your email"
             />
-              <span  v-if="emailMeta.validated && !emailMeta.valid" class="text-rose-500">{{emailErrorMessage}}</span>
-
+            <span v-if="emailMeta.validated && !emailMeta.valid" class="text-rose-500">{{
+              emailErrorMessage
+            }}</span>
           </div>
 
-          <div class="relative">
-            <label class="text-black  text-lg" for="password">
-              Password
-            </label>
+          <div class="relative space-y-1">
+            <label class="text-black text-lg dark:text-white" for="password"> Password </label>
             <input
               v-model="setProfileData.password"
               id="password"
               :type="togglePasswordVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
+              class="w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
-            <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
-            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility_off</span>
-            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility</span>
+            <span v-if="passwordMeta.validated && !passwordMeta.valid" class="text-rose-500">{{
+              passwordErrorMessage
+            }}</span>
+            <span
+              v-if="isPasswordVisible"
+              @click="isPasswordVisible = false"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-12 dark:text-white"
+              >visibility_off</span
+            >
+            <span
+              v-else
+              @click="isPasswordVisible = true"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-12 dark:text-white"
+              >visibility</span
+            >
           </div>
 
-          <div class="relative">
-            <label class="text-black  text-lg" for="password">
+          <div class="relative space-y-2">
+            <label class="text-black dark:text-white text-lg" for="password">
               Confirm Password
             </label>
             <input
               v-model="setProfileData.confirmPassword"
               id="ConfirmPassword"
               :type="toggleConfirmPasswordVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg"
+              class="w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
-            <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
-            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility_off</span>
-            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-12">visibility</span>
+            <span
+              v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"
+              class="text-rose-500"
+              >{{ confirmPasswordErrorMessage }}</span
+            >
+            <span
+              v-if="isConfirmPasswordVisible"
+              @click="isConfirmPasswordVisible = false"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-12 text-white"
+              >visibility_off</span
+            >
+            <span
+              v-else
+              @click="isConfirmPasswordVisible = true"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-12 text-white"
+              >visibility</span
+            >
           </div>
         </form>
-        <div class="border-b border-gray-400 w-full"></div>
+        <div class="border-b border-gray-400 dark:border-stone-400 w-full"></div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
             @click="goToKnowYou"
-            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full btn-sm  text-lg rounded-2xl py-6 disabled:opacity-50">
+            :class="[
+              !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
+            ]"
+            class="btn w-full btn-sm text-lg rounded-2xl py-6 disabled:opacity-50"
+          >
             Next
           </button>
         </div>
-
       </div>
     </div>
   </div>
   <div v-else>
     <LoadingSpinner />
   </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
