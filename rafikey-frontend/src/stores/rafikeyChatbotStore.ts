@@ -76,6 +76,8 @@ const rafikeyResponse = ref<string>('')
     sendMessageToRafikeyChatbot,
     sessionId,
     setSessionId,
-    getSessionId
+    getSessionId,
+    dialogModal,
+    setDialogModal
   }
 })
