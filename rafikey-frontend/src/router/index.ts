@@ -82,9 +82,28 @@ const routes = [
     name: 'chat-page',
     path: '/chat-page',
     component: ()=> import('@/views/chatbot/ChatPage.vue'),
-    meta: {
-      requiresAuth: true
-    }
+    children: [
+      {
+        name: 'user-chat-page',
+        path: 'user/chat-page',
+        component: () => import('@/views/chatbot/user/ChatPage.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        name: 'guest-user-chat-page',
+        path: 'guest-user/chat-page',
+        component: ()=> import('@/views/chatbot/guest/ChatPage.vue'),
+        meta: {
+          requiresAuth: false
+        }
+      }
+
+
+
+    ]
+
   }
 
 ]
@@ -96,30 +115,31 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore()
-  const  isRequiresAuth =  to.meta.requiresAuth as boolean
-  //   check if  routes requires authentication
-  // check if user has ever logged in if so direct them to login page no welcome pages
-  // If user is not logged in redirect them to loggin page
-  if(!isRequiresAuth){
-
-    if(authStore.isEverLoggedIn && to.name != 'login'){
-      next({
-        name: 'login'
-      })
-    } else{
-      next()
-    }
-  } else{
-    if(!authStore.userIsLoggedIn && to.name != 'login'){
-      console.log('Auth needed but no token')
-      next({
-        name: 'login'
-      })
-    } else{
-      next()
-    }
-  }
+  // const authStore = useAuthStore()
+  // const  isRequiresAuth =  to.meta.requiresAuth as boolean
+  // //   check if  routes requires authentication
+  // // check if user has ever logged in if so direct them to login page no welcome pages
+  // // If user is not logged in redirect them to loggin page
+  // if(!isRequiresAuth){
+  //
+  //   if(authStore.isEverLoggedIn && to.name != 'login'){
+  //     next({
+  //       name: 'login'
+  //     })
+  //   } else{
+  //     next()
+  //   }
+  // } else{
+  //   if(!authStore.userIsLoggedIn && to.name != 'login'){
+  //     console.log('Auth needed but no token')
+  //     next({
+  //       name: 'login'
+  //     })
+  //   } else{
+  //     next()
+  //   }
+  // }
+  next()
 })
 
 
