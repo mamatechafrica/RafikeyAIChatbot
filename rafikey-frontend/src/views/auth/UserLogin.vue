@@ -177,7 +177,7 @@ onMounted(()=>{
                     placeholder="johndoe"
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
+                    class="absolute left-1 -top-3 text-slate-600 dark:text-white px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
                     for="usernameLarge">
                     Username
                   </label>
@@ -192,7 +192,7 @@ onMounted(()=>{
                     required
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
+                    class="absolute left-1 -top-3 text-slate-600 dark:text-white px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
                     for="passwordLarge">
                     Password
                   </label>
@@ -272,7 +272,7 @@ onMounted(()=>{
             />
           </div>
           <div class="space-x-2">
-            <input type="checkbox" class="checkbox rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
+            <input v-model="isAnonymous" type="checkbox" class="checkbox rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
             <span class="text-lg text-white">Remain Anonymous</span>
           </div>
 
@@ -330,6 +330,31 @@ onMounted(()=>{
 
       </div>
     </div>
+    <Teleport to="body">
+      <DialogModal :is-open="chatbotStore.dialogModal.isOpen" @close-modal="chatbotStore.setDialogModal(false)" >
+        <template #title>
+          <div class="flex justify-center">
+            <span class="material-icons-outlined text-casablanca-300 !text-3xl lg:!text-4xl" >info</span>
+          </div>
+        </template>
+        <template #body>
+          <div class="flex flex-col items-center py-2">
+            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
+            <span class="dark:text-white text-sm lg:text-lg">Your chat's won't be saved, if you login anonymously</span>
+          </div>
+
+        </template>
+        <template #footer>
+          <div class="flex justify-center gap-4">
+            <button @click="isUserGuest=true" class="btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
+              <span v-if="!isUserGuestLoading" class="">Ok</span>
+              <span v-else class="loading loading-spinner loading-sm"></span>
+            </button>
+            <button @click="isUserGuest = false" class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+          </div>
+        </template>
+      </DialogModal>
+    </Teleport>
   </div>
   <div v-else>
     <LoadingPage_1 />
