@@ -16,6 +16,14 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     sessionId.value = value
   }
 
+  const dialogModal = ref({
+    isOpen: false,
+  })
+
+  const setDialogModal = (value: boolean) => {
+    dialogModal.value.isOpen = value
+  }
+
   const getSessionId = computed(()=> sessionId.value)
 const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
