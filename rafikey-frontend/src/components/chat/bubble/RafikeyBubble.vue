@@ -29,20 +29,28 @@ const hasText = computed(()=>{
 
 <template>
   <div class="chat chat-start">
-    <div class="chat-image avatar">
-      <div class="w-10 rounded-full">
-        <img
-          alt="Rafikey chatbot image"
-          src="@/assets/images/chatbot.png" />
+    <div class="flex gap-2">
+      <div>
+        <div class="">
+          <img
+            class="w-12 rounded-full"
+            alt="Rafikey chatbot image"
+            src="@/assets/images/rafikey-avator.png">
+        </div>
       </div>
-    </div>
-    <div class="chat-header text-xs md:text-sm">
-     {{props.chatbotName}}
-      <time class="text-xs md:text-sm opacity-50">{{props.createdAt}}</time>
-    </div>
-    <div class="chat-bubble bg-peach-600 py-4 rounded-2xl text-white ">
-      <div v-if="hasText" v-html="props.rafikeyChatbotMessage || props.originalMessage" class="lg:!text-xl md:!text-lg !text-sm"></div>
-      <span v-else class="loading loading-dots md:loading-lg loading-sm"></span>
+      <div class="flex flex-col">
+        <div class="chat-header flex dark:text-white  justify-start items-end font-semibold text-sm md:text-lg">
+          {{props.chatbotName}}
+          <time class="text-xs md:text-sm  opacity-50">{{props.createdAt}}</time>
+        </div>
+        <div class="py-4 rounded-2xl">
+          <div v-if="hasText" v-html="props.rafikeyChatbotMessage || props.originalMessage" class="dark:text-white"></div>
+          <span v-else class="loading loading-dots md:loading-lg loading-sm dark:text-white"></span>
+
+        </div>
+      </div>
+
+
     </div>
 <!--    <div class="chat-footer opacity-50">Delivered</div>-->
   </div>
