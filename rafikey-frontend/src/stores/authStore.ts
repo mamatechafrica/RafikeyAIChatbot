@@ -130,7 +130,7 @@ export const useAuthStore = defineStore('authStore', () => {
           // message: data.message
         }
       } else {
-        setToken(data.accesstoken)
+        setToken(data.access_token)
         return {
           result: 'ok',
           message: 'Logged in successfully'
