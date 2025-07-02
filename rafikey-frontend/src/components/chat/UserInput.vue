@@ -121,31 +121,43 @@ const sendRequest = () =>{
 <template>
   <div
     @click.stop="addFocus"
-    :class="[inputHasFocus ? 'ring-2 ring-peach-500 ' : '']"
-    class="relative grid grid-cols-12 border-2 border-peach-400 shadow-lg bg-white shadow-slate-300/10 rounded-2xl">
+    :class="[inputHasFocus ? '' : '', props.displayBottom? 'bottom-0': '' ]"
+    class="relative grid grid-cols-12   border-2 bg-link-water-50 dark:bg-lightgray shadow-lg rounded-full"
+  >
 
-    <div class="col-span-12" id="text-area">
-        <textarea
-          class="px-4 pt-2 hover:cursor-text overflow-hidden w-full grow bg-transparent border-none focus:outline-none resize-none"
-          placeholder="How can Rafikey help you today?"
-          v-model="userInput"
-          ref="textAreaRef"
-          @blur="inputHasFocus = false"
-          @focus="inputHasFocus = true"
-          @keydown="onTextAreaKeydown"
-        >
-    </textarea>
+    <div class="absolute col-span-1 left-3 pt-4">
+      <span class="material-icons-outlined dark:text-white">attach_file</span>
+      <span class="material-icons-outlined dark:text-white">bolt</span>
+    </div>
+    <div class="col-span-10 ms-16 w-full" id="text-area">
+      <textarea
+        class="px-4 pt-4 hover:cursor-text dark:text-white overflow-hidden w-full grow bg-transparent border-none focus:outline-none resize-none"
+        placeholder="Messagee Rafikey..."
+        v-model="userInput"
+        ref="textAreaRef"
+        @blur="inputHasFocus = false"
+        @focus="inputHasFocus = true"
+        @keydown="onTextAreaKeydown"
+      >
+      </textarea>
     </div>
 
-    <div class="absolute col-span-1 bottom-0 flex p-2  justify-end items-end lg:pb-4 w-full">
+    <div class="absolute col-span-1 bottom-0 flex justify-end items-end lg:pb-4 w-full">
+      <button class="btn btn-sm btn-ghost normal-case hover:bg-transparent hover:border-none focus:outline-none">
+        <span class="material-icons dark:text-white">mic</span>
+      </button>
+
       <button
+        v-if="hasText"
         class="btn btn-sm btn-ghost normal-case btn-circle"
         :disabled="props.isGenerating || !hasText"
         @click.prevent="sendRequest"
       >
-        <span class="material-icons-outlined !text-xl"
-              :class="[hasText && !props.isGenerating? 'text-peach-500': '']">
-          send
+        <span
+          class="material-icons-outlined !text-xl rotate-"
+          :class="[hasText && !props.isGenerating ? 'bg-casablanca-400 px-2 py-1 rounded-full' : '']"
+        >
+          arrow_upward
         </span>
       </button>
     </div>
