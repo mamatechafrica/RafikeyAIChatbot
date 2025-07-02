@@ -2,13 +2,18 @@
 
 import { reactive, ref, computed, watch, onMounted} from 'vue'
 import { useField } from 'vee-validate'
-import { useAuthStore } from '@/stores'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import imageLight from '@/assets/images/rafikey-icon.png'
 import imageDark from '@//assets/images/rafikey-icon-black.png'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
+import DialogModal from '@/components/DialogModal.vue'
 
 
+const chatbotStore = useRafikeyChatbotStore()
+const isAnonymous = ref<boolean>(false)
+const isUserGuest = ref<boolean>(false)
+const isUserGuestLoading = ref<boolean>(false)
 const isDark = localStorage.getItem('darkMode')
 console.log("we have mode", isDark)
 const toggleImage = computed(()=>{
@@ -109,6 +114,30 @@ const loginHandler = ()=>{
 }
 
 
+watch(
+  () => isAnonymous.value,
+  () => {
+    chatbotStore.setDialogModal(true)
+  },
+)
+
+
+watch(()=>isUserGuest.value, (value)=>{
+  isAnonymous.value = false
+  if(value){
+    isUserGuestLoading.value = true
+    setTimeout(()=>{
+            router.push({
+              name: 'guest-user-chat-page'
+            })
+    }, 3000)
+    chatbotStore.setDialogModal(false)
+
+  }
+  else{
+    chatbotStore.setDialogModal(false)
+  }
+})
 onMounted(()=>{
 
   setTimeout(()=>{
