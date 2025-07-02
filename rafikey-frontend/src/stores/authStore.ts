@@ -47,7 +47,7 @@ export const useAuthStore = defineStore('authStore', () => {
   const user = useStorage('rafikey-user', '')
   const token = useStorage('rafikey-token', '')
   const isEverLoggedIn = useStorage('rafikey-ever-logged-in', false)
-  const tokenExpiry = useStorage('rafikey-token-expiry', '')
+  const tokenExpiry = useStorage('rafikey-token-expiry', 0)
   const isLoggedIn  = ref(false)
   const userIsLoggedIn =  computed(()=>{
     const expiry = moment.unix(Number(tokenExpiry.value)).utc()
