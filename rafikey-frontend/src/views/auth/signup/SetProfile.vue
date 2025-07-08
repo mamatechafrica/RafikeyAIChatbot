@@ -40,7 +40,7 @@ watch(
       setTimeout(() => {
         isLoading.value = false
         router.push({
-          name: 'chat-page',
+          name: 'guest-user-chat-page',
         })
       }, 3000)
     }
