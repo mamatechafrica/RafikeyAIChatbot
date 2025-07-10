@@ -253,6 +253,74 @@ async def get_conversation_history(thread_id: str, db: SessionDep):
     return conversations
 
 
+@router.get('/conversations/threads/date-range')
+async def get_threads_by_date_range(
+    start_date: str, 
+    end_date: str, 
+    db: SessionDep
+):
+    """Get all thread IDs with their titles for a date range (format: YYYY-MM-DD)"""
+    try:
+        from datetime import datetime
+        
+        # Parse the date strings
+        try:
+            start_target = datetime.strptime(start_date, "%Y-%m-%d").date()
+            end_target = datetime.strptime(end_date, "%Y-%m-%d").date()
+        except ValueError:
+            raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD (e.g., 2025-07-09)")
+        
+        # Create start and end datetime for the full range
+        start_datetime = datetime.combine(start_target, datetime.min.time())
+        end_datetime = datetime.combine(end_target, datetime.max.time())
+        
+        # Get distinct thread_ids with their titles for conversations created in this range
+        from sqlmodel import func, and_
+        
+        statement = (
+            select(
+                Conversations.thread_id, 
+                Conversations.title, 
+                func.min(Conversations.timestamp).label('first_message_at'),
+                func.max(Conversations.timestamp).label('last_message_at'),
+                func.count(Conversations.id).label('message_count')
+            )
+            .where(
+                and_(
+                    Conversations.timestamp >= start_datetime,
+                    Conversations.timestamp <= end_datetime
+                )
+            )
+            .group_by(Conversations.thread_id, Conversations.title)
+            .order_by(func.max(Conversations.timestamp).desc())
+        )
+        
+        results = db.exec(statement).all()
+        
+        threads = [
+            {
+                "thread_id": result.thread_id,
+                "title": result.title or "Untitled Conversation",
+                "first_message_at": result.first_message_at,
+                "last_message_at": result.last_message_at,
+                "message_count": result.message_count
+            }
+            for result in results
+        ]
+        
+        return {
+            "start_date": start_date,
+            "end_date": end_date,
+            "total_threads": len(threads),
+            "threads": threads
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # Get the count of unique thread IDs
 @router.get('/unique_thread_ids/count')
 async def get_unique_thread_ids_count(session: SessionDep):
