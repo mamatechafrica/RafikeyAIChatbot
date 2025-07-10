@@ -175,7 +175,7 @@ async def get_grouped_conversations(db: SessionDep):
             if thread_id not in grouped_conversations:
                 grouped_conversations[thread_id] = {
                     "thread_id": thread_id,
-                    "title": conversation.title or "Untitled Conversation",
+                    "title": conversation.title,
                     "message_count": 0,
                     "created_at": conversation.timestamp,
                     "last_message_at": conversation.timestamp,
