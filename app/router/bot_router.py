@@ -39,7 +39,7 @@ async def generate_title_from_responses(responses: list[str]) -> str:
         )
         
         # Combine the responses into a single text
-        combined_responses = "\n".join(responses[:3])  # Use first 5 responses
+        combined_responses = "\n".join(responses[:5])  # Use first 5 responses
         
         # Create prompt for title generation
         title_prompt = f"""Based on the following AI responses from a conversation, generate a short, descriptive title (maximum 6 words) that captures the main topic or theme of the conversation:
@@ -61,13 +61,16 @@ Generate only the title, nothing else. Make it concise and relevant to the main 
     except Exception as e:
         print(f"Error generating title: {e}")
         return "Conversation"  # Fallback title
+    
 
 
 async def update_conversation_title(thread_id: str, db: SessionDep):
     """Update conversation title when we have enough responses"""
     try:
-        # Get all conversations for this thread
-        statement = select(Conversations).where(Conversations.thread_id == thread_id)
+        # Get all conversations for this thread ordered by timestamp
+        statement = select(Conversations).where(
+            Conversations.thread_id == thread_id
+        ).order_by(Conversations.timestamp.asc())
         conversations = db.exec(statement).all()
         
         if len(conversations) >= 5:
@@ -80,16 +83,22 @@ async def update_conversation_title(thread_id: str, db: SessionDep):
                 # Generate title
                 title = await generate_title_from_responses(bot_responses)
                 
-                # Update all conversations in this thread with the title
-                for conv in conversations:
-                    conv.title = title
+                # Update ALL conversations in this thread with the title
+                # Use a direct SQL update for better performance and to ensure all records are updated
+                from sqlmodel import update
                 
+                update_statement = (
+                    update(Conversations)
+                    .where(Conversations.thread_id == thread_id)
+                    .values(title=title)
+                )
+                
+                db.exec(update_statement)
                 db.commit()
                 print(f"Generated title for thread {thread_id}: {title}")
                 
     except Exception as e:
         print(f"Error updating conversation title: {e}")
-
 
 async def generate_stream_response(user_input: str, thread_id: str, db: SessionDep) -> AsyncGenerator[str, None]:
     """Generate streaming response from the graph using the provided thread_id"""
@@ -146,3 +155,64 @@ async def chat(chat_input: ChatInput, db: SessionDep):
         )
     except Exception as e:
         return {"error": str(e)}
+    
+
+
+@router.post('/conversations/generate-missing-titles')
+async def generate_missing_titles(db: SessionDep):
+    """Generate titles for all threads that don't have titles but have 5+ conversations"""
+    try:
+        # Get all conversations
+        statement = select(Conversations).order_by(Conversations.timestamp.asc())
+        all_conversations = db.exec(statement).all()
+        
+        # Group by thread_id
+        threads = {}
+        for conv in all_conversations:
+            if conv.thread_id not in threads:
+                threads[conv.thread_id] = []
+            threads[conv.thread_id].append(conv)
+        
+        updated_threads = []
+        
+        # Process each thread
+        for thread_id, conversations in threads.items():
+            # Check if thread has 5+ conversations and no title
+            if len(conversations) >= 5 and (not conversations[0].title or conversations[0].title == ""):
+                try:
+                    # Get the first 5 bot responses
+                    bot_responses = [conv.bot_response for conv in conversations[:5]]
+                    
+                    # Generate title
+                    title = await generate_title_from_responses(bot_responses)
+                    
+                    # Update all conversations in this thread
+                    from sqlmodel import update
+                    
+                    update_statement = (
+                        update(Conversations)
+                        .where(Conversations.thread_id == thread_id)
+                        .values(title=title)
+                    )
+                    
+                    db.exec(update_statement)
+                    updated_threads.append({
+                        "thread_id": thread_id,
+                        "title": title,
+                        "conversations_count": len(conversations)
+                    })
+                    
+                except Exception as e:
+                    print(f"Error generating title for thread {thread_id}: {e}")
+                    continue
+        
+        db.commit()
+        
+        return {
+            "message": f"Generated titles for {len(updated_threads)} threads",
+            "updated_threads": updated_threads
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
