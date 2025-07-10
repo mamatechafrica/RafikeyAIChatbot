@@ -181,6 +181,7 @@ async def get_current_active_user(
     return current_user
 
 # =============== EMAIL HELPER ===============
+
 async def send_password_reset_email(email: str, reset_token: str):
     """
     Send password reset email to user using info@mamatech.co.ke

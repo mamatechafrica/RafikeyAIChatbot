@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 import json
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from sqlmodel import func, select
 from app.bot.prompt import QUESTIONS_PROMPTS, SENTIMENT_ANALYSIS_PROMPT, TOPIC_EXTRACTION_PROMPT
 from app.models import Hero, Conversations
@@ -156,6 +156,69 @@ def get_heroes(session: SessionDep):
 async def get_conversations(session: SessionDep):
     conversations = session.exec(select(Conversations)).all()
     return conversations    
+
+
+@router.get('/conversations/grouped')
+async def get_grouped_conversations(db: SessionDep):
+    """Get all conversations grouped by thread_id"""
+    try:
+        # Get all conversations ordered by timestamp
+        statement = select(Conversations).order_by(Conversations.timestamp.desc())
+        all_conversations = db.exec(statement).all()
+        
+        # Group conversations by thread_id
+        grouped_conversations = {}
+        
+        for conversation in all_conversations:
+            thread_id = conversation.thread_id
+            
+            if thread_id not in grouped_conversations:
+                grouped_conversations[thread_id] = {
+                    "thread_id": thread_id,
+                    "title": conversation.title or "Untitled Conversation",
+                    "message_count": 0,
+                    "created_at": conversation.timestamp,
+                    "last_message_at": conversation.timestamp,
+                    "conversations": []
+                }
+            
+            # Update thread metadata
+            grouped_conversations[thread_id]["message_count"] += 1
+            
+            # Update timestamps (since we're ordering by desc, first is latest)
+            if conversation.timestamp > grouped_conversations[thread_id]["last_message_at"]:
+                grouped_conversations[thread_id]["last_message_at"] = conversation.timestamp
+            if conversation.timestamp < grouped_conversations[thread_id]["created_at"]:
+                grouped_conversations[thread_id]["created_at"] = conversation.timestamp
+                
+            # Add conversation to the group
+            grouped_conversations[thread_id]["conversations"].append({
+                "id": conversation.id,
+                "user_message": conversation.user_message,
+                "bot_response": conversation.bot_response,
+                "timestamp": conversation.timestamp
+            })
+        
+        # Convert to list and sort by last message timestamp (most recent first)
+        result = list(grouped_conversations.values())
+        result.sort(key=lambda x: x["last_message_at"], reverse=True)
+        
+        return {
+            "total_threads": len(result),
+            "threads": result
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@router.get('/conversations/{thread_id}')
+async def get_conversation_history(thread_id: str, db: SessionDep):
+    """Get conversation history for a thread"""
+    statement = select(Conversations).where(Conversations.thread_id == thread_id)
+    conversations = db.exec(statement).all()
+    return conversations
 
 
 # Get the count of unique thread IDs
