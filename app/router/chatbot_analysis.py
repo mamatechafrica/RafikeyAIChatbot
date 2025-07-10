@@ -211,6 +211,38 @@ async def get_grouped_conversations(db: SessionDep):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@router.get('/conversations/threads')
+async def get_thread_list(db: SessionDep):
+    """Get all thread IDs with their titles only"""
+    try:
+        # Get distinct thread_ids with their titles
+        # Since all conversations in a thread have the same title, we can use any record
+        from sqlmodel import func, distinct
+        
+        statement = (
+            select(Conversations.thread_id, Conversations.title, func.max(Conversations.timestamp).label('last_message_at'))
+            .group_by(Conversations.thread_id, Conversations.title)
+            .order_by(func.max(Conversations.timestamp).desc())
+        )
+        
+        results = db.exec(statement).all()
+        
+        threads = [
+            {
+                "thread_id": result.thread_id,
+                "title": result.title or "Untitled Conversation",
+                "last_message_at": result.last_message_at
+            }
+            for result in results
+        ]
+        
+        return {
+            "total_threads": len(threads),
+            "threads": threads
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.get('/conversations/{thread_id}')
