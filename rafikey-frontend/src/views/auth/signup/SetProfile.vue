@@ -413,7 +413,7 @@ const goToKnowYou = () => {
               type="checkbox"
               class="checkbox rounded-full w-3 h-3 peer-checked:bg-black border-slate-800 dark:border-white"
             />
-            <span class="md:text-lg text-sm dark:text-white">Remain Anonymous</span>
+            <span class="md:text-lg text-sm text-black dark:text-white">Remain Anonymous</span>
           </div>
 
           <div class="md:space-y-1 space-y-0.5">
@@ -478,13 +478,13 @@ const goToKnowYou = () => {
             <span
               v-if="isConfirmPasswordVisible"
               @click="isConfirmPasswordVisible = false"
-              class="material-icons-outlined absolute cursor-pointer right-3 top-8 text-white"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-8 dark:text-white"
               >visibility_off</span
             >
             <span
               v-else
               @click="isConfirmPasswordVisible = true"
-              class="material-icons-outlined absolute cursor-pointer  right-3 top-8 text-white"
+              class="material-icons-outlined absolute cursor-pointer  right-3 top-8 dark:text-white"
               >visibility</span
             >
           </div>

@@ -30,8 +30,22 @@ const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
   const isGeneratingResponse = ref(false)
-  const isDarkMode = useDark()
-  const isDark = useStorage('darkMode',  isDarkMode.value)
+  const isDark = useStorage('darkMode',  false)
+  const isDarkMode = useDark({
+    storageKey: 'darkMode',
+    valueDark: 'true',
+    valueLight: 'false',
+  })
+
+  // Sync both directions
+  watch(isDarkMode, (newVal) => {
+    isDark.value = newVal
+  })
+
+  watch(isDark, (newVal) => {
+    isDarkMode.value = newVal
+  })
+
   const chatHistoryTitles = ref<ChatHistoryTitle []>([])
   const conversation = ref<Conversation[]>([])
   const setSessionId = (value: string) => {
@@ -201,6 +215,6 @@ const rafikeyResponse = ref<string>('')
     setActiveChatHistory,
     conversation,
     getChatHistory,
-    isGeneratingResponse
+    isGeneratingResponse,
   }
 })

@@ -273,7 +273,7 @@ onMounted(()=>{
           </div>
           <div class="space-x-2">
             <input v-model="isAnonymous" type="checkbox" class="checkbox w-3 h-3 rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
-            <span class="md:text-lg text-sm text-white">Remain Anonymous</span>
+            <span class="md:text-lg text-sm dark:text-white">Remain Anonymous</span>
           </div>
 
           <div class="relative space-y-3">
@@ -299,7 +299,7 @@ onMounted(()=>{
         <div class="border-b border-gray-400 w-full pt-6"></div>
         <div class="flex  justify-between">
           <div class="space-x-2">
-            <input type="checkbox" class="checkbox w-4 h-4 rounded-sm dark:border-white border-slate-800"/>
+            <input type="checkbox" class="checkbox w-4 h-4 rounded-full dark:border-white border-slate-800  text-casablanca-300"/>
             <span class="dark:text-white md:text-lg text-sm ">Remember me</span>
           </div>
           <div>

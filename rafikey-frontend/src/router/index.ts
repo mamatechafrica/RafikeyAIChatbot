@@ -8,12 +8,12 @@ const routes = [
     path: '/',
     redirect: '/auth'
   },
-  // {
-  //   name: 'trying',
-  //   path: '/trying',
-  //   // component: () => import('@/views/auth/welcomepages/LoadingSpinner.vue')
-  //   component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue')
-  // },
+  {
+    name: 'trying',
+    path: '/trying',
+    // component: () => import('@/views/auth/welcomepages/LoadingSpinner.vue')
+    component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue')
+  },
 
   {
     name: 'auth',
