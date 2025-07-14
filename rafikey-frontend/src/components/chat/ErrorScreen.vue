@@ -1,7 +1,9 @@
 <script setup lang="ts">
-
+const emits = defineEmits<{
+  (event: 'regenerateResponse'): void
+}>()
 const refreshPage = () => {
-  window.location.reload()
+emits('regenerateResponse')
 }
 </script>
 
@@ -14,13 +16,13 @@ const refreshPage = () => {
             <span class="material-icons-outlined text-rose-400">info</span>
           </div>
           <div>
-            <span class="text-lg">Network Issue</span>
+            <span class="lg:text-lg text-sm">Network Issue</span>
           </div>
         </div>
         <div class="flex justify-between">
-          <p class="text-lg">Hmm... it looks like you're offline. Check your network connection and refresh to continue</p>
+          <p class="lg:text-lg text-sm">Hmm... it looks like you're offline. Check your network connection and refresh to continue</p>
           <button class="btn btn-sm bg-black shadow-none  rounded-xl p-6 " v-on:click="refreshPage">
-            <span class="text-white text-lg">Refresh chat</span>
+            <span class="text-white lg:text-lg text-sm">Refresh chat</span>
           </button>
         </div>
       </div>
@@ -29,9 +31,9 @@ const refreshPage = () => {
 
     <div class="fixed bottom-32  left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
 
-        <button class="bg-casablanca-300 p-4 rounded-xl flex text-lg">
-          <span class="material-icons-outlined">loop</span>
-          <span>Regenerate Response</span>
+        <button class="bg-casablanca-300 p-4 rounded-xl flex">
+          <span class="material-icons-outlined lg:text-lg text-sm">loop</span>
+          <span class="lg:text-lg text-sm">Regenerate Response</span>
         </button>
 
 
