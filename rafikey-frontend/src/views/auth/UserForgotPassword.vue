@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import imageLight from '@/assets/images/rafikey-icon.png'
-import imageDark from '@//assets/images/rafikey-icon-black.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 const router = useRouter()
 const emailData = ref<string>('')
