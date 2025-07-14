@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { reactive, watch, computed, ref } from 'vue'
 import { useField } from 'vee-validate'
-import { useAuthStore } from '@/stores'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
-import imageDark from '@/assets/images/rafikey-icon-black.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import imageLight from '@/assets/images/rafikey-icon.png'
 
 
@@ -15,6 +15,7 @@ const toggleConfirmPasswordVisibility = computed(() => isConfirmPasswordVisible.
 const isLoading = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
+const chatbotStore = useRafikeyChatbotStore()
 
 
 const toggleImage = computed(()=>{
