@@ -15,6 +15,8 @@ import moment from 'moment/moment'
 const conversation = ref<Conversation[]>([])
 const isGeneratingResponse = ref(false)
 const rafikeyChatbotStore = useRafikeyChatbotStore()
+const isError = ref(false)
+const router = useRouter()
 const isBottom = ref(false)
 const conversationContainerRef = ref<HTMLDivElement | null>()
 const now = moment().format('LT')
