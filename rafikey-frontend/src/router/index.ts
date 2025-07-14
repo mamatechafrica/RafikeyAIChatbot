@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, type RouteLocationNormalizedLoaded } from 'vue-router'
+import { createRouter, createWebHistory,type  NavigationGuardNext, type  RouteLocationNormalized } from 'vue-router'
 import { useAuthStore } from '@/stores'
 
 
@@ -27,7 +27,7 @@ const routes = [
         name: 'welcome-page',
         path: '',
         component: () => import('@/views/auth/welcomepages/WelcomePage.vue'),
-        beforeEnter: (to, from, next) => {
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           const authStore = useAuthStore()
           // If user is already logged in, redirect to chat page
           if (authStore.isEverLoggedIn) {
@@ -69,7 +69,7 @@ const routes = [
           }
 
         ],
-        beforeEnter: (to, from, next) => {
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           const authStore = useAuthStore()
           // If user is already logged in, redirect to chat page
           if (authStore.isEverLoggedIn) {
@@ -84,7 +84,7 @@ const routes = [
         name: 'login',
         path: 'login',
         component: () => import('@/views/auth/UserLogin.vue'),
-        beforeEnter: (to, from, next) => {
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           console.log("In login!!!")
           const authStore = useAuthStore()
           // If user is already logged in, redirect to chat page
