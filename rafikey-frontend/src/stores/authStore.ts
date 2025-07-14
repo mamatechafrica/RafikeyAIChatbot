@@ -268,6 +268,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
   return {
     user,
+    getUserInfo,
     token,
     isEverLoggedIn,
     tokenExpiry,
