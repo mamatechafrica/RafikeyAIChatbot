@@ -39,8 +39,8 @@ watch(()=>
         <ListboxButton
           class="relative w-full cursor-default rounded-lg bg-transparent py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-casablanca-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-casablanca-300 sm:text-sm"
         >
-          <span v-if="selectedListItem" class="block truncate text-gray-950 dark:text-stone-400  text-lg">{{ selectedListItem.name}}</span>
-          <span v-else class="block truncate text-gray-400 text-lg ">{{props.placeHolder}}</span>
+          <span v-if="selectedListItem" class="block truncate text-gray-950 dark:text-stone-400  md:text-lg text-sm ">{{ selectedListItem.name}}</span>
+          <span v-else class="block truncate text-gray-400 md:text-lg text-sm ">{{props.placeHolder}}</span>
 
           <span
             class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
@@ -74,6 +74,7 @@ watch(()=>
                 ]"
               >
                 <span
+                  class="md:text-lg text-sm"
                   :class="[
                     selected ? 'font-medium' : 'font-normal',
                     'block truncate',
