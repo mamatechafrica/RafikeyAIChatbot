@@ -17,10 +17,8 @@ const authStore = useAuthStore()
 const router = useRouter()
 
 
-const isDark = localStorage.getItem('darkMode')
-console.log("we have mode", isDark)
 const toggleImage = computed(()=>{
-  return isDark? imageDark : imageLight
+  return chatbotStore.isDark? imageDark : imageLight
 })
 
 const props = defineProps<{
