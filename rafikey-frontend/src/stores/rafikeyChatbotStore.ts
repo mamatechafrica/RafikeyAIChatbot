@@ -28,7 +28,6 @@ export interface Conversation {
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
-
   const isGeneratingResponse = ref(false)
   const isDarkMode = useDark()
   const isDark = useStorage('darkMode',  isDarkMode.value)
@@ -90,6 +89,81 @@ const rafikeyResponse = ref<string>('')
     finally {
       rafikeyResponse.value = ''
     }
+
+  }
+
+  // Get chat histories
+  async function getChatHistoryTitles() {
+    console.log('Here in the chat history')
+    const authStore = useAuthStore()
+    try{
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/threads`, {
+        method: 'GET',
+        headers : {
+          'Content-Type': 'application/json',
+          // Authorization: `Bearer ${authStore.token}`
+        },
+        // body: JSON.stringify({
+        //   username: authStore.getUserInfo()?.username
+        // })
+      })
+      const {threads, total_threads} = await response.json()
+      console.log(threads)
+      if(!response.ok){
+        return {
+          result: 'fail',
+          data: null
+        }
+      }
+      else {
+        return {
+          result: 'ok',
+          data: threads
+        }
+      }
+
+    }
+    catch(e){
+      console.error('Error fetching chat history titles:', e)
+    }
+  }
+
+  async function getChatHistory(){
+    try{
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/${sessionId.value}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const chatHistory = await response.json()
+      if(!response.ok){
+        return {
+          result: 'fail',
+          data: null
+        }
+      }
+      else {
+        return {
+          result: 'ok',
+          data: chatHistory
+        }
+      }
+
+    }
+    catch(e){
+      console.error('Error fetching chat history:', e)
+    }
+
+
+
+  }
+
+  // Set active chat hitory
+
+  const setActiveChatHistory = (value: string)=>{
+    sessionId.value = value
+
 
   }
 
