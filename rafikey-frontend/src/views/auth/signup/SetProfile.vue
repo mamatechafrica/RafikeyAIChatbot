@@ -34,18 +34,29 @@ const isLoading = ref(false)
 
 watch(
   () => isAnonymous.value,
-  (value) => {
-    isLoading.value = true
-    if (value) {
-      setTimeout(() => {
-        isLoading.value = false
-        router.push({
-          name: 'guest-user-chat-page',
-        })
-      }, 3000)
-    }
+  () => {
+    chatbotStore.setDialogModal(true)
   },
 )
+
+watch(()=>isUserGuest.value, (value)=>{
+  console.log(value)
+  if(value){
+    isUserGuestLoading.value = true
+    setTimeout(()=>{
+      router.push({
+        name: 'guest-page'
+      })
+    }, 3000)
+    chatbotStore.setDialogModal(false)
+    // isAnonymous.value = false
+
+  }
+  // else{
+  //   chatbotStore.setDialogModal(false)
+  // }
+})
+
 
 onMounted(() => {
   setProfileData.username = createAccountFormStore.getProfile.username
