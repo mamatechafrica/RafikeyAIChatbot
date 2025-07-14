@@ -255,9 +255,9 @@ marked.use({
   useNewRenderer: true,
 })
 
-const fetchHistoryChats = ()=>{
-
-}
+// const fetchHistoryChats = ()=>{
+//
+// }
 
 // Fetch chats from backend
 const fetchChats = (formatted: string) =>{
@@ -271,7 +271,7 @@ const fetchChats = (formatted: string) =>{
       sessionId: rafikeyChatbotStore.getSessionId,
     })
     .then((res) => {
-      if(res){
+      if(res != null){
         console.log('Rafikey response', res)
         const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
         const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]

@@ -99,6 +99,7 @@ const rafikeyResponse = ref<string>('')
     }
     catch (error) {
       console.log('Error sending message to RafikeyChatbot', error)
+      return
     }
     // clear the variable
     finally {

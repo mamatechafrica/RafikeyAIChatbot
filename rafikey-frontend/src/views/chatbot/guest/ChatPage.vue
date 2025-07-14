@@ -359,6 +359,7 @@ const regenerateResponse = () => {
       sessionId: rafikeyChatbotStore.getSessionId,
     })
     .then((res) => {
+
       if (res) {
         console.log('Rafikey response----', res)
         const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)

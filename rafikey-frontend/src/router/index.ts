@@ -69,15 +69,15 @@ const routes = [
           }
 
         ],
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-          const authStore = useAuthStore()
-          // If user is already logged in, redirect to chat page
-          if (authStore.isEverLoggedIn) {
-            next({ name: 'login' })
-          } else {
-            next()
-          }
-        }
+        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        //   const authStore = useAuthStore()
+        //   // If user is already logged in, redirect to chat page
+        //   if (authStore.isEverLoggedIn) {
+        //     next({ name: 'login' })
+        //   } else {
+        //     next()
+        //   }
+        // }
 
       },
       {
@@ -90,8 +90,6 @@ const routes = [
           // If user is already logged in, redirect to chat page
           if (!authStore.isEverLoggedIn) {
             next({ name: 'welcome-page' })
-          } else  if(authStore.userIsLoggedIn) {
-            next({ name: 'chat-page' })
           }
           else{
             next()
@@ -175,26 +173,18 @@ router.beforeEach((to, from, next) => {
   // check if user has ever logged in if so direct them to login page no welcome pages
   // If user is not logged in redirect them to loggin page
   if(!isRequiresAuth){
-  //   if(!authStore.isEverLoggedIn && to.name != 'welcome-page' || to.name != 'register') {
-  //     next({
-  //       name: 'welcome-page'
-  //     })
-  //   } else if(authStore.isEverLoggedIn && to.name != 'welcome-page'){
-  //     next({
-  //       name: 'login'
-  //     })
-  //   }
     next()
   }
-  else{
-    if(!authStore.userIsLoggedIn && to.name != 'login') {
+  else {
+    if (!authStore.userIsLoggedIn && to.name != 'login') {
       console.log('Auth needed but no token')
       next({
         name: 'login'
       })
+    } else {
+      next()
     }
-    next()
-    }
+  }
 })
 
 
