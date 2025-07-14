@@ -47,6 +47,7 @@ const hasText = computed(() => {
       </div>
     </div>
     <!--    <div class="chat-footer opacity-50">Seen at 12:46</div>-->
+<!--    <p>Hello</p>-->
   </div>
 </template>
 
