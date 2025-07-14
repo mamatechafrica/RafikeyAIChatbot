@@ -86,6 +86,7 @@ export const useAuthStore = defineStore('authStore', () => {
           // message: data.message
         }
       } else {
+        isEverLoggedIn.value = true
         await setUserData({
           id: user.id,
           username: user.username,
