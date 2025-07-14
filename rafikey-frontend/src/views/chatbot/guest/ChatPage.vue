@@ -249,48 +249,55 @@ marked.use({
 })
 // User Input
 const handleUserInput = (value: string, formatted: string) => {
+  formattedResponse.value = formatted
   //   Create userMessage object
   const userMessage = ref<Conversation>({
     message: formatted,
     isUser: true,
     uniqueId: _.uniqueId('user-'),
   })
-
+  scrollToBottom()
   // push user message to the conversation array
-  conversation.value.push(userMessage.value)
+  rafikeyChatbotStore.conversation.push(userMessage.value)
   const rafikeyMessage = ref<Conversation>({
     message: '',
     isUser: false,
     isTyping: true,
     uniqueId: _.uniqueId('rafikey-'),
   })
-  scrollToBottom()
 
+  console.log('Here in the handler ')
   //   push rafikey message to conversation array
   setTimeout(() => {
-    conversation.value.push(rafikeyMessage.value)
+    rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
   }, 500)
-  isGeneratingResponse.value = true
+  // console.log('conversation array---', conversation.value)
+  rafikeyChatbotStore.isGeneratingResponse = true
   rafikeyChatbotStore
     .sendMessageToRafikeyChatbot({
       message: formatted,
       sessionId: rafikeyChatbotStore.getSessionId,
     })
     .then((res) => {
-      console.log('Rafikey response----', res)
-      const rafikeyAllObject = conversation.value.filter((conv) => !conv.isUser)
-      const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+      if (res) {
+        console.log('Rafikey response----', res)
+        const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
+        const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
-      if (currentRafikeyObject) {
-        currentRafikeyObject.message = res as string
+        if (currentRafikeyObject) {
+          currentRafikeyObject.message = res as string
+        }
+        // console.log('Rafikey response----', rafikeyAllObject.map((conv) => conv.message))
+      } else {
+        isError.value = true
       }
-      // console.log('Rafikey response----', rafikeyAllObject.map((conv) => conv.message))
     })
     .catch((err) => {
+      isError.value = true
       console.log('There is an error in rafikey response', err)
     })
     .finally(() => {
-      isGeneratingResponse.value = false
+      rafikeyChatbotStore.isGeneratingResponse = false
       rafikeyMessage.value.isTyping = false
       // rafikeyMessage.value.hasError = true
     })
@@ -307,7 +314,7 @@ document.addEventListener('scroll', () => {
   }
 })
 
-watch(conversation.value, () => {
+watch(rafikeyChatbotStore.conversation, () => {
   if (conversationContainerRef.value) {
     conversationContainerHeight.value = conversationContainerRef.value.clientHeight || 0
   }
@@ -402,20 +409,28 @@ const startChatSmallScreen = () => {
 </script>
 
 <template>
-  <div class="min-h-screen dark:bg-lightgray">
-    <div class="w-9/12 mx-auto py-10">
+  <div class="min-h-screen dark:bg-lightgray w-full">
+    <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
       <!--    top -->
       <div class="flex justify-between">
         <div>
-          <button><span class="dark:text-white">Feedback</span></button>
+          <button><span class="dark:text-white lg:text-lg text-sm">Feedback</span></button>
         </div>
         <div class="flex items-end gap-2">
           <div class="">
-            <button class="btn btn-sm px-4 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-xl">Log in</button>
+            <button
+              @click="loginHandler"
+              class="btn lg:btn-sm btn-xs px-4 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-xl"
+            >
+              Log in
+            </button>
           </div>
-          <span class="text-lg dark:text-white">or</span>
+          <span class="lg:text-lg text-sm dark:text-white">or</span>
           <div>
-            <button class="btn btn-sm px-4 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black">
+            <button
+              @click="signUpHandler"
+              class="btn lg:btn-sm btn-xs px-4 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black"
+            >
               Sign up
             </button>
           </div>
@@ -423,86 +438,225 @@ const startChatSmallScreen = () => {
       </div>
 
       <!--    hero section-->
-      <div class="space-y-8 pt-12" v-if="conversation.length < 1">
+      <div class="space-y-8 pt-12" v-if="rafikeyChatbotStore.conversation.length < 1">
         <div class="space-y-4">
           <h2
-            class="!text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
+            class="lg:!text-5xl text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
           >
             Hi there
           </h2>
-          <p v-if="!isShowDisclaimer" class="!text-3xl text-stone-400">
+          <p v-if="!isShowDisclaimer" class="lg:!text-3xl text-2xl text-stone-400">
             Let's talk sexual and reproductive health
           </p>
           <div
             v-else
-            class="border border-casablanca-300  lg:py-4 px-2 py-2 rounded-lg w-full lg:w-3/4 xl:w-1/2"
+            class="border border-casablanca-300 lg:py-4 px-2 py-1 rounded-lg w-full lg:w-3/4 xl:w-1/2"
           >
-            <span class="dark:text-white">Heads up! Your chat is temporary unless you're logged in.</span>
-            <p class="dark:text-white">
-              <RouterLink to="/auth/register" class="text-casablanca-300"
+            <span class="dark:text-white lg:text-lg text-sm"
+              >Heads up! Your chat is temporary unless you're logged in.</span
+            >
+            <p class="dark:text-white lg:text-lg text-sm">
+              <RouterLink to="/auth/register" class="text-casablanca-300 lg:text-lg text-sm"
                 >Create an account
               </RouterLink>
               or
-              <RouterLink to="/auth/login" class="text-casablanca-300">Log in</RouterLink>
+              <RouterLink to="/auth/login" class="text-casablanca-300 lg:text-lg text-sm"
+                >Log in
+              </RouterLink>
               to save your conversations and access them anytime.
             </p>
           </div>
         </div>
         <div class="flex justify-end" :class="[isShowDisclaimer ? 'invisible' : '']">
-          <img src="@/assets/images/rafikey-hi.png" alt="rafikey-image" />
+          <img src="@/assets/images/rafikey-hi.png" alt="rafikey-image" class="lg:w-60 w-40" />
         </div>
       </div>
       <!--    conversation section-->
-      <div class="pt-10 h-full">
+      <div class="py-12 h-full">
         <ul>
-          <template v-for="(conv, index) in conversation" :key="index">
+          <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
             <UserBubble
               v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
               :user-message="conv.message"
               :user-name="'You'"
               :created-at="now"
-              :is-generating-response="isGeneratingResponse"
+              :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
             />
             <RafikeyBubble
-              v-if="!conv.isUser"
+              v-if="!conv.isUser && !isError"
               :chatbot-name="'Rafikey'"
               :rafikey-chatbot-message="marked.parse(conv.message) as string"
               :is-typing="false"
               :is-copyable="false"
               :is-error="false"
               :created-at="now"
-              :is-generating-response="isGeneratingResponse"
+              :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
             />
           </template>
         </ul>
       </div>
+      <div v-if="isError">
+        <ErrorScreen @regenerate-response="regenerateResponse" />
+      </div>
 
       <!--    text area-->
-      <div ref="userInputContainerHeightRef" class="sticky w-full bottom-0 bg-white dark:bg-lightgray">
+      <div
+        ref="userInputContainerHeightRef"
+        class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
+      >
+        <!--        <div-->
+        <!--          v-if="isBottom"-->
+        <!--          class="py-4 mt-6 bg-gradient-to-t from-main-color-light-color block"-->
+        <!--        ></div>-->
         <div
-          v-if="isBottom"
-          class="py-12 mt-6 bg-gradient-to-t from-main-color-light-color block"
-        ></div>
-        <div
-          class="bg-white dark:bg-lightgray backdrop-blur-2xl z-999"
-          :class="[conversation.length > 0 ? 'fixed bottom-10 left-0 right-0' : '']"
+          class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6"
+          :class="[rafikeyChatbotStore.conversation.length > 0 ? 'fixed bottom-0 left-0 right-0' : '']"
         >
           <div class="">
             <UserInput
               class="mx-auto"
-              :class="[conversation.length > 0 ? 'w-9/12' : '']"
+              :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-9/12' : '']"
               :disabled="false"
-              :is-generating="isGeneratingResponse"
+              :is-generating="rafikeyChatbotStore.isGeneratingResponse"
               @user-input="handleUserInput"
-              :display-bottom="conversation.length > 0"
+              :display-bottom="rafikeyChatbotStore.conversation.length > 0"
             />
           </div>
         </div>
       </div>
-
       <div id="#userInputPlaceholder"></div>
+    </div>
+    <div class="p-4 sm:p-10 py-10 w-full md:hidden block">
+      <div v-if="!isStartChatSmallScreen">
+        <div class="flex items-center justify-between">
+          <div class="w-32">
+            <img :src="toggleImage" alt="rafikey-icon" />
+          </div>
+          <div
+            class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"
+          >
+            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
+          </div>
+        </div>
+        <div class="space-y-16">
+          <div class="flex gap-4 pt-8 w-full">
+            <div
+              class="w-full dark:bg-darkgray rounded-xl p-5 space-y-4"
+              @click="startChatSmallScreen"
+            >
+              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
+                <span class="material-icons-outlined dark:text-white">sms</span>
+              </div>
+              <div class="flex dark:text-white gap-4">
+                <p class="text-sm">Chat with Rafikey</p>
+                <span class="material-icons-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+            <div class="w-full dark:bg-darkgray rounded-xl p-5 space-y-4">
+              <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
+                <span class="material-icons-outlined dark:text-white">mic_none</span>
+              </div>
+              <div class="flex dark:text-white gap-4">
+                <p class="text-sm">Chat with Rafikey</p>
+                <span class="material-icons-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex justify-between">
+              <p class="dark:text-white">History</p>
+              <span class="text-purple-400">See all</span>
+            </div>
+            <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">
+              <span class="dark:text-white text-sm"
+                >Heads up! Your chat is temporary unless you're logged in.</span
+              >
+              <p class="dark:text-white text-sm">
+                <RouterLink to="/auth/register" class="text-casablanca-300 lg:text-lg text-sm"
+                  >Create an account
+                </RouterLink>
+                or
+                <RouterLink to="/auth/login" class="text-casablanca-300 text-sm"
+                  >Log in
+                </RouterLink>
+                to save your conversations and access them anytime.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div v-else>
+        <!--        top side-->
+        <div class="flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
+          <div class="flex gap-4">
+            <span class="material-icons-outlined dark:text-white">arrow_back</span>
+            <span class="dark:text-white">Chatting With Rafikey</span>
+          </div>
+          <div>
+            <span class="material-icons-outlined dark:text-white">more_horiz</span>
+          </div>
+        </div>
+
+        <!--       Down side -->
+        <!--    conversation section-->
+        <div class="py-12 h-full">
+          <ul>
+            <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
+              <UserBubble
+                v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
+                :user-message="conv.message"
+                :user-name="'You'"
+                :created-at="now"
+                :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
+                :key="conv.uniqueId"
+              />
+              <RafikeyBubble
+                v-if="!conv.isUser && !isError"
+                :chatbot-name="'Rafikey'"
+                :rafikey-chatbot-message="marked.parse(conv.message) as string"
+                :is-typing="false"
+                :is-copyable="false"
+                :is-error="false"
+                :created-at="now"
+                :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
+                :key="conv.uniqueId"
+              />
+            </template>
+          </ul>
+        </div>
+        <div v-if="isError">
+          <ErrorScreen @regenerate-response="regenerateResponse" />
+        </div>
+
+        <!--    text area-->
+        <div
+          ref="userInputContainerHeightRef"
+          class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
+        >
+          <!--        <div-->
+          <!--          v-if="isBottom"-->
+          <!--          class="py-4 mt-6 bg-gradient-to-t from-main-color-light-color block"-->
+          <!--        ></div>-->
+          <div
+            class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6 fixed bottom-0"
+            :class="[rafikeyChatbotStore.conversation.length > 0 ? 'left-0 right-0': 'left-4 right-4']"
+          >
+            <div class="">
+              <UserInput
+                class="mx-auto"
+                :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-9/12' : '']"
+                :disabled="false"
+                :is-generating="rafikeyChatbotStore.isGeneratingResponse"
+                @user-input="handleUserInput"
+                :display-bottom="rafikeyChatbotStore.conversation.length > 0"
+              />
+            </div>
+          </div>
+        </div>
+        <div id="#userInputPlaceholder"></div>
+      </div>
     </div>
   </div>
 </template>
