@@ -83,7 +83,6 @@ const everyThingOk = computed(() => {
 })
 
 const resetPasswordHandler = ()=>{
-  console.log("Clicking the buttoon")
   if(everyThingOk.value){
     isLoading.value = true
     authStore.resetPassword({

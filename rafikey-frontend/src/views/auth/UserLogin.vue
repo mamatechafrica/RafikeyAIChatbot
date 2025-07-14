@@ -5,7 +5,7 @@ import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import imageLight from '@/assets/images/rafikey-icon.png'
-import imageDark from '@//assets/images/rafikey-icon-black.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
 
@@ -14,10 +14,9 @@ const chatbotStore = useRafikeyChatbotStore()
 const isAnonymous = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
-const isDark = localStorage.getItem('darkMode')
-console.log("we have mode", isDark)
+
 const toggleImage = computed(()=>{
-  return isDark? imageDark : imageLight
+  return chatbotStore.isDark? imageDark : imageLight
 })
 
 
