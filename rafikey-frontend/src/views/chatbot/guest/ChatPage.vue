@@ -11,6 +11,10 @@ import hljs from 'highlight.js'
 import RafikeyBubble from '@/components/chat/bubble/RafikeyBubble.vue'
 import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import moment from 'moment/moment'
+import ErrorScreen from '@/components/chat/ErrorScreen.vue'
+import { useRouter } from 'vue-router'
+import imageLight from '@/assets/images/rafikey-icon-light.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 const conversation = ref<Conversation[]>([])
 const isGeneratingResponse = ref(false)
