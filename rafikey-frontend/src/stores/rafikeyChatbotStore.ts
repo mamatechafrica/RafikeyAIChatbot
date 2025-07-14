@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import {useStorage} from "@vueuse/core";
+import { computed, ref, watch } from 'vue'
+import { useDark, useStorage } from '@vueuse/core'
 import { get } from 'lodash';
+import { useAuthStore } from '@/stores/authStore.ts'
 
 
 interface ChatbotConversationPayload {
@@ -37,9 +38,23 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     sessionId.value = value
   }
 
+  watch(isDark, (newValue) =>{
+    isDarkMode.value = newValue
+  })
+
   const dialogModal = ref({
     isOpen: false,
   })
+
+  const collapseSidebarSmall = ref(false)
+  const setCollapseSidebarSmall = (value: boolean) => {
+    collapseSidebarSmall.value = value
+  }
+
+  const collapseSidebarLarge = ref(true)
+  const setCollapseSidebarLarge = (value: boolean) => {
+    collapseSidebarLarge.value = value
+  }
 
   const setDialogModal = (value: boolean) => {
     dialogModal.value.isOpen = value
@@ -174,6 +189,17 @@ const rafikeyResponse = ref<string>('')
     setSessionId,
     getSessionId,
     dialogModal,
-    setDialogModal
+    setDialogModal,
+    collapseSidebarSmall,
+    setCollapseSidebarSmall,
+    collapseSidebarLarge,
+    setCollapseSidebarLarge,
+    isDark,
+    getChatHistoryTitles,
+    chatHistoryTitles,
+    setActiveChatHistory,
+    conversation,
+    getChatHistory,
+    isGeneratingResponse
   }
 })
