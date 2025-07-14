@@ -3,7 +3,7 @@ import  { useRouter } from 'vue-router'
 import { useCreateAccountFormStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import imageLight from '../../../assets/images/rafikey-icon.png'
-import imageDark from '../../../assets/images/rafikey-icon-black.png'
+import imageDark from '../../../assets/images/rafikey-icon-dark.png'
 import { computed } from 'vue'
 
 const isDark = localStorage.getItem('darkMode')
