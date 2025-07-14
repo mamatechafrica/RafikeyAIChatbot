@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import _ from 'lodash'
 
 import UserInput from '@/components/chat/UserInput.vue'
-import type { Conversation } from '@/views/chatbot/user/ChatPage.vue'
+import type { Conversation } from '@/stores/rafikeyChatbotStore.ts'
 import { v4 as uuidV4 } from 'uuid'
 import { useRafikeyChatbotStore } from '@/stores'
 import { marked, type RendererObject, type Tokens } from 'marked'
@@ -16,8 +16,9 @@ import { useRouter } from 'vue-router'
 import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
-const conversation = ref<Conversation[]>([])
-const isGeneratingResponse = ref(false)
+// const conversation = ref<Conversation[]>([])
+// const isGeneratingResponse = ref(false)
+// const chatContainerRef = ref<HTMLDivElement | null>()
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
 const router = useRouter()
@@ -33,6 +34,8 @@ const scrollToBottom = () => {
     inline: 'nearest',
   })
 }
+
+const formattedResponse = ref<string>('')
 
 // Marked parse function
 const renderer: RendererObject = {
@@ -318,6 +321,84 @@ onMounted(() => {
     isShowDisclaimer.value = true
   }, 3000)
 })
+
+const regenerateResponse = () => {
+  console.log('Regenerating response...')
+  // const userMessage = ref<Conversation>({
+  //   message: formattedResponse,
+  //   isUser: true,
+  //   uniqueId: _.uniqueId('user-'),
+  // })
+  scrollToBottom()
+  // push user message to the conversation array
+  // conversation.value.push(userMessage.value)
+  const rafikeyMessage = ref<Conversation>({
+    message: '',
+    isUser: false,
+    isTyping: true,
+    uniqueId: _.uniqueId('rafikey-'),
+  })
+
+  console.log('Here in the handler ')
+  //   push rafikey message to conversation array
+  setTimeout(() => {
+    rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+  }, 500)
+  // console.log('conversation array---', conversation.value)
+  rafikeyChatbotStore.isGeneratingResponse = true
+  rafikeyChatbotStore
+    .sendMessageToRafikeyChatbot({
+      message: formattedResponse.value,
+      sessionId: rafikeyChatbotStore.getSessionId,
+    })
+    .then((res) => {
+      if (res) {
+        console.log('Rafikey response----', res)
+        const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
+        const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+
+        if (currentRafikeyObject) {
+          currentRafikeyObject.message = res as string
+        }
+        // console.log('Rafikey response----', rafikeyAllObject.map((conv) => conv.message))
+      } else {
+        isError.value = true
+      }
+    })
+    .catch((err) => {
+      isError.value = true
+      console.log('There is an error in rafikey response', err)
+    })
+    .finally(() => {
+      rafikeyChatbotStore.isGeneratingResponse = false
+      rafikeyMessage.value.isTyping = false
+      // rafikeyMessage.value.hasError = true
+    })
+}
+
+const loginHandler = () => {
+  console.log('Login handler called')
+  router.push({
+    name: 'login',
+  })
+}
+
+const signUpHandler = () => {
+  console.log('Signup handler called')
+  router.push({
+    name: 'home',
+  })
+}
+
+// toggel images in dark ans light mode
+const toggleImage = computed(() => {
+  return rafikeyChatbotStore.isDark ? imageDark : imageLight
+})
+
+const isStartChatSmallScreen = ref(false)
+const startChatSmallScreen = () => {
+  isStartChatSmallScreen.value = true
+}
 </script>
 
 <template>
