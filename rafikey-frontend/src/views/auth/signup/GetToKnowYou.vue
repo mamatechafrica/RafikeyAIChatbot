@@ -6,7 +6,7 @@ import RadioGroup from '@/components/chat/RadioGroup.vue'
 import {range} from "lodash";
 import {useAuthStore, useCreateAccountFormStore} from "@/stores";
 import imageLight from '../../../assets/images/rafikey-icon.png'
-import imageDark from '../../../assets/images/rafikey-icon-black.png'
+import imageDark from '../../../assets/images/rafikey-icon-dark.png'
 
 const isDark = localStorage.getItem('darkMode')
 console.log('we have mode', isDark)
@@ -268,56 +268,56 @@ onBeforeMount(()=>{
 
 
   <!--    Small screen -->
-  <div class="lg:hidden block h-screen w-full dark:bg-darkgray">
+  <div class="lg:hidden block min-h-screen w-full dark:bg-darkgray">
     <div class="flex justify-center">
-      <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
+      <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
     </div>
-    <div class="px-20 space-y-6">
+    <div class="md:px-20 px-6 md:space-y-6 space-y-2">
       <div>
-        <h2 class="text-4xl font-semibold text-center dark:text-white">Let's Know You Better</h2>
+        <h2 class="md:text-2xl text-lg font-semibold text-center dark:text-white">Let's Know You Better</h2>
       </div>
       <div class="border-b border-gray-400 smx-auto dark:border-stone-400"></div>
 
       <div  class="space-y-2">
-        <p class="text-gray-950 text-lg dark:text-white">Age Range</p>
+        <p class="text-gray-950 dark:text-white md:text-lg text-sm">Age Range</p>
         <LisxBox :list-items="ageRange" :place-holder="ageRangePlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg dark:text-stone-300">
+        <p class="text-gray-400 md:text-lg text-sm dark:text-stone-300">
           This helps us give you the right kind of support and info for your age
         </p>
       </div>
       <div class="space-y-2">
-        <p class="text-gray-950 text-lg dark:text-white">Gender</p>
+        <p class="text-gray-950 md:text-lg text-sm dark:text-white">Gender</p>
         <LisxBox :list-items="genderSet" :place-holder="genderPlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg dark:text-stone-300">
+        <p class="text-gray-400 md:text-lg text-sm dark:text-stone-300">
           This helps us give you the right kind of support and info for your age
         </p>
       </div>
       <div class="space-y-2">
-        <p class="text-gray-950 text-lg dark:text-white">Are you in a relationship</p>
+        <p class="text-gray-950 md:text-lg text-sm dark:text-white">Are you in a relationship</p>
         <LisxBox :list-items="relationshipStatus" :place-holder="relationshipPlaceholder" @selected-list-item="selectedRadio" />
-        <p class="text-gray-400 text-lg dark:text-stone-300">Optional - help with personalized advice.</p>
+        <p class="text-gray-400 md:text-lg text-sm dark:text-stone-300">Optional - help with personalized advice.</p>
       </div>
       <div v-if="signupError.isError" class="flex gap-2">
         <span class="material-icons-outlined text-rose-500">error</span>
-        <span class="text-rose-500">{{signupError.message}}</span>
+        <span class="text-rose-500 md:text-lg text-sm">{{signupError.message}}</span>
       </div>
       <div class="border-b border-gray-400 mx-auto dark:border-stone-400"></div>
       <div>
-        <p class="text-gray-950 text-lg dark:text-white">
+        <p class="text-gray-950 md:text-lg text-sm dark:text-white">
           We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be shared
           without your consent.
         </p>
       </div>
       <div class="">
         <input type="checkbox" v-model="getToKnowYouData.isTermsCondition" class="checkbox text-casablanca-400 border-slate-800 dark:border-white" />
-        <span class="text-gray-950 dark:text-white text-lg ps-4"
+        <span class="text-gray-950 dark:text-white md:text-lg text-sm ps-4"
           >Creating an account means you are okay with our</span
         >
-        <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600">
+        <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer md:text-lg text-sm text-casablanca-600">
           Terms of Use
         </router-link>
-        <span class="dark:text-white"> and</span>
-        <router-link to="/auth/register/privacy-policy-1" class="cursor-pointer text-casablanca-600">
+        <span class="dark:text-white md:text-lg text-sm"> and</span>
+        <router-link to="/auth/register/privacy-policy-1" class="md:text-lg text-sm cursor-pointer text-casablanca-600">
           Privacy Policy
         </router-link>
       </div>
@@ -326,7 +326,7 @@ onBeforeMount(()=>{
           @click="createAccountHandler"
 
           :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-          class="btn w-full btn-sm 0 text-lg rounded-2xl py-6"
+          class="btn w-full btn-sm 0 text-lg rounded-2xl py-5"
         >
           <span v-if="!isLoading">Sign up</span>
           <span v-else class="loading loading-spinner loading-sm"></span>
