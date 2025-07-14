@@ -8,10 +8,32 @@ interface ChatbotConversationPayload {
   message: string
   sessionId: string
 }
+
+export interface ChatHistoryTitle {
+  thread_id: string,
+  title: string
+  last_message_at: string
+
+}
+export interface Conversation {
+  message: string
+  isUser: boolean
+  isTyping?: boolean
+  hasError?: boolean
+  uniqueId: string | number
+}
+
+
+
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
 
+  const isGeneratingResponse = ref(false)
+  const isDarkMode = useDark()
+  const isDark = useStorage('darkMode',  isDarkMode.value)
+  const chatHistoryTitles = ref<ChatHistoryTitle []>([])
+  const conversation = ref<Conversation[]>([])
   const setSessionId = (value: string) => {
     sessionId.value = value
   }
