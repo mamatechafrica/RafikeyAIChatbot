@@ -229,6 +229,19 @@ export const useAuthStore = defineStore('authStore', () => {
 
   }
 
+  const getUserInfo = () =>{
+    try {
+      if (user.value) {
+        return JSON.parse(user.value) as UserData
+      } else {
+        return null
+      }
+    } catch (error) {
+      console.error('Error parsing user info:', error)
+      return null
+    }
+  }
+
   function setToken(value: string){
     const {exp} = jwtDecode(value)
     try{
