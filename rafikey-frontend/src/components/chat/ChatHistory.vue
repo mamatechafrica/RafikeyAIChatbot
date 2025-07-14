@@ -20,7 +20,7 @@ const chatHistoryHandler = (threadId: string) => {
 
 <template>
   <div class="btn btn-sm flex justify-start btn-ghost w-full bg-transparent shadow-none hover:border-none hover:bg-transparent"
-       :class="chatbotStore.activeChatHistory == props.threadId? 'bg-lightgray text-stone-300': ''"
+       :class="chatbotStore.sessionId === props.threadId? 'bg-lightgray text-stone-300': ''"
        @click="chatHistoryHandler(props.threadId)"
   >
     <p class="text-start line-clamp-1 text-sm dark:text-white ">{{props.title}}</p>

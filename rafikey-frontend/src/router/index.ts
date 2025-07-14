@@ -109,7 +109,7 @@ const routes = [
         name: 'reset-password',
         path: 'reset-password/:token',
         component: () => import('@/views/auth/UserResetPassword.vue'),
-        props: (route: RouteLocationNormalizedLoaded) => {
+        props: (route: RouteLocationNormalized) => {
           const { query } = route
           return {
             token: query.token
@@ -137,7 +137,7 @@ const routes = [
         name: 'chatWithId',
         path: ':sessionId',
         component: () => import('@/views/chatbot/user/HistoryPage.vue'),
-        props: (route: RouteLocationNormalizedLoaded) => {
+        props: (route: RouteLocationNormalized) => {
           const { params } = route
           return {
             sessionId: params.sessionId,

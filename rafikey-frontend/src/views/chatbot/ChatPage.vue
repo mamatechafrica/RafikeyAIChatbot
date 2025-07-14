@@ -5,14 +5,13 @@ import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 import { marked, type RendererObject, type Tokens } from 'marked'
-import { useRafikeyChatbotStore, Conversation } from '@/stores'
+import { useRafikeyChatbotStore, type Conversation } from '@/stores'
 
 import { v4 as uuidV4 } from 'uuid'
 
 
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
-import * as stream from 'node:stream'
 
 
 
@@ -293,8 +292,8 @@ const fetchChats = (formatted: string) =>{
     })
     .finally(() => {
       rafikeyChatbotStore.isGeneratingResponse = false
-      rafikeyMessage.value.isTyping = false
-      rafikeyMessage.value.hasError = true
+      // rafikeyMessage.value.isTyping = false
+      // rafikeyMessage.value.hasError = true
     })
 }
 
