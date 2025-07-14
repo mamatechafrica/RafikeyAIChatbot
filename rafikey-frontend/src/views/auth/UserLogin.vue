@@ -122,20 +122,20 @@ watch(
 
 
 watch(()=>isUserGuest.value, (value)=>{
-  isAnonymous.value = false
   if(value){
     isUserGuestLoading.value = true
     setTimeout(()=>{
             router.push({
-              name: 'guest-user-chat-page'
+              name: 'guest-page'
             })
     }, 3000)
     chatbotStore.setDialogModal(false)
+    // isAnonymous.value = false
 
   }
-  else{
-    chatbotStore.setDialogModal(false)
-  }
+  // else{
+  //   chatbotStore.setDialogModal(false)
+  // }
 })
 onMounted(()=>{
 
@@ -146,11 +146,12 @@ onMounted(()=>{
 
 })
 
+
 </script>
 
 <template>
   <div v-if="!appLoading">
-    <div class="h-screen w-full hidden lg:block dark:bg-lightgray">
+    <div class="min-h-screen w-full hidden lg:block dark:bg-lightgray">
       <div class="grid grid-cols-2 w-10/12 mx-auto ">
         <!--    left side-->
         <div class="col-span-1">
@@ -207,8 +208,8 @@ onMounted(()=>{
                 </div>
                 <div class="flex justify-between">
                   <div class="flex gap-2">
-                    <input type="checkbox" class="checkbox border-slate-800 dark:border-white bg-darkgray text-casablanca-300" />
-                    <span class="dark:text-white">Remember me</span>
+                    <input v-model="isAnonymous" type="checkbox" class="checkbox rounded-full border-slate-800 dark:border-white bg-darkgray text-casablanca-300" />
+                    <span class="dark:text-white">Remain Anonymous</span>
                   </div>
                   <div>
                     <router-link to="/auth/forgot-password" class="text-casablanca-300">Forgot Password
@@ -248,47 +249,47 @@ onMounted(()=>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block h-screen w-full dark:bg-lightgray">
+    <div class="lg:hidden block min-h-screen w-full dark:bg-lightgray">
 
       <div class="flex justify-center">
-        <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
+        <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
       </div>
-      <div class="flex flex-col px-20 space-y-6">
+      <div class="flex flex-col md:px-20 px-10 space-y-6">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="text-2xl font-semibold dark:text-white">Login</h2>
-          <p class="text-lg text-gray-700 text-center dark:text-stone-300">Login to access your Rafikey Account</p>
+          <h2 class="md:text-2xl text-lg  font-semibold dark:text-white">Login</h2>
+          <p class="md:text-xl sm:text-lg text-gray-700 text-center dark:text-stone-300">Login to access your Rafikey Account</p>
         </div>
         <div class="border-b border-gray-400 w-full"></div>
         <form class="space-y-4">
           <div class="space-y-3">
-            <label for="username" class="text-black dark:text-white  text-lg ">Username</label>
+            <label for="username" class="text-black dark:text-white   md:text-lg text-sm">Username</label>
             <input id="username"
                    v-model="loginData.username"
                    type="text"
-                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
+                   class=" w-full border-2 md:p-4 p-2  md:text-lg text-sm border-gray-500 rounded-2xl dark:bg-lightgray dark:text-stone-400"
                    required
                    placeholder="Choose a username"
             />
           </div>
           <div class="space-x-2">
-            <input v-model="isAnonymous" type="checkbox" class="checkbox rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
-            <span class="text-lg text-white">Remain Anonymous</span>
+            <input v-model="isAnonymous" type="checkbox" class="checkbox w-3 h-3 rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
+            <span class="md:text-lg text-sm text-white">Remain Anonymous</span>
           </div>
 
           <div class="relative space-y-3">
-            <label class="text-black dark:text-white  text-lg" for="password">
+            <label class="text-black dark:text-white  md:text-lg text-sm" for="password">
               Password
             </label>
             <input
               v-model="loginData.password"
               id="password"
               :type="toggleVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
+              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
-            <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-12 dark:text-white">visibility_off</span>
-            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-12 cursor-pointer dark:text-white">visibility</span>
+            <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-8 dark:text-white">visibility_off</span>
+            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-8 cursor-pointer dark:text-white">visibility</span>
           </div>
         </form>
         <div v-if="loginError.isError" class="flex gap-2">
@@ -298,11 +299,11 @@ onMounted(()=>{
         <div class="border-b border-gray-400 w-full pt-6"></div>
         <div class="flex  justify-between">
           <div class="space-x-2">
-            <input type="checkbox" class="checkbox dark:border-white border-slate-800"/>
-            <span class="dark:text-white">Remember me</span>
+            <input type="checkbox" class="checkbox w-4 h-4 rounded-sm dark:border-white border-slate-800"/>
+            <span class="dark:text-white md:text-lg text-sm ">Remember me</span>
           </div>
           <div>
-            <router-link to="/auth/forgot-password" class="text-casablanca-300">Forgot Password</router-link>
+            <router-link to="/auth/forgot-password" class="text-casablanca-300 md:text-lg text-sm ">Forgot Password</router-link>
           </div>
 
         </div>
@@ -313,15 +314,15 @@ onMounted(()=>{
                   !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
                 ]"
             @click="loginHandler"
-            class="btn w-full btn-sm  text-lg rounded-2xl py-6">
+            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5">
             <span v-if="!isLoading">Login</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
         <div>
-          <p class="text-center text-slate-800 dark:text-white text-lg mt-4">
+          <p class="text-center text-slate-800 dark:text-white md:text-lg text-sm  mt-4">
             Don't have an account?
-            <router-link to="/auth/register" class="text-rose-400 hover:text-sky-300">
+            <router-link to="/auth/register" class="text-rose-400 md:text-lg text-sm  hover:text-sky-300">
               Sign Up
             </router-link>
           </p>
@@ -345,11 +346,11 @@ onMounted(()=>{
         </template>
         <template #footer>
           <div class="flex justify-center gap-4">
-            <button @click="isUserGuest=true" class="btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
+            <button @click.stop="isUserGuest=true" class="btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
               <span v-if="!isUserGuestLoading" class="">Ok</span>
               <span v-else class="loading loading-spinner loading-sm"></span>
             </button>
-            <button @click="isUserGuest = false" class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+            <button @click.stop="chatbotStore.setDialogModal(false)" class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
           </div>
         </template>
       </DialogModal>
