@@ -144,9 +144,10 @@ const passwordValidator = (value: string) => {
   if (!value) {
     return 'Password is required'
   }
-  const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
+  // const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
+  const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d\S]{6,}$/
   if (!passwordRegExp.test(value)) {
-    return 'Password must contain at least 6 characters, one uppercase letter, one lowercase letter and one number'
+    return 'Password must contain at least 6 characters, one uppercase letter, one lowercase letter and one number and optional special characters'
   }
   return true
 }
