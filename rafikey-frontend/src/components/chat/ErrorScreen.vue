@@ -3,7 +3,11 @@ const emits = defineEmits<{
   (event: 'regenerateResponse'): void
 }>()
 const refreshPage = () => {
-emits('regenerateResponse')
+window.location.reload()
+}
+
+const regenerateResponse = () => {
+  emits('regenerateResponse')
 }
 </script>
 
@@ -31,7 +35,7 @@ emits('regenerateResponse')
 
     <div class="fixed bottom-32  left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
 
-        <button class="bg-casablanca-300 p-4 rounded-xl flex">
+        <button @click = 'regenerateResponse' class="bg-casablanca-300 p-4 rounded-xl flex">
           <span class="material-icons-outlined lg:text-lg text-sm">loop</span>
           <span class="lg:text-lg text-sm">Regenerate Response</span>
         </button>
