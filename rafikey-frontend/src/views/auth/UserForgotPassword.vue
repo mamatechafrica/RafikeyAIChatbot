@@ -152,29 +152,29 @@ const forgotPasswordHandler = () =>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block h-screen w-full dark:bg-lightgray">
+    <div class="lg:hidden block min-h-screen w-full dark:bg-lightgray">
 
       <div class="flex justify-center">
-        <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
+        <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24"/>
       </div>
-      <div class="flex flex-col px-20 space-y-8">
+      <div class="flex flex-col md:px-20 px-10 space-y-6">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="text-2xl font-semibold dark:text-white">Forgot Password</h2>
-          <div class="space-y-2">
-            <p class="text-lg text-gray-700 text-center dark:text-stone-300">Don't worry. Happens to all of us. </p>
-            <p class="text-lg text-gray-700 text-center dark:text-stone-300">Enter your Email below to recover your password</p>
+          <h2 class="md:text-2xl text-lg font-semibold dark:text-white">Forgot Password</h2>
+          <div class="md:space-y-2 space-y-0.5">
+            <p class="md:text-xl sm:text-lg text-gray-700 text-center dark:text-stone-300">Don't worry. Happens to all of us. </p>
+            <p class="md:text-xl sm:text-lg text-gray-700 text-center dark:text-stone-300">Enter your Email below to recover your password</p>
           </div>
         </div>
         <div class="border-b border-gray-400 w-full"></div>
         <form class="space-y-8">
 
           <div class="space-y-3">
-            <label for="email" class="text-black text-lg  dark:text-white">Email</label>
+            <label for="email" class="text-black md:text-lg text-sm  dark:text-white">Email</label>
             <input
                   v-model="emailData"
                   id="email"
                    type="email"
-                   class=" w-full border-2 border-gray-500 rounded-2xl p-4 text-lg dark:bg-lightgray dark:text-stone-400"
+                   class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-3  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
                    required
                    placeholder="Enter your email"
             />
@@ -187,7 +187,7 @@ const forgotPasswordHandler = () =>{
           <button
             @click="forgotPasswordHandler"
             :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full btn-sm  text-lg rounded-2xl py-6">
+            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5">
             <span v-if="!isLoading">Submit</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
