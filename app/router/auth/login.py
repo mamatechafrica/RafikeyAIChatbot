@@ -28,7 +28,7 @@ SMTP_SERVER = os.getenv("SMTP_SERVER")  # or your email provider
 SMTP_PORT = int(os.getenv("SMTP_PORT"))
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")  # App password or email password
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://rafikeyaichatbot-frontend.onrender.com/auth/reset-password/")  # Your frontend URL
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://rafikeyaichatbot-frontend.onrender.com/auth/reset-password")  # Your frontend URL
 
 class Token(BaseModel):
     access_token: str 
@@ -218,7 +218,7 @@ async def send_password_reset_email(email: str, reset_token: str):
                 <p>If you made this request, please click the button below to reset your password:</p>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="{reset_url}" 
+                    <a href="{reset__url}" 
                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                               color: white; 
                               padding: 15px 30px; 
@@ -236,9 +236,6 @@ async def send_password_reset_email(email: str, reset_token: str):
                 </p>
                 
                 <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-                <p style="background: #e9e9e9; padding: 10px; border-radius: 5px; word-break: break-all; font-size: 12px;">
-                    {reset_url}
-                </p>
                 
                 <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
                 
