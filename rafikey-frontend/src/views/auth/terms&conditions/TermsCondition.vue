@@ -39,7 +39,7 @@ const isTermsConditionHandler = (value: boolean) =>{
   <div class="h-full w-full dark:bg-lightgray">
     <div class="md:w-10/12 w-11/12 mx-auto space-y-4">
       <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
-        <div class="col-span-1 flex flex-col justify-end ">
+        <div class="col-span-1 flex flex-col items-center justify-end ">
           <div
             @click="router.go(-1)"
             class="flex  lg:pb-10 pb-8  cursor-pointer text-gray-1000 text-nowrap justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
@@ -47,8 +47,8 @@ const isTermsConditionHandler = (value: boolean) =>{
             <span class=" md:text-lg text-sm  font-light dark:text-white">Back to Sign Up</span>
           </div>
         </div>
-        <div class="flex invisible lg:visible justify-center col-span-1">
-          <img :src="toggleImage" alt="rafikey-icon"/>
+        <div class="flex   w-full   md:justify-center justify-end col-span-2  md:col-span-1">
+          <img :src="toggleImage" alt="rafikey-icon" class="md:w-60 w-40"/>
         </div>
       </div>
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
@@ -57,7 +57,7 @@ const isTermsConditionHandler = (value: boolean) =>{
             <router-link to="/auth/privacy-policy-2" class="bg-casablanca-200 md:text-lg text-xs w-fit rounded-lg flex justify-center items-center px-2"><span>Privacy Policy</span></router-link>
           </div>
           <div class="flex  flex-col items-center space-y-3" >
-            <h2 class="lg:text-4xl text-lg text-center  font-semibold dark:text-white">Privacy Policy</h2>
+            <h2 class="lg:text-4xl text-lg text-center  font-semibold dark:text-white">Terms of Use </h2>
             <p class="lg:text-2xl text-sm dark:text-white">Last updated: <span class="text-casablanca-300 lg:text-2xl text-sm ">19 June 2025</span></p>
             <div class="border-b border-gray-500 w-64 mx-auto"></div>
           </div>
