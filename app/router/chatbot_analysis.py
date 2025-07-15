@@ -1,12 +1,15 @@
 from datetime import datetime, timedelta
 import json
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import func, select
 from app.bot.prompt import QUESTIONS_PROMPTS, SENTIMENT_ANALYSIS_PROMPT, TOPIC_EXTRACTION_PROMPT
-from app.models import Hero, Conversations
+from app.models import Hero, Conversations, User as UserModel
 from app.core.database import SessionDep
 from langgraph.prebuilt import create_react_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
+from app.router.auth.login import get_current_active_user
+from typing import Annotated
+
 
 from dotenv import load_dotenv
 import re
@@ -157,6 +160,31 @@ async def get_conversations(session: SessionDep):
     conversations = session.exec(select(Conversations)).all()
     return conversations    
 
+# NEW ENDPOINT: Get authenticated user's own conversations
+@router.get('/my-conversations')
+async def get_my_conversations(
+    session: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Get all conversations for the authenticated user only"""
+    try:
+        # Query conversations that belong to the authenticated user
+        statement = select(Conversations).where(
+            Conversations.user_id == current_user.id
+        ).order_by(Conversations.timestamp.desc())
+        
+        conversations = session.exec(statement).all()
+        
+        return {
+            "user_id": current_user.id,
+            "username": current_user.username,
+            "total_conversations": len(conversations),
+            "conversations": conversations
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @router.get('/conversations/grouped')
 async def get_grouped_conversations(db: SessionDep):
@@ -210,6 +238,46 @@ async def get_grouped_conversations(db: SessionDep):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/my-conversations/threads')
+async def get_my_thread_list(
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Get all thread IDs with their titles for the authenticated user only"""
+    try:
+        from sqlmodel import func
+        
+        statement = (
+            select(Conversations.thread_id, Conversations.title, func.max(Conversations.timestamp).label('last_message_at'))
+            .where(Conversations.user_id == current_user.id)
+            .group_by(Conversations.thread_id, Conversations.title)
+            .order_by(func.max(Conversations.timestamp).desc())
+        )
+        
+        results = db.exec(statement).all()
+        
+        threads = [
+            {
+                "thread_id": result.thread_id,
+                "title": result.title or "Untitled Conversation",
+                "last_message_at": result.last_message_at
+            }
+            for result in results
+        ]
+        
+        return {
+            "user_id": current_user.id,
+            "username": current_user.username,
+            "total_threads": len(threads),
+            "threads": threads
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
 @router.get('/conversations/threads')
 async def get_thread_list(db: SessionDep):

@@ -1,4 +1,4 @@
-from typing import AsyncGenerator, Optional
+from typing import AsyncGenerator, Optional, Annotated
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from app.bot.nodes import graph
@@ -6,10 +6,11 @@ from pydantic import BaseModel
 import uuid
 from app.core.database import SessionDep    
 from datetime import datetime
-from app.models import Conversations
+from app.models import Conversations, User as UserModel
 from sqlmodel import select
 from langchain_openai import ChatOpenAI
 import os
+from app.router.auth.login import get_current_active_user
 
 router = APIRouter(
     prefix='/bot',
@@ -63,13 +64,13 @@ Generate only the title, nothing else. Make it concise and relevant to the main 
         return "Conversation"  # Fallback title
     
 
-
-async def update_conversation_title(thread_id: str, db: SessionDep):
+async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep):
     """Update conversation title when we have enough responses"""
     try:
-        # Get all conversations for this thread ordered by timestamp
+        # Get all conversations for this thread and user ordered by timestamp
         statement = select(Conversations).where(
-            Conversations.thread_id == thread_id
+            Conversations.thread_id == thread_id,
+            Conversations.user_id == user_id
         ).order_by(Conversations.timestamp.asc())
         conversations = db.exec(statement).all()
         
@@ -83,24 +84,26 @@ async def update_conversation_title(thread_id: str, db: SessionDep):
                 # Generate title
                 title = await generate_title_from_responses(bot_responses)
                 
-                # Update ALL conversations in this thread with the title
-                # Use a direct SQL update for better performance and to ensure all records are updated
+                # Update ALL conversations in this thread for this user with the title
                 from sqlmodel import update
                 
                 update_statement = (
                     update(Conversations)
-                    .where(Conversations.thread_id == thread_id)
+                    .where(
+                        Conversations.thread_id == thread_id,
+                        Conversations.user_id == user_id
+                    )
                     .values(title=title)
                 )
                 
                 db.exec(update_statement)
                 db.commit()
-                print(f"Generated title for thread {thread_id}: {title}")
+                print(f"Generated title for thread {thread_id} (user {user_id}): {title}")
                 
     except Exception as e:
         print(f"Error updating conversation title: {e}")
 
-async def generate_stream_response(user_input: str, thread_id: str, db: SessionDep) -> AsyncGenerator[str, None]:
+async def generate_stream_response(user_input: str, thread_id: str, user_id: int, db: SessionDep) -> AsyncGenerator[str, None]:
     """Generate streaming response from the graph using the provided thread_id"""
     # Create a session-specific config with the provided thread_id
     session_config = {
@@ -124,12 +127,13 @@ async def generate_stream_response(user_input: str, thread_id: str, db: SessionD
                 full_response += chunk.content
                 yield chunk.content
 
-    # Store the conversation in the database 
+    # Store the conversation in the database with user_id
     conversation = Conversations(
         thread_id=thread_id, 
         user_message=user_input,
         bot_response=full_response,
-        timestamp=datetime.utcnow()
+        timestamp=datetime.utcnow(),
+        user_id=user_id  # Add user_id to link conversation to user
     )
 
     db.add(conversation)
@@ -137,33 +141,125 @@ async def generate_stream_response(user_input: str, thread_id: str, db: SessionD
     db.refresh(conversation)
 
     # Check if we should generate a title (after 5 responses)
-    await update_conversation_title(thread_id, db)
+    await update_conversation_title(thread_id, user_id, db)
 
 
 @router.post('/chat')
-async def chat(chat_input: ChatInput, db: SessionDep):
-    """Chat endpoint for the bot"""
+async def chat(
+    chat_input: ChatInput, 
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Chat endpoint for the bot - requires authentication"""
     try:
         # Use the provided session_id or generate a fallback one
         thread_id = chat_input.session_id if chat_input.session_id else str(uuid.uuid4())
-        # print(f"Thread ID: {thread_id}")
+        print(f"Thread ID: {thread_id}, User ID: {current_user.id}")
         
-        # Create the streaming response
+        # Create the streaming response with user_id
         return StreamingResponse(
-            generate_stream_response(chat_input.message, thread_id, db),
+            generate_stream_response(chat_input.message, thread_id, current_user.id, db),
             media_type="text/event-stream",
         )
     except Exception as e:
         return {"error": str(e)}
-    
+
+
+@router.get('/conversations')
+async def get_user_conversations(
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Get all conversations for the authenticated user"""
+    try:
+        statement = select(Conversations).where(
+            Conversations.user_id == current_user.id
+        ).order_by(Conversations.timestamp.desc())
+        
+        conversations = db.exec(statement).all()
+        
+        return {
+            "conversations": conversations,
+            "total": len(conversations)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get('/conversations/{thread_id}')
+async def get_conversation_by_thread(
+    thread_id: str,
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Get all messages in a specific conversation thread for the authenticated user"""
+    try:
+        statement = select(Conversations).where(
+            Conversations.thread_id == thread_id,
+            Conversations.user_id == current_user.id
+        ).order_by(Conversations.timestamp.asc())
+        
+        conversations = db.exec(statement).all()
+        
+        if not conversations:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        
+        return {
+            "thread_id": thread_id,
+            "title": conversations[0].title,
+            "messages": conversations,
+            "total_messages": len(conversations)
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete('/conversations/{thread_id}')
+async def delete_conversation(
+    thread_id: str,
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Delete a conversation thread for the authenticated user"""
+    try:
+        # Check if conversation exists and belongs to user
+        statement = select(Conversations).where(
+            Conversations.thread_id == thread_id,
+            Conversations.user_id == current_user.id
+        )
+        conversations = db.exec(statement).all()
+        
+        if not conversations:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        
+        # Delete all messages in the thread
+        for conversation in conversations:
+            db.delete(conversation)
+        
+        db.commit()
+        
+        return {"message": f"Conversation {thread_id} deleted successfully"}
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @router.post('/conversations/generate-missing-titles')
-async def generate_missing_titles(db: SessionDep):
-    """Generate titles for all threads that don't have titles but have 5+ conversations"""
+async def generate_missing_titles(
+    db: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """Generate titles for all threads that don't have titles but have 5+ conversations for the authenticated user"""
     try:
-        # Get all conversations
-        statement = select(Conversations).order_by(Conversations.timestamp.asc())
+        # Get all conversations for the current user
+        statement = select(Conversations).where(
+            Conversations.user_id == current_user.id
+        ).order_by(Conversations.timestamp.asc())
         all_conversations = db.exec(statement).all()
         
         # Group by thread_id
@@ -186,12 +282,15 @@ async def generate_missing_titles(db: SessionDep):
                     # Generate title
                     title = await generate_title_from_responses(bot_responses)
                     
-                    # Update all conversations in this thread
+                    # Update all conversations in this thread for this user
                     from sqlmodel import update
                     
                     update_statement = (
                         update(Conversations)
-                        .where(Conversations.thread_id == thread_id)
+                        .where(
+                            Conversations.thread_id == thread_id,
+                            Conversations.user_id == current_user.id
+                        )
                         .values(title=title)
                     )
                     
@@ -215,4 +314,3 @@ async def generate_missing_titles(db: SessionDep):
         
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
-    
