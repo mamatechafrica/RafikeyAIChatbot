@@ -4,15 +4,12 @@ import { useRouter } from 'vue-router'
 import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
 import {range} from "lodash";
-import {useAuthStore, useCreateAccountFormStore} from "@/stores";
-import imageLight from '../../../assets/images/rafikey-icon.png'
-import imageDark from '../../../assets/images/rafikey-icon-dark.png'
+import { useAuthStore, useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
+import imageLight from '@/assets/images/rafikey-icon-light.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
-const isDark = localStorage.getItem('darkMode')
-console.log('we have mode', isDark)
-const toggleImage = computed(() => {
-  return isDark ? imageDark : imageLight
-})
+
+
 
 interface Buttons {
   name: string
@@ -21,8 +18,12 @@ interface Buttons {
 
 const createAccountFormStore = useCreateAccountFormStore()
 const authStore = useAuthStore()
+const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 
+const toggleImage = computed(() => {
+  return  chatbotStore.isDarkMode ? imageDark : imageLight
+})
 const ageRangePlaceholder = 'Choose your age range'
 const genderPlaceholder = 'Choose your gender'
 const relationshipPlaceholder = 'Pick an option'
