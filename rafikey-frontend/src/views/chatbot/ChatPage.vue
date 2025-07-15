@@ -388,7 +388,7 @@ const newChatHandler = () => {
       >
         <!--    top -->
         <div class="justify-end gap-4 cursor-pointer hidden lg:flex">
-          <div class="flex gap-1 dark:border dark:border-white border-black rounded-lg px-2 py-1">
+          <div class="flex gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1">
             <span class="material-icons-outlined dark:text-stone-300">share</span>
             <span class="dark:text-white">Share</span>
           </div>
