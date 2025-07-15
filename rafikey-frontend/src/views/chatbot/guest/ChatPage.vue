@@ -400,7 +400,7 @@ const signUpHandler = () => {
 
 // toggel images in dark ans light mode
 const toggleImage = computed(() => {
-  return rafikeyChatbotStore.isDark ? imageDark : imageLight
+  return rafikeyChatbotStore.isDarkMode? imageDark : imageLight
 })
 
 const isStartChatSmallScreen = ref(false)
