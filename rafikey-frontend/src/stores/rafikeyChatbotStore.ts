@@ -71,6 +71,7 @@ const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
     const authStore = useAuthStore()
+    console.log('Token ---', authStore.token)
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/chat`, {
         method: 'POST',

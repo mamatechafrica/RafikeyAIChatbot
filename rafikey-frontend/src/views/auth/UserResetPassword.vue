@@ -19,7 +19,7 @@ const chatbotStore = useRafikeyChatbotStore()
 
 
 const toggleImage = computed(()=>{
-  return chatbotStore.isDark? imageDark : imageLight
+  return chatbotStore.isDarkMode? imageDark : imageLight
 })
 
 const props = defineProps<{
