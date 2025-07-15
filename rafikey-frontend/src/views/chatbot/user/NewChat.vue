@@ -9,12 +9,14 @@ import imageIconDark from '@/assets/images/rafikey-icon-dark.png'
 
 const chatbotStore = useRafikeyChatbotStore()
 const authStore = useAuthStore()
+
 const toggleImage = computed(() => {
-  return chatbotStore.isDark ? imageDark : imageLight
+  return chatbotStore.isDarkMode ? imageDark : imageLight
 })
+
 // toggle image icons in dark and light mode
 const toggleImageIcon = computed(() => {
-  return chatbotStore.isDark ? imageIconDark : imageIconLight
+  return  chatbotStore.isDarkMode ? imageIconDark : imageIconLight
 })
 
 const startChatSmallScreen = () =>{
