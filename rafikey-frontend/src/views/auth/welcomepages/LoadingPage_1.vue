@@ -3,16 +3,11 @@ import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import { computed  } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
-import { useDark } from '@vueuse/core'
 
-const isDark = useDark()
-console.log("we have mode", isDark.value)
+
 const chatbotStore = useRafikeyChatbotStore()
-// const isDark = localStorage.getItem('darkMode')
-// console.log("we have mode", isDark)
 const toggleImage = computed(()=>{
-  console.log(chatbotStore.isDark)
-  return chatbotStore.isDark?  imageDark: imageLight
+  return chatbotStore.isDarkMode?  imageDark: imageLight
 })
 </script>
 
