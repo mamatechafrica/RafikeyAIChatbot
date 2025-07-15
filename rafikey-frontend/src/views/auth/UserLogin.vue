@@ -4,7 +4,7 @@ import { reactive, ref, computed, watch, onMounted} from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
-import imageLight from '@/assets/images/rafikey-icon.png'
+import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
@@ -16,7 +16,7 @@ const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
 
 const toggleImage = computed(()=>{
-  return chatbotStore.isDark? imageDark : imageLight
+  return chatbotStore.isDarkMode? imageDark : imageLight
 })
 
 

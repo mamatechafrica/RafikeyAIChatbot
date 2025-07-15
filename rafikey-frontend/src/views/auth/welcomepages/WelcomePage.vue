@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import LoadingPage_2 from '@/views/auth/welcomepages/LoadingPage_2.vue'
-import LoadingPage_3 from '@/views/auth/welcomepages/LoadingPage_3.vue'
 import LoadingPage_4 from '@/views/auth/welcomepages/LoadingPage_4.vue'
 import { useRouter } from 'vue-router'
 import { shallowRef, ref } from 'vue'
