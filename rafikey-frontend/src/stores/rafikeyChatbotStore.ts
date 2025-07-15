@@ -70,12 +70,13 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
 const rafikeyResponse = ref<string>('')
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
+    const authStore = useAuthStore()
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          mode: 'no-cors',
+          Authorization: `Bearer ${authStore.token}`
         },
         body: JSON.stringify({
           message: payload.message,
@@ -119,11 +120,11 @@ const rafikeyResponse = ref<string>('')
     console.log('Here in the chat history')
     const authStore = useAuthStore()
     try{
-      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/threads`, {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/my-conversations/threads`, {
         method: 'GET',
         headers : {
           'Content-Type': 'application/json',
-          // Authorization: `Bearer ${authStore.token}`
+          Authorization: `${authStore.token}`
         },
         // body: JSON.stringify({
         //   username: authStore.getUserInfo()?.username
@@ -201,7 +202,7 @@ const rafikeyResponse = ref<string>('')
     setCollapseSidebarSmall,
     collapseSidebarLarge,
     setCollapseSidebarLarge,
-    isDark,
+    isDarkMode,
     getChatHistoryTitles,
     chatHistoryTitles,
     setActiveChatHistory,
