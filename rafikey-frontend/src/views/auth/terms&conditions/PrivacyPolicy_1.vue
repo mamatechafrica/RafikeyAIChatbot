@@ -11,6 +11,9 @@ const toggleImage = computed(() => {
   return chatbotStore.isDarkMode ? imageDark : imageLight
 })
 
+const backToSignUp = () => {
+  router.push({ name: 'set-profile' })
+}
 
 </script>
 
@@ -20,7 +23,7 @@ const toggleImage = computed(() => {
       <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col justify-end">
           <div
-            @click="router.go(-1)"
+            @click="backToSignUp"
             class="flex lg:pb-10 pb-8 cursor-pointer text-gray-1000 justify-start text-nowrap hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
             <span class="material-icons-outlined dark:text-white  md:text-lg text-sm ">chevron_left</span>
             <span class=" md:text-lg text-sm font-light dark:text-white">Back to Sign Up</span>
