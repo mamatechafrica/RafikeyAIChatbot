@@ -11,6 +11,12 @@ const chatbotStore = useRafikeyChatbotStore()
 const toggleImage = computed(() => {
   return chatbotStore.isDarkMode ? imageDark : imageLight
 })
+
+
+
+const backToSignUp = () => {
+  router.push({ name: 'set-profile' })
+}
 </script>
 
 <template>
