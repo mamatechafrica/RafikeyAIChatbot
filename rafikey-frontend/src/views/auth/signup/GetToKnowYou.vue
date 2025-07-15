@@ -181,7 +181,7 @@ onBeforeMount(()=>{
 
 <template>
 
-    <div class="h-screen w-full hidden lg:flex items-center justify-center dark:bg-lightgray">
+    <div class="h-screen w-full hidden md:flex items-center justify-center dark:bg-lightgray">
       <div class="bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-2xl pb-10">
         <div>
           <div>
@@ -268,7 +268,7 @@ onBeforeMount(()=>{
 
 
   <!--    Small screen -->
-  <div class="lg:hidden block min-h-screen w-full dark:bg-darkgray">
+  <div class="md:hidden block min-h-screen w-full dark:bg-darkgray">
     <div class="flex justify-center">
       <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
     </div>
