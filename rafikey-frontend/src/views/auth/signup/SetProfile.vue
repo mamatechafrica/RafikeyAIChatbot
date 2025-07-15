@@ -4,15 +4,11 @@ import { reactive, watch, ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
 import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
-import imageLight from '../../../assets/images/rafikey-icon.png'
-import imageDark from '../../../assets/images/rafikey-icon-dark.png'
+import imageLight from '@/assets/images/rafikey-icon-light.png'
+import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
 
-const isDark = localStorage.getItem('darkMode')
-console.log('we have mode', isDark)
-const toggleImage = computed(() => {
-  return isDark ? imageDark : imageLight
-})
+
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
@@ -25,6 +21,11 @@ const togglePasswordVisibility = computed(() => (isPasswordVisible.value ? 'text
 const toggleConfirmPasswordVisibility = computed(() =>
   isConfirmPasswordVisible.value ? 'text' : 'password',
 )
+
+
+const toggleImage = computed(() => {
+  return chatbotStore.isDarkMode ? imageDark : imageLight
+})
 const setProfileData = reactive({
   username: '',
   email: '',
