@@ -38,13 +38,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   })
 
   // Sync both directions
-  watch(isDarkMode, (newVal) => {
-    isDark.value = newVal
-  })
 
-  watch(isDark, (newVal) => {
-    isDarkMode.value = newVal
-  })
 
   const chatHistoryTitles = ref<ChatHistoryTitle []>([])
   const conversation = ref<Conversation[]>([])

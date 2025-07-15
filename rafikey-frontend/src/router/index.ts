@@ -69,15 +69,15 @@ const routes = [
           }
 
         ],
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-          const authStore = useAuthStore()
-          // If user has ever logged in redirect to login page
-          if (authStore.isEverLoggedIn) {
-            next({ name: 'login' })
-          } else {
-            next()
-          }
-        }
+        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        //   const authStore = useAuthStore()
+        //   // If user has ever logged in redirect to login page
+        //   if (authStore.isEverLoggedIn) {
+        //     next({ name: 'login' })
+        //   } else {
+        //     next()
+        //   }
+        // }
 
       },
       {
@@ -100,8 +100,6 @@ const routes = [
             next()
           }
         }
-
-
       },
       {
         name: 'forgot-password',
