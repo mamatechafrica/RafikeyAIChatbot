@@ -27,15 +27,15 @@ const routes = [
         name: 'welcome-page',
         path: '',
         component: () => import('@/views/auth/welcomepages/WelcomePage.vue'),
-        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-        //   const authStore = useAuthStore()
-        //   // If user is already logged in, redirect to chat page
-        //   if (authStore.isEverLoggedIn) {
-        //     next({ name: 'login' })
-        //   } else {
-        //     next()
-        //   }
-        // }
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+          const authStore = useAuthStore()
+          // If user has ever logged in , redirect to chat page
+          if (authStore.isEverLoggedIn) {
+            next({ name: 'login' })
+          } else {
+            next()
+          }
+        }
       },
       {
         name: 'register',
@@ -69,32 +69,37 @@ const routes = [
           }
 
         ],
-        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-        //   const authStore = useAuthStore()
-        //   // If user is already logged in, redirect to chat page
-        //   if (authStore.isEverLoggedIn) {
-        //     next({ name: 'login' })
-        //   } else {
-        //     next()
-        //   }
-        // }
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+          const authStore = useAuthStore()
+          // If user has ever logged in redirect to login page
+          if (authStore.isEverLoggedIn) {
+            next({ name: 'login' })
+          } else {
+            next()
+          }
+        }
 
       },
       {
         name: 'login',
         path: 'login',
         component: () => import('@/views/auth/UserLogin.vue'),
-        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-        //   console.log("In login!!!")
-        //   const authStore = useAuthStore()
-        //   // If user is already logged in, redirect to chat page
-        //   if (!authStore.isEverLoggedIn) {
-        //     next({ name: 'welcome-page' })
-        //   }
-        //   else{
-        //     next()
-        //   }
-        // }
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+          console.log("In login!!!")
+          const authStore = useAuthStore()
+          // If user is already logged in, redirect to chat page
+          if (!authStore.isEverLoggedIn) {
+            next({ name: 'welcome-page' })
+          }
+          else if(authStore.userIsLoggedIn){
+            next({
+              name: 'chat-page'
+            })
+          }
+          else{
+            next()
+          }
+        }
 
 
       },
