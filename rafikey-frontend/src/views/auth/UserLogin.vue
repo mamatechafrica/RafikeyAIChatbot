@@ -89,7 +89,7 @@ const loginHandler = ()=>{
       .then(response =>{
         if(response.result === 'ok'){
           router.push({
-            name:'chat-page'
+            name:'newChat'
           })
         } else{
           loginError.message = response.message
