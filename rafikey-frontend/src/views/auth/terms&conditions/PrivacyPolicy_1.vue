@@ -21,7 +21,7 @@ const backToSignUp = () => {
   <div class="min-h-screen w-full dark:bg-lightgray">
     <div class="md:w-10/12 w-11/12 mx-auto">
       <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
-        <div class="col-span-1 flex flex-col justify-end">
+        <div class="col-span-1 flex flex-col items-center justify-end">
           <div
             @click="backToSignUp"
             class="flex lg:pb-10 pb-8 cursor-pointer text-gray-1000 justify-start text-nowrap hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
@@ -29,8 +29,8 @@ const backToSignUp = () => {
             <span class=" md:text-lg text-sm font-light dark:text-white">Back to Sign Up</span>
           </div>
         </div>
-        <div class="flex invisible lg:visible justify-center col-span-1">
-          <img :src="toggleImage" alt="rafikey-icon"/>
+        <div class="flex   w-full   md:justify-center justify-end col-span-2  md:col-span-1">
+          <img :src="toggleImage" alt="rafikey-icon" class="md:w-60 w-40"/>
         </div>
       </div>
       <div class="bg-gray-100 dark:bg-darkgray xl:w-1/2 w-full mx-auto p-10 rounded-2xl space-y-16 xl:space-y-24">
