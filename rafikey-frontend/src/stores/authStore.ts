@@ -206,17 +206,15 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   // set user data on local storage
-  async function setUserData(userData: UserData){
+  async function setUserData(token: string){
+    const {sub} = jwtDecode(token)
+
+
     user.value = JSON.stringify({
-      id: userData.id,
-      username: userData.username,
-      email: userData.email,
-      age: userData.age,
-      gender: userData.gender,
-      relationship_status: userData.relationship_status,
-      createAt: userData.createAt
+      username: sub,
     })
-    return userData
+    return user
+
 
 
   }
