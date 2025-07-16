@@ -6,16 +6,21 @@ import _ from 'lodash'
 import hljs from 'highlight.js'
 import { marked, type RendererObject, type Tokens } from 'marked'
 import { useRafikeyChatbotStore, type Conversation } from '@/stores'
-
 import { v4 as uuidV4 } from 'uuid'
-
-
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
 
 
-
+interface HistoryConv {
+  bot_response: string
+  id: number
+  thread_id: string
+  timestamp: string
+  tile: string | null
+  user_id: number
+  user_message: string
+}
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const route = useRoute()
