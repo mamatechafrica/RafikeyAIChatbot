@@ -154,12 +154,13 @@ const rafikeyResponse = ref<string>('')
   }
 
   async function getChatHistory(value: string) {
+    const authStore = useAuthStore()
     try{
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${useAuthStore().token}`
+          'Authorization': `Bearer ${authStore.token}`
         },
       })
       const chatHistory = await response.json()
