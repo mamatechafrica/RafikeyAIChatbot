@@ -87,15 +87,6 @@ export const useAuthStore = defineStore('authStore', () => {
         }
       } else {
         isEverLoggedIn.value = true
-        await setUserData({
-          id: user.id,
-          username: user.username,
-          email: user.email,
-          age: user.age,
-          gender: user.gender,
-          relationship_status: user.relationship_status,
-          createAt: user.created_at
-        })
 
         return {
           result: 'ok',
@@ -132,6 +123,7 @@ export const useAuthStore = defineStore('authStore', () => {
         }
       } else {
         setToken(data.access_token)
+        await setUserData(data.access_token)
         return {
           result: 'ok',
           message: 'Logged in successfully'
