@@ -2,7 +2,8 @@
 import { defineProps } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
 
-const props = defineProps<{
+
+interface ChatHistoryProps {
   threadId: string
   title: string
   lastMessageAt: string
