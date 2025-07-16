@@ -126,14 +126,14 @@ const rafikeyResponse = ref<string>('')
         method: 'GET',
         headers : {
           'Content-Type': 'application/json',
-          Authorization: `${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`
         },
         // body: JSON.stringify({
         //   username: authStore.getUserInfo()?.username
         // })
       })
       const {threads, total_threads} = await response.json()
-      console.log(threads)
+       console.log('titles----', threads)
       if(!response.ok){
         return {
           result: 'fail',
@@ -159,6 +159,7 @@ const rafikeyResponse = ref<string>('')
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useAuthStore().token}`
         },
       })
       const chatHistory = await response.json()
