@@ -153,9 +153,9 @@ const rafikeyResponse = ref<string>('')
     }
   }
 
-  async function getChatHistory(){
+  async function getChatHistory(value: string) {
     try{
-      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/${sessionId.value}`, {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
