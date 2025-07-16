@@ -112,11 +112,11 @@ chatbotStore.conversation = []
     <div class="flex gap-6" :class="[!chatbotStore.collapseSidebarLarge ? ' ps-10' : '']">
       <!--    top side-->
       <div>
-        <div class="space-y-16" :class="[chatbotStore.collapseSidebarLarge ? 'ps-8' : '']">
+        <div class="space-y-16 pt-16" :class="[chatbotStore.collapseSidebarLarge ? 'ps-8' : '']">
           <div class="flex flex-col gap-4">
             <div
               @click="newChatHandler"
-              class="bg-darkgray dark:bg-stone-700 rounded-lg h-8 w-8 flex items-center justify-center"
+              class="bg-darkgray cursor-pointer dark:bg-stone-700 rounded-lg h-8 w-8 flex items-center justify-center"
             >
               <span class="material-icons-outlined text-white">add</span>
             </div>
@@ -158,48 +158,47 @@ chatbotStore.conversation = []
           </div>
         </div>
       </div>
-      <div>
-        <div class="relative h-[calc(100vh-10rem)]">
-          <div
-            class="h-[calc(100vh-21rem)] overflow-y-auto"
-            v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarLarge"
-          >
-            <div v-for="(titles, date) in groupChat()" :key="date">
-              <div
-                class="flex justify-between sticky pb-1 top-0 backdrop-blur font-bold bg-transparentdark:bg-darkgray"
-              >
-                <h1 class="dark:text-white">{{ date }}</h1>
-                <div class="flex flex-row-reverse">
-                  <span class="material-icons-outlined dark:text-white">expand_less</span>
-                  <span class="dark:text-stone-300 text-sm"> {{ titles.length }} total</span>
-                </div>
-              </div>
 
-              <div v-for="title in titles" :key="title.thread_id">
-                <ChatHistory
-                  :thread-id="title.thread_id"
-                  :last-message-at="title.last_message_at"
-                  :title="title.title"
-                  @fetch-history-handler="fetchHistoryHandler"
-                />
+      <div class="relative h-[calc(100vh-10rem)] w-full ">
+        <div
+          class="h-[calc(100vh-21rem)] overflow-y-auto"
+          v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarLarge"
+        >
+          <div v-for="(titles, date) in groupChat()" :key="date">
+            <div
+              class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparentdark:bg-darkgray"
+            >
+              <h1 class="dark:text-white">{{ date }}</h1>
+              <div class="flex flex-row-reverse">
+                <span class="material-icons-outlined dark:text-white">expand_less</span>
+                <span class="dark:text-stone-300 text-sm"> {{ titles.length }} total</span>
               </div>
             </div>
-            <div class="absolute bottom-4 grid grid-cols-12 w-full">
-              <div
-                class="col-span-4 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
-              >
-                <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
-              </div>
-              <div
-                class="col-span-4 bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
-              >
-                <img src="@/assets/images/clinic.png" alt="clinic-image" />
-              </div>
-              <div
-                class="col-span-4 bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
-              >
-                <img src="@/assets/images/learn.png" alt="lear-image" />
-              </div>
+
+            <div v-for="title in titles" :key="title.thread_id" class="w-full">
+              <ChatHistory
+                :thread-id="title.thread_id"
+                :last-message-at="title.last_message_at"
+                :title="title.title"
+                @fetch-history-handler="fetchHistoryHandler"
+              />
+            </div>
+          </div>
+          <div class="absolute bottom-4 grid grid-cols-12 w-full">
+            <div
+              class="col-span-4 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
+            >
+              <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
+            </div>
+            <div
+              class="col-span-4 bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
+            >
+              <img src="@/assets/images/clinic.png" alt="clinic-image" />
+            </div>
+            <div
+              class="col-span-4 bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
+            >
+              <img src="@/assets/images/learn.png" alt="lear-image" />
             </div>
           </div>
         </div>
@@ -282,11 +281,11 @@ chatbotStore.conversation = []
                         <div class="border-b border-darkgray pt-4"></div>
                       </DialogTitle>
                     </div>
-                    <div class="relative mt-6 flex-1 px-4 sm:px-6">
-                      <div class="flex justify-between pb-4 ">
+                    <div class="relative mt-6 flex-1">
+                      <div class="flex justify-between pb-4 px-4">
                         <span class="dark:text-white text-lg flex items-center">New Chat</span>
                         <div
-                          @2click="newChatHandler"
+                          @click="newChatHandler"
                           class="bg-darkgray dark:bg-stone-700 p-2 rounded-md flex items-center justify-center"
                         >
                           <span class="material-icons-outlined text-white">add</span>
@@ -304,7 +303,7 @@ chatbotStore.conversation = []
                             <div
                               class="flex justify-between sticky pb-1 top-0 backdrop-blur font-bold bg-white dark:bg-lightgray"
                             >
-                              <h1 class="dark:text-white">{{ date }}</h1>
+                              <h1 class="dark:text-white ps-4">{{ date }}</h1>
                               <div class="flex flex-row-reverse">
                                 <span class="material-icons-outlined dark:text-white"
                                   >expand_less</span
@@ -315,7 +314,7 @@ chatbotStore.conversation = []
                               </div>
                             </div>
 
-                            <div v-for="title in titles" :key="title.thread_id">
+                            <div v-for="title in titles" :key="title.thread_id" class="py-1">
                               <ChatHistory
                                 :thread-id="title.thread_id"
                                 :last-message-at="title.last_message_at"
@@ -324,7 +323,7 @@ chatbotStore.conversation = []
                               />
                             </div>
                           </div>
-                          <div class="absolute bottom-4 gap-8 mx-9 grid grid-cols-12 ">
+                          <div class="absolute bottom-4 gap-8 mx-9 grid grid-cols-12">
                             <div
                               class="col-span-4 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
                             >
