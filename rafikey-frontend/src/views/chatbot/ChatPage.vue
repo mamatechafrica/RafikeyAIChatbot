@@ -12,6 +12,7 @@ import { v4 as uuidV4 } from 'uuid'
 
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
+import moment from 'moment/moment'
 
 
 
@@ -22,9 +23,25 @@ const isError = ref(false)
 
 
 const isGeneratingResponse = ref(false)
-
 const isBottom = ref(false)
+const now = moment()
 
+//   create Rafikey message object
+const rafikeyMessage = ref<Conversation>({
+  message: '',
+  isUser: false,
+  isTyping: true,
+  uniqueId: _.uniqueId('rafikey-'),
+  timestamp : ''
+})
+
+// Create user message object
+const userMessage = ref<Conversation>({
+  message: '',
+  isUser: true,
+  uniqueId: _.uniqueId('user-'),
+  timestamp : ''
+})
 
 
 const conversationContainerRef = ref<HTMLDivElement | null>()
@@ -300,7 +317,7 @@ const fetchChats = (formatted: string) =>{
 // User input
 const handleUserInput = (value: string, formatted: string) => {
   if(route.path === '/user/chat') {
-    generateSessionId()
+    rafikeyChatbotStore.setSessionId(uuidV4())
     router.push({
       name: 'chatWithId',
       params: {
@@ -308,39 +325,25 @@ const handleUserInput = (value: string, formatted: string) => {
       },
     })
   }
-
-  constructMessageObj(formatted)
-  scrollToBottom()
-
-  isGeneratingResponse.value = true
-  fetchChats(formatted)
-  }
-
-//   construct message objects
-const constructMessageObj = (formatted: string) =>{
-  // create userMessage object
-  const userMessage = ref<Conversation>({
+  userMessage.value = {
     message: formatted,
     isUser: true,
     uniqueId: _.uniqueId('user-'),
-  })
-  //   push user message to the array
-  rafikeyChatbotStore.conversation.push(userMessage.value)
+  }
 
-  //   create Rafikey message object
-  const rafikeyMessage = ref<Conversation>({
-    message: '',
-    isUser: false,
-    isTyping: true,
-    uniqueId: _.uniqueId('rafikey-'),
-  })
+  rafikeyChatbotStore.conversation.push(userMessage.value)
+  scrollToBottom()
+
+
 
   //   push rafikey message to the array
   setTimeout(() => {
     rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
   }, 500)
+  isGeneratingResponse.value = true
+  fetchChats(formatted)
+  }
 
-}
 
 
 
@@ -361,22 +364,90 @@ watch(rafikeyChatbotStore.conversation, () => {
   }
   scrollToBottom()
 })
-onMounted(() => {
-generateSessionId()
-})
-const generateSessionId = () =>{
-  // rafikeyChatbotStore.setSessionId(uuidV4())
-}
-const newChatHandler = () => {
-  generateSessionId()
+
+//date format
+const timeFormatter = (timestamp: string) => {
+  const date = moment(timestamp)
+  if (now.isSame(date, 'day')) {
+    return  now
+  } else if (now.subtract(1, 'days').isSame(date, 'day')) {
+    return date.format('[Yesterday] h: mm A')
+  }  else if(now.subtract(1, 'weeks').isBefore(date, 'day')) {
+    return date.format('dddd h: mm A')
+  }
+  else if (now.subtract(1, 'weeks').isAfter(date)) {
+    return date.format('[Last]dddd h:mm A')
+  } else if (now.subtract(1, 'years').isBefore(date)) {
+    return  moment(title.last_message_at).format('MMMM D, dddd h:mm A')
+  } else {
+    return moment(title.last_message_at).format('YYYY')
+  }
 }
 
+
+// 2025-07-15T21:41:48.525760
+// fetching chat history
+const fetchHistoryHandler = (activeSessionId: string) =>{
+  if(rafikeyChatbotStore.conversation.length > 0){
+    return
+  }
+  else {
+    console.log('fetchHistoryHandler activreSessionId---', activeSessionId)
+    rafikeyChatbotStore.getChatHistory(activeSessionId)
+      .then(res => {
+        if (!res.data) {
+          isError.value = true
+        } else {
+          console.log('Chat history data', res.data)
+
+          router.push({
+            name: 'chatWithId',
+            params: {
+              sessionId: activeSessionId,
+            },
+          })
+          console.log('Chat history response', res.data)
+          res.data.map(conv => {
+            console.log(conv)
+            const time = timeFormatter(conv.timestamp)
+            userMessage.value = {
+              message: conv.user_message,
+              isUser: true,
+              uniqueId: _.uniqueId('user-'),
+              timestamp: time,
+            }
+            rafikeyChatbotStore.conversation.push(userMessage.value)
+
+            rafikeyMessage.value = {
+              message: conv.bot_response,
+              isUser: false,
+              isTyping: false,
+              uniqueId: _.uniqueId('rafikey-'),
+              timestamp: time,
+            }
+            rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+          })
+          console.log('Chat history conversation', rafikeyChatbotStore.conversation)
+
+        }
+      })
+      .catch(err => {
+        isError.value = true
+        console.error('Error fetching chat history', err)
+      })
+      .finally(() => {
+        rafikeyChatbotStore.isGeneratingResponse = false
+        rafikeyMessage.value.isTyping = false
+        // rafikeyChatbotStore.conversation = []
+      })
+  }
+}
 </script>
 
 <template>
   <div class="p-6 dark:bg-lightgray min-h-screen">
     <div >
-      <NavBar @new-chat-handler="newChatHandler" />
+      <NavBar  @fetch-history-handler="fetchHistoryHandler"/>
     </div>
     <!--    right side-->
     <div class="relative w-full">
