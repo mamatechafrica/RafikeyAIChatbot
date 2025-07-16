@@ -383,9 +383,9 @@ const timeFormatter = (timestamp: string) => {
   else if (now.subtract(1, 'weeks').isAfter(date)) {
     return date.format('[Last]dddd h:mm A')
   } else if (now.subtract(1, 'years').isBefore(date)) {
-    return  moment(title.last_message_at).format('MMMM D, dddd h:mm A')
+    return  date.format('MMMM D, dddd h:mm A')
   } else {
-    return moment(title.last_message_at).format('YYYY')
+    return date.format('YYYY')
   }
 }
 
@@ -400,7 +400,7 @@ const fetchHistoryHandler = (activeSessionId: string) =>{
     console.log('fetchHistoryHandler activreSessionId---', activeSessionId)
     rafikeyChatbotStore.getChatHistory(activeSessionId)
       .then(res => {
-        if (!res.data) {
+        if (!res?.data) {
           isError.value = true
         } else {
           console.log('Chat history data', res.data)
@@ -412,14 +412,14 @@ const fetchHistoryHandler = (activeSessionId: string) =>{
             },
           })
           console.log('Chat history response', res.data)
-          res.data.map(conv => {
+          res.data.map((conv: HistoryConv) => {
             console.log(conv)
             const time = timeFormatter(conv.timestamp)
             userMessage.value = {
               message: conv.user_message,
               isUser: true,
               uniqueId: _.uniqueId('user-'),
-              timestamp: time,
+              timestamp: time as string,
             }
             rafikeyChatbotStore.conversation.push(userMessage.value)
 
@@ -428,7 +428,7 @@ const fetchHistoryHandler = (activeSessionId: string) =>{
               isUser: false,
               isTyping: false,
               uniqueId: _.uniqueId('rafikey-'),
-              timestamp: time,
+              timestamp: time as string,
             }
             rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
           })
