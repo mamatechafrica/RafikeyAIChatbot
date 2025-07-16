@@ -7,22 +7,30 @@ interface ChatHistoryProps {
   threadId: string
   title: string
   lastMessageAt: string
-}>()
+}
+const props = defineProps<ChatHistoryProps>()
+
+
 const chatbotStore = useRafikeyChatbotStore()
 
 const emits = defineEmits<{
   (event: 'fetchHistoryHandler', threadId: string): void
 }>()
 
-const chatHistoryHandler = (threadId: string) => {
-  emits('fetchHistoryHandler', threadId)
+
+const chatHistoryHandler = (propVal: ChatHistoryProps) => {
+  chatbotStore.conversation = []
+  chatbotStore.setActiveChatHistory(propVal.threadId)
+  emits('fetchHistoryHandler', propVal.threadId)
 }
+
+
 </script>
 
 <template>
-  <div class="btn btn-sm flex justify-start btn-ghost w-full bg-transparent shadow-none hover:border-none hover:bg-transparent"
-       :class="chatbotStore.sessionId === props.threadId? 'bg-lightgray text-stone-300': ''"
-       @click="chatHistoryHandler(props.threadId)"
+  <div class="flex justify-start py-2 ps-4 w-full cursor-pointer"
+       :class="[ chatbotStore.sessionId === props.threadId? 'bg-stone-300 dark:bg-stone-700  border-r-4 border-blue-600 ': 'bg-transparent']"
+       @click="chatHistoryHandler(props)"
   >
     <p class="text-start line-clamp-1 text-sm dark:text-white ">{{props.title}}</p>
   </div>
