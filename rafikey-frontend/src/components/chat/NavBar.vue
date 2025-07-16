@@ -4,20 +4,17 @@ import { type ChatHistoryTitle, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import ChatHistory from '@/components/chat/ChatHistory.vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { useRouter } from 'vue-router'
+
 
 const chatbotStore = useRafikeyChatbotStore()
-// const toggleImage = computed(()=>{
-//   console.log(chatbotStore.isDark)
-//   return chatbotStore.isDark? imageDark : imageLight
-// })
-
+const router = useRouter()
 const isChatHIstoryError = ref(false)
 onMounted(() => {
   chatbotStore
     .getChatHistoryTitles()
     .then((response) => {
-      console.log('response', response)
+      // console.log('response', response)
       if (response) {
         chatbotStore.chatHistoryTitles = response.data
       } else {
@@ -25,19 +22,19 @@ onMounted(() => {
       }
     })
     .catch((error) => {
-      console.error('Error fetching chat history titles:', error)
+      // console.error('Error fetching chat history titles:', error)
       isChatHIstoryError.value = true
     })
 })
 
 // reduce the chat titles according to the dates
 const groupChat = () => {
-  console.log('chat history titles', chatbotStore.chatHistoryTitles)
   const now = moment()
   const initialValue = {}
   return chatbotStore.chatHistoryTitles.reduce(
     (acc, title: ChatHistoryTitle) => {
       let date = moment(title.last_message_at).toISOString()
+      console.log('date---', date)
       if (now.isSame(date, 'day')) {
         date = 'Today'
       } else if (now.subtract(1, 'days').isSame(date, 'day')) {
@@ -63,16 +60,12 @@ const groupChat = () => {
 }
 
 // fetch clicked chat History title
-const fetchHistoryHandler = (sessionId: string) => {
-  console.log('sessionId', sessionId)
-  chatbotStore.setActiveChatHistory(sessionId)
-  chatbotStore.getChatHistory().then((response) => {
-    console.log('response', response)
-  })
+const fetchHistoryHandler = (activeSessionId: string) => {
+emits('fetchHistoryHandler', activeSessionId)
 }
 
 const emits = defineEmits<{
-  (event: 'newChatHandler'): void
+  (event: 'fetchHistoryHandler', activeSessionId: string): void
 }>()
 
 // collapse sidenav
@@ -87,7 +80,10 @@ const expandSideNavHandler = () => {
 
 // generate a new chat
 const newChatHandler = () => {
-  emits('newChatHandler')
+chatbotStore.conversation = []
+  router.push({
+    name: 'newChat'
+  })
 }
 </script>
 
