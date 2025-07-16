@@ -14,8 +14,8 @@
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col w-full justify-center ">
-    <div class=" md:space-y-4   items-center   dark:bg-lightgray">
+  <div class="min-h-screen flex dark:bg-lightgray flex-col w-full justify-center ">
+    <div class=" md:space-y-4   items-center   ">
       <div class="flex w-full justify-center">
         <img :src="toggleImage" alt="rafikey-logo-image"  class="hidden md:block" />
       </div>
