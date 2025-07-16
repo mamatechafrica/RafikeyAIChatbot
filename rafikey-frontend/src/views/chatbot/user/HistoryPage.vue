@@ -5,8 +5,9 @@ import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import { useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment/moment'
 
-const chatotStore  = useRafikeyChatbotStore()
+const chatbotStore  = useRafikeyChatbotStore()
 const now = moment().format('LT')
+console.log('chats', chatbotStore.conversation)
 </script>
 
 
@@ -24,30 +25,30 @@ const now = moment().format('LT')
           <span class="material-icons-outlined dark:text-white">arrow_back</span>
           <span class="dark:text-white">Chatting With Rafikey</span>
         </div>
-        <div @click="chatotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">
+        <div @click="chatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">
           <span class="material-icons-outlined dark:text-white">more_horiz</span>
         </div>
       </div>
     </div>
     <ul>
-      <template v-for="(conv, index) in chatotStore.conversation" :key="index">
+      <template v-for="(conv, index) in chatbotStore.conversation" :key="index">
         <UserBubble
-          v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
+          v-if="conv && conv.isUser && conv.message.length > 0 && !conv.isTyping"
           :user-message="conv.message"
           :user-name="'You'"
           :created-at="now"
-          :is-generating-response="chatotStore.isGeneratingResponse"
+          :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
         <RafikeyBubble
-          v-if="!conv.isUser"
+          v-if="conv && !conv.isUser"
           :chatbot-name="'Rafikey'"
           :rafikey-chatbot-message="marked.parse(conv.message) as string"
           :is-typing="false"
           :is-copyable="false"
           :is-error="false"
           :created-at="now"
-          :is-generating-response="chatotStore.isGeneratingResponse"
+          :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
       </template>
