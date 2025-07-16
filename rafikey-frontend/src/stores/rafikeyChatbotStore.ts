@@ -22,6 +22,7 @@ export interface Conversation {
   isTyping?: boolean
   hasError?: boolean
   uniqueId: string | number
+  timestamp?: string
 }
 
 
