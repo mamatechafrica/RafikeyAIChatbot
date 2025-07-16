@@ -143,6 +143,24 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
     # Check if we should generate a title (after 5 responses)
     await update_conversation_title(thread_id, user_id, db)
 
+async def generate_stream_response_anonymous(user_input: str, thread_id: str) -> AsyncGenerator[str, None]:
+    """Generate streaming response from the graph using the provided thread_id"""
+
+    session_config = {
+        "configurable": {
+            "thread_id": thread_id
+        }
+    }
+
+    for chunk, metadata in graph.stream(
+        {"messages": {"role": "user", "content": user_input}},
+        session_config,
+        stream_mode="messages"
+    ):
+        if metadata['langgraph_node'] == "agent":
+            if chunk.content:
+                print(f"Bot: {chunk.content}", end="", flush=True)
+                yield chunk.content
 
 @router.post('/chat')
 async def chat(
@@ -159,6 +177,24 @@ async def chat(
         # Create the streaming response with user_id
         return StreamingResponse(
             generate_stream_response(chat_input.message, thread_id, current_user.id, db),
+            media_type="text/event-stream",
+        )
+    except Exception as e:
+        return {"error": str(e)}
+
+@router.post('/anonymous_chat')
+async def anonymous_chat(
+    chat_input: ChatInput,
+):
+    """Chat endpoint for the bot - don't require authentication"""
+    try:
+        # Use the provided session_id or generate a fallback one
+        thread_id = chat_input.session_id if chat_input.session_id else str(uuid.uuid4())
+        print(f"Thread ID: {thread_id}")
+
+        # Create the streaming response with user_id
+        return StreamingResponse(
+            generate_stream_response_anonymous(chat_input.message, thread_id),
             media_type="text/event-stream",
         )
     except Exception as e:

@@ -261,7 +261,7 @@ async def get_my_thread_list(
         threads = [
             {
                 "thread_id": result.thread_id,
-                "title": result.title or "Untitled Conversation",
+                "title": result.title or "New Chat",
                 "last_message_at": result.last_message_at
             }
             for result in results
@@ -298,7 +298,7 @@ async def get_thread_list(db: SessionDep):
         threads = [
             {
                 "thread_id": result.thread_id,
-                "title": result.title or "Untitled Conversation",
+                "title": result.title or "New Chat",
                 "last_message_at": result.last_message_at
             }
             for result in results
@@ -368,7 +368,7 @@ async def get_threads_by_date_range(
         threads = [
             {
                 "thread_id": result.thread_id,
-                "title": result.title or "Untitled Conversation",
+                "title": result.title or "New Chat",
                 "first_message_at": result.first_message_at,
                 "last_message_at": result.last_message_at,
                 "message_count": result.message_count
