@@ -274,7 +274,7 @@ const handleUserInput = (value: string, formatted: string) => {
   // console.log('conversation array---', conversation.value)
   rafikeyChatbotStore.isGeneratingResponse = true
   rafikeyChatbotStore
-    .sendMessageToRafikeyChatbot({
+    .sendMessageToRafikeyChatbotAnonymous({
       message: formatted,
       sessionId: rafikeyChatbotStore.getSessionId,
     })
