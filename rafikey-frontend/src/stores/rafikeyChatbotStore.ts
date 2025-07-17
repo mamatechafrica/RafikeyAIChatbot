@@ -117,6 +117,54 @@ const rafikeyResponse = ref<string>('')
 
   }
 
+  // anonymous user send message to RafikeyChatbot
+  async function sendMessageToRafikeyChatbotAnonymous(payload: ChatbotConversationPayload) {
+    const authStore = useAuthStore()
+    console.log('Token ---', authStore.token)
+    try {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/anonymous_chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: payload.message,
+          session_id: payload.sessionId,
+        }),
+      })
+      if(!response.body){
+        console.log('No response body')
+        return
+      }
+      else{
+        const reader = response.body?.getReader()
+        const decoder = new TextDecoder()
+        // return response.json()
+        while (true){
+          const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
+          if (done) break
+          rafikeyResponse.value += decoder.decode(value, { stream: true })
+          console.log('Rafikey response:', rafikeyResponse.value)
+          // return rafikeyResponse.value
+
+        }
+        return rafikeyResponse.value
+
+      }
+
+    }
+    catch (error) {
+      console.log('Error sending message to RafikeyChatbot', error)
+      return
+    }
+      // clear the variable
+    finally {
+      rafikeyResponse.value = ''
+    }
+
+  }
+
+
   // Get chat histories
   async function getChatHistoryTitles() {
     console.log('Here in the chat history')
@@ -213,5 +261,6 @@ const rafikeyResponse = ref<string>('')
     conversation,
     getChatHistory,
     isGeneratingResponse,
+    sendMessageToRafikeyChatbotAnonymous
   }
 })
