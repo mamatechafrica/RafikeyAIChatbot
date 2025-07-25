@@ -160,7 +160,6 @@ const routes = [
     }
   }
 
-
 ]
 
 
@@ -169,9 +168,14 @@ const router = createRouter({
   routes: routes
 })
 
+const previousRoute = ref('')
+
 router.beforeEach((to, from, next) => {
+
   const authStore = useAuthStore()
+  const chatbotStore = useRafikeyChatbotStore()
   const  isRequiresAuth =  to.meta.requiresAuth as boolean
+  chatbotStore.previousRoute = from.fullPath
   //   check if  routes requires authentication
   // check if user has ever logged in if so direct them to login page no welcome pages
   // If user is not logged in redirect them to loggin page
