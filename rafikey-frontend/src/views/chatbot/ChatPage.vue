@@ -10,6 +10,7 @@ import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
+import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
 
 
 interface HistoryConv {
@@ -25,7 +26,7 @@ const rafikeyChatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const route = useRoute()
 const isError = ref(false)
-
+const isLoading = ref(false)
 
 const isGeneratingResponse = ref(false)
 const isBottom = ref(false)

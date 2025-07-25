@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory,type  NavigationGuardNext, type  RouteLocationNormalized } from 'vue-router'
-import { useAuthStore } from '@/stores'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
+import { ref } from 'vue'
 
 
 const routes = [

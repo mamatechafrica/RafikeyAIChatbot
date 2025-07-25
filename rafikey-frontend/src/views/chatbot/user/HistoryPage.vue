@@ -7,7 +7,6 @@ import moment from 'moment/moment'
 
 const chatbotStore  = useRafikeyChatbotStore()
 const now = moment().format('LT')
-console.log('chats', chatbotStore.conversation)
 </script>
 
 
