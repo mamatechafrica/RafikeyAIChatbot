@@ -283,10 +283,9 @@ chatbotStore.conversation = []
                       </DialogTitle>
                     </div>
                     <div class="relative mt-6 flex-1">
-                      <div class="flex justify-between pb-4 px-4">
+                      <div class="flex justify-between pb-4 px-4 cursor-pointer"    @click="newChatHandler">
                         <span class="dark:text-white text-lg flex items-center">New Chat</span>
                         <div
-                          @click="newChatHandler"
                           class="bg-darkgray dark:bg-stone-700 p-2 rounded-md flex items-center justify-center"
                         >
                           <span class="material-icons-outlined text-white">add</span>
