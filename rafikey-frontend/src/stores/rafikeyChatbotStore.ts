@@ -32,7 +32,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
   const isGeneratingResponse = ref(false)
   const isDarkMode = useStorage("isDarkMode", false)
-
+  const previousRoute =  useStorage("previousRoute", '')
+  const isNewChat = useStorage("isNewChat", true)
   const isDark = useDark({
     onChanged(dark: boolean){
       isDarkMode.value = dark
