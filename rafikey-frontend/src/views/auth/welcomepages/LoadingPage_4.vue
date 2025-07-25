@@ -29,16 +29,13 @@
         <div class="xl:w-6/12 w-9/12">
           <p class="lg:text-xl text-sm dark:text-white text-gray-700  text-center flex justify-center ">Everything you share is protected and stays between you and Rafikey</p>
         </div>
-        <div class="flex space-x-2">
+        <div class="flex space-x-2 pb-3">
           <div class="w-8 h-3 rounded-md animate-pulse bg-casablanca-400"></div>
           <div class="w-3 h-3 rounded-full animate-pulse bg-casablanca-200"></div>
           <div class="w-3 h-3 rounded-full animate-pulse bg-casablanca-300"></div>
         </div>
-
       </div>
     </div>
-
-
   </div>
 </template>
 
