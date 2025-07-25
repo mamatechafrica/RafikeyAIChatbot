@@ -17,10 +17,10 @@ const now = moment().format('LT')
   <div
     class="md:py-12 h-[calc(100vh-10rem)] md:me-20 overflow-y-auto"
   >
-    <div class="md:hidden block">
+    <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
 
-      <div class="flex justify-between sticky top-0 bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
-        <div class="flex gap-4">
+      <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
+        <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">
           <span class="material-icons-outlined dark:text-white">arrow_back</span>
           <span class="dark:text-white">Chatting With Rafikey</span>
         </div>
