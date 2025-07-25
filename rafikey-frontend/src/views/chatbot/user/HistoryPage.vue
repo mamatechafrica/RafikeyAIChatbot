@@ -4,9 +4,11 @@ import RafikeyBubble from '@/components/chat/bubble/RafikeyBubble.vue'
 import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import { useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment/moment'
+import { useRouter } from 'vue-router'
 
 const chatbotStore  = useRafikeyChatbotStore()
 const now = moment().format('LT')
+const router = useRouter()
 </script>
 
 
