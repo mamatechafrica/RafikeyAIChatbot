@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 import { shallowRef, ref } from 'vue'
 
 const router = useRouter()
-const delayTime = 3000
+const delayTime = 5000
 
 const pages = [
   {
