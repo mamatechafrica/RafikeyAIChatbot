@@ -262,6 +262,8 @@ const rafikeyResponse = ref<string>('')
     conversation,
     getChatHistory,
     isGeneratingResponse,
-    sendMessageToRafikeyChatbotAnonymous
+    sendMessageToRafikeyChatbotAnonymous,
+    previousRoute,
+    isNewChat
   }
 })
