@@ -50,20 +50,19 @@ const userMessage = ref<Conversation>({
 })
 const conversationContainerRef = ref<HTMLDivElement | null>()
 // const isScrollable = ref(false)
-// const notificationStore = useNotificationStore()
-
-// const isDark = false
-// toggle welcome image based on dark mode
 
 // scrolltop bottom when rafikey chatbot is typing
-
 const scrollToBottom = () => {
   const userInputPlaceholder = document.getElementById('#userInputPlaceholder')
-  userInputPlaceholder?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-    inline: 'nearest',
-  })
+
+  if(userInputPlaceholder){
+    console.log("Scrolling to bottom")
+    userInputPlaceholder?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest',
+    })
+  }
 }
 
 const renderer: RendererObject = {
