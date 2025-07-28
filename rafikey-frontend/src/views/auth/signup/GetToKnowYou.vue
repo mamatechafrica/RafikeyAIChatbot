@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, computed, ref, onMounted, onBeforeMount } from 'vue'
+import { reactive, computed, ref, onMounted, onBeforeMount, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
@@ -20,6 +20,7 @@ const createAccountFormStore = useCreateAccountFormStore()
 const authStore = useAuthStore()
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
+const isLoading = ref(false)
 
 const toggleImage = computed(() => {
   return  chatbotStore.isDarkMode ? imageDark : imageLight
@@ -127,7 +128,14 @@ const  everyThingOk = computed(()=>{
   getToKnowYouData.age && getToKnowYouData.gender && getToKnowYouData.relationship_status && getToKnowYouData.isTermsCondition
   )
 })
-const isLoading = ref(false)
+
+watch(everyThingOk, (value) =>{
+  if(value){
+    signupError.isError = false
+    signupError.message = ''
+  }
+})
+
 
 // create account after everything is okay
 const createAccountHandler = () =>{
