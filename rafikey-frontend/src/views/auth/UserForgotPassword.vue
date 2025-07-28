@@ -90,8 +90,9 @@ const forgotPasswordHandler = () =>{
       .finally(()=>{
         isLoading.value = false
       })
-
-
+  } else{
+    forgotPasswordError.isError = true
+    forgotPasswordError.message = 'Please fill in your email'
   }
 }
 
