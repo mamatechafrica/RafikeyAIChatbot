@@ -370,6 +370,11 @@ onBeforeUnmount(()=>{
                 </div>
               </form>
             </div>
+            <div v-if="SetProfileError.isError" class="flex gap-2">
+              <span class="material-icons-outlined text-rose-500">error</span>
+              <span class="text-rose-500">{{SetProfileError.message}}</span>
+            </div>
+
             <div class="border-b border-gray-400 w-3/4 mx-auto dark:border-stone-400"></div>
             <div class="w-3/4 mx-auto flex justify-between items-center">
               <button
@@ -504,6 +509,10 @@ onBeforeUnmount(()=>{
             >
           </div>
         </form>
+        <div v-if="SetProfileError.isError" class="flex gap-2">
+          <span class="material-icons-outlined text-rose-500">error</span>
+          <span class="text-rose-500">{{SetProfileError.message}}</span>
+        </div>
         <div class="border-b border-gray-400 dark:border-stone-400 w-full"></div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-3">
