@@ -245,18 +245,17 @@ onBeforeUnmount(()=>{
 
 <template>
   <div v-if="!isLoading">
-    <div class="h-screen w-full hidden overflow-hidden md:flex items-center justify-center dark:bg-lightgray">
+    <div class="min-h-screen w-full hidden overflow-hidden md:flex items-center justify-center dark:bg-lightgray">
       <div
         class="bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-2xl pb-10"
       >
         <div>
-          <div>
-            <img :src="toggleImage" alt="rafikey-logo" />
-          </div>
-          <div class="w-6/12 mx-auto space-y-12 rounded-2xl">
-            <div class="flex flex-col items-center space-y-4">
+          <img :src="toggleImage" alt="rafikey-logo" />
+        </div>
+          <div class="lg:w-8/12 w-3/4  mx-auto space-y-12 rounded-2xl">
+            <div class="flex flex-col items-center space-y-2">
               <h2 class="text-4xl font-semibold dark:text-white">Set up your profile</h2>
-              <p class="text-xl text-gray-700 text-center dark:text-stone-300">
+              <p class="lg:text-xl  text-lg  text-gray-700 text-center dark:text-stone-300">
                 Let's get you set up so you can access your personal account for a more personalized
                 experience
               </p>
@@ -264,7 +263,7 @@ onBeforeUnmount(()=>{
             <div class="border-b border-gray-400 w-3/4 mx-auto dark:border-stone-400"></div>
             <div>
               <form>
-                <div class="space-y-6">
+                <div class="space-y-2">
                   <div class="grid grid-cols-2 gap-8">
                     <div class="col-span-1 flex-col space-y-1">
                       <label
@@ -302,7 +301,7 @@ onBeforeUnmount(()=>{
                     </div>
                   </div>
                   <div class="grid grid-cols-2">
-                    <div class="space-x-2">
+                    <div class="space-x-2 col-span-2">
                       <input
                         v-model="isAnonymous"
                         type="checkbox"
@@ -392,7 +391,7 @@ onBeforeUnmount(()=>{
               </button>
             </div>
           </div>
-        </div>
+
       </div>
     </div>
 

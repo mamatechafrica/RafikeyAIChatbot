@@ -211,7 +211,6 @@ const resetPasswordHandler = ()=>{
           <img src="@/assets/images/forgot-password.png" alt="reset-password-images" />
         </div>
       </div>
-
     </div>
 
     <!--    Small screens-->
