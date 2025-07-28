@@ -18,6 +18,10 @@ const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
 
 
+const resetPasswordError = reactive({
+  isError: false,
+  message: ''
+})
 const toggleImage = computed(()=>{
   return chatbotStore.isDarkMode? imageDark : imageLight
 })
