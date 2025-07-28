@@ -17,8 +17,7 @@ const forgotPasswordError = reactive({
 
 
 
-const isDark = localStorage.getItem('darkMode')
-console.log("we have mode", isDark)
+const isDark = localStorage.getItem('isDarkMode')
 const toggleImage = computed(()=>{
   return isDark? imageDark : imageLight
 })
