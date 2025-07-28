@@ -69,17 +69,7 @@ const routes = [
             component: () => import('@/views/auth/terms&conditions/TermsCondition.vue')
           }
 
-        ],
-        // beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-        //   const authStore = useAuthStore()
-        //   // If user has ever logged in redirect to login page
-        //   if (authStore.isEverLoggedIn) {
-        //     next({ name: 'login' })
-        //   } else {
-        //     next()
-        //   }
-        // }
-
+        ]
       },
       {
         name: 'login',
@@ -179,7 +169,7 @@ router.beforeEach((to, from, next) => {
   chatbotStore.previousRoute = from.fullPath
   //   check if  routes requires authentication
   // check if user has ever logged in if so direct them to login page no welcome pages
-  // If user is not logged in redirect them to loggin page
+  // If user is not logged in redirect them to login page
   if(!isRequiresAuth){
     next()
   }

@@ -37,7 +37,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isDark = useDark({
     onChanged(dark: boolean){
       isDarkMode.value = dark
-      console.log('Dark mode changed:', dark)
     }
   })
 
