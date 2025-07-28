@@ -3,7 +3,7 @@ import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
-import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
+import { useCreateAccountFormStore, useNotificationStore, useRafikeyChatbotStore } from '@/stores'
 import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
@@ -13,6 +13,7 @@ import DialogModal from '@/components/DialogModal.vue'
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
 const createAccountFormStore = useCreateAccountFormStore()
+const notificationStore = useNotificationStore()
 const isPasswordVisible = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isConfirmPasswordVisible = ref<boolean>(false)
@@ -201,7 +202,7 @@ const everyThingOk = computed(() => {
   )
 })
 
-// persist the profile data to the store if no errors on the form
+// persist the profile data to the createAccountFormStore if no errors on the form
 const goToKnowYou = () => {
   if (everyThingOk.value) {
     createAccountFormStore.setProfile({
@@ -209,7 +210,6 @@ const goToKnowYou = () => {
       email: setProfileData.email,
       password: setProfileData.password,
     })
-    console.log('Profile************', createAccountFormStore.getProfile)
     isAnonymous.value = false
     isLoading.value = true
     setTimeout(() => {
@@ -218,6 +218,8 @@ const goToKnowYou = () => {
         name: 'get-to-know-you',
       })
     }, 3000)
+  } else{
+    notificationStore.addNotification('Please fill all fields correctly', 'error')
   }
 }
 
