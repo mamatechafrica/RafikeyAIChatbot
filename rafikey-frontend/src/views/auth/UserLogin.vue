@@ -120,7 +120,7 @@ watch(
   },
 )
 
-
+// watch for isUserGuest and redirect to guest page after 3 seconds
 watch(()=>isUserGuest.value, (value)=>{
   if(value){
     isUserGuestLoading.value = true
@@ -129,21 +129,13 @@ watch(()=>isUserGuest.value, (value)=>{
               name: 'guest-page'
             })
     }, 3000)
-    chatbotStore.setDialogModal(false)
-    // isAnonymous.value = false
-
   }
-  // else{
-  //   chatbotStore.setDialogModal(false)
-  // }
 })
-onMounted(()=>{
 
+onMounted(()=>{
   setTimeout(()=>{
     appLoading.value = false
-    console.log("App loading finished")
   }, 3000)
-
 })
 
 
@@ -340,7 +332,7 @@ onMounted(()=>{
         <template #body>
           <div class="flex flex-col items-center py-2">
             <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
-            <span class="dark:text-white text-sm lg:text-lg">Your chat's won't be saved, if you login anonymously</span>
+            <span class="dark:text-white text-sm lg:text-lg">Your chats won't be saved, if you login anonymously</span>
           </div>
 
         </template>
