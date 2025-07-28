@@ -10,7 +10,10 @@ import imageDark from '@/assets/images/rafikey-icon-dark.png'
 const router = useRouter()
 const emailData = ref<string>('')
 const isLoading = ref(false)
-const authStore = useAuthStore()
+const forgotPasswordError = reactive({
+  isError: false,
+  message: ''
+})
 
 
 
