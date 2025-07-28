@@ -103,7 +103,7 @@ const forgotPasswordHandler = () =>{
 
 <template>
   <div>
-    <div class="h-screen w-full hidden lg:block dark:bg-lightgray">
+    <div class="h-screen w-full overflow-hidden hidden lg:block dark:bg-lightgray">
       <div class="w-10/12 grid grid-cols-2 mx-auto">
         <!--      left-side-->
         <div class="col-span-1">
@@ -124,7 +124,7 @@ const forgotPasswordHandler = () =>{
             </div>
             <!--          forgot password form-->
             <div>
-              <form class="flex flex-col space-y-12 w-10/12">
+              <form class="flex flex-col w-10/12" :class="forgotPasswordError.isError?' space-y-4 xl:space-y-12': 'space-y-12 '">
                 <div class="relative">
                   <input
                     v-model="emailData"
@@ -142,10 +142,13 @@ const forgotPasswordHandler = () =>{
                   <span v-if="emailMeta.validated && !emailMeta.valid"  class="text-rose-500">{{emailErrorMessage}}</span>
 
                 </div>
+                <div v-if="forgotPasswordError.isError" class="flex gap-2">
+                  <span class="material-icons-outlined text-rose-500">error</span>
+                  <span class="text-rose-500">{{forgotPasswordError.message}}</span>
+                </div>
                 <div
                   @click="forgotPasswordHandler"
-                  :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-                  class="btn btn-sm  text-lg rounded-2xl py-6">
+                  class="btn btn-sm  text-lg rounded-2xl py-6 bg-button-light border-none shadow-none">
                   <span v-if="!isLoading">Submit</span>
                   <span v-else class="loading loading-spinner loading-sm"></span>
                 </div>
@@ -154,7 +157,7 @@ const forgotPasswordHandler = () =>{
           </div>
         </div>
         <!--      right--side-->
-        <div class="col-span-1 flex items-center justify-center h-screen">
+        <div class="col-span-1 flex items-center justify-center">
           <div class="bg-gray-100 rounded-2xl dark:bg-transparent">
             <img src="@/assets/images/forgot-password.png" alt="forgot-password-image" />
           </div>
@@ -164,7 +167,7 @@ const forgotPasswordHandler = () =>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block min-h-screen w-full dark:bg-lightgray">
+    <div class="lg:hidden block overflow-hidden h-screen w-full dark:bg-lightgray">
 
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24"/>
@@ -193,14 +196,17 @@ const forgotPasswordHandler = () =>{
             <span v-if="emailMeta.validated && !emailMeta.valid"  class="text-rose-500">{{emailErrorMessage}}</span>
           </div>
         </form>
+        <div v-if="forgotPasswordError.isError" class="flex gap-2">
+          <span class="material-icons-outlined text-rose-500">error</span>
+          <span class="text-rose-500">{{forgotPasswordError.message}}</span>
+        </div>
         <div class="border-b border-gray-400 w-full pt-6"></div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
             @click="forgotPasswordHandler"
-            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5">
-            <span v-if="!isLoading">Submit</span>
+            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-6 bg-button-light border-none shadow-none">
+            <span v-if="!isLoading" class="text-sm md:text-lg">Submit</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
