@@ -3,7 +3,7 @@ import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
-import { useCreateAccountFormStore, useNotificationStore, useRafikeyChatbotStore } from '@/stores'
+import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
@@ -13,11 +13,15 @@ import DialogModal from '@/components/DialogModal.vue'
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
 const createAccountFormStore = useCreateAccountFormStore()
-const notificationStore = useNotificationStore()
+
 const isPasswordVisible = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isConfirmPasswordVisible = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
+const SetProfileError = reactive({
+  isError: false,
+  message: ''
+})
 const togglePasswordVisibility = computed(() => (isPasswordVisible.value ? 'text' : 'password'))
 const toggleConfirmPasswordVisibility = computed(() =>
   isConfirmPasswordVisible.value ? 'text' : 'password',
