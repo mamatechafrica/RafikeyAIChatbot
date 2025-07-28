@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
+import { ref, watch, computed, reactive } from 'vue'
 import { useField } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores'
@@ -9,6 +9,7 @@ import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 const router = useRouter()
 const emailData = ref<string>('')
+const authStore = useAuthStore()
 const isLoading = ref(false)
 const forgotPasswordError = reactive({
   isError: false,
@@ -54,6 +55,14 @@ watch(()=> emailData.value, value => {
 const everyThingOk = computed(()=>{
   return emailMeta.validated && emailMeta.valid
 })
+
+watch(everyThingOk, (value) =>{
+  if(value){
+    forgotPasswordError.isError = false
+    forgotPasswordError.message = ''
+  }
+})
+
 
 const forgotPasswordHandler = () =>{
   if(everyThingOk.value){
