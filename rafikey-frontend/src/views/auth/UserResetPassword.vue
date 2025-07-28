@@ -140,7 +140,7 @@ const resetPasswordHandler = ()=>{
 
 <template>
   <div>
-    <div class="h-screen w-full hidden lg:block dark:bg-lightgray">
+    <div class="h-screen overflow-hidden w-full hidden lg:block dark:bg-lightgray">
       <div class="grid grid-cols-2 w-10/12 mx-auto">
         <!--      left side-->
         <div class="col-span-1">
@@ -154,8 +154,8 @@ const resetPasswordHandler = ()=>{
                 Please set a new password for your account</p>
             </div>
 
-            <div>
-              <form class="flex flex-col space-y-12 w-10/12" @submit.prevent="resetPasswordHandler">
+            <div class="space-y-8 ">
+              <form class="flex flex-col space-y-12 w-10/12">
                 <div class="relative">
                   <input
                     v-model="resetPassword.newPassword"
@@ -190,33 +190,32 @@ const resetPasswordHandler = ()=>{
                   <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="material-icons-outlined absolute cursor-pointer right-3 top-6 dark:text-white">visibility_off</span>
                   <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 top-6 dark:text-white">visibility</span>
                 </div>
+              </form>
+              <div v-if="resetPasswordError.isError" class="flex gap-2">
+                <span class="material-icons-outlined text-rose-500">error</span>
+                <span class="text-rose-500">{{resetPasswordError.message}}</span>
+              </div>
+              <div class=" w-10/12 flex justify-between items-center">
                 <button
-                  type="submit"
-                  :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-                  class="btn btn-sm text-lg rounded-2xl py-6">
-                  <span v-if="!isLoading">Set Password</span>
+                  @click="resetPasswordHandler"
+                  class="btn w-full md:text-lg text-sm rounded-2xl py-6 bg-button-light border-none shadow-none">
+                  <span v-if="!isLoading" class="text-sm md:text-lg">Set Password</span>
                   <span v-else class="loading loading-spinner loading-sm"></span>
                 </button>
-              </form>
+              </div>
             </div>
-
           </div>
-
-
         </div>
         <!--      right side-->
-        <div class="col-span-1 flex items-center justify-center h-screen ">
+        <div class="col-span-1 flex  item-center justify-center md:pt-20 xl:pt-0">
           <img src="@/assets/images/forgot-password.png" alt="reset-password-images" />
-
         </div>
-
       </div>
 
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block min-h-screen w-full dark:bg-lightgray">
-
+    <div class="lg:hidden block min-h-screen overflow-hidden w-full dark:bg-lightgray">
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
       </div>
@@ -238,12 +237,12 @@ const resetPasswordHandler = ()=>{
               v-model="resetPassword.newPassword"
               id="newPassword-2"
               :type="togglePasswordVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-3 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class=" w-full border-2 border-gray-500 rounded-2xl p-4 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="1234567@Hello"
             />
-            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-8 dark:text-white">visibility_off</span>
-            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-8 dark:text-white">visibility</span>
+            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 dark:text-white">visibility_off</span>
+            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 dark:text-white">visibility</span>
             <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
           </div>
 
@@ -255,24 +254,27 @@ const resetPasswordHandler = ()=>{
               v-model="resetPassword.confirmPassword"
               :type="toggleConfirmPasswordVisibility"
               id="confirmPassword-2"
-              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-3 md:text-lg text-sm  dark:bg-lightgray dark:text-stone-400"
+              class=" w-full border-2 border-gray-500 rounded-2xl p-4 md:text-lg text-sm  dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="1234567@Hello"
             />
-            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-8 dark:text-white">visibility_off</span>
-            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-8 dark:text-white">visibility</span>
+            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 dark:text-white">visibility_off</span>
+            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 dark:text-white">visibility</span>
             <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
 
           </div>
         </form>
+        <div v-if="resetPasswordError.isError" class="flex gap-2">
+          <span class="material-icons-outlined text-rose-500">error</span>
+          <span class="text-rose-500">{{resetPasswordError.message}}</span>
+        </div>
         <div class="border-b border-gray-400 w-full pt-6"></div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
             @click="resetPasswordHandler"
-            :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400']"
-            class="btn w-full md:text-lg text-sm rounded-2xl py-5">
-            <span v-if="!isLoading">Set Password</span>
+            class="btn w-full md:text-lg text-sm rounded-2xl py-6 bg-button-light border-none shadow-none">
+            <span v-if="!isLoading" class="text-sm md:text-lg">Set Password</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
