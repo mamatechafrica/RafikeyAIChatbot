@@ -87,6 +87,13 @@ const everyThingOk = computed(() => {
   return passwordMeta.validated && passwordMeta.valid && confirmPasswordMeta.validated && confirmPasswordMeta.valid
 })
 
+watch(everyThingOk, (value) =>{
+  if(value){
+    resetPasswordError.isError = false
+    resetPasswordError.message = ''
+  }
+})
+
 const resetPasswordHandler = ()=>{
   if(everyThingOk.value){
     isLoading.value = true
