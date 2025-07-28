@@ -259,7 +259,7 @@ onBeforeMount(()=>{
                 @click="createAccountHandler"
                 class="btn w-full xl:w-1/2  btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none"
               >
-                <span v-if="!isLoading" class="">Sign up</span>
+                <span v-if="!isLoading" class="text-lg">Sign up</span>
                 <span v-else class="loading loading-spinner loading-sm"></span>
               </button>
             </div>
@@ -332,7 +332,7 @@ onBeforeMount(()=>{
           @click="createAccountHandler"
           class="btn w-full btn-sm 0 text-lg rounded-2xl py-5 bg-button-light border-none shadow-none"
         >
-          <span v-if="!isLoading" class="text-sm">Sign up</span>
+          <span v-if="!isLoading" class="text-sm md:text-lg">Sign up</span>
           <span v-else class="loading loading-spinner loading-sm"></span>
         </button>
       </div>
