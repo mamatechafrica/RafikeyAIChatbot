@@ -238,7 +238,7 @@ onBeforeUnmount(()=>{
 
 <template>
   <div v-if="!isLoading">
-    <div class="h-screen w-full hidden md:flex items-center justify-center dark:bg-lightgray">
+    <div class="h-screen w-full hidden overflow-hidden md:flex items-center justify-center dark:bg-lightgray">
       <div
         class="bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-2xl pb-10"
       >
@@ -385,11 +385,11 @@ onBeforeUnmount(()=>{
     </div>
 
     <!--    Small screens-->
-    <div class="md:hidden block min-h-screen w-full dark:bg-lightgray">
+    <div class="md:hidden block overflow-hidden h-screen w-full dark:bg-lightgray">
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" class="w-24" alt="rafikey-logo" />
       </div>
-      <div class="flex flex-col md:px-20 px-10 md:space-y-5  space-y-4">
+      <div class="flex flex-col md:px-20 px-10 md:space-y-5 sm:space-y-8 space-y-4">
         <div class="flex flex-col items-center space-y-4">
           <h2 class="md:text-2xl text-lg font-semibold dark:text-white">Set up your profile</h2>
           <p class="md:text-xl sm:text-lg text-sm text-gray-700 text-center dark:text-stone-300">
