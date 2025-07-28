@@ -129,6 +129,9 @@ const resetPasswordHandler = ()=>{
       .finally(()=>{
         isLoading.value = false
       })
+  } else {
+    resetPasswordError.isError = true
+    resetPasswordError.message = 'Please fill in all the fields correctly'
   }
 }
 
