@@ -223,7 +223,8 @@ const goToKnowYou = () => {
       })
     }, 3000)
   } else{
-    notificationStore.addNotification('Please fill all fields correctly', 'error')
+    SetProfileError.isError = true
+    SetProfileError.message = 'Please fill all fields correctly before proceeding'
   }
 }
 
