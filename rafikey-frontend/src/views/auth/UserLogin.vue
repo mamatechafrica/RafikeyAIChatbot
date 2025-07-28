@@ -157,14 +157,14 @@ onBeforeUnmount(()=>{
 
 <template>
   <div v-if="!appLoading">
-    <div class="min-h-screen w-full hidden lg:block dark:bg-lightgray">
+    <div class="h-screen overflow-hidden w-full hidden lg:block dark:bg-lightgray">
       <div class="grid grid-cols-2 w-10/12 mx-auto ">
         <!--    left side-->
         <div class="col-span-1">
           <div class="">
             <img :src="toggleImage" alt="rafikey-icon" />
           </div>
-          <div class="flex flex-col space-y-12">
+          <div class="flex flex-col space-y-4">
             <div class="flex flex-col space-y-6">
               <h2 class="text-4xl dark:text-white font-semibold">Login</h2>
               <p class="lg:text-xl text-lg text-gray-700 dark:text-stone-300">Login to access your Rafikey</p>
@@ -172,7 +172,7 @@ onBeforeUnmount(()=>{
 
             <!--          login form-->
             <div class="">
-              <form class="flex flex-col space-y-12 w-10/12">
+              <form class="flex flex-col  w-10/12" :class="[loginError.isError?'space-y-4 xl:space-y-12': 'space-y-6 xl:space-y-12']">
                 <div class="relative">
                   <input
                     v-model="loginData.username"
@@ -218,19 +218,15 @@ onBeforeUnmount(()=>{
                     <span class="dark:text-white">Remain Anonymous</span>
                   </div>
                   <div>
-                    <router-link to="/auth/forgot-password" class="text-casablanca-300">Forgot Password
+                    <router-link to="/auth/forgot-password" class="text-button-light">Forgot Password
                     </router-link>
                   </div>
                 </div>
 
                 <div
                   @click="loginHandler"
-                  :class="[
-                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
-                ]"
-
-                  class="btn btn-sm text-lg rounded-2xl py-6">
-                  <span  v-if="!isLoading">Login</span>
+                  class="btn btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none">
+                  <span  v-if="!isLoading" class="text-lg">Login</span>
                   <span v-else class="loading loading-spinner loading-sm"></span>
                 </div>
               </form>
@@ -246,7 +242,7 @@ onBeforeUnmount(()=>{
           </div>
         </div>
         <!--    right side-->
-        <div class="col-span-1 relative flex items-center  justify-center h-screen w-full">
+        <div class="col-span-1 relative flex  justify-center  w-full">
           <img src="@/assets/images/login.png" alt="rafikey-login-image" />
 <!--          <img src="../../assets/images/rafikey-bot.png" alt="bot-image"-->
 <!--               class="absolute bottom-16 left-1/4" />-->
@@ -255,12 +251,12 @@ onBeforeUnmount(()=>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block min-h-screen w-full dark:bg-lightgray">
+    <div class="lg:hidden block h-screen overflow-hidden w-full dark:bg-lightgray">
 
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
       </div>
-      <div class="flex flex-col md:px-20 px-10 space-y-6">
+      <div class="flex flex-col md:px-20 px-10 md:space-y-10 space-y-2">
         <div class="flex flex-col items-center space-y-4">
           <h2 class="md:text-2xl text-lg  font-semibold dark:text-white">Login</h2>
           <p class="md:text-xl sm:text-lg text-gray-700 text-center dark:text-stone-300">Login to access your Rafikey Account</p>
@@ -272,7 +268,7 @@ onBeforeUnmount(()=>{
             <input id="username"
                    v-model="loginData.username"
                    type="text"
-                   class=" w-full border-2 md:p-4 p-2  md:text-lg text-sm border-gray-500 rounded-2xl dark:bg-lightgray dark:text-stone-400"
+                   class=" w-full border-2 p-4 md:text-lg text-sm border-gray-500 rounded-2xl dark:bg-lightgray dark:text-stone-400"
                    required
                    placeholder="Choose a username"
             />
@@ -290,12 +286,12 @@ onBeforeUnmount(()=>{
               v-model="loginData.password"
               id="password"
               :type="toggleVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-4  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
             <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-8 dark:text-white">visibility_off</span>
-            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-8 cursor-pointer dark:text-white">visibility</span>
+            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-10 md:top-12 cursor-pointer dark:text-white">visibility</span>
           </div>
         </form>
         <div v-if="loginError.isError" class="flex gap-2">
@@ -309,19 +305,16 @@ onBeforeUnmount(()=>{
             <span class="dark:text-white md:text-lg text-sm ">Remember me</span>
           </div>
           <div>
-            <router-link to="/auth/forgot-password" class="text-casablanca-300 md:text-lg text-sm ">Forgot Password</router-link>
+            <router-link to="/auth/forgot-password" class="text-button-light md:text-lg text-sm ">Forgot Password</router-link>
           </div>
 
         </div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
-            :class="[
-                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
-                ]"
             @click="loginHandler"
-            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5">
-            <span v-if="!isLoading">Login</span>
+            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5 bg-button-light border-none shadow-none">
+            <span v-if="!isLoading" class="text-sm md:text-lg">Login</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
