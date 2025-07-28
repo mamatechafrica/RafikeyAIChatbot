@@ -206,6 +206,13 @@ const everyThingOk = computed(() => {
   )
 })
 
+watch(everyThingOk, (value) => {
+  if (value) {
+    SetProfileError.isError = false
+    SetProfileError.message = ''
+  }
+})
+
 // persist the profile data to the createAccountFormStore if no errors on the form
 const goToKnowYou = () => {
   if (everyThingOk.value) {
