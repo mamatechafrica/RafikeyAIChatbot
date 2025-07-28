@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { reactive, ref, computed, watch, onMounted} from 'vue'
+import { reactive, ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
@@ -132,10 +132,18 @@ watch(()=>isUserGuest.value, (value)=>{
   }
 })
 
+// Load the welcome page 3 seconds before loading the login page
 onMounted(()=>{
   setTimeout(()=>{
     appLoading.value = false
   }, 3000)
+})
+
+//before unmounting if the user is a guest, close the dialog modal
+onBeforeUnmount(()=>{
+  if(isUserGuest.value){
+    chatbotStore.setDialogModal(false)
+  }
 })
 
 

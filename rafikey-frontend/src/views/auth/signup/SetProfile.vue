@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate'
-import { reactive, watch, ref, computed, onMounted } from 'vue'
+import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
 import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
@@ -59,10 +59,9 @@ watch(
   },
 )
 
+// watch for isUserGuest and redirect to guest page after 3 seconds
 watch(
-  () => isUserGuest.value,
-  (value) => {
-    console.log(value)
+  () => isUserGuest.value, (value) => {
     if (value) {
       isUserGuestLoading.value = true
       setTimeout(() => {
@@ -70,12 +69,7 @@ watch(
           name: 'guest-page',
         })
       }, 3000)
-      chatbotStore.setDialogModal(false)
-      // isAnonymous.value = false
     }
-    // else{
-    //   chatbotStore.setDialogModal(false)
-    // }
   },
 )
 
@@ -226,6 +220,13 @@ const goToKnowYou = () => {
     }, 3000)
   }
 }
+
+// before unmounting if the user is a guest, close the dialog modal
+onBeforeUnmount(()=>{
+  if(isUserGuest.value){
+    chatbotStore.setDialogModal(false)
+  }
+})
 </script>
 
 <template>
