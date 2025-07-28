@@ -369,10 +369,7 @@ onBeforeUnmount(()=>{
             <div class="w-3/4 mx-auto flex justify-between items-center">
               <button
                 @click="goToKnowYou"
-                :class="[
-                  !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
-                ]"
-                class="btn w-full btn-sm text-lg rounded-2xl py-6"
+                class="btn w-full btn-sm text-lg rounded-2xl py-6 bg-button-dark border-none shadow-none"
               >
                 Next
               </button>
@@ -387,7 +384,7 @@ onBeforeUnmount(()=>{
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" class="w-24" alt="rafikey-logo" />
       </div>
-      <div class="flex flex-col md:px-20 px-10 space-y-5">
+      <div class="flex flex-col md:px-20 px-10 md:space-y-5  space-y-4">
         <div class="flex flex-col items-center space-y-4">
           <h2 class="md:text-2xl text-lg font-semibold dark:text-white">Set up your profile</h2>
           <p class="md:text-xl sm:text-lg text-sm text-gray-700 text-center dark:text-stone-300">
@@ -405,7 +402,7 @@ onBeforeUnmount(()=>{
               v-model="setProfileData.username"
               id="username"
               type="text"
-              class="w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class="w-full border-2 border-gray-500 rounded-2xl  p-3 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Choose a username"
             />
@@ -429,7 +426,7 @@ onBeforeUnmount(()=>{
               v-model="setProfileData.email"
               id="email"
               type="email"
-              class="w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class="w-full border-2 border-gray-500 rounded-2xl p-3 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter your email"
             />
@@ -448,7 +445,7 @@ onBeforeUnmount(()=>{
               v-model="setProfileData.password"
               id="password"
               :type="togglePasswordVisibility"
-              class="w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class="w-full border-2 border-gray-500 rounded-2xl p-3  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
@@ -460,13 +457,13 @@ onBeforeUnmount(()=>{
             <span
               v-if="isPasswordVisible"
               @click="isPasswordVisible = false"
-              class="material-icons-outlined absolute cursor-pointer right-3 top-8 dark:text-white"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-9 dark:text-white"
               >visibility_off</span
             >
             <span
               v-else
               @click="isPasswordVisible = true"
-              class="material-icons-outlined absolute cursor-pointer right-3 top-8 dark:text-white"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-9 dark:text-white"
               >visibility</span
             >
           </div>
@@ -479,7 +476,7 @@ onBeforeUnmount(()=>{
               v-model="setProfileData.confirmPassword"
               id="ConfirmPassword"
               :type="toggleConfirmPasswordVisibility"
-              class="w-full border-2 border-gray-500 rounded-2xl md:p-4 p-2 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class="w-full border-2 border-gray-500 rounded-2xl p-3 md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
               required
               placeholder="Enter password"
             />
@@ -491,13 +488,13 @@ onBeforeUnmount(()=>{
             <span
               v-if="isConfirmPasswordVisible"
               @click="isConfirmPasswordVisible = false"
-              class="material-icons-outlined absolute cursor-pointer right-3 top-8 dark:text-white"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-9 dark:text-white"
               >visibility_off</span
             >
             <span
               v-else
               @click="isConfirmPasswordVisible = true"
-              class="material-icons-outlined absolute cursor-pointer right-3 top-8 dark:text-white"
+              class="material-icons-outlined absolute cursor-pointer right-3 top-9 dark:text-white"
               >visibility</span
             >
           </div>
@@ -507,10 +504,7 @@ onBeforeUnmount(()=>{
         <div class="w-3/4 mx-auto flex justify-between items-center pt-3">
           <button
             @click="goToKnowYou"
-            :class="[
-              !everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 hover:bg-casablanca-400',
-            ]"
-            class="btn w-full btn-sm md:text-lg text-sm rounded-2xl py-5 disabled:opacity-50"
+            class="btn w-full btn-sm md:text-lg text-sm rounded-2xl py-5 bg-button-dark border-none shadow-none "
           >
             <span v-if="!isLoading">Next</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
