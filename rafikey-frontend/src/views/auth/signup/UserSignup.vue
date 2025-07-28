@@ -9,9 +9,6 @@
       <component :is="Component" :key="route.fullPath"/>
     </template>
   </RouterView>
-
-
-
 </template>
 
 <style scoped>

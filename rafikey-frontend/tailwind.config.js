@@ -77,6 +77,10 @@ export default {
           '900': '#722815',
           '950': '#411107',
         },
+        'button': {
+          'light': '#F2B04D',
+          'dark': '#876532',
+        },
         darkgray: '#222222',
         lightgray: '#252525',
         lightBackground: '#F6F6F6'
