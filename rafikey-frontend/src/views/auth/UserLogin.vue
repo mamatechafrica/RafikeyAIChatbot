@@ -82,6 +82,12 @@ const everyThingOk = computed(()=>{
   )
 })
 
+watch(everyThingOk, (value) =>{
+  if(value){
+    loginError.isError = false
+    loginError.message = ''
+  }
+})
 const loginHandler = ()=>{
   if(everyThingOk.value){
     isLoading.value = true
