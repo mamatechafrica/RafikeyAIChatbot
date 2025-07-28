@@ -40,9 +40,9 @@ watch(() => selected.value, (newVal) => {
             <div
               :class="[
                 active
-                  ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-casablanca-300'
+                  ? ''
                   : '',
-                checked ? 'bg-casablanca-600/75' : ' border-casablanca-400 bg-transparent border ',
+                checked ? 'bg-casablanca-600/75' : ' border-button-dark bg-transparent border ',
               ]"
               class="relative flex cursor-pointer rounded-xl px-10  py-1  focus:outline-none"
             >
