@@ -527,7 +527,7 @@ onBeforeUnmount(()=>{
             @click="goToKnowYou"
             class="btn w-full btn-sm md:text-lg text-sm rounded-2xl py-5 bg-button-dark border-none shadow-none "
           >
-            <span v-if="!isLoading">Next</span>
+            <span v-if="!isLoading" class="text-sm md:text-lg">Next</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
