@@ -105,7 +105,6 @@ onMounted(()=>{
 // selected get-to-know-you data
 const selectedRadio = (value: Buttons) => {
 if(range(1, 5).includes(value.id)) {
-  console.log('age range selected:', value.name)
   getToKnowYouData.age = value.name
 } else if (range(5, 9).includes(value.id)) {
   getToKnowYouData.gender = value.name
@@ -147,7 +146,6 @@ const createAccountHandler = () =>{
       relationship_status: getToKnowYouData.relationship_status,
       terms_accepted: getToKnowYouData.isTermsCondition,
     })
-    console.log(createAccountFormStore.getProfile)
     isLoading.value = true
     authStore.createAccount()
       .then((response) => {

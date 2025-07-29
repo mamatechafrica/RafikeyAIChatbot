@@ -12,7 +12,6 @@ import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
 import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
 
-
 interface HistoryConv {
   bot_response: string
   id: number
@@ -22,6 +21,7 @@ interface HistoryConv {
   user_id: number
   user_message: string
 }
+
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const route = useRoute()
@@ -48,22 +48,6 @@ const userMessage = ref<Conversation>({
   uniqueId: _.uniqueId('user-'),
   timestamp: '',
 })
-const conversationContainerRef = ref<HTMLDivElement | null>()
-// const isScrollable = ref(false)
-
-// scrolltop bottom when rafikey chatbot is typing
-const scrollToBottom = () => {
-  const userInputPlaceholder = document.getElementById('#userInputPlaceholder')
-
-  if(userInputPlaceholder){
-    console.log("Scrolling to bottom")
-    userInputPlaceholder?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-      inline: 'nearest',
-    })
-  }
-}
 
 const renderer: RendererObject = {
   link({ href, title, text }: Tokens.Link) {
@@ -277,7 +261,7 @@ marked.use({
 
 // User input
 const handleUserInput = (value: string, formatted: string) => {
-  if(route.path === '/user/chat') {
+  if (route.path === '/user/chat') {
     rafikeyChatbotStore.setSessionId(uuidV4())
     router.push({
       name: 'chatWithId',
@@ -286,7 +270,6 @@ const handleUserInput = (value: string, formatted: string) => {
       },
     })
     // isNewChat.value = true
-
   }
 
   userMessage.value = {
@@ -304,7 +287,6 @@ const handleUserInput = (value: string, formatted: string) => {
   })
 
   rafikeyChatbotStore.conversation.push(userMessage.value)
-  scrollToBottom()
 
   //   push rafikey message to the array
   setTimeout(() => {
@@ -343,24 +325,6 @@ const handleUserInput = (value: string, formatted: string) => {
     })
 }
 
-const currentHtmlPosition = ref(0)
-const conversationContainerHeight = ref(0)
-document.addEventListener('scroll', () => {
-  currentHtmlPosition.value = document.documentElement.scrollTop
-  if (conversationContainerRef.value) {
-    isBottom.value =
-      conversationContainerRef.value.scrollHeight >=
-      conversationContainerRef.value.scrollHeight - conversationContainerRef.value.clientHeight
-  }
-})
-
-watch(rafikeyChatbotStore.conversation, () => {
-  if (conversationContainerRef.value) {
-    conversationContainerHeight.value = conversationContainerRef.value.clientHeight || 0
-  }
-  scrollToBottom()
-})
-
 //date format
 const timeFormatter = (timestamp: string) => {
   const date = moment(timestamp)
@@ -381,97 +345,73 @@ const timeFormatter = (timestamp: string) => {
 
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
-  console.log("OnMounted of ChatPage")
+  console.log('OnMounted of ChatPage')
   const activeSessionId = route.params.sessionId as string
-  console.log("Previous route", rafikeyChatbotStore.previousRoute)
-  if(rafikeyChatbotStore.previousRoute != '/user/chat' &&  !rafikeyChatbotStore.isNewChat){
+  console.log('Previous route', rafikeyChatbotStore.previousRoute)
+  if (rafikeyChatbotStore.previousRoute != '/user/chat' && !rafikeyChatbotStore.isNewChat) {
     fetchHistoryHandler(activeSessionId)
   }
 })
 
 // fetching chat history
 const fetchHistoryHandler = (activeSessionId: string) => {
-  console.log("Fetchinggggg History")
+  console.log('Fetchinggggg History')
   rafikeyChatbotStore.conversation = []
-    isLoading.value = true
-    rafikeyChatbotStore
-      .getChatHistory(activeSessionId)
-      .then((res) => {
-        if (!res?.data) {
-          isError.value = true
-        } else {
-          console.log('Chat history data', res.data)
-
-          router.push({
-            name: 'chatWithId',
-            params: {
-              sessionId: activeSessionId,
-            },
-          })
-
-          const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
-            return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-          })
-
-          sortedHistory.forEach((conv: HistoryConv) => {
-            const time = timeFormatter(conv.timestamp)
-            userMessage.value = {
-              message: conv.user_message,
-              isUser: true,
-              uniqueId: _.uniqueId('user-'),
-              timestamp: time as string,
-            }
-            rafikeyChatbotStore.conversation.push(userMessage.value)
-
-            rafikeyMessage.value = {
-              message: conv.bot_response,
-              isUser: false,
-              isTyping: false,
-              uniqueId: _.uniqueId('rafikey-'),
-              timestamp: time as string,
-            }
-            rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
-
-          })
-          // console.log('Chat history response', res.data)
-          // res.data.map((conv: HistoryConv) => {
-          //   console.log(conv)
-          //   const time = timeFormatter(conv.timestamp)
-          //   userMessage.value = {
-          //     message: conv.user_message,
-          //     isUser: true,
-          //     uniqueId: _.uniqueId('user-'),
-          //     timestamp: time as string,
-          //   }
-          //   rafikeyChatbotStore.conversation.push(userMessage.value)
-          //
-          //   rafikeyMessage.value = {
-          //     message: conv.bot_response,
-          //     isUser: false,
-          //     isTyping: false,
-          //     uniqueId: _.uniqueId('rafikey-'),
-          //     timestamp: time as string,
-          //   }
-          //   rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
-          // })
-          // console.log('Chat history conversation', rafikeyChatbotStore.conversation)
-        }
-      })
-      .catch((err) => {
+  isLoading.value = true
+  rafikeyChatbotStore
+    .getChatHistory(activeSessionId)
+    .then((res) => {
+      if (!res?.data) {
         isError.value = true
-        console.error('Error fetching chat history', err)
-      })
-      .finally(() => {
-        rafikeyChatbotStore.isGeneratingResponse = false
-        rafikeyMessage.value.isTyping = false
-        isLoading.value = false
-        // rafikeyChatbotStore.conversation = []
-      })
+      } else {
+        console.log('Chat history data', res.data)
+
+        router.push({
+          name: 'chatWithId',
+          params: {
+            sessionId: activeSessionId,
+          },
+        })
+
+        const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
+          return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+        })
+
+        sortedHistory.forEach((conv: HistoryConv) => {
+          const time = timeFormatter(conv.timestamp)
+          userMessage.value = {
+            message: conv.user_message,
+            isUser: true,
+            uniqueId: _.uniqueId('user-'),
+            timestamp: time as string,
+          }
+          rafikeyChatbotStore.conversation.push(userMessage.value)
+
+          rafikeyMessage.value = {
+            message: conv.bot_response,
+            isUser: false,
+            isTyping: false,
+            uniqueId: _.uniqueId('rafikey-'),
+            timestamp: time as string,
+          }
+          rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+        })
+      }
+    })
+    .catch((err) => {
+      isError.value = true
+      console.error('Error fetching chat history', err)
+    })
+    .finally(() => {
+      rafikeyChatbotStore.isGeneratingResponse = false
+      rafikeyMessage.value.isTyping = false
+      isLoading.value = false
+    })
 }
 </script>
 
 <template>
-  <div class="p-6 dark:bg-lightgray min-h-screen">
+  <div class="p-6 dark:bg-lightgray min-h-screen w-full">
     <div>
       <NavBar @fetch-history-handler="fetchHistoryHandler" />
     </div>
@@ -484,21 +424,24 @@ const fetchHistoryHandler = (activeSessionId: string) => {
         ]"
       >
         <!--    top -->
-        <div class="justify-end gap-4 cursor-pointer hidden lg:flex">
-          <div class="flex gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1">
-            <span class="material-icons-outlined dark:text-stone-300">share</span>
-            <span class="dark:text-white">Share</span>
+        <div
+
+          class="justify-end gap-4 w-11/12 sticky top-0 cursor-pointer flex">
+          <div class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1">
+            <span class="material-icons-outlined dark:text-stone-300  md:!text-lg !text-sm">share</span>
+            <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
           <div class="">
-            <span class="dark:text-white">Feedback</span>
+            <span class="dark:text-white  md:text-lg text-sm">Feedback</span>
           </div>
         </div>
 
-        <RouterView #default="{ Component, route }">
+        <RouterView #default="{ Component, route }" class="">
           <template v-if="Component">
             <component :is="Component" :key="route.fullPath" />
           </template>
         </RouterView>
+
 
         <!--        <ErrorScreen />-->
         <!--    text area-->
@@ -507,14 +450,10 @@ const fetchHistoryHandler = (activeSessionId: string) => {
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
               ? 'md:left-96  md:w-[calc(100vw-28rem)]  duration-300 '
-              : 'md:left-40 md:w-[calc(100vw-14rem)] duration-300 ',
+              : 'md:left-44 md:w-[calc(100vw-14rem)] duration-300 ',
           ]"
           class="fixed bottom-6 bg-white left-4 w-[calc(100vw-2rem)] dark:bg-lightgray"
         >
-          <!--        <div-->
-          <!--          v-if="isBottom"-->
-          <!--          class="py-4 mt-6 bg-gradient-to-t from-main-color-light-color block"-->
-          <!--        ></div>-->
           <div class="bg-white backdrop-blur-2xl pb-6 dark:bg-lightgray">
             <div class="">
               <UserInput
@@ -527,13 +466,15 @@ const fetchHistoryHandler = (activeSessionId: string) => {
             </div>
           </div>
         </div>
-        <div id="#userInputPlaceholder"></div>
+
       </div>
-    </div>
-    <div v-else>
-      <SpinnerLoading />
 
     </div>
+
+    <div v-else>
+      <SpinnerLoading />
+    </div>
+
   </div>
 </template>
 
