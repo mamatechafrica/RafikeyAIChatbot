@@ -34,7 +34,7 @@ const groupChat = () => {
   return chatbotStore.chatHistoryTitles.reduce(
     (acc, title: ChatHistoryTitle) => {
       let date = moment(title.last_message_at).toISOString()
-      console.log('date---', date)
+      // console.log('date---', date)
       if (now.isSame(date, 'day')) {
         date = 'Today'
       } else if (now.subtract(1, 'days').isSame(date, 'day')) {

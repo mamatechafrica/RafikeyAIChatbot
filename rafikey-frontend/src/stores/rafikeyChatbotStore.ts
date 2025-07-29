@@ -167,7 +167,7 @@ const rafikeyResponse = ref<string>('')
 
   // Get chat histories
   async function getChatHistoryTitles() {
-    console.log('Here in the chat history')
+    // console.log('Here in the chat history')
     const authStore = useAuthStore()
     try{
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/my-conversations/threads`, {

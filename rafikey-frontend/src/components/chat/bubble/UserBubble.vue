@@ -12,10 +12,6 @@ export interface UserBubbleProps {
   isGeneratingResponse: boolean
 }
 
-onMounted(() => {
-  console.log('User bubble message', props.userMessage)
-})
-
 const props = defineProps<UserBubbleProps>()
 const hasText = computed(() => {
   return props.userMessage.length > 0

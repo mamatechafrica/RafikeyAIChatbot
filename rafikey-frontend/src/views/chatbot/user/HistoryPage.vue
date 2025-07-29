@@ -9,6 +9,57 @@ import { useRouter } from 'vue-router'
 const chatbotStore  = useRafikeyChatbotStore()
 const now = moment().format('LT')
 const router = useRouter()
+const conversationContainerRef = ref<HTMLDivElement | null>()
+const isBottom = ref(false)
+
+const isScrollable = ref(false)
+
+const scrollToBottom = () => {
+  if (currentHtmlPosition.value > 0) {
+    isScrollable.value = true
+  }
+
+  // scrolll into view of the placeholder div
+  const userInputPlaceholder = document.getElementById('userInputPlaceholder')
+  userInputPlaceholder?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  })
+}
+
+const currentHtmlPosition = ref(0)
+// const conversationContainerHeight = ref(0)
+const isScrolling = ref(false)
+
+// listening to the scroll event from the user if there is more content than the viewport
+document.addEventListener('scroll', () => {
+  // get the current scroll position of the document
+  currentHtmlPosition.value = document.documentElement.scrollTop
+  if (conversationContainerRef.value) {
+    // the bottom will be true if the scrollTp is greater or equal to the difference between the scrollHeight and the clientHeight
+    isBottom.value =
+      conversationContainerRef.value.scrollTop >=
+      conversationContainerRef.value.scrollHeight - conversationContainerRef.value.clientHeight
+
+    //   setting isScrolling to true if the user is not at the bottom and if the ScrollTop is greater than 0
+    isScrolling.value = currentHtmlPosition.value > 0 && !isBottom.value
+  }
+})
+
+watch(chatbotStore.conversation, () => {
+  // if (conversationContainerRef.value) {
+  //   conversationContainerHeight.value = conversationContainerRef.value.clientHeight || 0
+  // }
+  scrollToBottom()
+})
+
+setTimeout(()=>{
+  scrollToBottom()
+}, 1000)
+
+
+
+
 </script>
 
 
