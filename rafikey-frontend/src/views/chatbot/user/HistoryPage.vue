@@ -70,7 +70,8 @@ setTimeout(()=>{
   <!--    conversation section-->
 
   <div
-    class="md:py-12 h-[calc(100vh-10rem)] md:me-20 overflow-y-auto"
+    ref="conversationContainerRef"
+    class="md:py-12 h-[calc(100vh-10rem)] w-11/12 mx-auto overflow-y-auto"
   >
     <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
 
@@ -87,6 +88,7 @@ setTimeout(()=>{
     <ul>
       <template v-for="(conv, index) in chatbotStore.conversation" :key="index">
         <UserBubble
+          :class="[chatbotStore.collapseSidebarLarge? 'pe-0': 'pe-10']"
           v-if="conv && conv.isUser && conv.message.length > 0 && !conv.isTyping"
           :user-message="conv.message"
           :user-name="'You'"
@@ -107,6 +109,7 @@ setTimeout(()=>{
         />
       </template>
     </ul>
+    <div id="userInputPlaceholder" class="pt-10"></div>
   </div>
 
 </template>
