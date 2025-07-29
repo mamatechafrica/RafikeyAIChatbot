@@ -5,6 +5,8 @@ import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import { useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment/moment'
 import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+
 
 const chatbotStore  = useRafikeyChatbotStore()
 const now = moment().format('LT')
