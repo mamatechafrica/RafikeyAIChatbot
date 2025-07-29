@@ -142,7 +142,10 @@ const createAccountHandler = () =>{
   if(everyThingOk.value) {
     // save the get-to-know-you data to the store
     createAccountFormStore.setProfile({
-      ...getToKnowYouData
+      age: getToKnowYouData.age,
+      gender: getToKnowYouData.gender,
+      relationship_status: getToKnowYouData.relationship_status,
+      terms_accepted: getToKnowYouData.isTermsCondition,
     })
     console.log(createAccountFormStore.getProfile)
     isLoading.value = true
