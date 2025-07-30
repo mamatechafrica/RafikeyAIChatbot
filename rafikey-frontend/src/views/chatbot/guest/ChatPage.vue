@@ -384,6 +384,16 @@ const regenerateResponse = () => {
     })
 }
 
+
+const isShowDisclaimer = ref(false)
+onMounted(() => {
+  rafikeyChatbotStore.setSessionId(uuidV4())
+  setTimeout(() => {
+    isShowDisclaimer.value = true
+  }, 3000)
+})
+
+
 const loginHandler = () => {
   console.log('Login handler called')
   router.push({
@@ -407,6 +417,24 @@ const isStartChatSmallScreen = ref(false)
 const startChatSmallScreen = () => {
   isStartChatSmallScreen.value = true
 }
+const scrollToBottom = () => {
+  const userInputPlaceholder = document.getElementById('userInputPlaceholder')
+nextTick(()=>{
+  if(userInputPlaceholder){
+    userInputPlaceholder.scrollIntoView({
+      behavior: 'smooth',
+      block:  'end',
+      inline: 'nearest'
+    })
+  }
+})
+}
+
+
+
+watch(() => rafikeyChatbotStore.conversation, () => {
+  scrollToBottom()
+})
 </script>
 
 <template>
