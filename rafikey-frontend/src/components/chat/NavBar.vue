@@ -59,14 +59,14 @@ const groupChat = () => {
   )
 }
 
+const emits = defineEmits<{
+  (event: 'fetchHistoryHandler', activeSessionId: string): void
+}>()
+
 // fetch clicked chat History title
 const fetchHistoryHandler = (activeSessionId: string) => {
 emits('fetchHistoryHandler', activeSessionId)
 }
-
-const emits = defineEmits<{
-  (event: 'fetchHistoryHandler', activeSessionId: string): void
-}>()
 
 // collapse sidenav
 const collapseSideNavHandler = () => {
@@ -80,8 +80,8 @@ const expandSideNavHandler = () => {
 
 // generate a new chat
 const newChatHandler = () => {
+  chatbotStore.isNewChat = true
 chatbotStore.conversation = []
-  chatbotStore.isNewChat = false
   router.push({
     name: 'newChat'
   })
@@ -323,27 +323,30 @@ chatbotStore.conversation = []
                               />
                             </div>
                           </div>
-                          <div class="absolute bottom-4 gap-8 mx-9 grid grid-cols-12">
-                            <div
-                              class="col-span-4 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img
-                                src="@/assets/images/talk-about-it.png"
-                                alt="talk-to-someone-image"
-                                class=""
-                              />
-                            </div>
-                            <div
-                              class="col-span-4 bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img src="@/assets/images/clinic.png" alt="clinic-image" />
-                            </div>
-                            <div
-                              class="col-span-4 bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img src="@/assets/images/learn.png" alt="lear-image" />
+                          <div class="absolute bottom-4 w-full">
+                            <div class="flex px-10 justify-between  w-full ">
+                              <div
+                                class="col-span-1 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
+                              >
+                                <img
+                                  src="@/assets/images/talk-about-it.png"
+                                  alt="talk-to-someone-image"
+                                  class=""
+                                />
+                              </div>
+                              <div
+                                class=" bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
+                              >
+                                <img src="@/assets/images/clinic.png" alt="clinic-image" />
+                              </div>
+                              <div
+                                class="bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
+                              >
+                                <img src="@/assets/images/learn.png" alt="lear-image" />
+                              </div>
                             </div>
                           </div>
+
                         </div>
                       </div>
                     </div>
