@@ -6,6 +6,7 @@ import { useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment/moment'
 import { useRouter } from 'vue-router'
 import { ref, watch, nextTick } from 'vue'
+import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 
 
 const chatbotStore  = useRafikeyChatbotStore()
@@ -28,7 +29,7 @@ const scrollToBottom = () => {
 }
 
 // watch the conversation container and scroll to bottom
-watch(chatbotStore.conversation, () => {
+watch(chatbotStore.conversation || chatbotStore.isStreamError.hasError, () => {
   scrollToBottom()
 })
 
