@@ -124,7 +124,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
             data: buffer.value
           }
       }
-
     }
     catch (error) {
       console.log('Error sending message to RafikeyChatbot', error)
@@ -132,7 +131,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     }
     // clear the variable
     finally {
-      rafikeyResponse.value = ''
+      buffer.value = ''
     }
 
   }
@@ -140,7 +139,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   // anonymous user send message to RafikeyChatbot
   async function sendMessageToRafikeyChatbotAnonymous(payload: ChatbotConversationPayload) {
     const authStore = useAuthStore()
-    console.log('Token ---', authStore.token)
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/anonymous_chat`, {
         method: 'POST',
