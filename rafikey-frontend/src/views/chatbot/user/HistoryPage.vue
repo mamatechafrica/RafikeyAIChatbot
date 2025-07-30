@@ -38,9 +38,6 @@ setTimeout(()=>{
   scrollToBottom()
 }, 1000)
 
-
-
-
 </script>
 
 
@@ -50,7 +47,7 @@ setTimeout(()=>{
 
   <div
     ref="conversationContainerRef"
-    class="md:py-12 h-[calc(100vh-10rem)] w-11/12 mx-auto overflow-y-auto"
+    class="relative md:py-12 h-[calc(100vh-10rem)] w-11/12 mx-auto overflow-y-auto"
   >
     <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
 
@@ -88,6 +85,10 @@ setTimeout(()=>{
         />
       </template>
     </ul>
+    <div v-if="chatbotStore.isStreamError.hasError">
+      <ErrorScreen :error-message="chatbotStore.isStreamError.errorMessage" :is-logged-in="chatbotStore.isStreamError.isLoggedIn" />
+
+    </div>
     <div id="userInputPlaceholder" class="pt-10"></div>
   </div>
 
