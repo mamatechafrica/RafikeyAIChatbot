@@ -75,12 +75,10 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     dialogModal.value.isOpen = value
   }
 
-  const getSessionId = computed(()=> sessionId.value)
-const rafikeyResponse = ref<string>('')
+
 //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
     const authStore = useAuthStore()
-    console.log('Token ---', authStore.token)
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/chat`, {
         method: 'POST',
@@ -93,24 +91,38 @@ const rafikeyResponse = ref<string>('')
           session_id: payload.sessionId,
         }),
       })
-      if(!response.body){
-        console.log('No response body')
-        return
+      // initial HTTP response level check
+      if(!response.ok){
+        if(response.status === 401){
+          console.log('Unauthorized access - please login')
+          return {
+            result: 'fail',
+            data: 'Your session has expired, please login to continue',
+            isLoggedIn: false
+          }
+        } else{
+          console.log('Failed to send message to RafikeyChatbot')
+          return {
+            result: 'fail',
+            data: 'An error occurred, please try again later',
+            isLoggedIn: true
+          }
+        }
       }
       else{
         const reader = response.body?.getReader()
         const decoder = new TextDecoder()
-        // return response.json()
-        while (true){
-          const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
-          if (done) break
-          rafikeyResponse.value += decoder.decode(value, { stream: true })
-          console.log('Rafikey response:', rafikeyResponse.value)
-          // return rafikeyResponse.value
 
-        }
-        return rafikeyResponse.value
-
+          while (true){
+            const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
+            if (done) break
+            buffer.value += decoder.decode(value, { stream: true })
+          }
+          console.log('Rafikey response:', buffer.value)
+          return {
+            result: 'ok',
+            data: buffer.value
+          }
       }
 
     }
@@ -140,26 +152,27 @@ const rafikeyResponse = ref<string>('')
           session_id: payload.sessionId,
         }),
       })
-      if(!response.body){
-        console.log('No response body')
-        return
+      if(!response.ok){
+        console.log(response.status)
+        return {
+          result: 'fail',
+          data: 'An error occurred, please try again later',
+        }
       }
       else{
         const reader = response.body?.getReader()
         const decoder = new TextDecoder()
-        // return response.json()
-        while (true){
+          // return response.json()
+        while (true) {
           const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
           if (done) break
-          rafikeyResponse.value += decoder.decode(value, { stream: true })
-          console.log('Rafikey response:', rafikeyResponse.value)
-          // return rafikeyResponse.value
-
+           buffer.value += decoder.decode(value, { stream: true })
         }
-        return rafikeyResponse.value
-
+        return {
+          result: 'ok',
+          data: buffer.value
+        }
       }
-
     }
     catch (error) {
       console.log('Error sending message to RafikeyChatbot', error)
@@ -167,9 +180,8 @@ const rafikeyResponse = ref<string>('')
     }
       // clear the variable
     finally {
-      rafikeyResponse.value = ''
+      buffer.value = ''
     }
-
   }
 
 
