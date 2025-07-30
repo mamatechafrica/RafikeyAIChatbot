@@ -33,8 +33,14 @@ const refreshChat = () => {
   })
 }
 
-const regenerateResponse = () => {
-  emits('regenerateResponse')
+const regenerateResponse = ()=>{
+  // set the generate response true so that when the user clicks on the regenerate button, the chatbot will regenerate the response without creating another user bubble
+  chatbotStore.setRegenerateResponse(true)
+  chatbotStore.setStreamError({
+    hasError: false,
+    errorMessage: '',
+    isLoggedIn: true
+  })
 }
 </script>
 
