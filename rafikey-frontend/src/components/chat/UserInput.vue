@@ -2,6 +2,7 @@
 import { ref, watch, computed, nextTick } from 'vue'
 
 import DOMPurify from 'dompurify'
+import { useRafikeyChatbotStore } from '@/stores'
 
 interface UserInputProps {
   isGenerating: boolean
@@ -9,6 +10,7 @@ interface UserInputProps {
   displayBottom: boolean
 }
 
+const chatbotStore = useRafikeyChatbotStore()
 const props = defineProps<UserInputProps>()
 const textAreaRef = ref<HTMLTextAreaElement | null>(null)
 const inputHasFocus = ref(false)
@@ -35,7 +37,7 @@ const adjustTextAreaHeight = (element: HTMLTextAreaElement) => {
 // watch for  user input
 watch(
   () => userInput.value,
-  (newValue) => {
+  () => {
     nextTick(() => {
       adjustTextAreaHeight(textAreaRef.value as HTMLTextAreaElement)
     })
@@ -62,6 +64,10 @@ const formattedUserInput = computed(() => {
   return purifiedBreak
 })
 
+// watch(formattedUserInput, (newValue)=>{
+//   chatbotStore.regenerateUserInput = "Hello there"
+//   console.log("regenerate", chatbotStore.regenerateUserInput)
+// })
 const onTextAreaKeydown = (e: KeyboardEvent) => {
   //   If user presses enter and shift key at go
   if (e.shiftKey && e.key === 'Enter') {
@@ -73,7 +79,8 @@ const onTextAreaKeydown = (e: KeyboardEvent) => {
         e.preventDefault()
         return
       } else {
-        emits('userInput', userInput.value, formattedUserInput.value)
+        emits('userInput', formattedUserInput.value)
+        chatbotStore.regenerateUserInput = formattedUserInput.value
         userInput.value = ''
         e.preventDefault()
         adjustTextAreaHeight(textAreaRef.value as HTMLTextAreaElement)
@@ -87,7 +94,8 @@ const onTextAreaKeydown = (e: KeyboardEvent) => {
       return
     } else {
       if (!props.isGenerating) {
-        emits('userInput', userInput.value, formattedUserInput.value)
+        emits('userInput', formattedUserInput.value)
+        chatbotStore.regenerateUserInput = formattedUserInput.value
         userInput.value = ''
         e.preventDefault()
         adjustTextAreaHeight(textAreaRef.value as HTMLTextAreaElement)
@@ -110,7 +118,8 @@ const sendRequest = () => {
   if (!hasText.value || props.isGenerating) {
     return
   } else {
-    emits('userInput', userInput.value, formattedUserInput.value)
+    emits('userInput', formattedUserInput.value)
+    chatbotStore.regenerateUserInput = formattedUserInput.value
     userInput.value = ''
     adjustTextAreaHeight(textAreaRef.value as HTMLTextAreaElement)
   }
@@ -148,7 +157,7 @@ const sendRequest = () => {
         </button>
 
         <button
-          v-if="hasText"
+          v-if="hasText && !props.isGenerating"
           class="btn btn-sm btn-ghost btn-circle"
           :disabled="props.isGenerating || !hasText"
           @click.prevent="sendRequest"
