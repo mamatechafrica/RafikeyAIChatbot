@@ -247,18 +247,29 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     catch(e){
       console.error('Error fetching chat history:', e)
     }
-
-
-
   }
 
   // Set active chat hitory
 
   const setActiveChatHistory = (value: string)=>{
     sessionId.value = value
-
-
   }
+
+  // set streamError
+  const setStreamError = (value: {hasError: boolean, errorMessage: string, isLoggedIn: boolean}) => {
+    isStreamError.hasError = value.hasError
+    isStreamError.errorMessage = value.errorMessage
+    isStreamError.isLoggedIn = value.isLoggedIn
+  }
+
+  // set regenerate res
+  const setRegenerateResponse = (value:boolean) => {
+    regenerateResponse.value = value
+  }
+
+  // const setRegenerateInput = (value: string) => {
+  //   regenerateUserInput = value
+  // }
 
 
   return {
@@ -281,6 +292,13 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isGeneratingResponse,
     sendMessageToRafikeyChatbotAnonymous,
     previousRoute,
-    isNewChat
+    isNewChat,
+    isStreamError,
+    setStreamError,
+    regenerateResponse,
+    setRegenerateResponse,
+    regenerateUserInput,
+    // setRegenerateInput
+
   }
 })
