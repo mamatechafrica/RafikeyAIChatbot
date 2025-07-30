@@ -525,13 +525,15 @@ watch(() => rafikeyChatbotStore.conversation, () => {
             />
           </template>
         </ul>
-      </div>
-      <div v-if="isError">
-        <ErrorScreen @regenerate-response="regenerateResponse" />
+        <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
+          <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage"  @user-input="handleUserInput"/>
+
+        </div>
       </div>
 
       <!--    text area-->
       <div
+        v-if="!rafikeyChatbotStore.isStreamError.hasError"
         ref="userInputContainerHeightRef"
         class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
       >
@@ -546,7 +548,7 @@ watch(() => rafikeyChatbotStore.conversation, () => {
           <div class="">
             <UserInput
               class="mx-auto"
-              :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-9/12' : '']"
+              :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-11/12 lg:w-9/12' : '']"
               :disabled="false"
               :is-generating="rafikeyChatbotStore.isGeneratingResponse"
               @user-input="handleUserInput"
@@ -654,13 +656,14 @@ watch(() => rafikeyChatbotStore.conversation, () => {
               />
             </template>
           </ul>
-        </div>
-        <div v-if="isError">
-          <ErrorScreen @regenerate-response="regenerateResponse" />
+          <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
+            <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage"  @user-input="handleUserInput"/>
+          </div>
         </div>
 
         <!--    text area-->
         <div
+          v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
           class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
         >
@@ -675,7 +678,7 @@ watch(() => rafikeyChatbotStore.conversation, () => {
             <div class="">
               <UserInput
                 class="mx-auto"
-                :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-9/12' : '']"
+                :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-11/12' : '']"
                 :disabled="false"
                 :is-generating="rafikeyChatbotStore.isGeneratingResponse"
                 @user-input="handleUserInput"
@@ -684,7 +687,7 @@ watch(() => rafikeyChatbotStore.conversation, () => {
             </div>
           </div>
         </div>
-        <div id="#userInputPlaceholder"></div>
+        <div id="userInputPlaceholder"></div>
       </div>
     </div>
   </div>
