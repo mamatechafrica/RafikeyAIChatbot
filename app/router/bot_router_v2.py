@@ -210,7 +210,7 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
     for chunk, metadata in agent.stream(
         {"messages": [{"role": "user", "content": user_input}]},
         session_config,
-        context={"user_name": "Felix"},
+        context={"user_name": ""},
         stream_mode="messages",
     ):
         if metadata['langgraph_node'] == "agent":
