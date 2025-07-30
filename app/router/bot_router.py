@@ -125,6 +125,7 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
                 print(f"Bot: {chunk.content}", end="", flush=True)
                 # Accumulate the full response
                 full_response += chunk.content
+                print(full_response)
                 yield chunk.content
 
     # Store the conversation in the database with user_id

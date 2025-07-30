@@ -1,5 +1,5 @@
 from fastapi import FastAPI 
-from app.router import bot_router, chatbot_analysis
+from app.router import chatbot_analysis, bot_router_v2
 from app.router.auth import login
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -38,5 +38,6 @@ def health():
 
 # //Add routers
 app.include_router(login.router)
-app.include_router(bot_router.router)
+app.include_router(bot_router_v2.router)
+# app.include_router(bot_router.router)
 app.include_router(chatbot_analysis.router) 
