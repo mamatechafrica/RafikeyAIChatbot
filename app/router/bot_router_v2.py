@@ -56,7 +56,7 @@ vectostore = Chroma(
 def prompt(state: State) -> list[AnyMessage]:
     runtime = get_runtime(ContextSchema)
     system_msg = (
-        f"You are a helpful assistant. Address the user as {runtime.context['user_name']}.\n\n"
+        f"You are a helpful assistant. Address the user as {runtime.context['user_name']}. Always great them referring to their name\n\n"
         f"{PROMPT_REVISED}"
     )
     # Personalize PROMPT_REVISED with the user's name
@@ -74,7 +74,6 @@ agent = create_react_agent(
     model=model,
     tools=[retriever_tool],
     prompt=prompt,
-    context={"user_name": "Felix"},
     checkpointer=memory
 )
 
@@ -195,7 +194,7 @@ async def generate_stream_response_anonymous(user_input: str, thread_id: str) ->
                 print(f"Bot: {chunk.content}", end="", flush=True)
                 yield chunk.content
 
-async def generate_stream_response(user_input: str, thread_id: str, user_id: int, db: SessionDep) -> AsyncGenerator[str, None]:
+async def generate_stream_response(user_input: str, thread_id: str, user_id: int, user_name: str, db: SessionDep) -> AsyncGenerator[str, None]:
     """Generate streaming response from the graph using the provided thread_id"""
     # Create a session-specific config with the provided thread_id
     session_config = {
@@ -210,12 +209,13 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
     for chunk, metadata in agent.stream(
         {"messages": [{"role": "user", "content": user_input}]},
         session_config,
-        context={"user_name": ""},
+        context={"user_name": user_name},  # Use the actual user's name
         stream_mode="messages",
     ):
         if metadata['langgraph_node'] == "agent":
             if chunk.content:
-                print(f"Bot: {chunk.content}", end="", flush=True)
+                # print(f"Bot: {chunk.content}", end="", flush=True)
+                print(user_name)
                 # Accumulate the full response
                 full_response += chunk.content
                 print(full_response)
@@ -236,7 +236,6 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
 
     # Check if we should generate a title (after 5 responses)
     await update_conversation_title(thread_id, user_id, db)
-
 
 @router.post('/anonymous_chat')
 async def anonymous_chat(
@@ -269,9 +268,15 @@ async def chat(
         thread_id = chat_input.session_id if chat_input.session_id else str(uuid.uuid4())
         print(f"Thread ID: {thread_id}, User ID: {current_user.id}")
         
-        # Create the streaming response with user_id
+        # Create the streaming response with user_id and user_name
         return StreamingResponse(
-            generate_stream_response(chat_input.message, thread_id, current_user.id, db),
+            generate_stream_response(
+                chat_input.message, 
+                thread_id, 
+                current_user.id, 
+                current_user.username,  # Pass the user's name
+                db
+            ),
             media_type="text/event-stream",
         )
     except Exception as e:
