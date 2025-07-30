@@ -1,6 +1,15 @@
 <script setup lang="ts">
-const emits = defineEmits<{
-  (event: 'regenerateResponse'): void
+
+import { useRouter } from 'vue-router'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
+
+const authStore = useAuthStore()
+const chatbotStore = useRafikeyChatbotStore()
+
+
+const props = defineProps<{
+  errorMessage?: string,
+  isLoggedIn?: boolean,
 }>()
 const refreshPage = () => {
 window.location.reload()
