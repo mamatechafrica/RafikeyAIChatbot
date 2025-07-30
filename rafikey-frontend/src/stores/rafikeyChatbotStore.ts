@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, reactive } from 'vue'
 import { useDark, useStorage } from '@vueuse/core'
 import { get } from 'lodash';
 import { useAuthStore } from '@/stores/authStore.ts'
@@ -26,7 +26,6 @@ export interface Conversation {
 }
 
 
-
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
@@ -34,6 +33,15 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isDarkMode = useStorage("isDarkMode", false)
   const previousRoute =  useStorage("previousRoute", '')
   const isNewChat = useStorage("isNewChat", true)
+  const isStreamError = reactive({
+    hasError: false,
+    errorMessage: '',
+    isLoggedIn: true,
+  })
+  const getSessionId = computed(()=> sessionId.value)
+  const buffer = ref<string>('')
+  const regenerateResponse = ref(false)
+  const regenerateUserInput = useStorage("regenerateUserInput", '')
   const isDark = useDark({
     onChanged(dark: boolean){
       isDarkMode.value = dark
