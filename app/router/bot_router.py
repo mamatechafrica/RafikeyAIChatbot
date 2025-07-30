@@ -11,6 +11,10 @@ from sqlmodel import select
 from langchain_openai import ChatOpenAI
 import os
 from app.router.auth.login import get_current_active_user
+from langgraph.runtime import Runtime
+from dataclasses import dataclass
+
+
 
 router = APIRouter(
     prefix='/bot',
@@ -27,6 +31,12 @@ config = {
 class ChatInput(BaseModel):
     message: str
     session_id: Optional[str] = None
+
+
+@dataclass
+class Context:
+    """Context for the user"""
+    user_name: str 
 
 
 async def generate_title_from_responses(responses: list[str]) -> str:
@@ -103,28 +113,29 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
     except Exception as e:
         print(f"Error updating conversation title: {e}")
 
-async def generate_stream_response(user_input: str, thread_id: str, user_id: int, db: SessionDep) -> AsyncGenerator[str, None]:
-    """Generate streaming response from the graph using the provided thread_id"""
+async def generate_stream_response(user_input: str, thread_id: str, user_id: int, user_name: str, db: SessionDep) -> AsyncGenerator[str, None]:
+    """Generate streaming response from the graph using the provided thread_id and user_name"""
     # Create a session-specific config with the provided thread_id
     session_config = {
         "configurable": {
             "thread_id": thread_id
-        }
+        },
     }
 
-    # Collect the full response to store in the database 
+    # Collect the full response to store in the database
     full_response = ""
     
     for chunk, metadata in graph.stream(
-        {"messages": {"role": "user", "content": user_input}}, 
+        {"messages": {"role": "user", "content": user_input}},
         session_config,
-        stream_mode="messages"
+        stream_mode="messages", context=Context(user_name=user_name)
     ):
         if metadata['langgraph_node'] == "agent":
             if chunk.content:
-                print(f"Bot: {chunk.content}", end="", flush=True)
+                # print(f"Bot: {chunk.content}", end="", flush=True)
                 # Accumulate the full response
                 full_response += chunk.content
+                print(full_response)
                 yield chunk.content
 
     # Store the conversation in the database with user_id
@@ -176,7 +187,7 @@ async def chat(
         
         # Create the streaming response with user_id
         return StreamingResponse(
-            generate_stream_response(chat_input.message, thread_id, current_user.id, db),
+            generate_stream_response(chat_input.message, thread_id, current_user.id, current_user.username, db),
             media_type="text/event-stream",
         )
     except Exception as e:

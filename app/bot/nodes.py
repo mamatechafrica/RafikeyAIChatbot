@@ -7,6 +7,8 @@ from .tools import retriever_tool, search_hospital_referrals
 from langgraph.checkpoint.memory import MemorySaver
 from dotenv import load_dotenv
 import os
+from langgraph.runtime import Runtime
+from dataclasses import dataclass
 
 load_dotenv()
 
@@ -18,6 +20,12 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 model = ChatGroq(model="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
 model = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
 
+
+@dataclass
+class Context:
+    """Context for the user"""
+    user_name: str 
+    
 
 
 srhr_agent = create_react_agent(
@@ -39,7 +47,7 @@ healthcare_agent = create_react_agent(
 workflow = create_supervisor(
     [srhr_agent, healthcare_agent],
     model=model,
-    prompt=SUPERVISOR_PROMPT
+    prompt=SUPERVISOR_PROMPT,
 )
 
 memory = MemorySaver()
