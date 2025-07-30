@@ -15,7 +15,7 @@ const inputHasFocus = ref(false)
 const userInput = ref('')
 
 const emits = defineEmits<{
-  (event: 'userInput', value: string, formatted: string): void
+  (event: 'userInput', formatted: string): void
 }>()
 
 // check if the user input is empty
