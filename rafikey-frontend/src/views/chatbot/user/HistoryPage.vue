@@ -47,7 +47,7 @@ setTimeout(()=>{
 
   <div
     ref="conversationContainerRef"
-    class="relative md:py-12 h-[calc(100vh-10rem)] w-11/12 mx-auto overflow-y-auto"
+    class="relative md:py-12 h-[calc(100vh-10rem)] md:w-11/12 w-full mx-auto overflow-y-auto"
   >
     <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
 
