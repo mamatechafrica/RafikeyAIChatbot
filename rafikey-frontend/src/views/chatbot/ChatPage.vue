@@ -125,7 +125,7 @@ const renderer: RendererObject = {
     }
   },
   list({ ordered, start, loose, items }: Tokens.List) {
-    console.log('items is -> ', items)
+    // console.log('items is -> ', items)
     const body = items
       .map(({ task, checked, loose, text }) => {
         return `
@@ -236,15 +236,15 @@ const renderer: RendererObject = {
   text({ text, type }: Tokens.Text | Tokens.Escape | Tokens.Tag) {
     if (type === 'text') {
       return `
-      <span class="text-md md:text-lg">${text}</span>
+      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
     `
     } else if (type === 'escape') {
       return `
-      <span class="text-sm md:text-md">${text}</span>
+      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
     `
     } else {
       return `
-      <span class="text-sm md:text-md">${text}</span>
+      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
     `
     }
   },
@@ -268,7 +268,6 @@ const handleUserInput = (formatted: string) => {
         sessionId: rafikeyChatbotStore.getSessionId,
       },
     })
-    // isNewChat.value = true
   }
 
   // don't re-create the user bubble if the user is regenerating the response
@@ -279,52 +278,110 @@ const handleUserInput = (formatted: string) => {
       uniqueId: _.uniqueId('user-'),
     }
 
-  const rafikeyMessage = ref<Conversation>({
-    message: '',
-    isUser: false,
-    isTyping: true,
-    uniqueId: _.uniqueId('rafikey-'),
-    timestamp: '',
-  })
-
-  rafikeyChatbotStore.conversation.push(userMessage.value)
-
-  //   push rafikey message to the array
-  setTimeout(() => {
-    rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
-  }, 500)
-  isGeneratingResponse.value = true
-  console.log('Raafikey Array', rafikeyMessage.value)
-
-  rafikeyChatbotStore
-    .sendMessageToRafikeyChatbot({
-      message: formatted,
-      sessionId: rafikeyChatbotStore.getSessionId,
+    const rafikeyMessage = ref<Conversation>({
+      message: '',
+      isUser: false,
+      isTyping: true,
+      uniqueId: _.uniqueId('rafikey-'),
+      timestamp: '',
     })
-    .then((res) => {
-      if (res != null) {
-        console.log('Rafikey response', res)
-        const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
-        const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
-        if (currentRafikeyObject) {
-          console.log('Current message--', currentRafikeyObject)
-          currentRafikeyObject.message = res as string
+    rafikeyChatbotStore.conversation.push(userMessage.value)
+
+    //   push rafikey message to the array
+    setTimeout(() => {
+      rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+    }, 500)
+    rafikeyChatbotStore.isGeneratingResponse = true
+    console.log('Raafikey Array', rafikeyMessage.value)
+
+    rafikeyChatbotStore
+      .sendMessageToRafikeyChatbot({
+        message: formatted,
+        sessionId: rafikeyChatbotStore.getSessionId,
+      })
+      .then((res) => {
+        if (res?.result === 'ok') {
+          console.log('Rafikey response', res)
+          const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
+          const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+
+          if (currentRafikeyObject) {
+            currentRafikeyObject.message = res.data as string
+          }
+        } else {
+          console.log('response from streaming', res)
+          rafikeyChatbotStore.setStreamError({
+            hasError: true,
+            errorMessage: res?.data as string,
+            isLoggedIn: res?.isLoggedIn as boolean,
+          })
         }
-      } else {
-        isError.value = true
-      }
-    })
-    .catch((err) => {
-      isError.value = true
-      console.log('There is an error in rafikey response', err)
-    })
-    .finally(() => {
-      rafikeyChatbotStore.isGeneratingResponse = false
-      // rafikeyMessage.value.isTyping = false
-      // rafikeyMessage.value.hasError = true
-    })
+      })
+      .catch((err) => {
+        console.log('error catch', err)
+        rafikeyChatbotStore.setStreamError({
+          hasError: true,
+          errorMessage: 'An error occurred, please try again later.',
+          isLoggedIn: true,
+        })
+      })
+      .finally(() => {
+        rafikeyChatbotStore.isGeneratingResponse = false
+        rafikeyChatbotStore.isNewChat = false
+      })
+  } else {
+    // pop the last message which is the chat message so that it does not show up on the page
+    console.log("Regenerating response ")
+    //
+    // const rafikeyMessage = ref<Conversation>({
+    //   message: '',
+    //   isUser: false,
+    //   isTyping: true,
+    //   uniqueId: _.uniqueId('rafikey-'),
+    //   timestamp: '',
+    // })
+    // rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+
+    rafikeyChatbotStore.isGeneratingResponse = true
+
+    rafikeyChatbotStore
+      .sendMessageToRafikeyChatbot({
+        message: formatted,
+        sessionId: rafikeyChatbotStore.getSessionId,
+      })
+      .then((res) => {
+        if (res?.result === 'ok') {
+          console.log('Rafikey response', res)
+          const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
+          const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+
+          if (currentRafikeyObject) {
+            currentRafikeyObject.message = res.data as string
+          }
+        } else {
+          rafikeyChatbotStore.setStreamError({
+            hasError: true,
+            errorMessage: res?.data as string,
+            isLoggedIn: res?.isLoggedIn as boolean,
+          })
+        }
+      })
+      .catch((err) => {
+        rafikeyChatbotStore.setStreamError({
+          hasError: true,
+          errorMessage: 'An error occurred, please try again later.',
+          isLoggedIn: true,
+        })
+      })
+      .finally(() => {
+        rafikeyChatbotStore.isGeneratingResponse = false
+        rafikeyChatbotStore.isNewChat = false
+        rafikeyChatbotStore.setRegenerateResponse(false)
+      })
+  }
 }
+
 
 //date format
 const timeFormatter = (timestamp: string) => {
@@ -344,36 +401,30 @@ const timeFormatter = (timestamp: string) => {
   }
 }
 
-//check whether there is a string parameter if there is then  you should get the cha history
-onMounted(() => {
-  console.log('OnMounted of ChatPage')
-  const activeSessionId = route.params.sessionId as string
-  console.log('Previous route', rafikeyChatbotStore.previousRoute)
-  if (rafikeyChatbotStore.previousRoute != '/user/chat' && !rafikeyChatbotStore.isNewChat) {
-    fetchHistoryHandler(activeSessionId)
-  }
-})
+
+
 
 // fetching chat history
 const fetchHistoryHandler = (activeSessionId: string) => {
-  console.log('Fetchinggggg History')
   rafikeyChatbotStore.conversation = []
   isLoading.value = true
   rafikeyChatbotStore
     .getChatHistory(activeSessionId)
     .then((res) => {
-      if (!res?.data) {
-        isError.value = true
+      if (res?.result != 'ok') {
+        return
+        // rafikeyChatbotStore.setStreamError({
+        //   hasError: true,
+        //   errorMessage: res?.data as string,
+        //   isLoggedIn: res?.isLoggedIn as boolean,
+        // })
       } else {
-        console.log('Chat history data', res.data)
-
         router.push({
           name: 'chatWithId',
           params: {
             sessionId: activeSessionId,
           },
         })
-
         const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
           return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
         })
@@ -400,7 +451,11 @@ const fetchHistoryHandler = (activeSessionId: string) => {
       }
     })
     .catch((err) => {
-      isError.value = true
+      // rafikeyChatbotStore.setStreamError({
+      //   hasError: true,
+      //   errorMessage: "An error occurred while generating the response. Please try again later.",
+      //   isLoggedIn: true,
+      // })
       console.error('Error fetching chat history', err)
     })
     .finally(() => {
@@ -436,7 +491,7 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
 </script>
 
 <template>
-  <div class="p-6 dark:bg-lightgray min-h-screen w-full">
+  <div class="p-6 dark:bg-lightgray min-h-screen overflow-hidden w-full">
     <div>
       <NavBar @fetch-history-handler="fetchHistoryHandler" />
     </div>
@@ -449,28 +504,29 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
         ]"
       >
         <!--    top -->
-        <div
-
-          class="justify-end gap-4 w-11/12 sticky top-0 cursor-pointer flex">
-          <div class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1">
-            <span class="material-icons-outlined dark:text-stone-300  md:!text-lg !text-sm">share</span>
+        <div class="justify-end gap-4 w-11/12 sticky top-0 cursor-pointer flex">
+          <div
+            class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
+          >
+            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
+              >share</span
+            >
             <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
           <div class="">
-            <span class="dark:text-white  md:text-lg text-sm">Feedback</span>
+            <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
 
-        <RouterView #default="{ Component, route }" class="">
+        <RouterView #default="{ Component, route }">
           <template v-if="Component">
             <component :is="Component" :key="route.fullPath" />
           </template>
         </RouterView>
 
-
-        <!--        <ErrorScreen />-->
         <!--    text area-->
         <div
+          v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
@@ -491,15 +547,12 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
 
     <div v-else>
       <SpinnerLoading />
     </div>
-
   </div>
 </template>
 
