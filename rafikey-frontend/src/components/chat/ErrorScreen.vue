@@ -1,6 +1,5 @@
 <script setup lang="ts">
 
-import { useRouter } from 'vue-router'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 
 const authStore = useAuthStore()
@@ -64,27 +63,18 @@ const regenerateResponse = ()=>{
             @click="loginHandler"
             v-else class="btn btn-sm bg-black shadow-none  rounded-xl md:p-6 p-4 " v-on:click="refreshPage">
             <span  class="text-white lg:text-lg text-sm">Login</span>
-
           </button>
-
         </div>
       </div>
-
     </div>
 
     <div class="fixed bottom-0  left-1/2 -translate-x-1/2 -translate-y-1/2 z-50" v-if="props.isLoggedIn">
-
         <button @click = 'regenerateResponse' class="bg-casablanca-300 p-4 rounded-xl flex">
           <span class="material-icons-outlined lg:text-lg text-sm">loop</span>
           <span class="lg:text-lg text-sm text-nowrap">Regenerate Response</span>
         </button>
-
-
     </div>
-
   </div>
-
-
 </template>
 
 <style scoped>
