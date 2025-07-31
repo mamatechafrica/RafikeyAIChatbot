@@ -78,6 +78,7 @@ const routes = [
         beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           console.log("In login!!!")
           const authStore = useAuthStore()
+
           // If user is already logged in, redirect to chat page
           if (!authStore.isEverLoggedIn) {
             next({ name: 'welcome-page' })
@@ -123,6 +124,16 @@ const routes = [
         meta: {
           requiresAuth: true,
           newChat: true
+        },
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized) => {
+          const chatbotStore = useRafikeyChatbotStore()
+          // Reset the chat history when entering a new chat
+          chatbotStore.isNewChat = true
+          chatbotStore.setStreamError({
+            hasError: false,
+            errorMessage: '',
+            isLoggedIn: true
+          })
         }
       },
       {
@@ -148,7 +159,7 @@ const routes = [
     component: () => import('@/views/chatbot/guest/ChatPage.vue'),
     meta: {
       requiresAuth: false
-    }
+    },
   }
 
 ]
@@ -158,8 +169,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: routes
 })
-
-const previousRoute = ref('')
 
 router.beforeEach((to, from, next) => {
 
@@ -183,6 +192,7 @@ router.beforeEach((to, from, next) => {
       next()
     }
   }
+  // next()
 })
 
 
