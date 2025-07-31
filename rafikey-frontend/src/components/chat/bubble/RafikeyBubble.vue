@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useRafikeyChatbotStore } from '@/stores'
 
 export interface RafikeyChatbot {
   chatbotName: string
@@ -18,6 +19,7 @@ const props = withDefaults(defineProps<RafikeyChatbot>(), {
   isError: false,
 })
 
+const chatbotStore = useRafikeyChatbotStore()
 const hasText = computed(() => {
   return (props.rafikeyChatbotMessage?.length ?? 0) > 0 || (props.originalMessage?.length ?? 0) > 0
 })
@@ -44,11 +46,11 @@ const hasText = computed(() => {
         </div>
         <div class="py-4 rounded-2xl">
           <div
-            v-if="hasText"
+            v-if="hasText "
             v-html="props.rafikeyChatbotMessage || props.originalMessage"
             class="dark:text-white"
           ></div>
-          <span v-else class="loading loading-dots md:loading-lg loading-sm dark:text-white"></span>
+          <span v-if="!hasText && !chatbotStore.isStreamError.hasError" class="loading loading-dots md:loading-lg loading-sm dark:text-white"></span>
         </div>
       </div>
     </div>
