@@ -80,7 +80,6 @@ const expandSideNavHandler = () => {
 
 // generate a new chat
 const newChatHandler = () => {
-  chatbotStore.isNewChat = true
 chatbotStore.conversation = []
   router.push({
     name: 'newChat'
