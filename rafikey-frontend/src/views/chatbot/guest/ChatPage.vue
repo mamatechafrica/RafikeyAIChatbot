@@ -412,6 +412,13 @@ nextTick(()=>{
 watch(() => rafikeyChatbotStore.conversation, () => {
   scrollToBottom()
 })
+
+// check if the regenerate has been punched to regenerate the response
+watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
+  if(newValue){
+    handleUserInput(rafikeyChatbotStore.regenerateUserInput)
+  }
+})
 </script>
 
 <template>
