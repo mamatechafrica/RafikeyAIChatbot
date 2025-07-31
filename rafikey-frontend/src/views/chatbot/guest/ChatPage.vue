@@ -271,18 +271,13 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-          rafikeyChatbotStore.setStreamError({
-            hasError: true,
-            errorMessage: res?.data as string,
-            isLoggedIn: true
-          })
 
-          // const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
-          // const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
-          //
-          // if (currentRafikeyObject) {
-          //   currentRafikeyObject.message = res?.data as string
-          // }
+          const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
+          const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+
+          if (currentRafikeyObject) {
+            currentRafikeyObject.message = res?.data as string
+          }
         } else {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
@@ -292,7 +287,6 @@ const handleUserInput = (formatted: string) => {
         }
       })
       .catch((err) => {
-        console.log('There is an error in rafikey response', err)
         rafikeyChatbotStore.setStreamError({
           hasError: true,
           errorMessage: "An error occurred while generating the response. Please try again later.",
@@ -306,19 +300,8 @@ const handleUserInput = (formatted: string) => {
       })
 
   } else{
-    // pop the last message which is the chatmessage so that it does not show up on the page
-    // rafikeyChatbotStore.conversation.pop()
+    // pop the last message which is the chat message so that it does not show up on the page
 
-
-    const rafikeyMessage = ref<Conversation>({
-      message: '',
-      isUser: false,
-      isTyping: true,
-      uniqueId: _.uniqueId('rafikey-'),
-      timestamp: '',
-    })
-
-    rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
     rafikeyChatbotStore.isGeneratingResponse = true
 
     rafikeyChatbotStore
@@ -328,6 +311,7 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
+
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
@@ -335,11 +319,10 @@ const handleUserInput = (formatted: string) => {
             currentRafikeyObject.message = res.data as string
           }
         } else {
-          console.log("response from streaming", res)
           rafikeyChatbotStore.setStreamError({
             hasError: true,
             errorMessage: res?.data as string,
-            isLoggedIn: res?.isLoggedIn as boolean,
+            isLoggedIn: true,
           })
         }
       })
@@ -406,7 +389,6 @@ nextTick(()=>{
   }
 })
 }
-
 
 
 watch(() => rafikeyChatbotStore.conversation, () => {
@@ -510,7 +492,7 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
           </template>
         </ul>
         <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
-          <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage"  @user-input="handleUserInput"/>
+          <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage" :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"/>
 
         </div>
       </div>
@@ -637,11 +619,12 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
                 :created-at="now"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
+
               />
             </template>
           </ul>
           <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
-            <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage"  @user-input="handleUserInput"/>
+            <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage" :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn" />
           </div>
         </div>
 
@@ -651,10 +634,6 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
           ref="userInputContainerHeightRef"
           class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
         >
-          <!--        <div-->
-          <!--          v-if="isBottom"-->
-          <!--          class="py-4 mt-6 bg-gradient-to-t from-main-color-light-color block"-->
-          <!--        ></div>-->
           <div
             class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6 fixed bottom-0"
             :class="[rafikeyChatbotStore.conversation.length > 0 ? 'left-0 right-0': 'left-4 right-4']"
