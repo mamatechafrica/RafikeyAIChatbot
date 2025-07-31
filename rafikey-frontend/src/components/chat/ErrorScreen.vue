@@ -19,11 +19,6 @@ window.location.reload()
 
 const loginHandler = () => {
   authStore.logout()
-  chatbotStore.setStreamError({
-    hasError: false,
-    errorMessage: '',
-    isLoggedIn: true
-  })
 }
 
 const refreshChat = () => {

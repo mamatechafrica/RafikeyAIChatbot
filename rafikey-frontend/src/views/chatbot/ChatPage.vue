@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref, nextTick, onMounted, watch } from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
@@ -25,11 +25,9 @@ interface HistoryConv {
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const route = useRoute()
-const isError = ref(false)
 const isLoading = ref(false)
 
-const isGeneratingResponse = ref(false)
-const isBottom = ref(false)
+// const isGeneratingResponse = ref(false)
 const now = moment()
 
 //   create Rafikey message object
@@ -260,8 +258,9 @@ marked.use({
 })
 
 // User input
-const handleUserInput = (value: string, formatted: string) => {
-  if (route.path === '/user/chat') {
+const handleUserInput = (formatted: string) => {
+  const activeSessionId = route.params.sessionId as string
+  if (!activeSessionId) {
     rafikeyChatbotStore.setSessionId(uuidV4())
     router.push({
       name: 'chatWithId',
@@ -272,11 +271,13 @@ const handleUserInput = (value: string, formatted: string) => {
     // isNewChat.value = true
   }
 
-  userMessage.value = {
-    message: formatted,
-    isUser: true,
-    uniqueId: _.uniqueId('user-'),
-  }
+  // don't re-create the user bubble if the user is regenerating the response
+  if (!rafikeyChatbotStore.regenerateResponse) {
+    userMessage.value = {
+      message: formatted,
+      isUser: true,
+      uniqueId: _.uniqueId('user-'),
+    }
 
   const rafikeyMessage = ref<Conversation>({
     message: '',
@@ -408,6 +409,30 @@ const fetchHistoryHandler = (activeSessionId: string) => {
       isLoading.value = false
     })
 }
+
+//check whether there is a string parameter if there is then  you should get the cha history
+onMounted(() => {
+  console.log("Mounted Chat Page-route")
+
+  const activeSessionId = route.params.sessionId as string
+  // We can only load chat history if the user is not on the new chat page
+
+  if (!rafikeyChatbotStore.isNewChat) {
+    console.log("Not new chat page")
+    nextTick(()=>{
+      fetchHistoryHandler(activeSessionId)
+    })
+  }
+})
+
+// check if the regenerate has been punched to regenerate the response
+watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
+  if(newValue){
+    handleUserInput(rafikeyChatbotStore.regenerateUserInput)
+  }
+})
+
+
 </script>
 
 <template>
