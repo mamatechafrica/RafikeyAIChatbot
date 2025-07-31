@@ -19,13 +19,14 @@ const emits = defineEmits<{
 
 
 const chatHistoryHandler = (propVal: ChatHistoryProps) => {
-  // check if the button is an active button and do nothing otherwise fetch the chat history
+  // check if the button is an active button and do nothing to prevent fetching the already active chats again otherwise fetch the chat history
   if( chatbotStore.sessionId === props.threadId){
     return
   } else {
     chatbotStore.conversation = []
     chatbotStore.setActiveChatHistory(propVal.threadId)
     emits('fetchHistoryHandler', propVal.threadId)
+    chatbotStore.isNewChat=false
   }
 }
 
@@ -33,7 +34,7 @@ const chatHistoryHandler = (propVal: ChatHistoryProps) => {
 </script>
 
 <template>
-  <div class="flex justify-start py-2 ps-4 w-full cursor-pointer"
+  <div class="flex justify-start py-2 ps-4 cursor-pointer"
        :class="[ chatbotStore.sessionId === props.threadId? 'bg-stone-300 dark:bg-stone-700  border-r-4 border-blue-600 ': 'bg-transparent']"
        @click="chatHistoryHandler(props)"
   >
