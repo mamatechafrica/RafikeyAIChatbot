@@ -2,6 +2,7 @@ import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}"
@@ -84,7 +85,6 @@ export default {
         darkgray: '#222222',
         lightgray: '#252525',
         lightBackground: '#F6F6F6'
-
       },
       fontFamily: {
         'sf-pro': ['SF Pro Regular', 'Ubuntu', 'sans-serif'],
