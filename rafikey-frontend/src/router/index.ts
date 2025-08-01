@@ -144,11 +144,15 @@ const routes = [
           const { params } = route
           return {
             sessionId: params.sessionId,
-            newChat: false
           }
         },
         meta: {
           requiresAuth: true
+        },
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized) => {
+          const chatbotStore = useRafikeyChatbotStore()
+          // Reset the chat history when entering a new chat
+          chatbotStore.isNewChat = false
         }
       }
     ]
