@@ -507,8 +507,7 @@ watch(()=>isSmallDevice.value, (val)=>{
 })
 
 
-
-
+const modeToggleHandler = useToggle(isDark)
 </script>
 
 <template>
