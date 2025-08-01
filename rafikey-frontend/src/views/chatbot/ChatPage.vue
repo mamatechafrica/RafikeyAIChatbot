@@ -5,12 +5,14 @@ import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 import { marked, type RendererObject, type Tokens } from 'marked'
-import { useRafikeyChatbotStore, type Conversation } from '@/stores'
+import { useRafikeyChatbotStore, type Conversation, useAuthStore } from '@/stores'
 import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
 import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
+import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
+
 
 interface HistoryConv {
   bot_response: string
@@ -23,9 +25,11 @@ interface HistoryConv {
 }
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
+const authStore = useAuthStore()
 const router = useRouter()
 const route = useRoute()
 const isLoading = ref(false)
+const isDark = useDark()
 
 // const isGeneratingResponse = ref(false)
 const now = moment()
@@ -401,7 +405,10 @@ const timeFormatter = (timestamp: string) => {
   }
 }
 
-
+const isShowProfile = ref(false)
+const profileHandler = () =>{
+  isShowProfile.value = !isShowProfile.value
+}
 
 
 // fetching chat history
