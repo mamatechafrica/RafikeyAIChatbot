@@ -61,6 +61,7 @@ const groupChat = () => {
 
 const emits = defineEmits<{
   (event: 'fetchHistoryHandler', activeSessionId: string): void
+  (event: 'profileHandler'): void
 }>()
 
 // fetch clicked chat History title
