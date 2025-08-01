@@ -465,13 +465,13 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
-  console.log("Mounted Chat Page-route")
-
   const activeSessionId = route.params.sessionId as string
-  // We can only load chat history if the user is not on the new chat page
 
+  // Set initial value for isSmallScreen
+  isSmallScreen.value = rafikeyChatbotStore.isNewChat && isSmallDevice.value;
+
+  // We can only load chat history if the user is not on the new chat page
   if (!rafikeyChatbotStore.isNewChat) {
-    console.log("Not new chat page")
     nextTick(()=>{
       fetchHistoryHandler(activeSessionId)
     })
