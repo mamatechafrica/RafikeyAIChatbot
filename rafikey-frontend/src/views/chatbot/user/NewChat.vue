@@ -34,10 +34,15 @@ const startChatHandler = () =>{
   })
 }
 
+const startVoiceChat = () => {
+
+}
+
+
 </script>
 
 <template>
-  <div class="space-y-28 dark:bg-lightgray md:block hidden">
+  <div class="space-y-28 dark:bg-lightgray h-screen md:block hidden">
     <div class="space-y-8 pt-12">
       <div class="space-y-4">
         <h2
@@ -51,7 +56,7 @@ const startChatHandler = () =>{
 
     <div class="flex">
       <div>
-        <img :src="toggleImage" alt="welcome-screen-image" class="" />
+        <img :src="toggleImage" alt="welcome-screen-image" />
       </div>
       <div>
         <img src="@/assets/images/rafikey-bot.png" alt="rafikey-image" />
@@ -59,7 +64,7 @@ const startChatHandler = () =>{
     </div>
   </div>
 
-  <div class="dark:bg-lightgray block md:hidden">
+  <div class="relative dark:bg-lightgray h-screen block md:hidden">
     <div class="flex items-center justify-between">
       <div class="w-32" @click="chatbotStore.setCollapseSidebarSmall(false)">
         <img :src="toggleImageIcon" alt="rafikey-icon" />
@@ -70,22 +75,27 @@ const startChatHandler = () =>{
         <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
       </div>
     </div>
-    <div class="flex  flex-col pt-8 space-y-12 w-full">
+    <div class="flex  flex-col sm:pt-8 pt-4 sm:space-y-12 space-y-4 w-full">
       <div class="flex gap-6 ">
-        <div class="w-full dark:bg-darkgray bg-link-water-50 rounded-xl p-5 space-y-4" @click="startChatSmallScreen">
+        <div
+          @click.stop="startChatHandler"
+          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2">
           <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
             <span class="material-icons-outlined dark:text-white">sms</span>
           </div>
-          <div class="flex dark:text-white gap-4">
+          <div class="flex dark:text-white sm:gap-4">
             <p class="text-sm">Chat with Rafikey</p>
             <span class="material-icons-outlined text-sm">arrow_forward</span>
           </div>
         </div>
-        <div class="w-full dark:bg-darkgray bg-link-water-50 rounded-xl p-5 space-y-4">
+        <div
+          @click.stop="startVoiceChat"
+          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl  sm:p-5 p-3 sm:space-y-4 space-y-2">
           <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
             <span class="material-icons-outlined dark:text-white">mic_none</span>
           </div>
-          <div class="flex dark:text-white gap-4">
+          <div
+            class="flex dark:text-white gap-4">
             <p class="text-sm">Chat with Rafikey</p>
             <span class="material-icons-outlined text-sm">arrow_forward</span>
           </div>
@@ -93,20 +103,20 @@ const startChatHandler = () =>{
       </div>
 
       <div class="">
-        <div class="space-y-6 ">
-          <div class="flex justify-between  p-4">
-            <p class="dark:text-white text-xl">History</p>
+        <div class="sm:space-y-6 space-y-4 ">
+          <div class="flex justify-between  sm:p-4">
+            <p class="dark:text-white text-lg">History</p>
             <span class="text-purple-400">See all</span>
           </div>
-          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl p-5  gap-4 " >
+          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl sm:p-5 p-3 gap-4 " >
             <span class="material-icons-outlined dark:text-white">mic_none</span>
             <p class="dark:text-white">How can I know I have STI?</p>
           </div>
-          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl p-5  gap-4 ">
+          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl sm:p-5 p-3   gap-4 ">
             <span class="material-icons-outlined dark:text-white">sms</span>
             <span class="dark:text-white">Best gynecologist?</span>
           </div>
-          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl p-5  gap-4 ">
+          <div  class="flex dark:bg-darkgray bg-link-water-50   rounded-xl sm:p-5 p-3  gap-4 ">
             <span class="material-icons-outlined dark:text-white">sms</span>
             <span class="dark:text-white">How to wear a condom</span>
           </div>
@@ -150,5 +160,16 @@ const startChatHandler = () =>{
 </template>
 
 <style scoped>
+.sidebar-button-blue {
+  background-color: #2B42D1;
+}
+
+.sidebar-button-pink {
+  background-color: #D56D9C;
+}
+
+.sidebar-button-yellow {
+  background-color: #FAE44B
+}
 
 </style>
