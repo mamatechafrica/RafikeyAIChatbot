@@ -531,6 +531,42 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
           </template>
         </RouterView>
 
+<!--        profile section-->
+        <div :class="[rafikeyChatbotStore.collapseSidebarLarge? '': 'left-28 bottom-8 z-50']"
+             v-show="isShowProfile" class="dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white border-[1px] border-stone-300  w-60 p-4 rounded-2xl">
+          <div class="space-y-3">
+            <div class="flex gap-4">
+              <span class="material-icons-outlined dark:text-white">article</span>
+              <span class="dark:text-white">Terms and Conditions</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-icons-outlined dark:text-white">support</span>
+              <span class="dark:text-white">Help</span>
+            </div>
+            <div
+              @click.stop="modeToggleHandler()"
+              class="flex gap-4">
+              <span v-if="!isDark" class="material-icons-outlined text-stone-500 dark:text-white">dark_mode</span>
+              <span v-else class="material-icons-outlined text-stone-500 dark:text-white">light_mode</span>
+              <span v-if="!isDark" class="dark:text-white">Dark Mode</span>
+              <span v-else class="dark:text-white">Light Mode</span>
+            </div>
+          </div>
+          <div class="border-[0.5px] border-stone-300"></div>
+          <div class="space-y-4">
+            <div
+              @click.stop="logoutHandler"
+              class="flex gap-4">
+              <span class="material-icons-round dark:text-white">exit_to_app</span>
+              <span class="dark:text-white">Log Out</span>
+            </div>
+            <div class="flex gap-4">
+              <span class="material-icons-round text-stone-400 dark:text-white">person_outline</span>
+              <span class="text-stone-400">{{authStore.getUserInfo()?.username}}</span>
+            </div>
+          </div>
+        </div>
+
         <!--    text area-->
         <div
           v-if="!rafikeyChatbotStore.isStreamError.hasError"
