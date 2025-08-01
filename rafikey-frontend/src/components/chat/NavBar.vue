@@ -68,6 +68,11 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 emits('fetchHistoryHandler', activeSessionId)
 }
 
+
+// profile handler
+const profileHandler = () => {
+  emits('profileHandler')
+}
 // collapse sidenav
 const collapseSideNavHandler = () => {
   chatbotStore.setCollapseSidebarLarge(true)
