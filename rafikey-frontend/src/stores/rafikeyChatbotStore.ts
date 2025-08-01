@@ -298,6 +298,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     regenerateResponse,
     setRegenerateResponse,
     regenerateUserInput,
+    isDark
+
     // setRegenerateInput
 
   }

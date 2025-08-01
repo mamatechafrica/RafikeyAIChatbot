@@ -5,6 +5,9 @@ import imageLight from '@/assets/images/welcome-frames-light.png'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import imageIconLight from '@/assets/images/rafikey-icon-light.png'
 import imageIconDark from '@/assets/images/rafikey-icon-dark.png'
+import { v4 as uuidV4 } from 'uuid'
+import { useRouter } from 'vue-router'
+
 
 
 const chatbotStore = useRafikeyChatbotStore()
@@ -21,6 +24,15 @@ const toggleImageIcon = computed(() => {
 
 const startChatSmallScreen = () =>{
 
+const startChatHandler = () =>{
+  console.log("Start chat")
+  chatbotStore.setSessionId(uuidV4())
+  router.push({
+    name: 'chatWithId',
+    params: {
+      sessionId: chatbotStore.sessionId
+    }
+  })
 }
 
 </script>
