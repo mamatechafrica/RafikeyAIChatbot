@@ -337,15 +337,6 @@ const handleUserInput = (formatted: string) => {
   } else {
     // pop the last message which is the chat message so that it does not show up on the page
     console.log("Regenerating response ")
-    //
-    // const rafikeyMessage = ref<Conversation>({
-    //   message: '',
-    //   isUser: false,
-    //   isTyping: true,
-    //   uniqueId: _.uniqueId('rafikey-'),
-    //   timestamp: '',
-    // })
-    // rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
 
     rafikeyChatbotStore.isGeneratingResponse = true
 
@@ -493,6 +484,29 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
     handleUserInput(rafikeyChatbotStore.regenerateUserInput)
   }
 })
+
+const logoutHandler = () =>{
+  authStore.logout()
+  router.push({ name: 'login' })
+}
+
+const isSmallScreen = ref(false)
+const isSmallDevice = useMediaQuery('(max-width: 767px)')
+
+
+// Checking for small devices and hiding the user input
+watch(()=>isSmallDevice.value, (val)=>{
+    if(rafikeyChatbotStore.isNewChat && val){
+      console.log("small devices")
+      isSmallScreen.value = true
+    }
+    else{
+      isSmallScreen.value = false
+    }
+
+})
+
+
 
 
 </script>
