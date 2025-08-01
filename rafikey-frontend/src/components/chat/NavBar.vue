@@ -148,13 +148,13 @@ chatbotStore.conversation = []
           :class="[!chatbotStore.collapseSidebarLarge ? 'flex ' : '']"
         >
           <div class="flex flex-col items-center gap-4">
-            <div>
-              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>
-            </div>
+<!--            <div>-->
+<!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>-->
+<!--            </div>-->
             <div>
               <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>
             </div>
-            <div>
+            <div @click.stop="profileHandler">
               <img
                 src="@/assets/images/Avatar.png"
                 alt="rafikey-avatar"
@@ -192,17 +192,17 @@ chatbotStore.conversation = []
           </div>
           <div class="absolute bottom-4 grid grid-cols-12 w-full">
             <div
-              class="col-span-4 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 z-10 sidebar-button-yellow shadow-[0_0_20px_3px]  shadow-yellow-500/85  h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
             </div>
             <div
-              class="col-span-4 bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 sidebar-button-pink  shadow-[0_0_20px_3px]  shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/clinic.png" alt="clinic-image" />
             </div>
             <div
-              class="col-span-4 bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px]  shadow-blue-500/85  h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/learn.png" alt="lear-image" />
             </div>
@@ -331,7 +331,7 @@ chatbotStore.conversation = []
                           <div class="absolute bottom-4 w-full">
                             <div class="flex px-10 justify-between  w-full ">
                               <div
-                                class="col-span-1 z-10 bg-yellow-400 backdrop-blur-sm h-10 w-10 rounded-full flex items-center justify-center"
+                                class="col-span-1 z-10 sidebar-button-yellow shadow-[0_0_32px_3px]  shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img
                                   src="@/assets/images/talk-about-it.png"
@@ -340,12 +340,12 @@ chatbotStore.conversation = []
                                 />
                               </div>
                               <div
-                                class=" bg-pink-500 h-10 w-10 rounded-full flex items-center justify-center"
+                                class=" sidebar-button-pink shadow-[0_0_32px_3px]  shadow-pink-500/85  h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img src="@/assets/images/clinic.png" alt="clinic-image" />
                               </div>
                               <div
-                                class="bg-blue-500 h-10 w-10 rounded-full flex items-center justify-center"
+                                class="sidebar-button-blue shadow-[0_0_32px_3px]  shadow-blue-500/85  h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img src="@/assets/images/learn.png" alt="lear-image" />
                               </div>
@@ -366,4 +366,16 @@ chatbotStore.conversation = []
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.sidebar-button-blue {
+  background-color: #2B42D1;
+}
+
+.sidebar-button-pink {
+  background-color: #D56D9C;
+}
+
+.sidebar-button-yellow {
+  background-color: #FAE44B
+}
+</style>
