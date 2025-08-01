@@ -511,9 +511,9 @@ const modeToggleHandler = useToggle(isDark)
 </script>
 
 <template>
-  <div class="p-6 dark:bg-lightgray min-h-screen overflow-hidden w-full">
+  <div class="relative p-6 dark:bg-lightgray h-screen overflow-hidden w-full">
     <div>
-      <NavBar @fetch-history-handler="fetchHistoryHandler" />
+      <NavBar @fetch-history-handler="fetchHistoryHandler" @profile-handler="profileHandler" />
     </div>
     <!--    right side-->
     <div v-if="!isLoading" class="relative w-full">
@@ -582,7 +582,7 @@ const modeToggleHandler = useToggle(isDark)
 
         <!--    text area-->
         <div
-          v-if="!rafikeyChatbotStore.isStreamError.hasError"
+          v-if="!rafikeyChatbotStore.isStreamError.hasError && !isSmallScreen"
           ref="userInputContainerHeightRef"
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
@@ -612,4 +612,5 @@ const modeToggleHandler = useToggle(isDark)
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
