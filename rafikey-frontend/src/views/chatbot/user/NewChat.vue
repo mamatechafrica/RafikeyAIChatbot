@@ -12,6 +12,7 @@ import { useRouter } from 'vue-router'
 
 const chatbotStore = useRafikeyChatbotStore()
 const authStore = useAuthStore()
+const router = useRouter()
 
 const toggleImage = computed(() => {
   return chatbotStore.isDarkMode ? imageDark : imageLight
@@ -21,8 +22,6 @@ const toggleImage = computed(() => {
 const toggleImageIcon = computed(() => {
   return  chatbotStore.isDarkMode ? imageIconDark : imageIconLight
 })
-
-const startChatSmallScreen = () =>{
 
 const startChatHandler = () =>{
   console.log("Start chat")
@@ -113,6 +112,36 @@ const startChatHandler = () =>{
           </div>
         </div>
       </div>
+      <div class="absolute bottom-24  space-y-10 w-full">
+        <div class="text-center">
+          <p class="text-lg">Quick Links</p>
+        </div>
+        <div class=" px-10 flex items-center justify-between">
+
+          <div
+            class="col-span-1 z-10 sidebar-button-yellow shadow-[0_0_32px_5px]  shadow-yellow-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+          >
+            <img
+              src="@/assets/images/talk-about-it.png"
+              alt="talk-to-someone-image"
+              class=""
+            />
+          </div>
+          <div
+            class=" sidebar-button-pink shadow-[0_0_32px_3px]  shadow-pink-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+          >
+            <img src="@/assets/images/clinic.png" alt="clinic-image" />
+          </div>
+          <div
+            class="sidebar-button-blue shadow-[0_0_32px_5px]  shadow-blue-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+          >
+            <img src="@/assets/images/learn.png" alt="lear-image" />
+          </div>
+        </div>
+      </div>
+
+
+
 
 
 
