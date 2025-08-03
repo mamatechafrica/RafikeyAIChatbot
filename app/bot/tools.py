@@ -42,6 +42,10 @@ def get_db_engine():
 @tool
 def search_hospital_referrals(
     location: Annotated[Optional[str], "Location to search - can be county, constituency, sub_county, or ward name"] = None,
+    county: Annotated[Optional[str], "County name to search for"] = None,
+    sub_county: Annotated[Optional[str], "Sub county name to search for"] = None,
+    constituency: Annotated[Optional[str], "Constituency name to search for"] = None,
+    ward: Annotated[Optional[str], "Ward name to search for"] = None,
     facility_name: Annotated[Optional[str], "Hospital/facility name to search for"] = None,
     facility_type: Annotated[Optional[str], "Type of healthcare facility (e.g., hospital, clinic, dispensary)"] = None,
     keph_level: Annotated[Optional[str], "KEPH level (1-6) for facility classification"] = None,
@@ -52,22 +56,26 @@ def search_hospital_referrals(
     Search for healthcare facilities in Kenya from the hospital referrals directory.
     
     This tool searches based on:
-    - Location: County, Constituency, Sub County, or Ward
+    - Location: County, Constituency, Sub County, or Ward (now supports explicit narrowing by each level)
     - Facility Name: Hospital or clinic name
     - Facility Type: Type of healthcare facility
     - KEPH Level: Kenya Essential Package for Health level (1-6)
     - Owner: Public, private, or NGO facilities
-    
-    Particularly useful for finding healthcare facilities for SRHR services.
-    
+
+    You can specify any combination of county, sub_county, constituency, and ward for precise location-based filtering. If multiple are provided, the search will be narrowed to the most specific level.
+
     Args:
-        location: Location name (county, constituency, sub_county, or ward)
+        location: (Optional) General location name (for backward compatibility)
+        county: (Optional) County name
+        sub_county: (Optional) Sub county name
+        constituency: (Optional) Constituency name
+        ward: (Optional) Ward name
         facility_name: Name of the healthcare facility
         facility_type: Type of facility (hospital, clinic, dispensary, etc.)
         keph_level: KEPH level classification (1-6)
         owner: Facility ownership type
         limit: Maximum number of results (default 10)
-    
+
     Returns:
         Formatted list of healthcare facilities with details
     """
@@ -80,9 +88,22 @@ def search_hospital_referrals(
             params = {}
             
             # Location search (county, constituency, sub_county, ward)
-            if location:
+            # Hierarchical narrowing: if ward is provided, use it; else constituency, sub_county, county; else fallback to generic location
+            if ward:
+                query_parts.append('AND LOWER(COALESCE("Ward", \'\')) LIKE LOWER(:ward)')
+                params['ward'] = f'%{ward}%'
+            elif constituency:
+                query_parts.append('AND LOWER(COALESCE("Constituency", \'\')) LIKE LOWER(:constituency)')
+                params['constituency'] = f'%{constituency}%'
+            elif sub_county:
+                query_parts.append('AND LOWER(COALESCE("Sub county", \'\')) LIKE LOWER(:sub_county)')
+                params['sub_county'] = f'%{sub_county}%'
+            elif county:
+                query_parts.append('AND LOWER(COALESCE("County", \'\')) LIKE LOWER(:county)')
+                params['county'] = f'%{county}%'
+            elif location:
                 query_parts.append("""
-                    AND (LOWER(COALESCE("County", '')) LIKE LOWER(:location) 
+                    AND (LOWER(COALESCE("County", '')) LIKE LOWER(:location)
                     OR LOWER(COALESCE("Constituency", '')) LIKE LOWER(:location)
                     OR LOWER(COALESCE("Sub county", '')) LIKE LOWER(:location)
                     OR LOWER(COALESCE("Ward", '')) LIKE LOWER(:location))
@@ -298,7 +319,7 @@ def search_facilities_by_county(
         List of all healthcare facilities in the specified county
     """
     return search_hospital_referrals.invoke({
-        "location": county,
+        "county": county,
         "limit": limit
     })
 
