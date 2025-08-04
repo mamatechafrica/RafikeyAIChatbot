@@ -15,9 +15,10 @@ const isAnonymous = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
 
-const toggleImage = computed(()=>{
-  return chatbotStore.isDarkMode? imageDark : imageLight
-})
+// const toggleImage = computed(()=>{
+//   console.log('Mode--', chatbotStore.isDarkMode)
+//   return chatbotStore.isDarkMode? imageLight: imageDark
+// })
 
 
 const authStore = useAuthStore()
