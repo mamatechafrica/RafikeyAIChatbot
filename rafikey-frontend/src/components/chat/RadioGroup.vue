@@ -42,7 +42,7 @@ watch(() => selected.value, (newVal) => {
                 active
                   ? ''
                   : '',
-                checked ? 'bg-casablanca-600/75' : ' border-button-dark bg-transparent border ',
+                checked ? 'bg-casablanca-600/75' : ' border-button-light bg-stone-200 border ',
               ]"
               class="relative flex cursor-pointer rounded-xl px-10  py-1  focus:outline-none"
             >
@@ -55,7 +55,7 @@ watch(() => selected.value, (newVal) => {
                         as="span"
                         class="col-span-1"
                       >
-                        <p class="lg:text-sm xl:text-lg text-nowrap" :class="[checked? 'text-white': 'text-black dark:text-white']">{{ rad.name }}</p>
+                        <p class="text-small text-nowrap" :class="[checked? 'text-white': 'text-black dark:text-white']">{{ rad.name }}</p>
 
                       </RadioGroupDescription>
                     </div>
