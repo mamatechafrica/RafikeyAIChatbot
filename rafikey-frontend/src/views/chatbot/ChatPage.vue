@@ -485,6 +485,13 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
   }
 })
 
+
+const showLogoutDialogModal = ref(false)
+const confirmLogoutHandler = () =>{
+  showLogoutDialogModal.value = true
+
+}
+
 const logoutHandler = () =>{
   authStore.logout()
   router.push({ name: 'login' })
