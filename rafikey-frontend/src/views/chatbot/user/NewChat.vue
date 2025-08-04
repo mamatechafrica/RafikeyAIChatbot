@@ -38,6 +38,57 @@ const startVoiceChat = () => {
 
 }
 
+const accessQuestions = [
+  {
+    id: 1,
+    question: 'How can I know I have STI?',
+    icon: 'sms',
+  },
+  {
+    id: 2,
+    question: 'Best gynecologist?',
+    icon: 'sms',
+  },
+  {
+    id: 3,
+    question: 'How to wear a condom',
+    icon: 'sms',
+  },
+] as AccessQuestion[]
+
+// don't show the welcome messages if user already logged in
+onMounted(() => {
+  // const routes = ['/auth/login', '/auth/register']
+  // if(routes.indexOf(chatbotStore.previousRoute) === -1 ) {
+  //   showWelcomeDialogModal.value = false
+  // }
+  // else{
+  //   message.value = welcomeMessages[0]
+  //   setTimeout(() => {
+  //     message.value = welcomeMessages[1]
+  //     setTimeout(() => {
+  //       showWelcomeDialogModal.value = false
+  //     }, 3000)
+  //   }, 3000)
+  // }
+
+  showWelcomeDialogModal.value = true
+  message.value = welcomeMessages[0]
+})
+
+
+const emits = defineEmits<{
+  (event: 'userInput', formatted: string): void
+}>()
+
+const accessButtonQuestionHandler = (message: string) => {
+  // router.push({
+  //   name: 'chatWithId',
+  // })
+  // chatbotStore.setAccessButtonRequest(message)
+  chatbotStore.conversation = []
+  emits('userInput', message)
+}
 
 </script>
 
