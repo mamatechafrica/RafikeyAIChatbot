@@ -66,7 +66,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isOpen: false,
   })
 
-  const collapseSidebarSmall = ref(false)
+  const collapseSidebarSmall = ref(true)
   const setCollapseSidebarSmall = (value: boolean) => {
     collapseSidebarSmall.value = value
   }
@@ -123,7 +123,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
             if (done) break
             buffer.value += decoder.decode(value, { stream: true })
           }
-          console.log('Rafikey response:', buffer.value)
+          // console.log('Rafikey response:', buffer.value)
           return {
             result: 'ok',
             data: buffer.value
@@ -275,6 +275,11 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   // const setRegenerateInput = (value: string) => {
   //   regenerateUserInput = value
   // }
+
+  const setAccessButtonRequest = (message: string) =>{
+    accessButtonRequest.value = true
+    accessButtonRequest.message = message
+  }
 
 
   return {
