@@ -506,6 +506,19 @@ watch(()=>isSmallDevice.value, (val)=>{
 
 })
 
+const termsConditionHandler = ()=>{
+  router.push({ name: 'privacy-policy-1' })
+  rafikeyChatbotStore.isShowTermsButton = false
+}
+
+// watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
+//   if(val.value){
+//     console.log('Access button request', val)
+//     handleUserInput(val.message)
+//     // rafikeyChatbotStore.setAccessButtonRequest('')
+//   }
+//
+// })
 
 const modeToggleHandler = useToggle(isDark)
 </script>
