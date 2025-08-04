@@ -184,9 +184,9 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
           :class="[!chatbotStore.collapseSidebarLarge ? 'flex ' : '']"
         >
           <div class="flex flex-col items-center gap-4">
-<!--            <div>-->
-<!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>-->
+            <!--            </div>-->
             <div>
               <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>
             </div>
@@ -201,7 +201,7 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
         </div>
       </div>
 
-      <div class="relative h-[calc(100vh-10rem)] w-full ">
+      <div class="relative h-[calc(100vh-10rem)] w-full">
         <div
           class="h-[calc(100vh-21rem)] overflow-y-auto"
           v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarLarge"
@@ -210,10 +210,10 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
             <div
               class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparentdark:bg-darkgray"
             >
-              <h1 class="dark:text-white">{{ date }}</h1>
+              <h1 class="dark:text-white text-large">{{ date }}</h1>
               <div class="flex flex-row-reverse">
                 <span class="material-icons-outlined dark:text-white">expand_less</span>
-                <span class="dark:text-stone-300 text-sm"> {{ titles.length }} total</span>
+                <span class="dark:text-stone-300 text-small"> {{ titles.length }} total</span>
               </div>
             </div>
 
@@ -228,17 +228,17 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
           </div>
           <div class="absolute bottom-4 grid grid-cols-12 w-full">
             <div
-              class="col-span-4 z-10 sidebar-button-yellow shadow-[0_0_20px_3px]  shadow-yellow-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 sidebar-button-yellow shadow-[0_0_20px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
             </div>
             <div
-              class="col-span-4 sidebar-button-pink  shadow-[0_0_20px_3px]  shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 sidebar-button-pink shadow-[0_0_20px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/clinic.png" alt="clinic-image" />
             </div>
             <div
-              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px]  shadow-blue-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
             >
               <img src="@/assets/images/learn.png" alt="lear-image" />
             </div>
@@ -253,21 +253,9 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
     <TransitionRoot
       as="template"
       :show="!chatbotStore.collapseSidebarSmall"
-      class="md:hidden block"
+      class="relative md:hidden block"
     >
       <Dialog class="relative z-10" @close="chatbotStore.setCollapseSidebarSmall(true)">
-        <!--        <TransitionChild-->
-        <!--          as="template"-->
-        <!--          enter="ease-in-out duration-500"-->
-        <!--          enter-from="opacity-0"-->
-        <!--          enter-to="opacity-100"-->
-        <!--          leave="ease-in-out duration-500"-->
-        <!--          leave-from="opacity-100"-->
-        <!--          leave-to="opacity-0"-->
-        <!--        >-->
-        <!--          <div class="fixed inset-0 bg-gray-500/75 transition-opacity" />-->
-        <!--        </TransitionChild>-->
-
         <div class="fixed inset-0 overflow-hidden">
           <div class="absolute inset-0 overflow-hidden">
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10 sm:pl-16">
@@ -303,7 +291,7 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                     </div>
                   </TransitionChild>
                   <div
-                    class="flex h-full flex-col overflow-y-auto bg-white dark:bg-lightgray py-6 shadow-xl"
+                    class="flex h-full flex-col space-y-4 overflow-y-auto bg-white dark:bg-lightgray py-6 shadow-xl"
                   >
                     <div class="px-4 sm:px-6">
                       <DialogTitle class="text-base font-semibold">
@@ -320,7 +308,7 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                             >
                           </div>
                         </div>
-                        <div class="border-b border-darkgray pt-4"></div>
+                        <!--                        <div class="border-b border-darkgray pt-4"></div>-->
                       </DialogTitle>
                     </div>
                     <div class="relative space-y-3 flex-1">
@@ -372,12 +360,12 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                             <div
                               class="flex justify-between sticky pb-1 top-0 backdrop-blur font-bold bg-white dark:bg-lightgray"
                             >
-                              <h1 class="dark:text-white ps-4">{{ date }}</h1>
+                              <h1 class="dark:text-white ps-4 text-large">{{ date }}</h1>
                               <div class="flex flex-row-reverse">
                                 <span class="material-icons-outlined dark:text-white"
                                   >expand_less</span
                                 >
-                                <span class="dark:text-stone-300 text-sm">
+                                <span class="dark:text-stone-300 text-small">
                                   {{ titles.length }} total</span
                                 >
                               </div>
@@ -392,10 +380,10 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                               />
                             </div>
                           </div>
-                          <div class="absolute bottom-4 w-full">
-                            <div class="flex px-10 justify-between  w-full ">
+                          <div class="absolute bottom-0 w-full">
+                            <div class="flex px-10 justify-between w-full">
                               <div
-                                class="col-span-1 z-10 sidebar-button-yellow shadow-[0_0_32px_3px]  shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
+                                class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img
                                   src="@/assets/images/talk-about-it.png"
@@ -404,18 +392,80 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                                 />
                               </div>
                               <div
-                                class=" sidebar-button-pink shadow-[0_0_32px_3px]  shadow-pink-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+                                class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img src="@/assets/images/clinic.png" alt="clinic-image" />
                               </div>
                               <div
-                                class="sidebar-button-blue shadow-[0_0_32px_3px]  shadow-blue-500/85  h-10 w-10 rounded-full flex items-center justify-center"
+                                class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
                               >
                                 <img src="@/assets/images/learn.png" alt="lear-image" />
                               </div>
                             </div>
                           </div>
-
+                        </div>
+                      </div>
+                    </div>
+                    <!--        profile section-->
+                    <div
+                      ref="profileSectionElement"
+                      v-show="isShowProfile"
+                      class="divide-y divide-solid  dark:divide-stone-700 dark:bg-darkgray cursor-pointer absolute space-y-4 bottom-0 w-full bg-white shadow-2xl p-4 rounded-t-2xl"
+                    >
+                      <div class="space-y-1">
+                        <div
+                          @click.stop="termsConditionHandler"
+                          class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+                        >
+                          <span class="material-icons-outlined dark:text-white !text-xl"
+                            >article</span
+                          >
+                          <span class="dark:text-white text-gray-700">Terms and Conditions</span>
+                        </div>
+                        <div
+                          class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+                        >
+                          <span class="material-icons-outlined dark:text-white !text-xl"
+                            >support</span
+                          >
+                          <span class="dark:text-white text-gray-700">Help</span>
+                        </div>
+                        <div
+                          @click.stop="modeToggleHandler()"
+                          class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+                        >
+                          <span
+                            v-if="!isDark"
+                            class="material-icons-outlined dark:text-white !text-xl"
+                            >dark_mode</span
+                          >
+                          <span v-else class="material-icons-outlined dark:text-white"
+                            >light_mode</span
+                          >
+                          <span v-if="!isDark" class="dark:text-white text-gray-700"
+                            >Dark Mode</span
+                          >
+                          <span v-else class="dark:text-white text-gray-700">Light Mode</span>
+                        </div>
+                      </div>
+                      <!--          <div class="divide-y divide-solid  "></div>-->
+                      <div class="space-y-1 pt-2">
+                        <div
+                          @click.stop="confirmLogoutHandler"
+                          class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+                        >
+                          <span class="material-icons-round dark:text-white !text-xl"
+                            >exit_to_app</span
+                          >
+                          <span class="dark:text-white text-gray-700">Log out</span>
+                        </div>
+                        <div class="flex gap-4 rounded-lg px-2 py-1">
+                          <span class="material-icons-round text-stone-400 dark:text-white"
+                            >person_outline</span
+                          >
+                          <span class="text-stone-400">{{
+                            authStore.getUserInfo()?.username
+                          }}</span>
                         </div>
                       </div>
                     </div>
@@ -468,14 +518,14 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
 
 <style scoped>
 .sidebar-button-blue {
-  background-color: #2B42D1;
+  background-color: #2b42d1;
 }
 
 .sidebar-button-pink {
-  background-color: #D56D9C;
+  background-color: #d56d9c;
 }
 
 .sidebar-button-yellow {
-  background-color: #FAE44B
+  background-color: #fae44b;
 }
 </style>
