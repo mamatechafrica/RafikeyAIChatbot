@@ -11,7 +11,7 @@ const createAccountFormStore = useCreateAccountFormStore()
 const chatbotStore = useRafikeyChatbotStore()
 
 const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ? imageDark : imageLight
+  return chatbotStore.isDarkMode ?imageLight: imageDark
 })
 
 const isTermsConditionHandler = (value: boolean) =>{
