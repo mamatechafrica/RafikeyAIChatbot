@@ -26,12 +26,12 @@ const hasText = computed(() => {
 </script>
 
 <template>
-  <div class="chat chat-start">
+  <div class="chat chat-start ">
     <div class="flex gap-2">
       <div>
-        <div class="">
+        <div class="w-12">
           <img
-            class="w-12 rounded-full"
+            class="w-full  rounded-full"
             alt="Rafikey chatbot image"
             src="@/assets/images/rafikey-avator.png"
           />
@@ -39,10 +39,10 @@ const hasText = computed(() => {
       </div>
       <div class="flex flex-col">
         <div
-          class="chat-header flex dark:text-white justify-start items-end font-semibold text-sm md:text-lg"
+          class="chat-header flex dark:text-white justify-start items-end text-small"
         >
           {{ props.chatbotName }}
-          <time class="text-xs md:text-sm opacity-50">{{ props.createdAt }}</time>
+          <time class="text-extra-small opacity-50">{{ props.createdAt }}</time>
         </div>
         <div class="py-4 rounded-2xl">
           <div
