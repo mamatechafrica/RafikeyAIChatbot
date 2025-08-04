@@ -28,16 +28,16 @@ const hasText = computed(() => {
       </div>
       <div class="flex flex-col">
         <div
-          class="chat-header dark:text-white flex justify-end items-end font-semibold text-sm md:text-lg"
+          class="chat-header dark:text-white flex justify-end items-end text-small"
         >
           {{ props.userName }}
-          <time class="text-xs md:text-sm opacity-50 flex ">{{ props.createdAt }}</time>
+          <time class="text-extra-small opacity-50 flex ">{{ props.createdAt }}</time>
         </div>
-        <div class="bg-lightBackground dark:bg-darkgray p-4 rounded-2xl">
+        <div class="bg-lightBackground dark:bg-bubbleDark p-4 rounded-2xl">
           <div
             v-if="hasText"
             v-html="props.userMessage"
-            class="lg:!text-xl md:!text-lg !text-sm dark:text-white"
+            class="text-small dark:text-white"
           ></div>
         </div>
       </div>
@@ -47,4 +47,5 @@ const hasText = computed(() => {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+</style>
