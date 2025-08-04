@@ -364,7 +364,7 @@ const loginHandler = () => {
 const signUpHandler = () => {
   console.log('Signup handler called')
   router.push({
-    name: 'home',
+    name: 'welcome-page',
   })
 }
 
@@ -401,6 +401,18 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
     handleUserInput(rafikeyChatbotStore.regenerateUserInput)
   }
 })
+
+// const startChatHandler = () => {
+//   console.log('Start chat')
+//   rafikeyChatbotStore.setSessionId(uuidV4())
+//   router.push({
+//     name: 'chatWithId',
+//     params: {
+//       sessionId: rafikeyChatbotStore.sessionId,
+//     },
+//   })
+//   rafikeyChatbotStore.isNewChat = false
+// }
 </script>
 
 <template>
@@ -538,34 +550,61 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
           </div>
         </div>
         <div class="space-y-16">
-          <div class="flex gap-4 pt-8 w-full">
+          <div class="cursor-pointer flex gap-4 pt-8 w-full">
             <div
-              class="w-full dark:bg-darkgray rounded-xl p-5 space-y-4"
+              class="w-full bg-link-water-50  dark:bg-darkgray rounded-xl p-5 space-y-4"
               @click="startChatSmallScreen"
             >
               <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">sms</span>
               </div>
               <div class="flex dark:text-white gap-4">
-                <p class="text-sm">Chat with Rafikey</p>
+                <p class="text-small">Chat with Rafikey</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
-            <div class="w-full dark:bg-darkgray rounded-xl p-5 space-y-4">
+            <div class="w-full bg-link-water-50   dark:bg-darkgray rounded-xl p-5 space-y-4">
               <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">mic_none</span>
               </div>
               <div class="flex dark:text-white gap-4">
-                <p class="text-sm">Chat with Rafikey</p>
+                <p class="text-small">Chat with Rafikey</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
           </div>
+
+<!--          <div class="flex gap-2">-->
+<!--            <div-->
+<!--              @click.stop="startChatHandler"-->
+<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--            >-->
+<!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+<!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
+<!--              </div>-->
+<!--              <div class="flex dark:text-white sm:gap-4">-->
+<!--                <p class="text-small">Chat with Rafikey</p>-->
+<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div-->
+<!--              @click.stop="startVoiceChat"-->
+<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--            >-->
+<!--              <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+<!--                <span class="material-icons-outlined dark:text-white">mic_none</span>-->
+<!--              </div>-->
+<!--              <div class="flex dark:text-white gap-4">-->
+<!--                <p class="text-small">Chat with Rafikey</p>-->
+<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
           <div class="space-y-4">
-            <div class="flex justify-between">
-              <p class="dark:text-white">History</p>
-              <span class="text-purple-400">See all</span>
-            </div>
+<!--            <div class="flex justify-between">-->
+<!--              <p class="dark:text-white">History</p>-->
+<!--              <span class="text-purple-400">See all</span>-->
+<!--            </div>-->
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">
               <span class="dark:text-white text-sm"
                 >Heads up! Your chat is temporary unless you're logged in.</span
@@ -586,14 +625,15 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
       </div>
       <div v-else>
         <!--        top side-->
-        <div class="flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
-          <div class="flex gap-4">
+        <div class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
+          <div class="flex gap-4 cursor-pointer" @click="isStartChatSmallScreen = !isStartChatSmallScreen">
             <span class="material-icons-outlined dark:text-white">arrow_back</span>
             <span class="dark:text-white">Chatting With Rafikey</span>
           </div>
           <div>
             <span class="material-icons-outlined dark:text-white">more_horiz</span>
           </div>
+
         </div>
 
         <!--       Down side -->
