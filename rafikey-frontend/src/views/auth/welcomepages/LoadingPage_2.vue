@@ -4,27 +4,27 @@ import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import { computed  } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
 
-const chatbotStore = useRafikeyChatbotStore()
-const toggleImage = computed(()=>{
-  console.log(chatbotStore.isDarkMode)
-  return chatbotStore.isDarkMode? imageDark : imageLight
-})
+// const chatbotStore = useRafikeyChatbotStore()
+// const toggleImage = computed(()=>{
+//   console.log(chatbotStore.isDarkMode)
+//   return chatbotStore.isDarkMode? imageDark : imageLight
+// })
 </script>
 
 <template>
-  <div class="h-screen w-full space-y-5 dark:bg-lightgray">
+  <div class="h-screen flex  justify-center items-center flex-col w-full space-y-5">
     <div class="flex w-full justify-center ">
-      <img :src="toggleImage"  alt="rafikey-logo-image"  class="invisible md:visible" />
+      <img src='@/assets/images/rafikey-icon-light.png' alt="rafikey-logo-image"  class="hidden md:block" />
     </div>
-    <div class="flex flex-col py-10 items-center mx-auto lg:w-8/12 xl:w-6/12  w-10/12 space-y-12 bg-lightBackground dark:bg-darkgray rounded-2xl">
+    <div class="flex flex-col justify-center py-10 items-center mx-auto lg:w-8/12 xl:w-6/12  w-10/12 space-y-10 bg-lightBackground rounded-2xl">
       <div class="">
-        <p class="lg:text-5xl text-xl  text-center font-semibold dark:text-white">Welcome to Rafikey!</p>
+        <p class="text-extra-extra-large-1   text-center font-semibold ">Welcome to Rafikey!</p>
       </div>
       <div>
-        <img src="@/assets/images/rafikey-bot.png" alt="rafikey-image"  class="w-20 lg:w-40"/>
+        <img src="@/assets/images/rafikey-bot.png" alt="rafikey-image"  class=""/>
       </div>
       <div class="xl:w-6/12 w-9/12">
-        <p class="lg:text-xl text-sm text-gray-700 text-center flex justify-center dark:text-white">
+        <p class="text-small text-gray-700 text-center flex justify-center ">
           Rafikey is your safe, private space to talk, learn and ask about anything related to your
           body, relationship, mental health and more.
         </p>

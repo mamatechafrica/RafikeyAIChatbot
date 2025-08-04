@@ -9,7 +9,7 @@ const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
 
 const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ? imageDark : imageLight
+  return chatbotStore.isDarkMode ? imageLight: imageDark
 })
 
 

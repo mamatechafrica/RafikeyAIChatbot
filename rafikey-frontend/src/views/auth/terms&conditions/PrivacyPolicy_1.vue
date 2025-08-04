@@ -8,7 +8,8 @@ import { useRafikeyChatbotStore } from '@/stores'
 const chatbotStore = useRafikeyChatbotStore()
 
 const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ? imageDark : imageLight
+  console.log("Hello there")
+  return chatbotStore.isDarkMode ?imageLight: imageDark
 })
 
 
