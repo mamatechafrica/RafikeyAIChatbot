@@ -33,6 +33,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isDarkMode = useStorage("isDarkMode", false)
   const previousRoute =  useStorage("previousRoute", '')
   const isNewChat = useStorage("isNewChat", true)
+  const isShowTermsButton = useStorage("isShowTermsButton", true)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
@@ -46,6 +47,10 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     onChanged(dark: boolean){
       isDarkMode.value = dark
     }
+  })
+  const accessButtonRequest = reactive({
+    value: false,
+    message: ''
   })
 
 
@@ -298,7 +303,10 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     regenerateResponse,
     setRegenerateResponse,
     regenerateUserInput,
-    isDark
+    isDark,
+    isShowTermsButton,
+    accessButtonRequest,
+    setAccessButtonRequest
 
     // setRegenerateInput
 
