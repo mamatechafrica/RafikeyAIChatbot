@@ -122,11 +122,11 @@ const showProfile = () => {
   isShowProfile.value = !isShowProfile.value
 }
 
-watch(chatbotStore.collapseSidebarSmall, (value)=>{
-  if(!value) {
-    isShowProfile.value = false
-  }
-})
+// watch(chatbotStore.collapseSidebarSmall, (value)=>{
+//   if(!value) {
+//     isShowProfile.value = false
+//   }
+// })
 </script>
 
 <template>
