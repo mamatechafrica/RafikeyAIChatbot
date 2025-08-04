@@ -27,7 +27,7 @@ const closeModal = () => {
 
 <template>
   <TransitionRoot :show="props.isOpen" appear as="template">
-    <Dialog as="div" class="relative z-40 " @close="closeModal">
+    <Dialog as="div" class="relative z-50 " @close="closeModal">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -56,7 +56,7 @@ const closeModal = () => {
               :class="[props.maxWidth]"
             >
               <DialogTitle as="h3">
-                <slot name="title"> Modal title </slot>
+                <slot name="title">  </slot>
               </DialogTitle>
               <div class="mt-2">
                 <slot name="body">
