@@ -27,6 +27,22 @@ const loginData = reactive({
   password: '',
 })
 
+watch(
+  () => chatbotStore.dialogModal.isOpen,
+  (value) => {
+    if (!value) {
+      isAnonymous.value = false
+    }
+  },
+)
+
+// before unmounting if the user is a guest, close the dialog modal
+onBeforeUnmount(() => {
+  if (isUserGuest.value) {
+    chatbotStore.setDialogModal(false)
+  }
+})
+
 const router = useRouter()
 const isLoading = ref(false)
 const appLoading = ref(true)
