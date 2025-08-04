@@ -138,8 +138,14 @@ const loginHandler = ()=>{
 
 watch(
   () => isAnonymous.value,
-  () => {
-    chatbotStore.setDialogModal(true)
+  (value) => {
+    if(value){
+      chatbotStore.setDialogModal(true)
+    }
+    else{
+      chatbotStore.setDialogModal(false)
+    }
+
   },
 )
 
