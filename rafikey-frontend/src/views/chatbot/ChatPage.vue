@@ -655,6 +655,35 @@ const modeToggleHandler = useToggle(isDark)
     <div v-else>
       <SpinnerLoading />
     </div>
+    <Teleport to="body">
+      <DialogModal :is-open="showLogoutDialogModal" @close-modal="showLogoutDialogModal = !showLogoutDialogModal" >
+        <template #title>
+          <div class="flex justify-center">
+            <span class="material-icons-round dark:text-white  !text-4xl">&#128546</span>
+          </div>
+        </template>
+        <template #body>
+          <div class="flex flex-col items-center py-2">
+            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
+            <span class="dark:text-white text-lg lg:text-lg">You want to log out?</span>
+          </div>
+
+        </template>
+        <template #footer>
+          <div class="flex justify-center gap-4">
+            <button
+              @click.stop="logoutHandler"
+              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
+              <span  class="">Ok</span>
+<!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
+            </button>
+            <button
+              @click="cancelLogout "
+              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+          </div>
+        </template>
+      </DialogModal>
+    </Teleport>
   </div>
 </template>
 
