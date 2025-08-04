@@ -49,15 +49,15 @@ const regenerateResponse = ()=>{
             <span class="material-icons-outlined text-rose-400">info</span>
           </div>
           <div>
-            <span class="lg:text-lg text-sm">Opps!</span>
+            <span class="text-extra-small">Opps!</span>
           </div>
         </div>
         <div class="flex justify-between">
-          <p class="lg:text-lg text-sm">{{props.errorMessage}}</p>
+          <p class="text-small">{{props.errorMessage}}</p>
           <button
             @click="refreshChat"
             v-if="props.isLoggedIn" class="btn btn-sm bg-black shadow-none  rounded-xl p-6 " v-on:click="refreshPage">
-            <span  class="text-white lg:text-lg text-sm">Refresh chat</span>
+            <span  class="text-white text-extra-small">Refresh chat</span>
           </button>
           <button
             @click="loginHandler"
@@ -71,7 +71,7 @@ const regenerateResponse = ()=>{
     <div class="fixed bottom-0  left-1/2 -translate-x-1/2 -translate-y-1/2 z-50" v-if="props.isLoggedIn">
         <button @click = 'regenerateResponse' class="bg-casablanca-300 p-4 rounded-xl flex">
           <span class="material-icons-outlined lg:text-lg text-sm">loop</span>
-          <span class="lg:text-lg text-sm text-nowrap">Regenerate Response</span>
+          <span class="text-small text-nowrap">Regenerate Response</span>
         </button>
     </div>
   </div>
