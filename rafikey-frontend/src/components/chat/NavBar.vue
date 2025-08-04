@@ -93,6 +93,40 @@ const newChatHandler = () => {
     name: 'newChat',
   })
 }
+
+const modeToggleHandler = useToggle(isDark)
+const isShowProfile = ref(true)
+const termsConditionHandler = () => {
+  console.log('clicked the tems and condition')
+  router.push({ name: 'privacy-policy-1' })
+  chatbotStore.isShowTermsButton = false
+}
+
+const showLogoutDialogModal = ref(false)
+const confirmLogoutHandler = () => {
+  showLogoutDialogModal.value = true
+}
+
+const logoutHandler = () => {
+  authStore.logout()
+  router.push({ name: 'login' })
+}
+
+const cancelLogout = () => {
+  showLogoutDialogModal.value = false
+  isShowProfile.value = false
+}
+
+const showProfile = () => {
+  console.log('Clicking the profile')
+  isShowProfile.value = !isShowProfile.value
+}
+
+watch(chatbotStore.collapseSidebarSmall, (value)=>{
+  if(!value) {
+    isShowProfile.value = false
+  }
+})
 </script>
 
 <template>
