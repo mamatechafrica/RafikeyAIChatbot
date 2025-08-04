@@ -59,8 +59,19 @@ const isLoading = ref(false)
 
 watch(
   () => isAnonymous.value,
-  () => {
-    chatbotStore.setDialogModal(true)
+  (value) => {
+    if (value) {
+      chatbotStore.setDialogModal(true)
+    }
+  },
+)
+
+watch(
+  () => chatbotStore.dialogModal.isOpen,
+  (value) => {
+    if (!value) {
+      isAnonymous.value = false
+    }
   },
 )
 
