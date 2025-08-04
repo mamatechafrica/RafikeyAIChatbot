@@ -84,7 +84,19 @@ export default {
         },
         darkgray: '#222222',
         lightgray: '#252525',
-        lightBackground: '#F6F6F6'
+        lightBackground: '#F6F6F6',
+        bubbleDark: '#191919'
+      },
+      fontSize:{
+        'extra-extra-small-2': '10px',
+        'extra-extra-small': '13px',
+          'extra-small': '14px',
+          'small': '16px',
+          'large': '18px',
+          'extra-large': '24px',
+          'extra-extra-large-1': '32px',
+          'extra-extra-large': '40px',
+          'extra-extra-large-2': '48px',
       },
       fontFamily: {
         'sf-pro': ['SF Pro Regular', 'Ubuntu', 'sans-serif'],
