@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/ErrorPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/LisxBox.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/LisxBox.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ChatHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ChatHistory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="Vue Composition API Component" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2wE7xvddMICTksqV2YFWfTcwsgZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/play_ground&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.clear-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sync-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.zip-pub.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rafikey-frontend/public" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/modules" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/toasts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/chat" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/loggedInUser" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="clear-pub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="clear-pub" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="sync-pub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="sync-pub" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="zip-pub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="zip-pub" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.zip-pub" />
+        <item itemvalue="npm.sync-pub" />
+        <item itemvalue="npm.clear-pub" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="" />
+      <created>1745595130881</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745595130881</updated>
+      <workItem from="1745595132834" duration="3907000" />
+      <workItem from="1745599198659" duration="1651000" />
+      <workItem from="1745600860411" duration="5610000" />
+      <workItem from="1745663877762" duration="263000" />
+      <workItem from="1745664155501" duration="783000" />
+      <workItem from="1745664956578" duration="19859000" />
+      <workItem from="1745727216970" duration="13697000" />
+      <workItem from="1745845317834" duration="3529000" />
+      <workItem from="1745851217502" duration="7018000" />
+      <workItem from="1745910176875" duration="2538000" />
+      <workItem from="1745987029903" duration="28000" />
+      <workItem from="1746094383594" duration="619000" />
+      <workItem from="1746688091764" duration="6395000" />
+      <workItem from="1746696387123" duration="786000" />
+      <workItem from="1747655283228" duration="4000" />
+      <workItem from="1747824135058" duration="1217000" />
+      <workItem from="1750164032479" duration="5639000" />
+      <workItem from="1750231437020" duration="23599000" />
+      <workItem from="1750310312253" duration="36705000" />
+      <workItem from="1750401713856" duration="17512000" />
+      <workItem from="1750669831029" duration="25000" />
+      <workItem from="1750706231352" duration="12696000" />
+      <workItem from="1750765422288" duration="10525000" />
+      <workItem from="1750776880171" duration="3394000" />
+      <workItem from="1750832285505" duration="27137000" />
+      <workItem from="1750870857943" duration="8950000" />
+      <workItem from="1750916027371" duration="1041000" />
+      <workItem from="1750932924123" duration="18262000" />
+      <workItem from="1751018032281" duration="20861000" />
+      <workItem from="1751275048773" duration="15131000" />
+      <workItem from="1751352096176" duration="17367000" />
+      <workItem from="1751425839980" duration="23734000" />
+      <workItem from="1751695403517" duration="26766000" />
+      <workItem from="1751882840977" duration="7002000" />
+      <workItem from="1751973279165" duration="13662000" />
+      <workItem from="1752010257827" duration="7529000" />
+      <workItem from="1752088677150" duration="1492000" />
+      <workItem from="1752090630314" duration="25699000" />
+      <workItem from="1752164129117" duration="5580000" />
+      <workItem from="1752204807120" duration="53209000" />
+      <workItem from="1752413033065" duration="19605000" />
+      <workItem from="1752443479719" duration="10621000" />
+      <workItem from="1752455211773" duration="30106000" />
+      <workItem from="1752556429099" duration="42193000" />
+      <workItem from="1752648603926" duration="5119000" />
+      <workItem from="1752656514867" duration="3695000" />
+      <workItem from="1752662028611" duration="308000" />
+      <workItem from="1752662527883" duration="4255000" />
+      <workItem from="1752682574918" duration="600000" />
+      <workItem from="1752692468243" duration="2531000" />
+      <workItem from="1752735845711" duration="89000" />
+      <workItem from="1752735956944" duration="2708000" />
+      <workItem from="1752786883788" duration="5407000" />
+      <workItem from="1753254652772" duration="1330000" />
+      <workItem from="1753280720867" duration="647000" />
+      <workItem from="1753334011434" duration="1397000" />
+      <workItem from="1753425473576" duration="27405000" />
+      <workItem from="1753680367803" duration="33855000" />
+      <workItem from="1753764666022" duration="16062000" />
+      <workItem from="1753855480043" duration="43712000" />
+      <workItem from="1753946619121" duration="10575000" />
+      <workItem from="1753970259479" duration="50000" />
+      <workItem from="1754027352958" duration="23658000" />
+      <workItem from="1754055162532" duration="789000" />
+      <workItem from="1754066204372" duration="5744000" />
+      <workItem from="1754119989819" duration="22615000" />
+      <workItem from="1754157220567" duration="14979000" />
+      <workItem from="1754237628082" duration="28480000" />
+      <workItem from="1754287675167" duration="21735000" />
+    </task>
+    <task id="LOCAL-00266" summary="add a watcher for everythingOk computed variable">
+      <option name="closed" value="true" />
+      <created>1753702516330</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1753702516330</updated>
+    </task>
+    <task id="LOCAL-00267" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1753702534760</created>
+      <option name="number" value="00267" />
+      <option name="presentableId" value="LOCAL-00267" />
+      <option name="project" value="LOCAL" />
+      <updated>1753702534760</updated>
+    </task>
+    <task id="LOCAL-00268" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1753705604025</created>
+      <option name="number" value="00268" />
+      <option name="presentableId" value="LOCAL-00268" />
+      <option name="project" value="LOCAL" />
+      <updated>1753705604025</updated>
+    </task>
+    <task id="LOCAL-00269" summary="add auto scrolling logic">
+      <option name="closed" value="true" />
+      <created>1753775191605</created>
+      <option name="number" value="00269" />
+      <option name="presentableId" value="LOCAL-00269" />
+      <option name="project" value="LOCAL" />
+      <updated>1753775191605</updated>
+    </task>
+    <task id="LOCAL-00270" summary="add ref and watch">
+      <option name="closed" value="true" />
+      <created>1753775209894</created>
+      <option name="number" value="00270" />
+      <option name="presentableId" value="LOCAL-00270" />
+      <option name="project" value="LOCAL" />
+      <updated>1753775209894</updated>
+    </task>
+    <task id="LOCAL-00271" summary="add a placeholder div">
+      <option name="closed" value="true" />
+      <created>1753775228649</created>
+      <option name="number" value="00271" />
+      <option name="presentableId" value="LOCAL-00271" />
+      <option name="project" value="LOCAL" />
+      <updated>1753775228649</updated>
+    </task>
+    <task id="LOCAL-00272" summary="add arguments for setProfile setter function">
+      <option name="closed" value="true" />
+      <created>1753775280896</created>
+      <option name="number" value="00272" />
+      <option name="presentableId" value="LOCAL-00272" />
+      <option name="project" value="LOCAL" />
+      <updated>1753775280896</updated>
+    </task>
+    <task id="LOCAL-00273" summary="remove auto scroll logic">
+      <option name="closed" value="true" />
+      <created>1753775360477</created>
+      <option name="number" value="00273" />
+      <option name="presentableId" value="LOCAL-00273" />
+      <option name="project" value="LOCAL" />
+      <updated>1753775360477</updated>
+    </task>
+    <task id="LOCAL-00274" summary="add nextTick for DOM updated in scrollToBottom function">
+      <option name="closed" value="true" />
+      <created>1753776601174</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1753776601174</updated>
+    </task>
+    <task id="LOCAL-00275" summary="remove value parameter">
+      <option name="closed" value="true" />
+      <created>1753901268888</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901268888</updated>
+    </task>
+    <task id="LOCAL-00276" summary="update regenerateUserInput variable">
+      <option name="closed" value="true" />
+      <created>1753901353098</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901353098</updated>
+    </task>
+    <task id="LOCAL-00277" summary="add variables">
+      <option name="closed" value="true" />
+      <created>1753901378279</created>
+      <option name="number" value="00277" />
+      <option name="presentableId" value="LOCAL-00277" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901378279</updated>
+    </task>
+    <task id="LOCAL-00278" summary="add error handling logic on stream">
+      <option name="closed" value="true" />
+      <created>1753901458678</created>
+      <option name="number" value="00278" />
+      <option name="presentableId" value="LOCAL-00278" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901458678</updated>
+    </task>
+    <task id="LOCAL-00279" summary="add setStreamError  function">
+      <option name="closed" value="true" />
+      <created>1753901482831</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901482831</updated>
+    </task>
+    <task id="LOCAL-00280" summary="add setStreamError  function">
+      <option name="closed" value="true" />
+      <created>1753901489812</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901489812</updated>
+    </task>
+    <task id="LOCAL-00281" summary="update isNewChat variable on localstorage">
+      <option name="closed" value="true" />
+      <created>1753901557023</created>
+      <option name="number" value="00281" />
+      <option name="presentableId" value="LOCAL-00281" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901557023</updated>
+    </task>
+    <task id="LOCAL-00282" summary="add checks for streamError for autoscroll">
+      <option name="closed" value="true" />
+      <created>1753901647753</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901647753</updated>
+    </task>
+    <task id="LOCAL-00283" summary="add ErrorScreen  component">
+      <option name="closed" value="true" />
+      <created>1753901689415</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901689415</updated>
+    </task>
+    <task id="LOCAL-00284" summary="add loginHandler function">
+      <option name="closed" value="true" />
+      <created>1753901744458</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901744458</updated>
+    </task>
+    <task id="LOCAL-00285" summary="add props">
+      <option name="closed" value="true" />
+      <created>1753901759409</created>
+      <option name="number" value="00285" />
+      <option name="presentableId" value="LOCAL-00285" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901759409</updated>
+    </task>
+    <task id="LOCAL-00286" summary="add regenerateResponse function">
+      <option name="closed" value="true" />
+      <created>1753901778345</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901778345</updated>
+    </task>
+    <task id="LOCAL-00287" summary="pass props to ui">
+      <option name="closed" value="true" />
+      <created>1753901814360</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901814360</updated>
+    </task>
+    <task id="LOCAL-00288" summary="add scrollToBottom function">
+      <option name="closed" value="true" />
+      <created>1753901876126</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901876126</updated>
+    </task>
+    <task id="LOCAL-00289" summary="add ErrorScreen component">
+      <option name="closed" value="true" />
+      <created>1753901933030</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1753901933030</updated>
+    </task>
+    <task id="LOCAL-00290" summary="add login for regenerate and normal response">
+      <option name="closed" value="true" />
+      <created>1753902014173</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
+      <option name="project" value="LOCAL" />
+      <updated>1753902014173</updated>
+    </task>
+    <task id="LOCAL-00291" summary="add condition for loading balls">
+      <option name="closed" value="true" />
+      <created>1753953330020</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953330021</updated>
+    </task>
+    <task id="LOCAL-00292" summary="remove update for newChat">
+      <option name="closed" value="true" />
+      <created>1753953355920</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953355920</updated>
+    </task>
+    <task id="LOCAL-00293" summary="add update isNewChat and isStreamError">
+      <option name="closed" value="true" />
+      <created>1753953397225</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953397225</updated>
+    </task>
+    <task id="LOCAL-00294" summary="add a watcher regenerate response">
+      <option name="closed" value="true" />
+      <created>1753953486336</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953486336</updated>
+    </task>
+    <task id="LOCAL-00295" summary="add logic for regenerate response or normal response">
+      <option name="closed" value="true" />
+      <created>1753953523816</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953523817</updated>
+    </task>
+    <task id="LOCAL-00296" summary="add a watcher regenerate response">
+      <option name="closed" value="true" />
+      <created>1753953554279</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953554279</updated>
+    </task>
+    <task id="LOCAL-00297" summary="add logic for regenerate response or normal response">
+      <option name="closed" value="true" />
+      <created>1753953581154</created>
+      <option name="number" value="00297" />
+      <option name="presentableId" value="LOCAL-00297" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953581154</updated>
+    </task>
+    <task id="LOCAL-00298" summary="add update isNewChat flag">
+      <option name="closed" value="true" />
+      <created>1753953613755</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
+      <option name="project" value="LOCAL" />
+      <updated>1753953613755</updated>
+    </task>
+    <task id="LOCAL-00299" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1753955465415</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
+      <option name="project" value="LOCAL" />
+      <updated>1753955465415</updated>
+    </task>
+    <task id="LOCAL-00300" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1753955515957</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
+      <option name="project" value="LOCAL" />
+      <updated>1753955515957</updated>
+    </task>
+    <task id="LOCAL-00301" summary="add the utility class for darMode">
+      <option name="closed" value="true" />
+      <created>1754055306325</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055306326</updated>
+    </task>
+    <task id="LOCAL-00302" summary="add startChatHandler  function">
+      <option name="closed" value="true" />
+      <created>1754055340549</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055340549</updated>
+    </task>
+    <task id="LOCAL-00303" summary="add buttons">
+      <option name="closed" value="true" />
+      <created>1754055408446</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055408446</updated>
+    </task>
+    <task id="LOCAL-00304" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1754055422498</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055422498</updated>
+    </task>
+    <task id="LOCAL-00305" summary="add  profileHandler function">
+      <option name="closed" value="true" />
+      <created>1754055444413</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055444413</updated>
+    </task>
+    <task id="LOCAL-00306" summary="add  profileHandler  emits">
+      <option name="closed" value="true" />
+      <created>1754055460862</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055460863</updated>
+    </task>
+    <task id="LOCAL-00307" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1754055482064</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055482064</updated>
+    </task>
+    <task id="LOCAL-00308" summary="add navigationguard">
+      <option name="closed" value="true" />
+      <created>1754055526865</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055526865</updated>
+    </task>
+    <task id="LOCAL-00309" summary="add profileHandler  function">
+      <option name="closed" value="true" />
+      <created>1754055592594</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055592594</updated>
+    </task>
+    <task id="LOCAL-00310" summary="add profile section">
+      <option name="closed" value="true" />
+      <created>1754055643308</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055643308</updated>
+    </task>
+    <task id="LOCAL-00311" summary="add logoutHandler function">
+      <option name="closed" value="true" />
+      <created>1754055723100</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055723100</updated>
+    </task>
+    <task id="LOCAL-00312" summary="update isSmallScreen on DOM update">
+      <option name="closed" value="true" />
+      <created>1754055795685</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055795686</updated>
+    </task>
+    <task id="LOCAL-00313" summary="add useToggle composable">
+      <option name="closed" value="true" />
+      <created>1754055820771</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055820772</updated>
+    </task>
+    <task id="LOCAL-00314" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1754055848092</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055848093</updated>
+    </task>
+    <option name="localTasksCounter" value="315" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add loginHandler function" />
+    <MESSAGE value="add props" />
+    <MESSAGE value="add regenerateResponse function" />
+    <MESSAGE value="pass props to ui" />
+    <MESSAGE value="add scrollToBottom function" />
+    <MESSAGE value="add ErrorScreen component" />
+    <MESSAGE value="add login for regenerate and normal response" />
+    <MESSAGE value="add condition for loading balls" />
+    <MESSAGE value="remove update for newChat" />
+    <MESSAGE value="add update isNewChat and isStreamError" />
+    <MESSAGE value="add a watcher regenerate response" />
+    <MESSAGE value="add logic for regenerate response or normal response" />
+    <MESSAGE value="add update isNewChat flag" />
+    <MESSAGE value="add the utility class for darMode" />
+    <MESSAGE value="add startChatHandler  function" />
+    <MESSAGE value="add buttons" />
+    <MESSAGE value="add  profileHandler function" />
+    <MESSAGE value="add  profileHandler  emits" />
+    <MESSAGE value="add navigationguard" />
+    <MESSAGE value="add profileHandler  function" />
+    <MESSAGE value="add profile section" />
+    <MESSAGE value="add logoutHandler function" />
+    <MESSAGE value="update isSmallScreen on DOM update" />
+    <MESSAGE value="add useToggle composable" />
+    <MESSAGE value="add styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="add styling" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
+          <line>1</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
+          <line>305</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue</url>
+          <line>2</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
+          <line>580</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue</url>
+          <line>25</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/components/chat/ChatHistory.vue</url>
+          <line>1</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue</url>
+          <line>1</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

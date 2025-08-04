@@ -478,6 +478,32 @@ onMounted(() => {
   }
 })
 
+// Destroy the listeners to prevents memory leaks and unwanted side effects
+onUnmounted(()=>{
+  document.removeEventListener('click', closeProfileSection)
+// watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
+//   if(val.value){
+//     console.log('Access button request', val)
+//     nextTick(()=>{
+//       handleUserInput(val.message)
+//     })
+//
+//     // rafikeyChatbotStore.setAccessButtonRequest('')
+//   }
+//
+// })
+
+})
+
+
+// if someone clicks outside the profile section area when the profile section  is open it closes
+const closeProfileSection = (event: MouseEvent) => {
+  if(profileSectionElement.value && !profileSectionElement.value.contains(event.target as HTMLElement)) {
+    isShowProfile.value = false
+  }
+}
+
+
 // check if the regenerate has been punched to regenerate the response
 watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
   if(newValue){
