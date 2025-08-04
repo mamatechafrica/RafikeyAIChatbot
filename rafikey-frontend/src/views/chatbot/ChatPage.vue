@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted, watch } from 'vue'
+import { ref, nextTick, onMounted, watch, onUnmounted } from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
@@ -12,6 +12,7 @@ import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
 import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
 import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
+import DialogModal from '@/components/DialogModal.vue'
 
 
 interface HistoryConv {
@@ -30,6 +31,7 @@ const router = useRouter()
 const route = useRoute()
 const isLoading = ref(false)
 const isDark = useDark()
+const profileSectionElement = ref<HTMLDivElement | null>()
 
 // const isGeneratingResponse = ref(false)
 const now = moment()
@@ -59,7 +61,7 @@ const renderer: RendererObject = {
     const header = hd
       .map(({ text, header }) => {
         return `
-      <th class="text-base-content text-sm md:text-md">${marked.parseInline(text)}</th>
+      <th class="text-base-content text-large">${marked.parseInline(text)}</th>
     `
       })
       .join('\n')
@@ -70,7 +72,7 @@ const renderer: RendererObject = {
       <tr>${row
         .map(({ text, header }) => {
           return `
-        <td class="text-base-content text-sm md:text-md">${marked.parseInline(text)}</td>
+        <td class="text-base-content text-large">${marked.parseInline(text)}</td>
       `
         })
         .join('\n')}</tr>
@@ -81,7 +83,7 @@ const renderer: RendererObject = {
     return `
    <div class="bg-base-100 p-2.5 rounded-xl shadow-lg shadow-base-200 my-5">
     <div class="overflow-x-auto py-4">
-        <table class="table table-sm md:text-md table-zebra border">
+        <table class="table table-sm text-large table-zebra border">
         <thead>
             ${header}
         </thead>
@@ -133,7 +135,7 @@ const renderer: RendererObject = {
     const body = items
       .map(({ task, checked, loose, text }) => {
         return `
-      <li class="text-base-accent text-sm md:text-md">${marked.parseInline(text)}</li>
+      <li class="text-base-accent text-large">${marked.parseInline(text)}</li>
       `
       })
       .join('\n')
@@ -161,40 +163,40 @@ const renderer: RendererObject = {
   },
   listitem({ task, checked, loose, text }: Tokens.ListItem) {
     return `
-    <li class="text-base-accent text-sm lg:text-lg md:text-md">${marked.parseInline(text)}</li>
+    <li class="text-base-accent text-small">${marked.parseInline(text)}</li>
   `
   },
   paragraph({ text, pre }: Tokens.Paragraph) {
     return `
-    <p class="text-base-accent leading-relaxed text-sm md:text-md">${marked.parseInline(text)}</p>
+    <p class="text-base-accent leading-relaxed text-small">${marked.parseInline(text)}</p>
   `
   },
   heading({ text, depth: level }: Tokens.Heading) {
-    let cssClassLevel = '!text-peach-900 text-lg my-2'
+    let cssClassLevel = 'dark:text-white text-large my-2'
 
     switch (level) {
       case 1:
-        cssClassLevel = '!text-peach-900 text-xl md:text-2xl my-2'
+        cssClassLevel = 'dark:text-white text-extra-large my-2'
         break
       case 2:
-        cssClassLevel = '!text-peach-900  text-lg md:text-xl my-1.5 '
+        cssClassLevel = 'dark:text-white  text-large my-1.5 '
         break
       case 3:
-        cssClassLevel = '!text-peach-900  text-sm md:text-lg my-1.5'
+        cssClassLevel = 'dark:text-white  text-small my-1.5'
         break
       case 4:
-        cssClassLevel = '!text-peach-900  text-xs md:text-base my-1'
+        cssClassLevel = 'dark:text-white  text-extra-small  my-1'
         break
       case 5:
-        cssClassLevel = '!text-peach-900 text-xxs md:text-sm my-1'
+        cssClassLevel = 'dark:text-white text-extra-extra-small my-1'
         break
       case 6:
-        cssClassLevel = ' !text-peach-900 text-xxxs md:text-xs my-0.5'
+        cssClassLevel = 'dark:text-white   text-extra-extra-small-2  my-0.5'
         break
     }
 
     return `
-    <h${level} class="${cssClassLevel} font-semibold text-base-accent !text-peach-900">${marked.parseInline(text)}</h${level}>
+    <h${level} class="${cssClassLevel} font-semibold text-base-accent dark:text-white">${marked.parseInline(text)}</h${level}>
   `
   },
   hr() {
@@ -214,7 +216,7 @@ const renderer: RendererObject = {
   },
   strong({ text }: Tokens.Strong) {
     return `
-    <strong class="!text-peach-900 font-semi-bold  my-2.5 text-sm md:text-lg">${text}</strong>
+    <strong class="dark:text-white font-semi-bold  my-2.5 text-large">${text}</strong>
   `
   },
   codespan({ text: code }: Tokens.Codespan) {
@@ -229,26 +231,26 @@ const renderer: RendererObject = {
   },
   em({ text }: Tokens.Em) {
     return `
-    <em class="font-light my-1 text-sm md:text-md">${text}</em>
+    <em class="font-light my-1 text-small">${text}</em>
   `
   },
   del({ text }: Tokens.Del) {
     return `
-    <del class="font-poppins-light my-1 text-sm md:text-md">${text}</del>
+    <del class="font-poppins-light my-1 text-small">${text}</del>
   `
   },
   text({ text, type }: Tokens.Text | Tokens.Escape | Tokens.Tag) {
     if (type === 'text') {
       return `
-      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
+      <span class="text-small">${text}</span>
     `
     } else if (type === 'escape') {
       return `
-      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
+      <span class="text-small">${text}</span>
     `
     } else {
       return `
-      <span class="text-sm md:text-lg lg:text-xl">${text}</span>
+      <span class="text-small">${text}</span>
     `
     }
   },
@@ -273,6 +275,7 @@ const handleUserInput = (formatted: string) => {
       },
     })
   }
+  console.log('User input', formatted)
 
   // don't re-create the user bubble if the user is regenerating the response
   if (!rafikeyChatbotStore.regenerateResponse) {
@@ -281,6 +284,8 @@ const handleUserInput = (formatted: string) => {
       isUser: true,
       uniqueId: _.uniqueId('user-'),
     }
+    rafikeyChatbotStore.conversation.push(userMessage.value)
+    console.log('User message----', userMessage.value)
 
     const rafikeyMessage = ref<Conversation>({
       message: '',
@@ -289,15 +294,12 @@ const handleUserInput = (formatted: string) => {
       uniqueId: _.uniqueId('rafikey-'),
       timestamp: '',
     })
-
-    rafikeyChatbotStore.conversation.push(userMessage.value)
-
     //   push rafikey message to the array
     setTimeout(() => {
       rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
     }, 500)
     rafikeyChatbotStore.isGeneratingResponse = true
-    console.log('Raafikey Array', rafikeyMessage.value)
+    console.log('conversation array', rafikeyChatbotStore.conversation)
 
     rafikeyChatbotStore
       .sendMessageToRafikeyChatbot({
@@ -404,6 +406,7 @@ const profileHandler = () =>{
 
 // fetching chat history
 const fetchHistoryHandler = (activeSessionId: string) => {
+  console.log("Fetch chat histories")
   rafikeyChatbotStore.conversation = []
   isLoading.value = true
   rafikeyChatbotStore
@@ -476,6 +479,8 @@ onMounted(() => {
       fetchHistoryHandler(activeSessionId)
     })
   }
+  // create listeners once the component is mounted
+  document.addEventListener('click', closeProfileSection)
 })
 
 // Destroy the listeners to prevents memory leaks and unwanted side effects
@@ -506,6 +511,7 @@ const closeProfileSection = (event: MouseEvent) => {
 
 // check if the regenerate has been punched to regenerate the response
 watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
+  console.log("Regenerate response")
   if(newValue){
     handleUserInput(rafikeyChatbotStore.regenerateUserInput)
   }
@@ -523,6 +529,13 @@ const logoutHandler = () =>{
   router.push({ name: 'login' })
 }
 
+const cancelLogout = () =>{
+  showLogoutDialogModal.value = false
+  isShowProfile.value = false
+
+
+}
+
 const isSmallScreen = ref(false)
 const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
@@ -536,7 +549,6 @@ watch(()=>isSmallDevice.value, (val)=>{
     else{
       isSmallScreen.value = false
     }
-
 })
 
 const termsConditionHandler = ()=>{
@@ -570,7 +582,7 @@ const modeToggleHandler = useToggle(isDark)
         ]"
       >
         <!--    top -->
-        <div class="justify-end gap-4 w-11/12 sticky top-0 cursor-pointer flex">
+        <div class="hidden justify-end gap-4 w-11/12 sticky top-0 cursor-pointer md:flex">
           <div
             class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
           >
@@ -586,40 +598,43 @@ const modeToggleHandler = useToggle(isDark)
 
         <RouterView #default="{ Component, route }">
           <template v-if="Component">
-            <component :is="Component" :key="route.fullPath" />
+            <component :is="Component" :key="route.fullPath" @user-input="handleUserInput" />
           </template>
         </RouterView>
 
 <!--        profile section-->
         <div :class="[rafikeyChatbotStore.collapseSidebarLarge? '': 'left-28 bottom-8 z-50']"
-             v-show="isShowProfile" class="dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white border-[1px] border-stone-300  w-60 p-4 rounded-2xl">
-          <div class="space-y-3">
-            <div class="flex gap-4">
-              <span class="material-icons-outlined dark:text-white">article</span>
-              <span class="dark:text-white">Terms and Conditions</span>
+             ref="profileSectionElement"
+             v-show="isShowProfile" class="divide-y divide-solid dark:divide-stone-700 dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white shadow-2xl   w-60 p-4 rounded-2xl">
+          <div class="space-y-1">
+            <div
+              @click.stop="termsConditionHandler"
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700  rounded-lg px-2 py-1">
+              <span class="material-icons-outlined dark:text-white  !text-xl">article</span>
+              <span class="dark:text-white text-gray-700">Terms and Conditions</span>
             </div>
-            <div class="flex gap-4">
-              <span class="material-icons-outlined dark:text-white">support</span>
-              <span class="dark:text-white">Help</span>
+            <div class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
+              <span class="material-icons-outlined dark:text-white  !text-xl">support</span>
+              <span class="dark:text-white text-gray-700">Help</span>
             </div>
             <div
               @click.stop="modeToggleHandler()"
-              class="flex gap-4">
-              <span v-if="!isDark" class="material-icons-outlined text-stone-500 dark:text-white">dark_mode</span>
-              <span v-else class="material-icons-outlined text-stone-500 dark:text-white">light_mode</span>
-              <span v-if="!isDark" class="dark:text-white">Dark Mode</span>
-              <span v-else class="dark:text-white">Light Mode</span>
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
+              <span v-if="!isDark" class="material-icons-outlined  dark:text-white !text-xl">dark_mode</span>
+              <span v-else class="material-icons-outlined  dark:text-white">light_mode</span>
+              <span v-if="!isDark" class="dark:text-white text-gray-700">Dark Mode</span>
+              <span v-else class="dark:text-white text-gray-700">Light Mode</span>
             </div>
           </div>
-          <div class="border-[0.5px] border-stone-300"></div>
-          <div class="space-y-4">
+<!--          <div class="divide-y divide-solid  "></div>-->
+          <div class="space-y-1 pt-2">
             <div
-              @click.stop="logoutHandler"
-              class="flex gap-4">
-              <span class="material-icons-round dark:text-white">exit_to_app</span>
-              <span class="dark:text-white">Log Out</span>
+              @click.stop="confirmLogoutHandler"
+              class="flex gap-4 hover:bg-lightBackground  dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
+              <span class="material-icons-round dark:text-white  !text-xl">exit_to_app</span>
+              <span class="dark:text-white text-gray-700">Log out</span>
             </div>
-            <div class="flex gap-4">
+            <div class="flex gap-4 rounded-lg px-2 py-1">
               <span class="material-icons-round text-stone-400 dark:text-white">person_outline</span>
               <span class="text-stone-400">{{authStore.getUserInfo()?.username}}</span>
             </div>
