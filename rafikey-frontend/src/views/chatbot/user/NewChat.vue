@@ -8,7 +8,11 @@ import imageIconDark from '@/assets/images/rafikey-icon-dark.png'
 import { v4 as uuidV4 } from 'uuid'
 import { useRouter } from 'vue-router'
 
-
+interface AccessQuestion {
+  id: number
+  question: string
+  icon: string
+}
 
 const chatbotStore = useRafikeyChatbotStore()
 const authStore = useAuthStore()
@@ -36,7 +40,7 @@ const startChatHandler = () =>{
 
 const startVoiceChat = () => {
 
-}
+
 
 const accessQuestions = [
   {
