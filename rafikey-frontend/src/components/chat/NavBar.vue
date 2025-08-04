@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { type ChatHistoryTitle, useRafikeyChatbotStore } from '@/stores'
+import { onMounted, ref, watch } from 'vue'
+import { type ChatHistoryTitle, useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import ChatHistory from '@/components/chat/ChatHistory.vue'
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { useRouter } from 'vue-router'
-
+import DialogModal from '@/components/DialogModal.vue'
+import { useDark, useToggle } from '@vueuse/core'
 
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
+const isDark = useDark()
+const authStore = useAuthStore()
 const isChatHIstoryError = ref(false)
 onMounted(() => {
   chatbotStore
