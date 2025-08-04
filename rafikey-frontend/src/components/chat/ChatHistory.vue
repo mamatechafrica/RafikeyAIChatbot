@@ -38,7 +38,7 @@ const chatHistoryHandler = (propVal: ChatHistoryProps) => {
        :class="[ chatbotStore.sessionId === props.threadId? 'bg-stone-300 dark:bg-stone-700  border-r-4 border-blue-600 ': 'bg-transparent']"
        @click="chatHistoryHandler(props)"
   >
-    <p class="text-start line-clamp-1 text-sm dark:text-white ">{{props.title}}</p>
+    <p class="text-start line-clamp-1 text-small dark:text-white ">{{props.title}}</p>
   </div>
 </template>
 
