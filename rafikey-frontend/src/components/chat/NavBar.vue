@@ -323,11 +323,39 @@ watch(chatbotStore.collapseSidebarSmall, (value)=>{
                         <div class="border-b border-darkgray pt-4"></div>
                       </DialogTitle>
                     </div>
-                    <div class="relative mt-6 flex-1">
-                      <div class="flex justify-between pb-4 px-4 cursor-pointer"    @click="newChatHandler">
-                        <span class="dark:text-white text-lg flex items-center">New Chat</span>
+                    <div class="relative space-y-3 flex-1">
+                      <div class="flex justify-between px-4">
+                        <div class="flex gap-4 items-center">
+                          <div
+                            class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
+                          >
+                            <span
+                              class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
+                              >share</span
+                            >
+                            <span class="dark:text-white md:text-lg text-sm">Share</span>
+                          </div>
+                          <div class="">
+                            <span class="dark:text-white md:text-lg text-sm">Feedback</span>
+                          </div>
+                        </div>
+                        <div @click="showProfile">
+                          <img
+                            src="@/assets/images/Avatar.png"
+                            alt="rafikey-avatar"
+                            class="w-10 h-10 rounded-full"
+                          />
+                        </div>
+                      </div>
+                      <div class="border-b border-darkgray"></div>
+
+                      <div
+                        class="flex justify-between pb-4 px-4 cursor-pointer"
+                        @click="newChatHandler"
+                      >
+                        <span class="dark:text-white text-small flex items-center">New Chat</span>
                         <div
-                          class="bg-darkgray dark:bg-stone-700 p-2 rounded-md flex items-center justify-center"
+                          class="bg-darkgray dark:bg-stone-700 p-1 rounded-md flex items-center justify-center"
                         >
                           <span class="material-icons-outlined text-white">add</span>
                         </div>
