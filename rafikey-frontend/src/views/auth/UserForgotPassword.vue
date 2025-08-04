@@ -2,10 +2,10 @@
 import { ref, watch, computed, reactive } from 'vue'
 import { useField } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
-import imageLight from '@/assets/images/rafikey-icon.png'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
+// import imageLight from '@/assets/images/rafikey-icon-light.png'
+// import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 const router = useRouter()
 const emailData = ref<string>('')
@@ -13,15 +13,15 @@ const authStore = useAuthStore()
 const isLoading = ref(false)
 const forgotPasswordError = reactive({
   isError: false,
-  message: ''
+  message: '',
 })
 
 
 
-const isDark = localStorage.getItem('isDarkMode')
-const toggleImage = computed(()=>{
-  return isDark? imageDark : imageLight
-})
+// const toggleImage = computed(() => {
+//   console.log('Toggle', chatbotStore.isDarkMode)
+//   return chatbotStore.isDarkMode ? imageDark : imageLight
+// })
 
 const emailValidator = (value: string) => {
   if (!value) {
