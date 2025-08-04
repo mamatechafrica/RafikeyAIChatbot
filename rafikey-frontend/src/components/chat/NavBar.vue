@@ -69,9 +69,8 @@ const emits = defineEmits<{
 
 // fetch clicked chat History title
 const fetchHistoryHandler = (activeSessionId: string) => {
-emits('fetchHistoryHandler', activeSessionId)
+  emits('fetchHistoryHandler', activeSessionId)
 }
-
 
 // profile handler
 const profileHandler = () => {
@@ -89,9 +88,9 @@ const expandSideNavHandler = () => {
 
 // generate a new chat
 const newChatHandler = () => {
-chatbotStore.conversation = []
+  chatbotStore.conversation = []
   router.push({
-    name: 'newChat'
+    name: 'newChat',
   })
 }
 </script>
