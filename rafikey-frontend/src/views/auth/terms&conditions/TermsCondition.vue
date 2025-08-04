@@ -31,6 +31,13 @@ const isTermsConditionHandler = (value: boolean) =>{
       })
     }
 }
+const goBack = () =>{
+  if(chatbotStore.isShowTermsButton){
+    router.push({ name: 'get-to-know-you' })
+  } else{
+    router.push({ name: 'newChat' })
+  }
+}
 
 
 </script>
