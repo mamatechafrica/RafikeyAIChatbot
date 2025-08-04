@@ -76,7 +76,6 @@ const routes = [
         path: 'login',
         component: () => import('@/views/auth/UserLogin.vue'),
         beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
-          console.log("In login!!!")
           const authStore = useAuthStore()
 
           // If user is already logged in, redirect to chat page
@@ -125,8 +124,9 @@ const routes = [
           requiresAuth: true,
           newChat: true
         },
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized) => {
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           const chatbotStore = useRafikeyChatbotStore()
+          const authStore = useAuthStore()
           // Reset the chat history when entering a new chat
           chatbotStore.isNewChat = true
           chatbotStore.setStreamError({
@@ -134,6 +134,12 @@ const routes = [
             errorMessage: '',
             isLoggedIn: true
           })
+          // If user is already logged in, redirect to chat page
+          if (!authStore.isEverLoggedIn) {
+            next({ name: 'welcome-page' })
+          } else{
+            next()
+          }
         }
       },
       {
@@ -149,10 +155,19 @@ const routes = [
         meta: {
           requiresAuth: true
         },
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized) => {
+        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           const chatbotStore = useRafikeyChatbotStore()
+          const authStore = useAuthStore()
           // Reset the chat history when entering a new chat
-          chatbotStore.isNewChat = false
+          // chatbotStore.isNewChat = false
+
+          // If user is already logged in, redirect to chat page
+          if (!authStore.isEverLoggedIn) {
+            next({ name: 'welcome-page' })
+          } else{
+            next()
+          }
+
         }
       }
     ]
