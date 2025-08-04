@@ -180,17 +180,17 @@ onBeforeUnmount(()=>{
 
 <template>
   <div v-if="!appLoading">
-    <div class="h-screen overflow-hidden w-full hidden lg:block dark:bg-lightgray">
+    <div class="min-h-screen overflow-hidden w-full hidden lg:block ">
       <div class="grid grid-cols-2 w-10/12 mx-auto ">
         <!--    left side-->
         <div class="col-span-1">
           <div class="">
-            <img :src="toggleImage" alt="rafikey-icon" />
+            <img src='@/assets/images/rafikey-icon-light.png' alt="rafikey-icon" class=" w-60" />
           </div>
-          <div class="flex flex-col space-y-4">
+          <div class="flex flex-col space-y-10">
             <div class="flex flex-col space-y-6">
-              <h2 class="text-4xl dark:text-white font-semibold">Login</h2>
-              <p class="lg:text-xl text-lg text-gray-700 dark:text-stone-300">Login to access your Rafikey</p>
+              <h2 class="text-extra-extra-large  font-semibold">Login</h2>
+              <p class="text-large text-gray-700 ">Login to access your Rafikey account.</p>
             </div>
 
             <!--          login form-->
@@ -202,11 +202,11 @@ onBeforeUnmount(()=>{
                     id="usernameLarge"
                     type="text"
                     required
-                    class="w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+                    class="w-full border-[1px] border-gray-300  rounded-2xl p-4 text-small d"
                     placeholder="johndoe"
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 dark:text-white px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
+                    class="absolute left-1 -top-3 text-slate-600 px-1 text-extra-extra-small bg-white "
                     for="usernameLarge">
                     Username
                   </label>
@@ -217,19 +217,20 @@ onBeforeUnmount(()=>{
                     v-model="loginData.password"
                     id="passwordLarge"
                     :type="toggleVisibility"
-                    class=" w-full border-2 border-gray-500 rounded-2xl p-4 lg:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+                    class=" w-full border-[1px] border-gray-300 rounded-2xl p-4  text-small "
                     required
+                    placeholder="********"
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 dark:text-white px-1 lg:text-lg text-sm bg-white dark:bg-lightgray"
+                    class="absolute left-1 -top-3 text-slate-600  px-1 text-extra-extra-small bg-white "
                     for="passwordLarge">
                     Password
                   </label>
                   <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
 
 
-                  <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-6 dark:text-white">visibility_off</span>
-                  <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-6 cursor-pointer dark:text-white">visibility</span>
+                  <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-4 ">visibility_off</span>
+                  <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-4 cursor-pointer d">visibility</span>
                 </div>
                 <div v-if="loginError.isError" class="flex gap-2">
                   <span class="material-icons-outlined text-rose-500">error</span>
@@ -237,11 +238,15 @@ onBeforeUnmount(()=>{
                 </div>
                 <div class="flex justify-between">
                   <div class="flex gap-2">
-                    <input v-model="isAnonymous" type="checkbox" class="checkbox rounded-full border-slate-800 dark:border-white bg-darkgray text-casablanca-300" />
-                    <span class="dark:text-white">Remain Anonymous</span>
+                    <input
+                      v-model="isAnonymous"
+                      type="checkbox"
+                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
+                    />
+                    <span class=" text-extra-small">Remain Anonymous</span>
                   </div>
                   <div>
-                    <router-link to="/auth/forgot-password" class="text-button-light">Forgot Password
+                    <router-link to="/auth/forgot-password" class="text-rose-600 text-extra-small">Forgot Password
                     </router-link>
                   </div>
                 </div>
@@ -249,12 +254,12 @@ onBeforeUnmount(()=>{
                 <div
                   @click="loginHandler"
                   class="btn btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none">
-                  <span  v-if="!isLoading" class="text-lg">Login</span>
+                  <span  v-if="!isLoading" class="text-small">Login</span>
                   <span v-else class="loading loading-spinner loading-sm"></span>
                 </div>
               </form>
               <div class=" w-10/12">
-                <p class="text-center text-slate-800 dark:text-white text-lg  mt-4">
+                <p class="text-center text-slate-800  extra-small mt-4">
                   Don't have an account?
                   <router-link to="/auth/register" class="text-rose-400 hover:text-rose-300">
                     Sign up
@@ -274,61 +279,55 @@ onBeforeUnmount(()=>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block h-screen overflow-hidden w-full dark:bg-lightgray">
-
+    <div class="lg:hidden block min-h-screen overflow-hidden w-full ">
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
       </div>
       <div class="flex flex-col md:px-20 px-10 md:space-y-10 space-y-2">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="md:text-2xl text-lg  font-semibold dark:text-white">Login</h2>
-          <p class="md:text-xl sm:text-lg text-gray-700 text-center dark:text-stone-300">Login to access your Rafikey Account</p>
+          <h2 class="text-extra-large font-semibold ">Login</h2>
+          <p class="text-extra-small text-gray-700 text-center ">Welcome back to Rafikey</p>
         </div>
-        <div class="border-b border-gray-400 w-full"></div>
+        <div class="border-b-[1px] border-stone-500 w-full pt-10"></div>
         <form class="space-y-4">
           <div class="space-y-3">
-            <label for="username" class="text-black dark:text-white   md:text-lg text-sm">Username</label>
+            <label for="username" class="text-black  text-extra-small">Username</label>
             <input id="username"
                    v-model="loginData.username"
                    type="text"
-                   class=" w-full border-2 p-4 md:text-lg text-sm border-gray-500 rounded-2xl dark:bg-lightgray dark:text-stone-400"
+                   class=" w-full p-4 text-extra-small border-[1px] border-gray-300  rounded-2xl "
                    required
                    placeholder="Choose a username"
             />
           </div>
-          <div class="space-x-2">
-            <input v-model="isAnonymous" type="checkbox" class="checkbox w-3 h-3 rounded-full  peer-checked:bg-black dark:border-white border-slate-800"/>
-            <span class="md:text-lg text-sm dark:text-white">Remain Anonymous</span>
-          </div>
-
           <div class="relative space-y-3">
-            <label class="text-black dark:text-white  md:text-lg text-sm" for="password">
+            <label class="text-black   text-extra-small" for="password">
               Password
             </label>
             <input
               v-model="loginData.password"
               id="password"
               :type="toggleVisibility"
-              class=" w-full border-2 border-gray-500 rounded-2xl md:p-4 p-4  md:text-lg text-sm dark:bg-lightgray dark:text-stone-400"
+              class=" w-full border-[1px] border-gray-300  rounded-2xl md:p-4 p-4  text-extra-small "
               required
-              placeholder="Enter password"
+              placeholder="********"
             />
-            <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-8 dark:text-white">visibility_off</span>
-            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-10 md:top-12 cursor-pointer dark:text-white">visibility</span>
+            <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="material-icons-outlined absolute right-3 cursor-pointer top-10 md:top-10 ">visibility_off</span>
+            <span v-else @click="isPasswordVisible= true" class="material-icons-outlined absolute right-3 top-10 md:top-10 cursor-pointer ">visibility</span>
           </div>
         </form>
         <div v-if="loginError.isError" class="flex gap-2">
           <span class="material-icons-outlined text-rose-500">error</span>
           <span class="text-rose-500">{{loginError.message}}</span>
         </div>
-        <div class="border-b border-gray-400 w-full pt-6"></div>
+        <div class="border-b-[1px] border-stone-500 w-full pt-10"></div>
         <div class="flex  justify-between">
           <div class="space-x-2">
-            <input type="checkbox" class="checkbox w-4 h-4 rounded-full dark:border-white border-slate-800  text-casablanca-300"/>
-            <span class="dark:text-white md:text-lg text-sm ">Remember me</span>
+            <input type="checkbox" class="checkbox w-4 h-4 rounded-full border-slate-800  text-casablanca-300"/>
+            <span class=" text-extra-small">Remember me</span>
           </div>
           <div>
-            <router-link to="/auth/forgot-password" class="text-button-light md:text-lg text-sm ">Forgot Password</router-link>
+            <router-link to="/auth/forgot-password" class="text-rose-600 md:text-lg text-sm ">Forgot Password</router-link>
           </div>
 
         </div>
@@ -336,15 +335,15 @@ onBeforeUnmount(()=>{
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
             @click="loginHandler"
-            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-5 bg-button-light border-none shadow-none">
-            <span v-if="!isLoading" class="text-sm md:text-lg">Login</span>
+            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-6 px-4 bg-button-light border-none shadow-none">
+            <span v-if="!isLoading" class="text-extra-small">Login</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
         <div>
-          <p class="text-center text-slate-800 dark:text-white md:text-lg text-sm  mt-4">
+          <p class="text-center text-slate-800  text-extra-small  mt-4">
             Don't have an account?
-            <router-link to="/auth/register" class="text-rose-400 md:text-lg text-sm  hover:text-sky-300">
+            <router-link to="/auth/register" class="text-rose-400 text-extra-small">
               Sign Up
             </router-link>
           </p>
@@ -361,18 +360,31 @@ onBeforeUnmount(()=>{
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
-            <span class="dark:text-white text-sm lg:text-lg">Your chats won't be saved, if you login anonymously</span>
+            <p class=" text-lg lg:text-xl">Are you Sure?</p>
+            <span class=" text-sm lg:text-lg">Your chats won't be saved, if you login anonymously</span>
           </div>
 
         </template>
         <template #footer>
-          <div class="flex justify-center gap-4">
-            <button @click.stop="isUserGuest=true" class="btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
-              <span v-if="!isUserGuestLoading" class="">Ok</span>
-              <span v-else class="loading loading-spinner loading-sm"></span>
-            </button>
-            <button @click.stop="chatbotStore.setDialogModal(false)" class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="col-span-1 w-full ">
+              <button
+                @click.stop="isUserGuest = true"
+                class="w-full btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+              >
+                <span v-if="!isUserGuestLoading" class="text-extra-small md:text-small">Ok</span>
+                <span v-else class="loading loading-spinner loading-sm"></span>
+              </button>
+            </div>
+
+            <div class="col-span-1">
+              <button
+                @click.stop="chatbotStore.setDialogModal(false)"
+                class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg "
+              >
+                <span class="text-extra-small md:text-small">Cancel</span>
+              </button>
+            </div>
           </div>
         </template>
       </DialogModal>
