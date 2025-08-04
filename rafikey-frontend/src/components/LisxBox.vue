@@ -33,7 +33,7 @@ watch(()=>
 </script>
 
 <template>
-  <div class="border-2 border-slate-300 rounded-lg  w-full">
+  <div class=" border-[1px] border-gray-300 rounded-lg  w-full">
     <Listbox v-model="selectedListItem">
       <div class="relative mt-1">
         <ListboxButton
