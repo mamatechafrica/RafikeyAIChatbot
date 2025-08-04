@@ -4,8 +4,8 @@ import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
-import imageLight from '@/assets/images/rafikey-icon.png'
+// import imageLight from '@/assets/images/rafikey-icon-light.png'
+// import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 
 const isPasswordVisible = ref<boolean>(false)
@@ -22,9 +22,10 @@ const resetPasswordError = reactive({
   isError: false,
   message: ''
 })
-const toggleImage = computed(()=>{
-  return chatbotStore.isDarkMode? imageDark : imageLight
-})
+// const toggleImage = computed(()=>{
+//   console.log("Mode", chatbotStore.isDarkMode)
+//   return chatbotStore.isDarkMode? imageDark : imageLight
+// })
 
 const props = defineProps<{
   token: string
