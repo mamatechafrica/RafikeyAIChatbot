@@ -4,21 +4,15 @@ import { reactive, ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
-import imageLight from '@/assets/images/rafikey-icon-light.png'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
 
 
 const chatbotStore = useRafikeyChatbotStore()
-const isAnonymous = ref<boolean>(false)
+// const isAnonymous = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
 
-// const toggleImage = computed(()=>{
-//   console.log('Mode--', chatbotStore.isDarkMode)
-//   return chatbotStore.isDarkMode? imageLight: imageDark
-// })
 
 
 const authStore = useAuthStore()
@@ -31,7 +25,7 @@ watch(
   () => chatbotStore.dialogModal.isOpen,
   (value) => {
     if (!value) {
-      isAnonymous.value = false
+      chatbotStore.isAnonymous = false
     }
   },
 )
@@ -137,7 +131,7 @@ const loginHandler = ()=>{
 
 
 watch(
-  () => isAnonymous.value,
+  () => chatbotStore.isAnonymous,
   (value) => {
     if(value){
       chatbotStore.setDialogModal(true)
@@ -159,6 +153,7 @@ watch(()=>isUserGuest.value, (value)=>{
             })
     }, 3000)
   }
+  // chatbotStore.isAnonymous = false
 })
 
 // Load the welcome page 3 seconds before loading the login page
@@ -166,6 +161,7 @@ onMounted(()=>{
   setTimeout(()=>{
     appLoading.value = false
   }, 3000)
+  chatbotStore.isAnonymous = false
 })
 
 //before unmounting if the user is a guest, close the dialog modal
@@ -239,7 +235,7 @@ onBeforeUnmount(()=>{
                 <div class="flex justify-between">
                   <div class="flex gap-2">
                     <input
-                      v-model="isAnonymous"
+                      v-model="chatbotStore.isAnonymous"
                       type="checkbox"
                       class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
                     />
@@ -299,6 +295,14 @@ onBeforeUnmount(()=>{
                    required
                    placeholder="Choose a username"
             />
+          </div>
+          <div class="flex gap-2">
+            <input
+              v-model="chatbotStore.isAnonymous"
+              type="checkbox"
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
+            />
+            <span class=" text-extra-small">Remain Anonymous</span>
           </div>
           <div class="relative space-y-3">
             <label class="text-black   text-extra-small" for="password">
