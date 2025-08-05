@@ -448,11 +448,11 @@ const accessButtonQuestionHandler = (message: string) =>{
   <div class="min-h-screen dark:bg-lightgray w-full">
     <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
       <!--    top -->
-      <div class="flex justify-between sticky top-0  bg-white bg-opacity-30  backdrop-blur" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4': '']">
+      <div class="flex justify-between sticky top-0  bg-opacity-30 white  backdrop-blur" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4': '']">
         <div>
           <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>
         </div>
-        <div class="flex items-end gap-2 bg-white">
+        <div class="flex items-end gap-2 ">
           <div class="">
             <button
               @click="loginHandler"
