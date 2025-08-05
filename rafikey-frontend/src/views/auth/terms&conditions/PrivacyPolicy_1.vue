@@ -9,7 +9,7 @@ const chatbotStore = useRafikeyChatbotStore()
 
 const toggleImage = computed(() => {
   console.log("Hello there")
-  return chatbotStore.isDarkMode ?imageLight: imageDark
+  return chatbotStore.isDarkMode ? imageDark: imageLight
 })
 
 
