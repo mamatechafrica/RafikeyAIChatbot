@@ -191,7 +191,7 @@ const renderer: RendererObject = {
   },
   strong({ text }: Tokens.Strong) {
     return `
-    <strong class="!text-peach-900 font-semi-bold  my-2.5 text-sm md:text-lg">${text}</strong>
+    <strong class="dark:text-white font-semi-bold  my-2.5 text-small">${text}</strong>
   `
   },
   codespan({ text: code }: Tokens.Codespan) {
