@@ -216,7 +216,7 @@ const renderer: RendererObject = {
   },
   strong({ text }: Tokens.Strong) {
     return `
-    <strong class="dark:text-white font-semi-bold  my-2.5 text-large">${text}</strong>
+    <strong class="dark:text-white font-semi-bold  my-2.5 text-small">${text}</strong>
   `
   },
   codespan({ text: code }: Tokens.Codespan) {
@@ -275,7 +275,6 @@ const handleUserInput = (formatted: string) => {
       },
     })
   }
-  console.log('User input', formatted)
 
   // don't re-create the user bubble if the user is regenerating the response
   if (!rafikeyChatbotStore.regenerateResponse) {
@@ -674,7 +673,7 @@ const modeToggleHandler = useToggle(isDark)
       <DialogModal :is-open="showLogoutDialogModal" @close-modal="showLogoutDialogModal = !showLogoutDialogModal" >
         <template #title>
           <div class="flex justify-center">
-            <span class="material-icons-round dark:text-white  !text-4xl">&#128546</span>
+            <span class="material-icons-round dark:text-white  !text-4xl">&#128546;</span>
           </div>
         </template>
         <template #body>
