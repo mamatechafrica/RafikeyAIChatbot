@@ -15,14 +15,15 @@ import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 import { useRouter } from 'vue-router'
 import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
+import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
+import { useMediaQuery } from '@vueuse/core'
 
-// const conversation = ref<Conversation[]>([])
-// const isGeneratingResponse = ref(false)
-// const chatContainerRef = ref<HTMLDivElement | null>()
+
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
 const router = useRouter()
 const now = moment().format('LT')
+const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 const formattedResponse = ref<string>('')
 
