@@ -24,7 +24,6 @@ const isError = ref(false)
 const router = useRouter()
 const now = moment().format('LT')
 
-
 const formattedResponse = ref<string>('')
 
 // Marked parse function

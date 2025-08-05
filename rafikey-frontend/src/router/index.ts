@@ -31,11 +31,12 @@ const routes = [
         beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
           const authStore = useAuthStore()
           // If user has ever logged in , redirect to chat page
-          if (authStore.isEverLoggedIn) {
-            next({ name: 'login' })
-          } else {
-            next()
-          }
+          // if (authStore.isEverLoggedIn) {
+          //   next({ name: 'login' })
+          // } else {
+          //   next()
+          // }
+          next()
         }
       },
       {
@@ -79,17 +80,18 @@ const routes = [
           const authStore = useAuthStore()
 
           // If user is already logged in, redirect to chat page
-          if (!authStore.isEverLoggedIn) {
-            next({ name: 'welcome-page' })
-          }
-          else if(authStore.userIsLoggedIn){
-            next({
-              name: 'chat-page'
-            })
-          }
-          else{
-            next()
-          }
+          // if (!authStore.isEverLoggedIn) {
+          //   next({ name: 'welcome-page' })
+          // }
+          // else if(authStore.userIsLoggedIn){
+          //   next({
+          //     name: 'chat-page'
+          //   })
+          // }
+          // else{
+          //   next()
+          // }
+          next()
         }
       },
       {
