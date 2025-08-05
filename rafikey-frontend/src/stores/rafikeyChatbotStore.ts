@@ -34,6 +34,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const previousRoute =  useStorage("previousRoute", '')
   const isNewChat = useStorage("isNewChat", true)
   const isShowTermsButton = useStorage("isShowTermsButton", true)
+  const isAnonymous = ref<boolean>(false)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
@@ -311,7 +312,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isDark,
     isShowTermsButton,
     accessButtonRequest,
-    setAccessButtonRequest
+    setAccessButtonRequest,
+    isAnonymous
 
     // setRegenerateInput
 
