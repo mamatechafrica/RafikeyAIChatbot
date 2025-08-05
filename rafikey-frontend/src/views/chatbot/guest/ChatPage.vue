@@ -36,7 +36,7 @@ const renderer: RendererObject = {
     const header = hd
       .map(({ text, header }) => {
         return `
-      <th class="text-base-content text-sm md:text-md">${marked.parseInline(text)}</th>
+      <th class="text-base-content text-large">${marked.parseInline(text)}</th>
     `
       })
       .join('\n')
@@ -45,12 +45,12 @@ const renderer: RendererObject = {
       .map((row) => {
         return `
       <tr>${row
-        .map(({ text, header }) => {
-          return `
-        <td class="text-base-content text-sm md:text-md">${marked.parseInline(text)}</td>
+          .map(({ text, header }) => {
+            return `
+        <td class="text-base-content text-large">${marked.parseInline(text)}</td>
       `
-        })
-        .join('\n')}</tr>
+          })
+          .join('\n')}</tr>
     `
       })
       .join('\n')
@@ -58,7 +58,7 @@ const renderer: RendererObject = {
     return `
    <div class="bg-base-100 p-2.5 rounded-xl shadow-lg shadow-base-200 my-5">
     <div class="overflow-x-auto py-4">
-        <table class="table table-sm md:text-md table-zebra border">
+        <table class="table table-sm text-large table-zebra border">
         <thead>
             ${header}
         </thead>
@@ -90,11 +90,11 @@ const renderer: RendererObject = {
       return `
   <div class="p-2 flex w-full">
        <pre class="w-full"><div class="mockup-code bg-neutral-800 my-3 relative shadow-xl w-full overflow-auto"><div class="px-4 flex-1 overflow-auto h-full w-full"><code class="language-${language}">${
-         hljs.highlight(code, {
-           language,
-           ignoreIllegals,
-         }).value
-       }</code></div></div></pre>
+        hljs.highlight(code, {
+          language,
+          ignoreIllegals,
+        }).value
+      }</code></div></div></pre>
   </div>
     `
     } else {
@@ -106,11 +106,11 @@ const renderer: RendererObject = {
     }
   },
   list({ ordered, start, loose, items }: Tokens.List) {
-    console.log('items is -> ', items)
+    // console.log('items is -> ', items)
     const body = items
       .map(({ task, checked, loose, text }) => {
         return `
-      <li class="text-base-accent text-sm md:text-md">${marked.parseInline(text)}</li>
+      <li class="text-base-accent text-large">${marked.parseInline(text)}</li>
       `
       })
       .join('\n')
@@ -138,40 +138,40 @@ const renderer: RendererObject = {
   },
   listitem({ task, checked, loose, text }: Tokens.ListItem) {
     return `
-    <li class="text-base-accent text-sm lg:text-lg md:text-md">${marked.parseInline(text)}</li>
+    <li class="text-base-accent text-small">${marked.parseInline(text)}</li>
   `
   },
   paragraph({ text, pre }: Tokens.Paragraph) {
     return `
-    <p class="text-base-accent leading-relaxed text-sm md:text-md">${marked.parseInline(text)}</p>
+    <p class="text-base-accent leading-relaxed text-small">${marked.parseInline(text)}</p>
   `
   },
   heading({ text, depth: level }: Tokens.Heading) {
-    let cssClassLevel = '!text-peach-900 text-lg my-2'
+    let cssClassLevel = 'dark:text-white text-large my-2'
 
     switch (level) {
       case 1:
-        cssClassLevel = '!text-peach-900 text-xl md:text-2xl my-2'
+        cssClassLevel = 'dark:text-white text-extra-large my-2'
         break
       case 2:
-        cssClassLevel = '!text-peach-900  text-lg md:text-xl my-1.5 '
+        cssClassLevel = 'dark:text-white  text-large my-1.5 '
         break
       case 3:
-        cssClassLevel = '!text-peach-900  text-sm md:text-lg my-1.5'
+        cssClassLevel = 'dark:text-white  text-small my-1.5'
         break
       case 4:
-        cssClassLevel = '!text-peach-900  text-xs md:text-base my-1'
+        cssClassLevel = 'dark:text-white  text-extra-small  my-1'
         break
       case 5:
-        cssClassLevel = '!text-peach-900 text-xxs md:text-sm my-1'
+        cssClassLevel = 'dark:text-white text-extra-extra-small my-1'
         break
       case 6:
-        cssClassLevel = ' !text-peach-900 text-xxxs md:text-xs my-0.5'
+        cssClassLevel = 'dark:text-white   text-extra-extra-small-2  my-0.5'
         break
     }
 
     return `
-    <h${level} class="${cssClassLevel} font-semibold text-base-accent !text-peach-900">${marked.parseInline(text)}</h${level}>
+    <h${level} class="${cssClassLevel} font-semibold text-base-accent dark:text-white">${marked.parseInline(text)}</h${level}>
   `
   },
   hr() {
@@ -206,26 +206,26 @@ const renderer: RendererObject = {
   },
   em({ text }: Tokens.Em) {
     return `
-    <em class="font-light my-1 text-sm md:text-md">${text}</em>
+    <em class="font-light my-1 text-small">${text}</em>
   `
   },
   del({ text }: Tokens.Del) {
     return `
-    <del class="font-poppins-light my-1 text-sm md:text-md">${text}</del>
+    <del class="font-poppins-light my-1 text-small">${text}</del>
   `
   },
   text({ text, type }: Tokens.Text | Tokens.Escape | Tokens.Tag) {
     if (type === 'text') {
       return `
-      <span class="text-md md:text-lg">${text}</span>
+      <span class="text-small">${text}</span>
     `
     } else if (type === 'escape') {
       return `
-      <span class="text-sm md:text-md">${text}</span>
+      <span class="text-small">${text}</span>
     `
     } else {
       return `
-      <span class="text-sm md:text-md">${text}</span>
+      <span class="text-small">${text}</span>
     `
     }
   },
