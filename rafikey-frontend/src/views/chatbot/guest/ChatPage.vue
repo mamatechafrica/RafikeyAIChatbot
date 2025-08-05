@@ -230,7 +230,6 @@ const renderer: RendererObject = {
     }
   },
 }
-
 marked.use({
   renderer,
   breaks: true,
@@ -292,18 +291,15 @@ const handleUserInput = (formatted: string) => {
           errorMessage: "An error occurred while generating the response. Please try again later.",
           isLoggedIn: true
         })
-
       })
       .finally(() => {
         rafikeyChatbotStore.isGeneratingResponse = false
         rafikeyMessage.value.isTyping = false
       })
-
   } else{
     // pop the last message which is the chat message so that it does not show up on the page
 
     rafikeyChatbotStore.isGeneratingResponse = true
-
     rafikeyChatbotStore
       .sendMessageToRafikeyChatbot({
         message: formatted,
@@ -338,10 +334,7 @@ const handleUserInput = (formatted: string) => {
         rafikeyChatbotStore.isGeneratingResponse = false
         rafikeyChatbotStore.setRegenerateResponse(false)
       })
-
-
   }
-
 }
 
 
@@ -355,14 +348,12 @@ onMounted(() => {
 
 
 const loginHandler = () => {
-  console.log('Login handler called')
   router.push({
     name: 'login',
   })
 }
 
 const signUpHandler = () => {
-  console.log('Signup handler called')
   router.push({
     name: 'welcome-page',
   })
@@ -370,7 +361,8 @@ const signUpHandler = () => {
 
 // toggle images in dark ans light mode
 const toggleImage = computed(() => {
-  return rafikeyChatbotStore.isDarkMode? imageDark : imageLight
+  // console.log('rafikeyChatbotStore.isDarkMode', rafikeyChatbotStore.isDarkMode)
+  return rafikeyChatbotStore.isDarkMode? imageLight: imageDark
 })
 
 const isStartChatSmallScreen = ref(false)
@@ -378,14 +370,31 @@ const startChatSmallScreen = () => {
   isStartChatSmallScreen.value = true
 }
 const scrollToBottom = () => {
-  const userInputPlaceholder = document.getElementById('userInputPlaceholder')
+
+  // const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
 nextTick(()=>{
-  if(userInputPlaceholder){
-    userInputPlaceholder.scrollIntoView({
-      behavior: 'smooth',
-      block:  'end',
-      inline: 'nearest'
-    })
+  if(!isSmallDevice){
+    const userInputPlaceholder = document.getElementById('userInputPlaceholder')
+    if(userInputPlaceholder){
+      console.log("Scrolling desktop")
+      userInputPlaceholder.scrollIntoView({
+        behavior: 'smooth',
+        block:  'end',
+        inline: 'nearest'
+      })
+    }
+
+  } else{
+    const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
+    if(userInputPlaceholderSmall){
+      console.log("Scrolling small")
+      userInputPlaceholderSmall.scrollIntoView({
+        behavior: 'smooth',
+        block:  'end',
+        inline: 'nearest'
+      })
+    }
+
   }
 })
 }
