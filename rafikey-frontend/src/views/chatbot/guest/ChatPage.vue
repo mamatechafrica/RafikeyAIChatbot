@@ -400,7 +400,9 @@ nextTick(()=>{
 }
 
 
-watch(() => rafikeyChatbotStore.conversation, () => {
+// watch the conversation container and scroll to bottom
+watch(()=>rafikeyChatbotStore.conversation || rafikeyChatbotStore.isStreamError.hasError, () => {
+  console.log("Now scrolling!!!")
   scrollToBottom()
 })
 
@@ -411,43 +413,61 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
   }
 })
 
-// const startChatHandler = () => {
-//   console.log('Start chat')
-//   rafikeyChatbotStore.setSessionId(uuidV4())
-//   router.push({
-//     name: 'chatWithId',
-//     params: {
-//       sessionId: rafikeyChatbotStore.sessionId,
-//     },
-//   })
-//   rafikeyChatbotStore.isNewChat = false
-// }
+// when mounted scroll to bottom
+setTimeout(()=>{
+  scrollToBottom()
+}, 1000)
+
+
+const accessQuestions = [
+  {
+    id: 1,
+    question: 'How can I know I have STI?',
+    icon: 'sms',
+  },
+  {
+    id: 2,
+    question: 'Best gynecologist?',
+    icon: 'sms',
+  },
+  {
+    id: 3,
+    question: 'How to wear a condom',
+    icon: 'sms',
+  },
+] as AccessQuestion[]
+
+const accessButtonQuestionHandler = (message: string) =>{
+  rafikeyChatbotStore.conversation = []
+  handleUserInput(message)
+  isStartChatSmallScreen.value = true
+}
 </script>
 
 <template>
   <div class="min-h-screen dark:bg-lightgray w-full">
     <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
       <!--    top -->
-      <div class="flex justify-between">
+      <div class="flex justify-between sticky top-0  bg-white bg-opacity-30  backdrop-blur" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4': '']">
         <div>
-          <button><span class="dark:text-white lg:text-lg text-sm">Feedback</span></button>
+          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>
         </div>
-        <div class="flex items-end gap-2">
+        <div class="flex items-end gap-2 bg-white">
           <div class="">
             <button
               @click="loginHandler"
-              class="btn lg:btn-sm btn-xs px-4 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-xl"
+              class="btn btn-sm px-6 py-2 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-lg"
             >
-              Log in
+              <span class="text-extra-small">Log in</span>
             </button>
           </div>
-          <span class="lg:text-lg text-sm dark:text-white">or</span>
+          <span class="text-extra-small dark:text-white">or</span>
           <div>
             <button
               @click="signUpHandler"
-              class="btn lg:btn-sm btn-xs px-4 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black"
+              class="btn btn-sm px-6 py-2 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black"
             >
-              Sign up
+              <span class="text-extra-small">Sign up</span>
             </button>
           </div>
         </div>
@@ -455,13 +475,13 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
 
       <!--    hero section-->
       <div class="space-y-8 pt-12" v-if="rafikeyChatbotStore.conversation.length < 1">
-        <div class="space-y-4">
+        <div class="space-y-1">
           <h2
-            class="lg:!text-5xl text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
+            class="text-extra-extra-large-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
           >
             Hi there
           </h2>
-          <p v-if="!isShowDisclaimer" class="lg:!text-3xl text-2xl text-stone-400">
+          <p v-if="!isShowDisclaimer" class="text-extra-extra-large-1 text-stone-400">
             Let's talk sexual and reproductive health
           </p>
           <div
@@ -483,12 +503,12 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
             </p>
           </div>
         </div>
-        <div class="flex justify-end" :class="[isShowDisclaimer ? 'invisible' : '']">
+        <div class="flex justify-end" >
           <img src="@/assets/images/rafikey-hi.png" alt="rafikey-image" class="lg:w-60 w-40" />
         </div>
       </div>
       <!--    conversation section-->
-      <div class="py-12 h-full">
+      <div class="py-10 h-full">
         <ul>
           <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
             <UserBubble
@@ -522,7 +542,7 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
       <div
         v-if="!rafikeyChatbotStore.isStreamError.hasError"
         ref="userInputContainerHeightRef"
-        class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
+        class="sticky w-full bottom-0 bg-white  dark:bg-lightgray"
       >
         <!--        <div-->
         <!--          v-if="isBottom"-->
@@ -544,9 +564,9 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
           </div>
         </div>
       </div>
-      <div id="#userInputPlaceholder"></div>
+      <div id="userInputPlaceholder" class="pt-20"></div>
     </div>
-    <div class="p-4 sm:p-10 py-10 w-full md:hidden block">
+    <div class="px-4 w-full md:hidden block">
       <div v-if="!isStartChatSmallScreen">
         <div class="flex items-center justify-between">
           <div class="w-32">
@@ -558,21 +578,21 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
             <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
           </div>
         </div>
-        <div class="space-y-16">
+        <div class="space-y-12">
           <div class="cursor-pointer flex gap-4 pt-8 w-full">
             <div
-              class="w-full bg-link-water-50  dark:bg-darkgray rounded-xl p-5 space-y-4"
+              class="w-full bg-link-water-50 flex flex-col  dark:bg-darkgray rounded-xl sm:p-4 p-2  space-y-2"
               @click="startChatSmallScreen"
             >
               <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">sms</span>
               </div>
-              <div class="flex dark:text-white gap-4">
+              <div class="flex justify-between dark:text-white gap-4">
                 <p class="text-small">Chat with Rafikey</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
-            <div class="w-full bg-link-water-50   dark:bg-darkgray rounded-xl p-5 space-y-4">
+            <div class="w-full bg-link-water-50   dark:bg-darkgray rounded-xl sm:p-4 p-2  space-y-2">
               <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">mic_none</span>
               </div>
@@ -582,38 +602,7 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
               </div>
             </div>
           </div>
-
-<!--          <div class="flex gap-2">-->
-<!--            <div-->
-<!--              @click.stop="startChatHandler"-->
-<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
-<!--            >-->
-<!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
-<!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
-<!--              </div>-->
-<!--              <div class="flex dark:text-white sm:gap-4">-->
-<!--                <p class="text-small">Chat with Rafikey</p>-->
-<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <div-->
-<!--              @click.stop="startVoiceChat"-->
-<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
-<!--            >-->
-<!--              <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">-->
-<!--                <span class="material-icons-outlined dark:text-white">mic_none</span>-->
-<!--              </div>-->
-<!--              <div class="flex dark:text-white gap-4">-->
-<!--                <p class="text-small">Chat with Rafikey</p>-->
-<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
           <div class="space-y-4">
-<!--            <div class="flex justify-between">-->
-<!--              <p class="dark:text-white">History</p>-->
-<!--              <span class="text-purple-400">See all</span>-->
-<!--            </div>-->
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">
               <span class="dark:text-white text-sm"
                 >Heads up! Your chat is temporary unless you're logged in.</span
@@ -628,6 +617,24 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
                 </RouterLink>
                 to save your conversations and access them anytime.
               </p>
+            </div>
+          </div>
+
+          <div class=" ">
+            <div class=" space-y-2 p-5">
+              <div class="flex justify-between sm:p-4">
+                <p class="dark:text-white text-extra-large">History</p>
+                <span class="text-purple-400 text-small">See all</span>
+              </div>
+              <div v-for="qn in accessQuestions" :key="qn.id">
+                <div
+                  @click="accessButtonQuestionHandler(qn.question)"
+                  class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
+                >
+                  <span class="material-icons-outlined dark:text-white ">{{ qn.icon }}</span>
+                  <p class="dark:text-white text-small">{{ qn.question }}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -699,7 +706,7 @@ watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
             </div>
           </div>
         </div>
-        <div id="userInputPlaceholder"></div>
+        <div id="userInputPlaceholder-small" class="pt-20"></div>
       </div>
     </div>
   </div>
