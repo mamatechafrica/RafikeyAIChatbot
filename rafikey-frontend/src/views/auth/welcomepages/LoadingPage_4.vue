@@ -19,7 +19,7 @@
       <div class="flex w-full justify-center">
         <img src="@/assets/images/rafikey-icon-light.png" alt="rafikey-logo-image"  class="hidden md:block" />
       </div>
-      <div class="flex flex-col items-center py-10 mx-auto lg:w-8/12 xl:w-6/12  w-10/12 bg-lightBackground dark:bg-darkgray rounded-2xl">
+      <div class="flex flex-col items-center py-10 mx-auto lg:w-8/12 xl:w-6/12  w-10/12 bg-lightBackground  rounded-2xl">
         <div class="">
           <p class="text-extra-extra-large-1   text-center font-semibold ">Private & Safe:</p>
         </div>
