@@ -36,7 +36,7 @@ const setProfileData = reactive({
   remainAnonymous: false,
 })
 
-const isAnonymous = ref<boolean>(false)
+// const isAnonymous = ref<boolean>(false)
 const isLoading = ref(false)
 
 // watch(
@@ -55,7 +55,7 @@ const isLoading = ref(false)
 // )
 
 watch(
-  () => isAnonymous.value,
+  () => chatbotStore.isAnonymous,
   (value) => {
     if (value) {
       chatbotStore.setDialogModal(true)
@@ -67,7 +67,7 @@ watch(
   () => chatbotStore.dialogModal.isOpen,
   (value) => {
     if (!value) {
-      isAnonymous.value = false
+      chatbotStore.isAnonymous = false
     }
   },
 )
@@ -92,6 +92,7 @@ onMounted(() => {
   setProfileData.email = createAccountFormStore.getProfile.email
   setProfileData.password = ''
   setProfileData.confirmPassword = ''
+  chatbotStore.isAnonymous = false
 })
 
 const usernameValidator = (value: string) => {
@@ -230,7 +231,7 @@ const goToKnowYou = () => {
       email: setProfileData.email,
       password: setProfileData.password,
     })
-    isAnonymous.value = false
+    chatbotStore.isAnonymous = false
     isLoading.value = true
     setTimeout(() => {
       isLoading.value = false
@@ -249,6 +250,7 @@ onBeforeUnmount(() => {
   if (isUserGuest.value) {
     chatbotStore.setDialogModal(false)
   }
+
 })
 </script>
 
@@ -310,7 +312,7 @@ onBeforeUnmount(() => {
 
                 <div class="flex items-center gap-2">
                   <input
-                    v-model="isAnonymous"
+                    v-model="chatbotStore.isAnonymous"
                     type="checkbox"
                     class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
                   />
@@ -441,7 +443,7 @@ onBeforeUnmount(() => {
           <div class="space-x-2 flex">
             <input
               id="checkbox"
-              v-model="isAnonymous"
+              v-model="chatbotStore.isAnonymous"
               type="checkbox"
               class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
             />
