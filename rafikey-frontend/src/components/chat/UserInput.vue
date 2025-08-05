@@ -135,7 +135,7 @@ const sendRequest = () => {
     <div class="col-span-10 md:ms-16 w-full" id="text-area">
       <textarea
         class="px-4 py-4 hover:cursor-text dark:text-white overflow-hidden w-full grow bg-transparent border-none focus:outline-none resize-none"
-        placeholder="Messagee Rafikey..."
+        placeholder="Message Rafikey..."
         v-model="userInput"
         ref="textAreaRef"
         @blur="inputHasFocus = false"
