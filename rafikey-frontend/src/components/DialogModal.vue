@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { useRafikeyChatbotStore } from '@/stores'
 
 interface DialogModalProps {
   isOpen: boolean
   maxWidth?: string
 }
+
+const chatbotStore =  useRafikeyChatbotStore()
 
 // const props = defineProps<DialogModalProps>();
 
@@ -18,8 +21,11 @@ const emits = defineEmits<{
 }>()
 
 
+
+
 const closeModal = () => {
   console.log('close modal')
+  console.log(chatbotStore.isAnonymous)
 
   emits('closeModal')
 }
@@ -52,8 +58,8 @@ const closeModal = () => {
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full transform overflow-hidden rounded-2xl bg-white dark:bg-lightgray p-6 text-left align-middle shadow-xl transition-all"
-              :class="[props.maxWidth]"
+              class="w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+              :class="[props.maxWidth, chatbotStore.isAnonymous? '': 'dark:bg-lightgray ']"
             >
               <DialogTitle as="h3">
                 <slot name="title">  </slot>
