@@ -4,14 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add scrolling feature for small devices">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove background styling">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/PersonalizationComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/SecurityComponent.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/TabComponent.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/ErrorPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +84,11 @@
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/toasts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/tab" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/chat" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/loggedInUser" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -217,55 +225,12 @@
       <workItem from="1754157220567" duration="14979000" />
       <workItem from="1754237628082" duration="28480000" />
       <workItem from="1754287675167" duration="31359000" />
-      <workItem from="1754371281690" duration="20386000" />
-    </task>
-    <task id="LOCAL-00323" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754309816033</created>
-      <option name="number" value="00323" />
-      <option name="presentableId" value="LOCAL-00323" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309816033</updated>
-    </task>
-    <task id="LOCAL-00324" summary="add goBack  function">
-      <option name="closed" value="true" />
-      <created>1754309829512</created>
-      <option name="number" value="00324" />
-      <option name="presentableId" value="LOCAL-00324" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309829512</updated>
-    </task>
-    <task id="LOCAL-00325" summary="add  styling">
-      <option name="closed" value="true" />
-      <created>1754309838878</created>
-      <option name="number" value="00325" />
-      <option name="presentableId" value="LOCAL-00325" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309838878</updated>
-    </task>
-    <task id="LOCAL-00326" summary="add  custom classes">
-      <option name="closed" value="true" />
-      <created>1754309856178</created>
-      <option name="number" value="00326" />
-      <option name="presentableId" value="LOCAL-00326" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309856178</updated>
-    </task>
-    <task id="LOCAL-00327" summary="add watch to open DialogModal">
-      <option name="closed" value="true" />
-      <created>1754309885508</created>
-      <option name="number" value="00327" />
-      <option name="presentableId" value="LOCAL-00327" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309885508</updated>
-    </task>
-    <task id="LOCAL-00328" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754309897443</created>
-      <option name="number" value="00328" />
-      <option name="presentableId" value="LOCAL-00328" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309897443</updated>
+      <workItem from="1754371281690" duration="22177000" />
+      <workItem from="1754404359165" duration="4000" />
+      <workItem from="1754416377817" duration="21517000" />
+      <workItem from="1754463503156" duration="5502000" />
+      <workItem from="1754469451880" duration="2000" />
+      <workItem from="1754880794756" duration="38648000" />
     </task>
     <task id="LOCAL-00329" summary="add  accessButtonRequest and isShowTermsButton variables">
       <option name="closed" value="true" />
@@ -611,17 +576,61 @@
       <option name="project" value="LOCAL" />
       <updated>1754399841185</updated>
     </task>
-    <option name="localTasksCounter" value="372" />
+    <task id="LOCAL-00372" summary="add accessQuestions  array">
+      <option name="closed" value="true" />
+      <created>1754399951455</created>
+      <option name="number" value="00372" />
+      <option name="presentableId" value="LOCAL-00372" />
+      <option name="project" value="LOCAL" />
+      <updated>1754399951455</updated>
+    </task>
+    <task id="LOCAL-00373" summary="add styling to renderer function">
+      <option name="closed" value="true" />
+      <created>1754399982876</created>
+      <option name="number" value="00373" />
+      <option name="presentableId" value="LOCAL-00373" />
+      <option name="project" value="LOCAL" />
+      <updated>1754399982876</updated>
+    </task>
+    <task id="LOCAL-00374" summary="update placeholder">
+      <option name="closed" value="true" />
+      <created>1754400021540</created>
+      <option name="number" value="00374" />
+      <option name="presentableId" value="LOCAL-00374" />
+      <option name="project" value="LOCAL" />
+      <updated>1754400021540</updated>
+    </task>
+    <task id="LOCAL-00375" summary="update placeholder">
+      <option name="closed" value="true" />
+      <created>1754400028706</created>
+      <option name="number" value="00375" />
+      <option name="presentableId" value="LOCAL-00375" />
+      <option name="project" value="LOCAL" />
+      <updated>1754400028706</updated>
+    </task>
+    <task id="LOCAL-00376" summary="update toggleImage function">
+      <option name="closed" value="true" />
+      <created>1754400681019</created>
+      <option name="number" value="00376" />
+      <option name="presentableId" value="LOCAL-00376" />
+      <option name="project" value="LOCAL" />
+      <updated>1754400681019</updated>
+    </task>
+    <task id="LOCAL-00377" summary="remove background styling">
+      <option name="closed" value="true" />
+      <created>1754401344485</created>
+      <option name="number" value="00377" />
+      <option name="presentableId" value="LOCAL-00377" />
+      <option name="project" value="LOCAL" />
+      <updated>1754401344485</updated>
+    </task>
+    <option name="localTasksCounter" value="378" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add  accessButtonRequest and isShowTermsButton variables" />
-    <MESSAGE value="add accessQuestions array" />
-    <MESSAGE value="add AccessQuestion interface" />
-    <MESSAGE value="add isDark and useToggle composable" />
     <MESSAGE value="add  newChatHandler function" />
     <MESSAGE value="add  function for profile handler" />
     <MESSAGE value="add profile ui" />
@@ -641,9 +650,13 @@
     <MESSAGE value="add conditional class" />
     <MESSAGE value="remove dark style class" />
     <MESSAGE value="add  useMediaQuery composable" />
-    <MESSAGE value="add styling to renderer function" />
     <MESSAGE value="add scrolling feature for small devices" />
-    <option name="LAST_COMMIT_MESSAGE" value="add scrolling feature for small devices" />
+    <MESSAGE value="add accessQuestions  array" />
+    <MESSAGE value="add styling to renderer function" />
+    <MESSAGE value="update placeholder" />
+    <MESSAGE value="update toggleImage function" />
+    <MESSAGE value="remove background styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove background styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -665,7 +678,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>579</line>
+          <line>597</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -687,6 +700,18 @@
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue</url>
           <line>499</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue</url>
+          <line>8</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue</url>
+          <line>28</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

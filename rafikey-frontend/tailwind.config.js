@@ -85,7 +85,14 @@ export default {
         darkgray: '#222222',
         lightgray: '#252525',
         lightBackground: '#F6F6F6',
-        bubbleDark: '#191919'
+        bubbleDark: '#191919',
+        veryLight: '#D9D9D9',
+        veryLightOne: '#DADADA',
+        veryLightTwo: '#4D4D4D',
+        veryLightThree: '#9B9596',
+        veryLightFour: '#D2D2D2',
+        veryLightFive: '#484848',
+        veryLightSix: '#323232',
       },
       fontSize:{
         'extra-extra-small-2': '10px',

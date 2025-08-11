@@ -43,7 +43,7 @@ const goBack = () =>{
 </script>
 
 <template>
-  <div class="h-full w-full dark:bg-lightgray">
+  <div class="h-screen w-full dark:bg-lightgray">
     <div class="w-10/12 mx-auto space-y-4">
       <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col items-start justify-end ">
