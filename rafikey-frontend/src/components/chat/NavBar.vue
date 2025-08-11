@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, defineEmits, shallowRef } from 'vue'
 import { type ChatHistoryTitle, useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import ChatHistory from '@/components/chat/ChatHistory.vue'
