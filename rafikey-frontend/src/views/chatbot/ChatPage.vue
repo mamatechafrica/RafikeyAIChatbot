@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted, watch, onUnmounted } from 'vue'
+import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef } from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
@@ -10,7 +10,6 @@ import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
-import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
 import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
 import DialogModal from '@/components/DialogModal.vue'
 
@@ -555,8 +554,6 @@ const logoutHandler = () =>{
 const cancelLogout = () =>{
   showLogoutDialogModal.value = false
   isShowProfile.value = false
-
-
 }
 
 const isSmallScreen = ref(false)
@@ -565,28 +562,13 @@ const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 // Checking for small devices and hiding the user input
 watch(()=>isSmallDevice.value, (val)=>{
-    if(rafikeyChatbotStore.isNewChat && val){
-      console.log("small devices")
-      isSmallScreen.value = true
-    }
-    else{
-      isSmallScreen.value = false
-    }
+    isSmallScreen.value = rafikeyChatbotStore.isNewChat && val;
 })
 
 const termsConditionHandler = ()=>{
   router.push({ name: 'privacy-policy-1' })
   rafikeyChatbotStore.isShowTermsButton = false
 }
-
-// watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
-//   if(val.value){
-//     console.log('Access button request', val)
-//     handleUserInput(val.message)
-//     // rafikeyChatbotStore.setAccessButtonRequest('')
-//   }
-//
-// })
 
 const modeToggleHandler = useToggle(isDark)
 const isProfile = ref(false)
@@ -606,14 +588,15 @@ const showSettingDialog = ref(false)
 <template>
   <div class="relative p-6 dark:bg-lightgray h-screen overflow-hidden w-full">
     <div>
-      <NavBar @fetch-history-handler="fetchHistoryHandler" @profile-handler="profileHandler" />
+      <NavBar @fetch-history-handler="fetchHistoryHandler" @profile-handler="profileHandler"  @is-profile="isProfileHandler"/>
     </div>
     <!--    right side-->
-    <div v-if="!isLoading" class="relative w-full">
+    <div class="relative w-full" >
       <div
         class=""
         :class="[
           rafikeyChatbotStore.collapseSidebarLarge ? 'md:ml-32 duration-300' : 'ml-96 duration-300',
+
         ]"
       >
         <!--    top -->
@@ -630,17 +613,32 @@ const showSettingDialog = ref(false)
             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
+        <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
 
-        <RouterView #default="{ Component, route }">
-          <template v-if="Component">
+          <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
+            <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">
+              <span class="material-icons-outlined dark:text-white">arrow_back</span>
+              <span class="dark:text-white">Chatting With Rafikey</span>
+            </div>
+            <div @click=" rafikeyChatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">
+              <span class="material-icons-outlined dark:text-white">more_horiz</span>
+            </div>
+          </div>
+        </div>
+
+        <RouterView #default="{ Component, route }" >
+          <template v-if="Component" >
             <component :is="Component" :key="route.fullPath" @user-input="handleUserInput" />
           </template>
         </RouterView>
 
+
+
+
 <!--        profile section-->
         <div :class="[rafikeyChatbotStore.collapseSidebarLarge? '': 'left-28 bottom-8 z-50']"
              ref="profileSectionElement"
-             v-show="isShowProfile" class="divide-y divide-solid dark:divide-stone-700 dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white shadow-2xl   w-60 p-4 rounded-2xl">
+             v-show="isShowProfile" class="md:block hidden   divide-y divide-solid dark:divide-stone-700 dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white shadow-2xl   w-60 p-4 rounded-2xl">
           <div class="space-y-1">
             <div
               @click.stop="termsConditionHandler"
@@ -648,9 +646,11 @@ const showSettingDialog = ref(false)
               <span class="material-icons-outlined dark:text-white  !text-xl">article</span>
               <span class="dark:text-white text-gray-700">Terms and Conditions</span>
             </div>
-            <div class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
-              <span class="material-icons-outlined dark:text-white  !text-xl">support</span>
-              <span class="dark:text-white text-gray-700">Help</span>
+            <div
+              @click="showSettingDialog = true"
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
+              <span class="material-icons-outlined dark:text-white  !text-xl">settings</span>
+              <span class="dark:text-white text-gray-700">Settings</span>
             </div>
             <div
               @click.stop="modeToggleHandler()"
@@ -687,7 +687,7 @@ const showSettingDialog = ref(false)
           ]"
           class="fixed bottom-6 bg-white left-4 w-[calc(100vw-2rem)] dark:bg-lightgray"
         >
-          <div class="bg-white backdrop-blur-2xl pb-6 dark:bg-lightgray">
+          <div class="bg-white backdrop-blur-2xl md:pb-6 dark:bg-lightgray">
             <div class="">
               <UserInput
                 class="mx-auto"
@@ -702,9 +702,9 @@ const showSettingDialog = ref(false)
       </div>
     </div>
 
-    <div v-else>
-      <SpinnerLoading />
-    </div>
+<!--    <div v-else>-->
+<!--      <SpinnerLoading />-->
+<!--    </div>-->
     <Teleport to="body">
       <DialogModal :is-open="showLogoutDialogModal" @close-modal="showLogoutDialogModal = !showLogoutDialogModal" >
         <template #title>
@@ -731,6 +731,24 @@ const showSettingDialog = ref(false)
               @click="cancelLogout "
               class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
           </div>
+        </template>
+      </DialogModal>
+    </Teleport>
+
+<!--    setting dialog-->
+    <Teleport to="body">
+      <DialogModal :max-width="dialogWidth" :is-open="showSettingDialog" @close-modal="showSettingDialog = !showSettingDialog" >
+        <template #title>
+          <TabComponent @tab-change="tabHandler" />
+
+        </template>
+        <template #body>
+          <div>
+            <component :is="activeComponent.component" />
+          </div>
+        </template>
+        <template #footer>
+
         </template>
       </DialogModal>
     </Teleport>
