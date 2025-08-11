@@ -14,6 +14,11 @@ import SpinnerLoading from '@/components/chat/SpinnerLoading.vue'
 import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
 import DialogModal from '@/components/DialogModal.vue'
 
+import TabComponent, { type Tabs } from '@/components/tab/TabComponent.vue'
+import GeneralTab from '@/components/tab/GeneralTab.vue'
+import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
+import SecurityComponent from '@/components/tab/SecurityComponent.vue'
+
 
 interface HistoryConv {
   bot_response: string
@@ -36,6 +41,26 @@ const profileSectionElement = ref<HTMLDivElement | null>()
 // const isGeneratingResponse = ref(false)
 const now = moment()
 
+
+const components = [
+  {
+    id: 1,
+    name: 'General',
+    component: GeneralTab,
+  },
+  {
+    id: 2,
+    name: 'Personalisation',
+    component: PersonalizationComponent,
+  },
+  {
+    id: 3,
+    name: 'Security',
+    component: SecurityComponent,
+  },
+]
+
+const activeComponent = shallowRef(components[0])
 //   create Rafikey message object
 const rafikeyMessage = ref<Conversation>({
   message: '',

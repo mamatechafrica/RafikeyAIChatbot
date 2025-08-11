@@ -43,7 +43,7 @@ const closeModal = () => {
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black bg-opacity-30  backdrop-blur" />
+        <div class="fixed inset-0 bg-black bg-opacity-20  backdrop-blur-[4px]" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
