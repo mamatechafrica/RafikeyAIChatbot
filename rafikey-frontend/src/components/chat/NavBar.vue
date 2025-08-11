@@ -509,6 +509,23 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                         </div>
                       </div>
                     </div>
+<!--                    setting section-->
+                    <div
+                      v-if="isShowSettings"
+                      class="pt-[27px] px-[10px] pb-[40px] absolute rounded-t-2xl bottom-0 w-full bg-white dark:bg-darkgray"
+                    >
+                      <div @click.stop="closeSettings" class="cursor-pointer flex gap-4 p-[10px]">
+                        <span class="material-icons-outlined dark:text-white !text-xl"
+                          >arrow_back_ios</span
+                        >
+                        <span class="text-small dark:text-white">Back</span>
+                      </div>
+                      <div class="border-b-[1px] dark:border-stone-700 border-veryLightTwo w-11/12 mx-auto"></div>
+                      <TabComponent @tab-change="tabHandler" />
+                      <div>
+                        <component :is="activeComponent.component" />
+                      </div>
+                    </div>
                   </div>
                 </DialogPanel>
               </TransitionChild>
