@@ -1,0 +1,79 @@
+<script setup lang="ts">
+import { useAuthStore } from '@/stores'
+import DialogModal from '@/components/DialogModal.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const showLogoutDialogModal = ref(false)
+const router = useRouter()
+const logOut = () => {
+  showLogoutDialogModal.value = true
+}
+
+const logoutHandler = () =>{
+  authStore.logout()
+  router.push({ name: 'login' })
+
+}
+
+</script>
+
+<template>
+  <div class="px-[16px] py-6 flex  flex-col gap-[33px]">
+    <div class="flex justify-between">
+      <div>
+        <span class="dark:text-white">Log out of this device</span>
+      </div>
+      <div @click="logOut" class="cursor-pointer border dark:border-white border-darkgray rounded-full  py-[6px] px-[12px]">
+        <span class="dark:text-white">Log Out</span>
+      </div>
+    </div>
+    <div class="flex justify-between">
+      <div>
+        <span class="dark:text-white">Log out of all devices</span>
+      </div>
+      <div class="border border-red-700 rounded-full  py-[6px] px-[12px]">
+        <span class="text-red-700">
+          Log Out of All
+        </span>
+      </div>
+    </div>
+    <div class="border-b-[1px] border-veryLightFour dark:border-veryLightFive"></div>
+
+    <Teleport to="body">
+      <DialogModal :is-open="showLogoutDialogModal" @close-modal="showLogoutDialogModal = !showLogoutDialogModal" >
+        <template #title>
+          <div class="flex justify-center">
+            <span class="material-icons-round dark:text-white  !text-4xl">&#128546;</span>
+          </div>
+        </template>
+        <template #body>
+          <div class="flex flex-col items-center py-2">
+            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
+            <span class="dark:text-white text-lg lg:text-lg">You want to log out?</span>
+          </div>
+
+        </template>
+        <template #footer>
+          <div class="flex justify-center gap-4">
+            <button
+              @click.stop="logoutHandler"
+              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
+              <span  class="">Ok</span>
+              <!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
+            </button>
+            <button
+              @click="showLogoutDialogModal = !showLogoutDialogModal"
+              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+          </div>
+        </template>
+      </DialogModal>
+    </Teleport>
+  </div>
+
+</template>
+
+<style scoped>
+
+</style>
