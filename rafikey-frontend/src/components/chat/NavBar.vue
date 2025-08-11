@@ -127,7 +127,6 @@ const newChatHandler = () => {
 const modeToggleHandler = useToggle(isDark)
 const isShowProfile = ref(true)
 const termsConditionHandler = () => {
-  console.log('clicked the tems and condition')
   router.push({ name: 'privacy-policy-1' })
   chatbotStore.isShowTermsButton = false
 }
@@ -152,11 +151,22 @@ const showProfile = () => {
   isShowProfile.value = !isShowProfile.value
 }
 
-// watch(chatbotStore.collapseSidebarSmall, (value)=>{
-//   if(!value) {
-//     isShowProfile.value = false
-//   }
-// })
+const tabHandler = (tab: Tabs) => {
+  activeComponent.value = components.find((component) => component.id === tab.id) || components[0]
+}
+
+const closeSettings = () => {
+  isShowSettings.value = false
+  isShowProfile.value = true
+}
+
+
+watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
+  if(!value) {
+    isShowProfile.value = false
+    isShowSettings.value = false
+  }
+})
 </script>
 
 <template>
