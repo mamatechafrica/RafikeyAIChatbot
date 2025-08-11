@@ -164,7 +164,7 @@ const routes = [
           // chatbotStore.isNewChat = false
 
           // If user is already logged in, redirect to chat page
-          if (!authStore.isEverLoggedIn) {
+          if (!authStore.userIsLoggedIn) {
             next({ name: 'welcome-page' })
           } else{
             next()

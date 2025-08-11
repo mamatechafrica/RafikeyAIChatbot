@@ -240,10 +240,6 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
             <!--            <div>-->
             <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>-->
             <!--            </div>-->
-            <div>
-              <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>
-            </div>
-            <div @click.stop="profileHandler">
             <!--            <div>-->
             <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>-->
             <!--            </div>-->
