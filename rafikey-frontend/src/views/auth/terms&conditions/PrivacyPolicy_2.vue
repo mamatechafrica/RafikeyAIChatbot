@@ -16,7 +16,7 @@ const toggleImage = computed(() => {
 </script>
 
 <template>
-  <div class="h-full w-full dark:bg-lightgray">
+  <div class="h-screen w-full dark:bg-lightgray">
     <div class="md:w-10/12 w-11/12 mx-auto pb-10">
       <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col items-start justify-end">
