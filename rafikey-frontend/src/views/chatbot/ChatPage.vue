@@ -430,7 +430,6 @@ const profileHandler = () =>{
 
 // fetching chat history
 const fetchHistoryHandler = (activeSessionId: string) => {
-  console.log("Fetch chat histories")
   rafikeyChatbotStore.conversation = []
   isLoading.value = true
   rafikeyChatbotStore
@@ -444,7 +443,7 @@ const fetchHistoryHandler = (activeSessionId: string) => {
         //   isLoggedIn: res?.isLoggedIn as boolean,
         // })
       } else {
-        router.push({
+        router.replace({
           name: 'chatWithId',
           params: {
             sessionId: activeSessionId,
@@ -590,6 +589,18 @@ const termsConditionHandler = ()=>{
 // })
 
 const modeToggleHandler = useToggle(isDark)
+const isProfile = ref(false)
+
+const isProfileHandler = (val: boolean) => {
+  isProfile.value = val
+}
+
+const dialogWidth = 'max-w-[600px]'
+const tabHandler = (tab: Tabs) => {
+  activeComponent.value = components.find((component) => component.id === tab.id) || components[0]
+}
+
+const showSettingDialog = ref(false)
 </script>
 
 <template>
