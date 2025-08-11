@@ -91,11 +91,15 @@ const groupChat = () => {
 const emits = defineEmits<{
   (event: 'fetchHistoryHandler', activeSessionId: string): void
   (event: 'profileHandler'): void
+  (event: 'isProfile', value: boolean): void
 }>()
 
 // fetch clicked chat History title
 const fetchHistoryHandler = (activeSessionId: string) => {
   emits('fetchHistoryHandler', activeSessionId)
+  chatbotStore.setCollapseSidebarSmall(true)
+  isShowSettings.value = false
+  isShowProfile.value = false
 }
 
 // profile handler
