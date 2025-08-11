@@ -7,12 +7,38 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { useRouter } from 'vue-router'
 import DialogModal from '@/components/DialogModal.vue'
 import { useDark, useToggle } from '@vueuse/core'
+import TabComponent from '@/components/tab/TabComponent.vue'
+import GeneralTab from '@/components/tab/GeneralTab.vue'
+import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
+import SecurityComponent from '@/components/tab/SecurityComponent.vue'
+import { type Tabs } from '@/components/tab/TabComponent.vue'
 
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const isDark = useDark()
 const authStore = useAuthStore()
 const isChatHIstoryError = ref(false)
+const isShowSettings = ref(false)
+
+const components = [
+  {
+    id: 1,
+    name: 'General',
+    component: GeneralTab,
+  },
+  {
+    id: 2,
+    name: 'Personalisation',
+    component: PersonalizationComponent,
+  },
+  {
+    id: 3,
+    name: 'Security',
+    component: SecurityComponent,
+  },
+]
+
+const activeComponent = shallowRef(components[0])
 onMounted(() => {
   chatbotStore
     .getChatHistoryTitles()
