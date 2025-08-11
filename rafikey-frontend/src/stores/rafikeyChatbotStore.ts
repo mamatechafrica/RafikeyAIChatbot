@@ -25,6 +25,11 @@ export interface Conversation {
   timestamp?: string
 }
 
+export interface Setting {
+  key: string,
+  value: boolean
+}
+
 
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
@@ -53,7 +58,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     value: false,
     message: ''
   })
-
+const otherSettings = useStorage("otherSettings", {})
 
 
 
@@ -281,6 +286,22 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     accessButtonRequest.value = true
     accessButtonRequest.message = message
   }
+  const setOtherSettings = (setting: Setting) =>{
+  // update local storage with the new setting
+    otherSettings.value = {
+      ...otherSettings.value,
+      [setting.key]: setting.value
+    }
+  }
+
+  const getOtherSettings = computed(()=>{
+    const setting = localStorage.getItem('otherSettings')
+    if(setting){
+      return JSON.parse(setting)
+    } else {
+      return null
+    }
+  })
 
 
   return {
@@ -313,7 +334,11 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isShowTermsButton,
     accessButtonRequest,
     setAccessButtonRequest,
-    isAnonymous
+    isAnonymous,
+    otherSettings,
+    setOtherSettings,
+    getOtherSettings
+
 
     // setRegenerateInput
 
