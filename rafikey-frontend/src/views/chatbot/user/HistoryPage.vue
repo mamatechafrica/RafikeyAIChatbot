@@ -49,18 +49,18 @@ setTimeout(()=>{
     ref="conversationContainerRef"
     class="relative md:py-12 h-[calc(100vh-10rem)] md:w-11/12 w-full mx-auto overflow-y-auto"
   >
-    <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
+<!--    <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">-->
 
-      <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
-        <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">
-          <span class="material-icons-outlined dark:text-white">arrow_back</span>
-          <span class="dark:text-white">Chatting With Rafikey</span>
-        </div>
-        <div @click="chatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">
-          <span class="material-icons-outlined dark:text-white">more_horiz</span>
-        </div>
-      </div>
-    </div>
+<!--      <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">-->
+<!--        <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">-->
+<!--          <span class="material-icons-outlined dark:text-white">arrow_back</span>-->
+<!--          <span class="dark:text-white">Chatting With Rafikey</span>-->
+<!--        </div>-->
+<!--        <div @click="chatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">-->
+<!--          <span class="material-icons-outlined dark:text-white">more_horiz</span>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <ul>
       <template v-for="(conv, index) in chatbotStore.conversation" :key="index">
         <UserBubble
