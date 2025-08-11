@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove background styling">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update navigationguard">
       <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/PersonalizationComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/SecurityComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/TabComponent.vue" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/ErrorPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,103 +221,7 @@
       <workItem from="1754416377817" duration="21517000" />
       <workItem from="1754463503156" duration="5502000" />
       <workItem from="1754469451880" duration="2000" />
-      <workItem from="1754880794756" duration="38648000" />
-    </task>
-    <task id="LOCAL-00329" summary="add  accessButtonRequest and isShowTermsButton variables">
-      <option name="closed" value="true" />
-      <created>1754309935759</created>
-      <option name="number" value="00329" />
-      <option name="presentableId" value="LOCAL-00329" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309935759</updated>
-    </task>
-    <task id="LOCAL-00330" summary="add  accessButtonRequest and isShowTermsButton variables">
-      <option name="closed" value="true" />
-      <created>1754309939392</created>
-      <option name="number" value="00330" />
-      <option name="presentableId" value="LOCAL-00330" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309939392</updated>
-    </task>
-    <task id="LOCAL-00331" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754309952874</created>
-      <option name="number" value="00331" />
-      <option name="presentableId" value="LOCAL-00331" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309952874</updated>
-    </task>
-    <task id="LOCAL-00332" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754309965106</created>
-      <option name="number" value="00332" />
-      <option name="presentableId" value="LOCAL-00332" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309965106</updated>
-    </task>
-    <task id="LOCAL-00333" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754309977979</created>
-      <option name="number" value="00333" />
-      <option name="presentableId" value="LOCAL-00333" />
-      <option name="project" value="LOCAL" />
-      <updated>1754309977979</updated>
-    </task>
-    <task id="LOCAL-00334" summary="add accessQuestions array">
-      <option name="closed" value="true" />
-      <created>1754310001834</created>
-      <option name="number" value="00334" />
-      <option name="presentableId" value="LOCAL-00334" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310001834</updated>
-    </task>
-    <task id="LOCAL-00335" summary="add AccessQuestion interface">
-      <option name="closed" value="true" />
-      <created>1754310034909</created>
-      <option name="number" value="00335" />
-      <option name="presentableId" value="LOCAL-00335" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310034909</updated>
-    </task>
-    <task id="LOCAL-00336" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310049762</created>
-      <option name="number" value="00336" />
-      <option name="presentableId" value="LOCAL-00336" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310049762</updated>
-    </task>
-    <task id="LOCAL-00337" summary="add isDark and useToggle composable">
-      <option name="closed" value="true" />
-      <created>1754310112128</created>
-      <option name="number" value="00337" />
-      <option name="presentableId" value="LOCAL-00337" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310112128</updated>
-    </task>
-    <task id="LOCAL-00338" summary="add  newChatHandler function">
-      <option name="closed" value="true" />
-      <created>1754310138010</created>
-      <option name="number" value="00338" />
-      <option name="presentableId" value="LOCAL-00338" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310138010</updated>
-    </task>
-    <task id="LOCAL-00339" summary="add  function for profile handler">
-      <option name="closed" value="true" />
-      <created>1754310155223</created>
-      <option name="number" value="00339" />
-      <option name="presentableId" value="LOCAL-00339" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310155223</updated>
-    </task>
-    <task id="LOCAL-00340" summary="add DialogModal">
-      <option name="closed" value="true" />
-      <created>1754310182026</created>
-      <option name="number" value="00340" />
-      <option name="presentableId" value="LOCAL-00340" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310182026</updated>
+      <workItem from="1754880794756" duration="39416000" />
     </task>
     <task id="LOCAL-00341" summary="add profile ui">
       <option name="closed" value="true" />
@@ -624,25 +519,109 @@
       <option name="project" value="LOCAL" />
       <updated>1754401344485</updated>
     </task>
-    <option name="localTasksCounter" value="378" />
+    <task id="LOCAL-00378" summary="\add custom colors">
+      <option name="closed" value="true" />
+      <created>1754923854714</created>
+      <option name="number" value="00378" />
+      <option name="presentableId" value="LOCAL-00378" />
+      <option name="project" value="LOCAL" />
+      <updated>1754923854714</updated>
+    </task>
+    <task id="LOCAL-00379" summary="add TabComponent">
+      <option name="closed" value="true" />
+      <created>1754923869608</created>
+      <option name="number" value="00379" />
+      <option name="presentableId" value="LOCAL-00379" />
+      <option name="project" value="LOCAL" />
+      <updated>1754923869608</updated>
+    </task>
+    <task id="LOCAL-00380" summary="add SecurityComponent">
+      <option name="closed" value="true" />
+      <created>1754923881934</created>
+      <option name="number" value="00380" />
+      <option name="presentableId" value="LOCAL-00380" />
+      <option name="project" value="LOCAL" />
+      <updated>1754923881934</updated>
+    </task>
+    <task id="LOCAL-00381" summary="add Setting interface">
+      <option name="closed" value="true" />
+      <created>1754924002283</created>
+      <option name="number" value="00381" />
+      <option name="presentableId" value="LOCAL-00381" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924002283</updated>
+    </task>
+    <task id="LOCAL-00382" summary="add PersonalizationComponent">
+      <option name="closed" value="true" />
+      <created>1754924032283</created>
+      <option name="number" value="00382" />
+      <option name="presentableId" value="LOCAL-00382" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924032284</updated>
+    </task>
+    <task id="LOCAL-00383" summary="add components array">
+      <option name="closed" value="true" />
+      <created>1754924050061</created>
+      <option name="number" value="00383" />
+      <option name="presentableId" value="LOCAL-00383" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924050061</updated>
+    </task>
+    <task id="LOCAL-00384" summary="update isShowSettings and isShowProfile flags">
+      <option name="closed" value="true" />
+      <created>1754924131205</created>
+      <option name="number" value="00384" />
+      <option name="presentableId" value="LOCAL-00384" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924131206</updated>
+    </task>
+    <task id="LOCAL-00385" summary="update shallowRef">
+      <option name="closed" value="true" />
+      <created>1754924149195</created>
+      <option name="number" value="00385" />
+      <option name="presentableId" value="LOCAL-00385" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924149195</updated>
+    </task>
+    <task id="LOCAL-00386" summary="add tabHandler function">
+      <option name="closed" value="true" />
+      <created>1754924195496</created>
+      <option name="number" value="00386" />
+      <option name="presentableId" value="LOCAL-00386" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924195496</updated>
+    </task>
+    <task id="LOCAL-00387" summary="add setting section">
+      <option name="closed" value="true" />
+      <created>1754924257491</created>
+      <option name="number" value="00387" />
+      <option name="presentableId" value="LOCAL-00387" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924257491</updated>
+    </task>
+    <task id="LOCAL-00388" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1754924368868</created>
+      <option name="number" value="00388" />
+      <option name="presentableId" value="LOCAL-00388" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924368868</updated>
+    </task>
+    <task id="LOCAL-00389" summary="update navigationguard">
+      <option name="closed" value="true" />
+      <created>1754924456290</created>
+      <option name="number" value="00389" />
+      <option name="presentableId" value="LOCAL-00389" />
+      <option name="project" value="LOCAL" />
+      <updated>1754924456290</updated>
+    </task>
+    <option name="localTasksCounter" value="390" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add  newChatHandler function" />
-    <MESSAGE value="add  function for profile handler" />
-    <MESSAGE value="add profile ui" />
-    <MESSAGE value="remove toggleDark feature" />
-    <MESSAGE value="add navigation guards" />
-    <MESSAGE value="add termsConditionHandler function" />
-    <MESSAGE value="add showLogoutDialogModal function" />
-    <MESSAGE value="add closeProfileSection function" />
-    <MESSAGE value="add DialogModal" />
-    <MESSAGE value="add styling" />
-    <MESSAGE value="remove watcher" />
-    <MESSAGE value="update isDark toggle" />
     <MESSAGE value="remove  isDark toggle" />
     <MESSAGE value="remove navigation guards" />
     <MESSAGE value="move the isAnonymous flag to rafikeyStore" />
@@ -656,7 +635,19 @@
     <MESSAGE value="update placeholder" />
     <MESSAGE value="update toggleImage function" />
     <MESSAGE value="remove background styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove background styling" />
+    <MESSAGE value="\add custom colors" />
+    <MESSAGE value="add TabComponent" />
+    <MESSAGE value="add SecurityComponent" />
+    <MESSAGE value="add Setting interface" />
+    <MESSAGE value="add PersonalizationComponent" />
+    <MESSAGE value="add components array" />
+    <MESSAGE value="update isShowSettings and isShowProfile flags" />
+    <MESSAGE value="update shallowRef" />
+    <MESSAGE value="add tabHandler function" />
+    <MESSAGE value="add setting section" />
+    <MESSAGE value="add styling" />
+    <MESSAGE value="update navigationguard" />
+    <option name="LAST_COMMIT_MESSAGE" value="update navigationguard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
