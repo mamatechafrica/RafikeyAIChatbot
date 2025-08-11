@@ -147,8 +147,21 @@ const cancelLogout = () => {
 }
 
 const showProfile = () => {
-  console.log('Clicking the profile')
-  isShowProfile.value = !isShowProfile.value
+  if(isShowSettings.value) {
+    isShowSettings.value = false
+    emits('isProfile', isShowSettings.value)
+  } else {
+    isShowProfile.value = !isShowProfile.value
+
+    // isShowProfile.value = !isShowProfile.value
+    emits('isProfile', isShowProfile.value)
+  }
+}
+
+
+const settingsHandler = () => {
+  isShowProfile.value = false
+  isShowSettings.value = true
 }
 
 const tabHandler = (tab: Tabs) => {
@@ -173,13 +186,13 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
   <!--  sidebar medium to large screens-->
   <div
     :class="[chatbotStore.collapseSidebarLarge ? 'w-24 duration-300 ' : 'w-80 duration-300 ']"
-    class="fixed md:block hidden bg-link-water-50 dark:bg-darkgray top-6 left-6 h-[calc(100vh-3rem)] rounded-2xl z-50"
+    class="fixed md:block hidden bg-link-water-50 dark:bg-darkgray top-6 left-6 h-[calc(100vh-3rem)] rounded-[30px] z-50"
   >
     <div
       class="flex justify-between items-center"
       :class="[!chatbotStore.collapseSidebarLarge ? 'pe-8' : '']"
     >
-      <div class="w-28" @click="expandSideNavHandler">
+      <div class="w-28 " @click="expandSideNavHandler" :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']">
         <img src="../../assets/images/rafikey-icon.png" alt="rafikey-icon" />
       </div>
       <div
@@ -231,6 +244,10 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
               <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>
             </div>
             <div @click.stop="profileHandler">
+            <!--            <div>-->
+            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>-->
+            <!--            </div>-->
+            <div @click.stop="profileHandler" class="cursor-pointer">
               <img
                 src="@/assets/images/Avatar.png"
                 alt="rafikey-avatar"
@@ -248,12 +265,12 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
         >
           <div v-for="(titles, date) in groupChat()" :key="date">
             <div
-              class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparentdark:bg-darkgray"
+              class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparent dark:bg-darkgray"
             >
-              <h1 class="dark:text-white text-large">{{ date }}</h1>
+              <h1 class="dark:text-white text-large ">{{ date }}</h1>
               <div class="flex flex-row-reverse">
                 <span class="material-icons-outlined dark:text-white">expand_less</span>
-                <span class="dark:text-stone-300 text-small"> {{ titles.length }} total</span>
+                <span class="dark:text-stone-300 text-small text-nowrap"> {{ titles.length }} total</span>
               </div>
             </div>
 
@@ -319,21 +336,15 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                     leave-to="opacity-0"
                   >
                     <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
-                      <!--                      <button-->
-                      <!--                        type="button"-->
-                      <!--                        class="relative rounded-md text-gray-300 hover:text-white focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-hidden"-->
-                      <!--                        @click="chatbotStore.setCollapseSidebarSmall(true)"-->
-                      <!--                      >-->
-                      <!--                        <span class="absolute -inset-2.5" />-->
-                      <!--                        <span class="sr-only">Close panel</span>-->
-                      <!--                        <XMarkIcon class="size-6" aria-hidden="true" />-->
-                      <!--                      </button>-->
                     </div>
                   </TransitionChild>
                   <div
                     class="flex h-full flex-col space-y-4 overflow-y-auto bg-white dark:bg-lightgray py-6 shadow-xl"
                   >
-                    <div class="px-4 sm:px-6">
+                    <div
+                      class="px-4 sm:px-6"
+                      :class="[isShowProfile || isShowSettings ? 'blur-[4px]  ' : '']"
+                    >
                       <DialogTitle class="text-base font-semibold">
                         <div class="flex justify-between">
                           <div>
@@ -351,7 +362,10 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                         <!--                        <div class="border-b border-darkgray pt-4"></div>-->
                       </DialogTitle>
                     </div>
-                    <div class="relative space-y-3 flex-1">
+                    <div
+                      class="relative space-y-3 flex-1"
+                      :class="[isShowProfile || isShowSettings ? 'blur-[4px] bg-black/5' : '']"
+                    >
                       <div class="flex justify-between px-4">
                         <div class="flex gap-4 items-center">
                           <div
@@ -367,7 +381,7 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
-                        <div @click="showProfile">
+                        <div @click="showProfile" class="cursor-pointer">
                           <img
                             src="@/assets/images/Avatar.png"
                             alt="rafikey-avatar"
@@ -389,58 +403,55 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                         </div>
                       </div>
                       <!-- Your content -->
-                      <div>
-                        <div
-                          class="h-[calc(100vh-21rem)] overflow-y-auto"
-                          v-if="
-                            chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarSmall
-                          "
-                        >
-                          <div v-for="(titles, date) in groupChat()" :key="date">
-                            <div
-                              class="flex justify-between sticky pb-1 top-0 backdrop-blur font-bold bg-white dark:bg-lightgray"
-                            >
-                              <h1 class="dark:text-white ps-4 text-large">{{ date }}</h1>
-                              <div class="flex flex-row-reverse">
-                                <span class="material-icons-outlined dark:text-white"
-                                  >expand_less</span
-                                >
-                                <span class="dark:text-stone-300 text-small">
-                                  {{ titles.length }} total</span
-                                >
-                              </div>
-                            </div>
 
-                            <div v-for="title in titles" :key="title.thread_id" class="py-1">
-                              <ChatHistory
-                                :thread-id="title.thread_id"
-                                :last-message-at="title.last_message_at"
-                                :title="title.title"
-                                @fetch-history-handler="fetchHistoryHandler"
-                              />
+                      <div
+                        class="h-[calc(100vh-21rem)] overflow-y-auto "
+                        v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarSmall"
+                      >
+                        <div v-for="(titles, date) in groupChat()" :key="date">
+                          <div
+                            class="flex justify-between sticky pb-1 top-0 backdrop-blur bg-opacity-30 font-bold"
+                          >
+                            <h1 class="dark:text-white ps-4 text-large ">{{ date }}</h1>
+                            <div class="flex flex-row-reverse">
+                              <span class="material-icons-outlined dark:text-white"
+                                >expand_less</span
+                              >
+                              <span class="dark:text-stone-300 text-small text-nowrap">
+                                {{ titles.length }} total</span
+                              >
                             </div>
                           </div>
-                          <div class="absolute bottom-0 w-full">
-                            <div class="flex px-10 justify-between w-full">
-                              <div
-                                class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                              >
-                                <img
-                                  src="@/assets/images/talk-about-it.png"
-                                  alt="talk-to-someone-image"
-                                  class=""
-                                />
-                              </div>
-                              <div
-                                class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                              >
-                                <img src="@/assets/images/clinic.png" alt="clinic-image" />
-                              </div>
-                              <div
-                                class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                              >
-                                <img src="@/assets/images/learn.png" alt="lear-image" />
-                              </div>
+
+                          <div v-for="title in titles" :key="title.thread_id" class="py-1">
+                            <ChatHistory
+                              :thread-id="title.thread_id"
+                              :last-message-at="title.last_message_at"
+                              :title="title.title"
+                              @fetch-history-handler="fetchHistoryHandler"
+                            />
+                          </div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">
+                          <div class="flex px-10 justify-between w-full">
+                            <div
+                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
+                            >
+                              <img
+                                src="@/assets/images/talk-about-it.png"
+                                alt="talk-to-someone-image"
+                                class=""
+                              />
+                            </div>
+                            <div
+                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
+                            >
+                              <img src="@/assets/images/clinic.png" alt="clinic-image" />
+                            </div>
+                            <div
+                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
+                            >
+                              <img src="@/assets/images/learn.png" alt="lear-image" />
                             </div>
                           </div>
                         </div>
@@ -450,7 +461,7 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                     <div
                       ref="profileSectionElement"
                       v-show="isShowProfile"
-                      class="divide-y divide-solid  dark:divide-stone-700 dark:bg-darkgray cursor-pointer absolute space-y-4 bottom-0 w-full bg-white shadow-2xl p-4 rounded-t-2xl"
+                      class="md:hidden block shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] bg-white divide-y divide-solid z-999 dark:divide-stone-700 dark:bg-darkgray cursor-pointer absolute space-y-4 bottom-0 w-full p-4 rounded-br-[20px] rounded-tl-[20px]"
                     >
                       <div class="space-y-1">
                         <div
@@ -463,12 +474,13 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                           <span class="dark:text-white text-gray-700">Terms and Conditions</span>
                         </div>
                         <div
+                          @click="settingsHandler"
                           class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
                         >
                           <span class="material-icons-outlined dark:text-white !text-xl"
-                            >support</span
+                            >settings</span
                           >
-                          <span class="dark:text-white text-gray-700">Help</span>
+                          <span class="dark:text-white text-gray-700">Settings</span>
                         </div>
                         <div
                           @click.stop="modeToggleHandler()"
