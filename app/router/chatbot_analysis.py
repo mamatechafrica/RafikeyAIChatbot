@@ -623,3 +623,25 @@ async def get_thread_activity(
         "mode": mode,
         "data": thread_activity
     }
+
+
+
+# Endpoint to get the number of active users today
+@router.get('/active_users_today')
+async def get_active_users_today(session: SessionDep):
+    """
+    Get the number of unique users who have interacted with the chatbot today.
+    """
+    from datetime import datetime, time
+
+    # Get current date in UTC
+    now = datetime.utcnow()
+    today_start = datetime.combine(now.date(), time.min)
+
+    # Query for distinct user_ids in Conversations where timestamp >= today_start
+    count = session.exec(
+        select(func.count(Conversations.user_id.distinct()))
+        .where(Conversations.timestamp >= today_start)
+    ).one()
+
+    return {"active_users_today": count}

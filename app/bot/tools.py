@@ -23,7 +23,7 @@ embeddings = GoogleGenerativeAIEmbeddings(
 
 vectostore = Chroma(
     embedding_function=embeddings,
-    persist_directory='./rafike_db_V2'
+    persist_directory='/rafikey_chroma_db'
 )
 
 retriever = vectostore.as_retriever()
