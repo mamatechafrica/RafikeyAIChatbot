@@ -12,7 +12,7 @@ from typing import Annotated
 
 
 from dotenv import load_dotenv
-import re
+import re 
 from typing import Dict, List
 
 load_dotenv()
@@ -645,3 +645,56 @@ async def get_active_users_today(session: SessionDep):
     ).one()
 
     return {"active_users_today": count}
+
+
+# Endpoint to delete conversations by thread_id
+@router.delete('/conversations/{thread_id}', status_code=200)
+async def delete_conversations_by_thread_id(
+    thread_id: str,
+    session: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """
+    Delete all conversations with the specified thread_id for the authenticated user only.
+    """
+    try:
+        statement = select(Conversations).where(
+            (Conversations.thread_id == thread_id) &
+            (Conversations.user_id == current_user.id)
+        )
+        conversations = session.exec(statement).all()
+        if not conversations:
+            raise HTTPException(status_code=404, detail="No conversations found for the given thread_id and user.")
+        for conversation in conversations:
+            session.delete(conversation)
+        session.commit()
+        return {"message": f"Deleted {len(conversations)} conversations with thread_id '{thread_id}' for user '{current_user.username}'."}
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Endpoint to delete all conversations
+@router.delete('/conversations', status_code=200)
+async def delete_all_conversations(
+    session: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """
+    Delete all conversations for the authenticated user only.
+    """
+    try:
+        statement = select(Conversations).where(Conversations.user_id == current_user.id)
+        conversations = session.exec(statement).all()
+        count = len(conversations)
+        if count == 0:
+            return {"message": "No conversations to delete for this user."}
+        for conversation in conversations:
+            session.delete(conversation)
+        session.commit()
+        return {"message": f"Deleted all ({count}) conversations for user '{current_user.username}'."}
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
