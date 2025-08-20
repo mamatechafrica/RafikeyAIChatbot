@@ -1,6 +1,6 @@
 from fastapi import FastAPI 
 from app.router import chatbot_analysis, bot_router_v2, chroma_db, metrics_analysis
-from app.router.auth import login
+from app.router.auth import login, admin
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os 
@@ -37,6 +37,7 @@ def health():
 
 
 # //Add routers
+app.include_router(admin.router)
 app.include_router(login.router)
 app.include_router(bot_router_v2.router)
 # app.include_router(bot_router.router)

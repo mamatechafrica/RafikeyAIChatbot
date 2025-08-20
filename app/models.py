@@ -20,6 +20,7 @@ class User(SQLModel, table=True):
     terms_accepted: bool = Field(default=False)
     password: str  # This should store the hashed password
     disabled: bool = Field(default=False)  # Optional: for user activation
+    is_admin: bool = Field(default=False, index=True)  # New field to indicate admin user
     created_at: datetime = Field(default_factory=datetime.utcnow)
     
     # Relationship to conversations
