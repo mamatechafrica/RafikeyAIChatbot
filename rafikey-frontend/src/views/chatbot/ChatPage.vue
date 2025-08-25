@@ -681,17 +681,20 @@ const shareOn = (value: string) =>{
       />
     </div>
     <!--    right side-->
-    <div class="relative w-full" >
+    <div class="relative w-full">
       <div
         class=""
         :class="[
           rafikeyChatbotStore.collapseSidebarLarge ? 'md:ml-32 duration-300' : 'ml-96 duration-300',
-
         ]"
       >
         <!--    top -->
-        <div class="hidden justify-end gap-4 w-11/12 sticky top-0 cursor-pointer md:flex">
+        <div
+          v-if="!rafikeyChatbotStore.isNewChat"
+          class="hidden justify-end gap-4 w-11/12 sticky top-0 cursor-pointer md:flex"
+        >
           <div
+            @click.stop="shareChat"
             class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
           >
             <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
@@ -704,64 +707,76 @@ const shareOn = (value: string) =>{
           </div>
         </div>
         <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
-
-          <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
+          <div
+            class="flex justify-between bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"
+          >
             <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">
               <span class="material-icons-outlined dark:text-white">arrow_back</span>
               <span class="dark:text-white">Chatting With Rafikey</span>
             </div>
-            <div @click=" rafikeyChatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">
+            <div
+              @click="rafikeyChatbotStore.setCollapseSidebarSmall(false)"
+              class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none"
+            >
               <span class="material-icons-outlined dark:text-white">more_horiz</span>
             </div>
           </div>
         </div>
 
-        <RouterView #default="{ Component, route }" >
-          <template v-if="Component" >
+        <RouterView #default="{ Component, route }">
+          <template v-if="Component">
             <component :is="Component" :key="route.fullPath" @user-input="handleUserInput" />
           </template>
         </RouterView>
 
-
-
-
-<!--        profile section-->
-        <div :class="[rafikeyChatbotStore.collapseSidebarLarge? '': 'left-28 bottom-8 z-50']"
-             ref="profileSectionElement"
-             v-show="isShowProfile" class="md:block hidden   divide-y divide-solid dark:divide-stone-700 dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white shadow-2xl   w-60 p-4 rounded-2xl">
+        <!--        profile section-->
+        <div
+          :class="[rafikeyChatbotStore.collapseSidebarLarge ? '' : 'left-28 bottom-8 z-50']"
+          ref="profileSectionElement"
+          v-show="isShowProfile"
+          class="md:block hidden divide-y divide-solid dark:divide-stone-700 dark:bg-darkgray cursor-pointer fixed space-y-4 bottom-20 z-40 bg-white shadow-2xl w-60 p-4 rounded-2xl"
+        >
           <div class="space-y-1">
             <div
               @click.stop="termsConditionHandler"
-              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700  rounded-lg px-2 py-1">
-              <span class="material-icons-outlined dark:text-white  !text-xl">article</span>
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+            >
+              <span class="material-icons-outlined dark:text-white !text-xl">article</span>
               <span class="dark:text-white text-gray-700">Terms and Conditions</span>
             </div>
             <div
               @click="showSettingDialog = true"
-              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
-              <span class="material-icons-outlined dark:text-white  !text-xl">settings</span>
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+            >
+              <span class="material-icons-outlined dark:text-white !text-xl">settings</span>
               <span class="dark:text-white text-gray-700">Settings</span>
             </div>
             <div
               @click.stop="modeToggleHandler()"
-              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
-              <span v-if="!isDark" class="material-icons-outlined  dark:text-white !text-xl">dark_mode</span>
-              <span v-else class="material-icons-outlined  dark:text-white">light_mode</span>
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+            >
+              <span v-if="!isDark" class="material-icons-outlined dark:text-white !text-xl"
+                >dark_mode</span
+              >
+              <span v-else class="material-icons-outlined dark:text-white">light_mode</span>
               <span v-if="!isDark" class="dark:text-white text-gray-700">Dark Mode</span>
               <span v-else class="dark:text-white text-gray-700">Light Mode</span>
             </div>
           </div>
-<!--          <div class="divide-y divide-solid  "></div>-->
+          <!--          <div class="divide-y divide-solid  "></div>-->
           <div class="space-y-1 pt-2">
             <div
               @click.stop="confirmLogoutHandler"
-              class="flex gap-4 hover:bg-lightBackground  dark:hover:bg-stone-700 rounded-lg px-2 py-1 ">
-              <span class="material-icons-round dark:text-white  !text-xl">exit_to_app</span>
+              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
+            >
+              <span class="material-icons-round dark:text-white !text-xl">exit_to_app</span>
               <span class="dark:text-white text-gray-700">Log out</span>
             </div>
             <div class="flex gap-4 rounded-lg px-2 py-1">
-              <span class="material-icons-round text-stone-400 dark:text-white">person_outline</span>
-              <span class="text-stone-400">{{authStore.getUserInfo()?.username}}</span>
+              <span class="material-icons-round text-stone-400 dark:text-white"
+                >person_outline</span
+              >
+              <span class="text-stone-400">{{ authStore.getUserInfo()?.username }}</span>
             </div>
           </div>
         </div>
@@ -792,14 +807,17 @@ const shareOn = (value: string) =>{
       </div>
     </div>
 
-<!--    <div v-else>-->
-<!--      <SpinnerLoading />-->
-<!--    </div>-->
+    <!--    <div v-else>-->
+    <!--      <SpinnerLoading />-->
+    <!--    </div>-->
     <Teleport to="body">
-      <DialogModal :is-open="showLogoutDialogModal" @close-modal="showLogoutDialogModal = !showLogoutDialogModal" >
+      <DialogModal
+        :is-open="showLogoutDialogModal"
+        @close-modal="showLogoutDialogModal = !showLogoutDialogModal"
+      >
         <template #title>
           <div class="flex justify-center">
-            <span class="material-icons-round dark:text-white  !text-4xl">&#128546;</span>
+            <span class="material-icons-round dark:text-white !text-4xl">&#128546;</span>
           </div>
         </template>
         <template #body>
@@ -807,43 +825,139 @@ const shareOn = (value: string) =>{
             <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
             <span class="dark:text-white text-lg lg:text-lg">You want to log out?</span>
           </div>
-
         </template>
         <template #footer>
           <div class="flex justify-center gap-4">
             <button
               @click.stop="logoutHandler"
-              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg ">
-              <span  class="">Ok</span>
-<!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
+              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+            >
+              <span class="">Ok</span>
+              <!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
             </button>
             <button
-              @click="cancelLogout "
-              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white" ><span>Cancel</span></button>
+              @click="cancelLogout"
+              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white"
+            >
+              <span>Cancel</span>
+            </button>
           </div>
         </template>
       </DialogModal>
     </Teleport>
 
-<!--    setting dialog-->
-    <Teleport to="body">
-      <DialogModal :max-width="dialogWidth" :is-open="showSettingDialog" @close-modal="showSettingDialog = !showSettingDialog" >
-        <template #title>
-          <TabComponent @tab-change="tabHandler" />
+    <!--    setting dialog-->
 
-        </template>
-        <template #body>
+    <DialogModal
+      :max-width="dialogWidth"
+      :is-open="showSettingDialog"
+      @close-modal="showSettingDialog = !showSettingDialog"
+    >
+      <template #title>
+        <TabComponent @tab-change="tabHandler" />
+      </template>
+      <template #body>
+        <div>
+          <component :is="activeComponent.component" />
+        </div>
+      </template>
+      <template #footer> </template>
+    </DialogModal>
+    <DialogModal
+      :is-open="isShare && !rafikeyChatbotStore.isGeneratingResponse"
+      @close-modal="isShare = false"
+    >
+      <template #title>
+        <div class="flex flex-row-reverse justify-between">
+          <div @click="isShare = false" class="cursor-pointer">
+
+              <span class="material-icons-outlined dark:text-white">close</span>
+
+          </div>
           <div>
-            <component :is="activeComponent.component" />
+            <span class="font-semibold text-lg dark:text-white">Share link chat on social</span>
           </div>
-        </template>
-        <template #footer>
+        </div>
+      </template>
+      <template #body>
+        <div>
+          <p class="dark:text-white">Generate link to share with friends on social media platforms.</p>
+        </div>
+      </template>
 
-        </template>
-      </DialogModal>
-    </Teleport>
+
+      <template #footer>
+        <div class="flex flex-col">
+          <div
+            class="md:space-x-2 w-full flex items-center border-[0.5px] py-3 !rounded-2xl px-3"
+          >
+            <input
+              type="text"
+              @copy.prevent
+              @cut.prevent
+              @paste.prevent
+              readonly
+              v-model="linkChatInput"
+              class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis  focus:outline-none focus:ring-0 focus:border-transparent  line-clamp-1  md:ps-2 ps-1  me-0.5  rounded-md"
+              placeholder="https://rafikeybot.onrender.com/share/..."
+            />
+            <div
+              @click="generateLink"
+              v-if="!isGeneratingLink && !showCopyBtn"
+              class="dark:text-white rounded-2xl bg-transparent border-gray-300 btn btn-sm"
+            >
+              <span class="">generate link</span>
+              <!--              <span v-else  class="loading loading-spinner loading-md text-white"></span>-->
+            </div>
+            <div
+              v-if="isGeneratingLink && !showCopyBtn"
+              class="btn btn-sm rounded-xl"
+              disabled
+            >
+              <span class="">generating...</span>
+              <span class="loading loading-spinner loading-md "></span>
+            </div>
+            <div
+              v-if="showCopyBtn"
+              @click="copyShareChatLink"
+              class="btn btn-sm btn-ghost border-gray-300 rounded-2xl bg-transparent dark:text-white"
+            >
+              <Copy />
+              <span v-if="!isShareChatLinkCopy">Copy link</span>
+              <span v-else>Copied</span>
+            </div>
+          </div>
+          <div v-if="showSocials" class="flex flex-row justify-center py-4 w-full mx-auto">
+            <div>
+              <div @click.stop="shareOn('linkedIn')" class="btn btn-sm btn-ghost w-14 h-14">
+                <img src="@/assets/images/linkedin.png" alt="linkedin_logo" />
+              </div>
+              <span  class="dark:text-white">LinkedIn</span>
+            </div>
+
+            <div>
+              <div @click.stop="shareOn('whatsapp')" class="btn btn-sm btn-ghost w-14 h-14">
+                <img src="@/assets/images/whatsapp.png" alt="whatsapp_logo" />
+              </div>
+              <span  class="dark:text-white">Whatsapp</span>
+            </div>
+            <div>
+              <div @click.stop="shareOn('facebook')" class="btn btn-sm btn-ghost w-14 h-14">
+                <img src="@/assets/images/facebook.png" alt="facebook_logo" />
+              </div>
+              <span  class="dark:text-white">Facebook</span>
+            </div>
+            <div>
+              <div @click.stop="shareOn('twitter')" class="btn btn-sm btn-ghost w-14 h-14">
+                <img src="@/assets/images/twitter.png" alt="twitter_logo" />
+              </div>
+              <span class="dark:text-white">Twitter</span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </DialogModal>
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
