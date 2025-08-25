@@ -260,6 +260,40 @@ const otherSettings = useStorage("otherSettings", {})
     }
   }
 
+
+  async function deleteAllChats() {
+    const authStore = useAuthStore()
+    try{
+      const  response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authStore.token}`
+        },
+      })
+
+      const res = await response.json()
+      console.log('Delete all chats response:', res)
+      if(!response.ok){
+        return {
+          result: 'fail',
+          data: res.detail
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: 'All chat history deleted successfully'
+        }
+      }
+    } catch(e){
+      console.error('Error deleting chat history:', e)
+      return {
+        result: 'fail',
+        data: 'An error occurred while deleting chat history'
+      }
+    }
+  }
+
   // Set active chat hitory
 
   const setActiveChatHistory = (value: string)=>{
@@ -337,7 +371,9 @@ const otherSettings = useStorage("otherSettings", {})
     isAnonymous,
     otherSettings,
     setOtherSettings,
-    getOtherSettings
+    getOtherSettings,
+    deleteAllChats,
+    RAFIKEY_CHATBOT_URL
 
 
     // setRegenerateInput
