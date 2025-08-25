@@ -5,7 +5,7 @@ import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 import { marked, type RendererObject, type Tokens } from 'marked'
-import { useRafikeyChatbotStore, type Conversation, useAuthStore } from '@/stores'
+import { useRafikeyChatbotStore, type Conversation, useAuthStore, useNotificationStore } from '@/stores'
 import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -37,6 +37,12 @@ const route = useRoute()
 const isLoading = ref(false)
 const isDark = useDark()
 const profileSectionElement = ref<HTMLDivElement | null>()
+const linkChatInput = ref('')
+const showSocials = ref<boolean>(false)
+const isGeneratingLink = ref(false)
+const showCopyBtn = ref(false)
+const isShareChatLinkCopy = ref(false)
+const notificationStore = useNotificationStore()
 
 // const isGeneratingResponse = ref(false)
 const now = moment()
