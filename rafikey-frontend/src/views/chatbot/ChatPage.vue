@@ -590,6 +590,84 @@ const tabHandler = (tab: Tabs) => {
 }
 
 const showSettingDialog = ref(false)
+const isShare = ref(false)
+
+const shareData = {
+  title:  "Rafikey Ai",
+  text: "Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️",
+  url: `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/share/${rafikeyChatbotStore.sessionId}`
+
+}
+
+// share of the chat links using the webShare API
+async function  shareChat (){
+  if(navigator.share){
+    try{
+      await navigator.share(shareData)
+      window.alert("Hello")
+    } catch(error){
+      console.log("An errror has occurred")
+    }
+  }
+  // If native sharing mechanism is not supported on this device
+  else{
+    isShare.value = true
+
+  }
+}
+
+const generateLink = () => {
+  isGeneratingLink.value = true
+  setTimeout(() => {
+    linkChatInput.value = `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/share/${rafikeyChatbotStore.sessionId}`
+    isGeneratingLink.value = false
+    showCopyBtn.value = true
+    showSocials.value = true
+  }, 2000)
+
+}
+
+
+const copyShareChatLink = ()=>{
+  if(!navigator.clipboard){
+    notificationStore.addNotification('Your browser does not support clipboard feature, please switch to a different browser', 'error')
+  } else{
+    if(typeof navigator.clipboard.writeText === 'function'){
+      try{
+        navigator.clipboard.writeText(linkChatInput.value as string)
+        isShareChatLinkCopy.value = true
+      }
+      catch(error){
+        console.error(error)
+        notificationStore.addNotification('Failed to copy chat link, please try again', 'error')
+      }
+      finally {
+        setTimeout(()=>{
+          isShareChatLinkCopy.value = false
+        }, 2000)
+      }
+    }
+
+  }
+}
+
+
+const shareOn = (value: string) =>{
+  const urlToShare = linkChatInput.value as string
+  const encodeURL = encodeURIComponent(urlToShare)
+  let shareUrl = ''
+  const message = encodeURIComponent(shareData.text)
+  if(value === 'facebook'){
+    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURL}&quote=${message}`
+  }else if(value === 'twitter'){
+    shareUrl = `https://twitter.com/intent/tweet?url=${encodeURL}&text=${message}`
+  }else if(value === 'whatsapp'){
+    shareUrl = `https://api.whatsapp.com/send?text=${message}%20${encodeURL}`
+  }else if(value === 'linkedIn'){
+    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURL}`
+  }
+  window.open(shareUrl, '_blank')
+}
 </script>
 
 <template>
