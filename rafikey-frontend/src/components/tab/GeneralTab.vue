@@ -5,6 +5,7 @@ import DialogModal from '@/components/DialogModal.vue'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
 
+
 const openClearChatDialog = ref(false)
 
 const chatbotStore = useRafikeyChatbotStore()
@@ -97,12 +98,49 @@ console.log("chat history title", chatbotStore.chatHistoryTitles)
         <div class="cursor-pointer w-fit border   dark:border-white border-darkgray   rounded-2xl px-3 py-1">
           <span class="dark:text-white">Archive All Chats</span>
         </div>
-        <div class="cursor-pointer w-fit border border-red-700 rounded-2xl px-3 py-1">
+        <div
+          v-if="chatbotStore.chatHistoryTitles.length > 0"
+          @click="openClearChatDialog = true" class="cursor-pointer w-fit border border-red-700 rounded-2xl px-3 py-1">
           <span class="text-red-700">Clear All Chats</span>
         </div>
       </div>
     </div>
     <div class="border-b-[1px] dark:border-veryLightFive border-veryLightFour "></div>
+    <Teleport to="body">
+      <DialogModal :is-open="openClearChatDialog" @close-modal="openClearChatDialog = !openClearChatDialog " >
+        <template #title>
+          <div class="flex  items-center gap-4">
+            <div>
+              <span class="material-icons-round !text-red-700 dark:text-white text-extra-large">warning</span>
+            </div>
+            <div>
+              <span class="dark:text-white ">Delete all chats?</span>
+            </div>
+          </div>
+        </template>
+        <template #body>
+          <div>
+            <span class="dark:text-white">All chats will be gone forever and you won't be able to access them again.</span>
+          </div>
+        </template>
+        <template #footer>
+          <div class="w-3/4 mx-auto cursor-pointer flex items-center justify-between">
+            <button
+              @click="openClearChatDialog = false"
+              class=" hover:bg-transparent hover:shadow-none dark:border-white border-darkgray rounded-2xl px-4">
+              <span class="dark:text-white text-extra-extra-small lg:text-extra-small">Cancel </span>
+            </button>
+            <button
+
+              @click="deleteAllChats"
+              class="btn btn-sm btn-ghost border-none hover:shadow-none bg-red-700 rounded-2xl px-4">
+              <span v-if="isloading" class="loading loading-spinner loading-sm"></span>
+              <span v-else  class="dark:text-white text-extra-extra-small lg:text-extra-small">Delete Chats</span>
+            </button>
+          </div>
+        </template>
+      </DialogModal>
+    </Teleport>
   </div>
 </template>
 
