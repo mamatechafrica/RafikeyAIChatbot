@@ -92,6 +92,7 @@ const emits = defineEmits<{
   (event: 'fetchHistoryHandler', activeSessionId: string): void
   (event: 'profileHandler'): void
   (event: 'isProfile', value: boolean): void
+  (event: 'shareChat'): void
 }>()
 
 // fetch clicked chat History title
