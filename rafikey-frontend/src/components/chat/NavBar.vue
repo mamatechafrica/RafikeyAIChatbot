@@ -148,7 +148,7 @@ const cancelLogout = () => {
 }
 
 const showProfile = () => {
-  if(isShowSettings.value) {
+  if (isShowSettings.value) {
     isShowSettings.value = false
     emits('isProfile', isShowSettings.value)
   } else {
@@ -158,7 +158,6 @@ const showProfile = () => {
     emits('isProfile', isShowProfile.value)
   }
 }
-
 
 const settingsHandler = () => {
   isShowProfile.value = false
