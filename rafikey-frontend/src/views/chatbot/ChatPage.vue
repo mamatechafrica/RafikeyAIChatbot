@@ -12,6 +12,7 @@ import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
 import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
 import DialogModal from '@/components/DialogModal.vue'
+import { Copy } from 'lucide-vue-next'
 
 import TabComponent, { type Tabs } from '@/components/tab/TabComponent.vue'
 import GeneralTab from '@/components/tab/GeneralTab.vue'
