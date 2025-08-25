@@ -173,13 +173,22 @@ const closeSettings = () => {
   isShowProfile.value = true
 }
 
+watch(
+  () => chatbotStore.collapseSidebarSmall,
+  (value) => {
+    if (!value) {
+      isShowProfile.value = false
+      isShowSettings.value = false
+    }
+  },
+)
 
-watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
-  if(!value) {
-    isShowProfile.value = false
-    isShowSettings.value = false
-  }
-})
+
+const shareChat = () =>{
+  emits('shareChat')
+
+}
+
 </script>
 
 <template>
@@ -192,7 +201,11 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
       class="flex justify-between items-center"
       :class="[!chatbotStore.collapseSidebarLarge ? 'pe-8' : '']"
     >
-      <div class="w-28 " @click="expandSideNavHandler" :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']">
+      <div
+        class="w-28"
+        @click="expandSideNavHandler"
+        :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']"
+      >
         <img src="../../assets/images/rafikey-icon.png" alt="rafikey-icon" />
       </div>
       <div
@@ -263,10 +276,12 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
             <div
               class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparent dark:bg-darkgray"
             >
-              <h1 class="dark:text-white text-large ">{{ date }}</h1>
+              <h1 class="dark:text-white text-large">{{ date }}</h1>
               <div class="flex flex-row-reverse">
                 <span class="material-icons-outlined dark:text-white">expand_less</span>
-                <span class="dark:text-stone-300 text-small text-nowrap"> {{ titles.length }} total</span>
+                <span class="dark:text-stone-300 text-small text-nowrap">
+                  {{ titles.length }} total</span
+                >
               </div>
             </div>
 
@@ -331,8 +346,7 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                     leave-from="opacity-100"
                     leave-to="opacity-0"
                   >
-                    <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
-                    </div>
+                    <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4"></div>
                   </TransitionChild>
                   <div
                     class="flex h-full flex-col space-y-4 overflow-y-auto bg-white dark:bg-lightgray py-6 shadow-xl"
@@ -365,12 +379,13 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                       <div class="flex justify-between px-4">
                         <div class="flex gap-4 items-center">
                           <div
+                            @click.stop="shareChat"
                             class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
                           >
                             <span
                               class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
-                              >share</span
-                            >
+                              >share
+                            </span>
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
                           <div class="">
@@ -401,14 +416,14 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                       <!-- Your content -->
 
                       <div
-                        class="h-[calc(100vh-21rem)] overflow-y-auto "
+                        class="h-[calc(100vh-21rem)] overflow-y-auto"
                         v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarSmall"
                       >
                         <div v-for="(titles, date) in groupChat()" :key="date">
                           <div
                             class="flex justify-between sticky pb-1 top-0 backdrop-blur bg-opacity-30 font-bold"
                           >
-                            <h1 class="dark:text-white ps-4 text-large ">{{ date }}</h1>
+                            <h1 class="dark:text-white ps-4 text-large">{{ date }}</h1>
                             <div class="flex flex-row-reverse">
                               <span class="material-icons-outlined dark:text-white"
                                 >expand_less</span
@@ -517,7 +532,7 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                         </div>
                       </div>
                     </div>
-<!--                    setting section-->
+                    <!--                    setting section-->
                     <div
                       v-if="isShowSettings"
                       class="pt-[27px] px-[10px] pb-[40px] absolute rounded-t-2xl bottom-0 w-full bg-white dark:bg-darkgray"
@@ -528,7 +543,9 @@ watch(()=>chatbotStore.collapseSidebarSmall, (value)=>{
                         >
                         <span class="text-small dark:text-white">Back</span>
                       </div>
-                      <div class="border-b-[1px] dark:border-stone-700 border-veryLightTwo w-11/12 mx-auto"></div>
+                      <div
+                        class="border-b-[1px] dark:border-stone-700 border-veryLightTwo w-11/12 mx-auto"
+                      ></div>
                       <TabComponent @tab-change="tabHandler" />
                       <div>
                         <component :is="activeComponent.component" />
