@@ -604,7 +604,6 @@ async function  shareChat (){
   if(navigator.share){
     try{
       await navigator.share(shareData)
-      window.alert("Hello")
     } catch(error){
       console.log("An errror has occurred")
     }
