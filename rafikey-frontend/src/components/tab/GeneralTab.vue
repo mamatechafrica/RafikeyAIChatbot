@@ -13,6 +13,44 @@ watch(()=> isNotificationEnabled.value, () =>{
   })
 
 })
+const isloading = ref(false)
+const deleteAllChats = () =>{
+  isloading.value = true
+  chatbotStore.deleteAllChats()
+
+    .then((res)=>{
+      if(res.result === 'ok'){
+        showSweetAlert({
+          type: 'success',
+          message: res.data,
+        })
+        setTimeout(()=>{
+          router.replace({
+            name: 'newChat'
+          })
+          chatbotStore.sessionId = ''
+          chatbotStore.conversation = []
+        }, 3000)
+      } else{
+        showSweetAlert({
+          type: 'error',
+          message: res.data,
+        })
+      }
+    })
+    .catch((err)=>{
+      showSweetAlert({
+        type: 'error',
+        message: err.message,
+      })
+    })
+    .finally(()=>{
+      isloading.value = false
+      openClearChatDialog.value = false
+    })
+}
+
+console.log("chat history title", chatbotStore.chatHistoryTitles)
 </script>
 
 <template>
