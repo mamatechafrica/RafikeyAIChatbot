@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores/rafikeyChatbotStore'
+import DialogModal from '@/components/DialogModal.vue'
+import { showSweetAlert } from '@/modules/alert.ts'
+import { useRouter } from 'vue-router'
 
+const openClearChatDialog = ref(false)
 
 const chatbotStore = useRafikeyChatbotStore()
+const router = useRouter()
 
 const isNotificationEnabled = ref(chatbotStore.getOtherSettings.notificationsEnabled || false)
 watch(()=> isNotificationEnabled.value, () =>{
