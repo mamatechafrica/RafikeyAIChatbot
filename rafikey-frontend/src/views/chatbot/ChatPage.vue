@@ -673,7 +673,12 @@ const shareOn = (value: string) =>{
 <template>
   <div class="relative p-6 dark:bg-lightgray h-screen overflow-hidden w-full">
     <div>
-      <NavBar @fetch-history-handler="fetchHistoryHandler" @profile-handler="profileHandler"  @is-profile="isProfileHandler"/>
+      <NavBar
+        @fetch-history-handler="fetchHistoryHandler"
+        @share-chat="shareChat"
+        @profile-handler="profileHandler"
+        @is-profile="isProfileHandler"
+      />
     </div>
     <!--    right side-->
     <div class="relative w-full" >
