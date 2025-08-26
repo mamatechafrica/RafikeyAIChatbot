@@ -45,12 +45,12 @@ const renderer: RendererObject = {
       .map((row) => {
         return `
       <tr>${row
-          .map(({ text, header }) => {
-            return `
+        .map(({ text, header }) => {
+          return `
         <td class="text-base-content text-large">${marked.parseInline(text)}</td>
       `
-          })
-          .join('\n')}</tr>
+        })
+        .join('\n')}</tr>
     `
       })
       .join('\n')
@@ -90,11 +90,11 @@ const renderer: RendererObject = {
       return `
   <div class="p-2 flex w-full">
        <pre class="w-full"><div class="mockup-code bg-neutral-800 my-3 relative shadow-xl w-full overflow-auto"><div class="px-4 flex-1 overflow-auto h-full w-full"><code class="language-${language}">${
-        hljs.highlight(code, {
-          language,
-          ignoreIllegals,
-        }).value
-      }</code></div></div></pre>
+         hljs.highlight(code, {
+           language,
+           ignoreIllegals,
+         }).value
+       }</code></div></div></pre>
   </div>
     `
     } else {
@@ -238,7 +238,7 @@ marked.use({
 })
 // User Input
 const handleUserInput = (formatted: string) => {
-  if(!rafikeyChatbotStore.regenerateResponse){
+  if (!rafikeyChatbotStore.regenerateResponse) {
     formattedResponse.value = formatted
     //   Create userMessage object
     const userMessage = ref<Conversation>({
@@ -270,9 +270,10 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-
+          // console.log(res.data)
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
+
 
           if (currentRafikeyObject) {
             currentRafikeyObject.message = res?.data as string
@@ -281,22 +282,22 @@ const handleUserInput = (formatted: string) => {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
             errorMessage: res?.data as string,
-            isLoggedIn: true
+            isLoggedIn: true,
           })
         }
       })
       .catch((err) => {
         rafikeyChatbotStore.setStreamError({
           hasError: true,
-          errorMessage: "An error occurred while generating the response. Please try again later.",
-          isLoggedIn: true
+          errorMessage: 'An error occurred while generating the response. Please try again later.',
+          isLoggedIn: true,
         })
       })
       .finally(() => {
         rafikeyChatbotStore.isGeneratingResponse = false
         rafikeyMessage.value.isTyping = false
       })
-  } else{
+  } else {
     // pop the last message which is the chat message so that it does not show up on the page
 
     rafikeyChatbotStore.isGeneratingResponse = true
@@ -307,7 +308,6 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
@@ -323,11 +323,11 @@ const handleUserInput = (formatted: string) => {
         }
       })
       .catch((err) => {
-        console.log("error catch", err)
+        console.log('error catch', err)
         rafikeyChatbotStore.setStreamError({
           hasError: true,
-          errorMessage: "An error occurred, please try again later.",
-          isLoggedIn: true
+          errorMessage: 'An error occurred, please try again later.',
+          isLoggedIn: true,
         })
       })
       .finally(() => {
@@ -436,12 +436,17 @@ const props = defineProps<{
   sessionId: string | null
 }>()
 onMounted(() => {
-  rafikeyChatbotStore.setSessionId(uuidV4())
   setTimeout(() => {
     isShowDisclaimer.value = true
   }, 3000)
+  // const isSessionId = route.params.sessionId as string
+  if (props.sessionId) {
+    isStartChatSmallScreen.value = true
+    fetchHistoryHandler(props.sessionId as string)
+  } else {
+    rafikeyChatbotStore.setSessionId(uuidV4())
+  }
 })
-
 
 const loginHandler = () => {
   router.push({
@@ -458,7 +463,7 @@ const signUpHandler = () => {
 // toggle images in dark ans light mode
 const toggleImage = computed(() => {
   // console.log('rafikeyChatbotStore.isDarkMode', rafikeyChatbotStore.isDarkMode)
-  return rafikeyChatbotStore.isDarkMode? imageLight: imageDark
+  return rafikeyChatbotStore.isDarkMode ? imageLight : imageDark
 })
 
 const isStartChatSmallScreen = ref(false)
@@ -466,54 +471,68 @@ const startChatSmallScreen = () => {
   isStartChatSmallScreen.value = true
 }
 const scrollToBottom = () => {
-
   // const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
-nextTick(()=>{
-  if(!isSmallDevice){
-    const userInputPlaceholder = document.getElementById('userInputPlaceholder')
-    if(userInputPlaceholder){
-      console.log("Scrolling desktop")
-      userInputPlaceholder.scrollIntoView({
-        behavior: 'smooth',
-        block:  'end',
-        inline: 'nearest'
-      })
-    }
+  nextTick(() => {
+    // if (!isSmallDevice) {
+    //   const userInputPlaceholder = document.getElementById('userInputPlaceholder')
+    //   if (userInputPlaceholder) {
+    //     console.log('Scrolling desktop')
+    //     userInputPlaceholder.scrollIntoView({
+    //       behavior: 'smooth',
+    //       block: 'end',
+    //       inline: 'nearest',
+    //     })
+    //   }
+    // } else {
+    //   const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
+    //   if (userInputPlaceholderSmall) {
+    //     console.log('Scrolling small')
+    //     userInputPlaceholderSmall.scrollIntoView({
+    //       behavior: 'smooth',
+    //       block: 'end',
+    //       inline: 'nearest',
+    //     })
+    //   }
+    // }
 
-  } else{
-    const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
-    if(userInputPlaceholderSmall){
-      console.log("Scrolling small")
-      userInputPlaceholderSmall.scrollIntoView({
-        behavior: 'smooth',
-        block:  'end',
-        inline: 'nearest'
-      })
-    }
+      const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
+      if (userInputPlaceholderSmall) {
+        console.log('Scrolling small')
+        userInputPlaceholderSmall.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest',
+        })
+      }
 
-  }
-})
+    // <div id="userInputPlaceholder-small" class="pt-20"></div>
+  })
 }
 
-
 // watch the conversation container and scroll to bottom
-watch(()=>rafikeyChatbotStore.conversation || rafikeyChatbotStore.isStreamError.hasError, () => {
-  console.log("Now scrolling!!!")
-  scrollToBottom()
-})
+watch(
+  () => rafikeyChatbotStore.conversation || rafikeyChatbotStore.isStreamError.hasError,
+  () => {
+    console.log('Now scrolling!!!')
+    scrollToBottom()
+  },
+)
+
 
 // check if the regenerate has been punched to regenerate the response
-watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
-  if(newValue){
-    handleUserInput(rafikeyChatbotStore.regenerateUserInput)
-  }
-})
+watch(
+  () => rafikeyChatbotStore.regenerateResponse,
+  (newValue) => {
+    if (newValue) {
+      handleUserInput(rafikeyChatbotStore.regenerateUserInput)
+    }
+  },
+)
 
 // when mounted scroll to bottom
-setTimeout(()=>{
+setTimeout(() => {
   scrollToBottom()
 }, 1000)
-
 
 const accessQuestions = [
   {
@@ -533,7 +552,7 @@ const accessQuestions = [
   },
 ] as AccessQuestion[]
 
-const accessButtonQuestionHandler = (message: string) =>{
+const accessButtonQuestionHandler = (message: string) => {
   rafikeyChatbotStore.conversation = []
   handleUserInput(message)
   isStartChatSmallScreen.value = true
