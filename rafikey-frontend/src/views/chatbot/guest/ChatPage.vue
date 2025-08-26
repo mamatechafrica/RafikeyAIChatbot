@@ -22,7 +22,7 @@ import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
 const router = useRouter()
-const now = moment().format('LT')
+const now = moment()
 const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 const formattedResponse = ref<string>('')
@@ -337,6 +337,99 @@ const handleUserInput = (formatted: string) => {
   }
 }
 
+//date format
+const timeFormatter = (timestamp: string) => {
+  const date = moment.utc(timestamp).local()
+  if (now.isSame(date, 'day')) {
+    return date.format('[Today] h:mm A')
+  } else if (now.clone().subtract(1, 'days').isSame(date, 'day')) {
+    return date.format('[Yesterday] h:mm A')
+  } else if (now.clone().subtract(1, 'weeks').isBefore(date, 'day')) {
+    return date.format('dddd h:mm A')
+  } else if (now.clone().subtract(1, 'weeks').isAfter(date)) {
+    return date.format('[Last]dddd h:mm A')
+  } else if (now.clone().subtract(1, 'years').isBefore(date)) {
+    return date.format('MMMM D, dddd')
+  } else {
+    return date.format('YYYY')
+  }
+}
+// Create user message object
+const userMessage = ref<Conversation>({
+  message: '',
+  isUser: true,
+  uniqueId: _.uniqueId('user-'),
+  timestamp: '',
+})
+
+const rafikeyMessage = ref<Conversation>({
+  message: '',
+  isUser: false,
+  isTyping: true,
+  uniqueId: _.uniqueId('rafikey-'),
+  timestamp: '',
+})
+const isLoading = ref(true)
+// fetching chat history
+const fetchHistoryHandler = (activeSessionId: string) => {
+  rafikeyChatbotStore.conversation = []
+  // isLoading.value = true
+  rafikeyChatbotStore
+    .getChatHistory(activeSessionId)
+    .then((res) => {
+      if (res?.result != 'ok') {
+        return
+        // rafikeyChatbotStore.setStreamError({
+        //   hasError: true,
+        //   errorMessage: res?.data as string,
+        //   isLoggedIn: res?.isLoggedIn as boolean,
+        // })
+      } else {
+        // router.replace({
+        //   name: 'chatWithId',
+        //   params: {
+        //     sessionId: activeSessionId,
+        //   },
+        // })
+        const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
+          return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+        })
+
+        sortedHistory.forEach((conv: HistoryConv) => {
+          const time = timeFormatter(conv.timestamp)
+          userMessage.value = {
+            message: conv.user_message,
+            isUser: true,
+            uniqueId: _.uniqueId('user-'),
+            timestamp: time as string,
+          }
+          rafikeyChatbotStore.conversation.push(userMessage.value)
+
+          rafikeyMessage.value = {
+            message: conv.bot_response,
+            isUser: false,
+            isTyping: false,
+            uniqueId: _.uniqueId('rafikey-'),
+            timestamp: time as string,
+          }
+          rafikeyChatbotStore.conversation.push(rafikeyMessage.value)
+        })
+      }
+    })
+    .catch((err) => {
+      // rafikeyChatbotStore.setStreamError({
+      //   hasError: true,
+      //   errorMessage: "An error occurred while generating the response. Please try again later.",
+      //   isLoggedIn: true,
+      // })
+      console.error('Error fetching chat history', err)
+    })
+    .finally(() => {
+      rafikeyChatbotStore.isGeneratingResponse = false
+      rafikeyMessage.value.isTyping = false
+      isLoading.value = false
+    })
+}
 
 const isShowDisclaimer = ref(false)
 onMounted(() => {
