@@ -897,7 +897,7 @@ const shareOn = (value: string) =>{
               readonly
               v-model="linkChatInput"
               class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis  focus:outline-none focus:ring-0 focus:border-transparent  line-clamp-1  md:ps-2 ps-1  me-0.5  rounded-md"
-              placeholder="https://rafikeybot.onrender.com/share/..."
+              placeholder="https://rafikeyaichatbot-frontend.onrender.com/..."
             />
             <div
               @click="generateLink"
