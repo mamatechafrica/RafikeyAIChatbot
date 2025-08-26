@@ -34,8 +34,13 @@ const chatHistoryHandler = (propVal: ChatHistoryProps) => {
 </script>
 
 <template>
-  <div class="flex justify-start py-2 ps-4 cursor-pointer"
-       :class="[ chatbotStore.sessionId === props.threadId? 'bg-stone-300 dark:bg-stone-700  border-r-4 border-blue-600 ': 'bg-transparent']"
+  <div class="flex justify-start py-2 ps-4  cursor-pointer active:"
+       :class="[ chatbotStore.sessionId === props.threadId? 'bg-stone-300 dark:bg-stone-700  border-r-4 border-blue-600 ':
+       'bg-transparent hover:bg-stone-300 active:bg-stone-300' +
+        ' hover:dark:bg-stone-700 active:dark:bg-stone-700' +
+         ' hover:border-r-4 active:border-r-4 ' +
+          'hover:border-stone-400 active:border-stone-400 ' +
+           'hover:dark:border-stone-500 active:dark:border-stone-500']"
        @click="chatHistoryHandler(props)"
   >
     <p class="text-start line-clamp-1 text-small dark:text-white ">{{props.title}}</p>
