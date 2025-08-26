@@ -17,7 +17,7 @@ import imageLight from '@/assets/images/rafikey-icon-light.png'
 import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
 import { useMediaQuery } from '@vueuse/core'
-
+import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
