@@ -176,8 +176,14 @@ const routes = [
   },
   {
     name: 'guest-page',
-    path: '/guest-user',
+    path: '/guest-user/:sessionId?',
     component: () => import('@/views/chatbot/guest/ChatPage.vue'),
+      props: (route: RouteLocationNormalized)=>{
+        const { params } = route
+        return {
+          sessionId: params.sessionId || '',
+        }
+      },
     meta: {
       requiresAuth: false
     },
