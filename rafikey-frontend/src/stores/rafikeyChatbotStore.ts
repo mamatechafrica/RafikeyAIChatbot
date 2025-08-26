@@ -32,6 +32,7 @@ export interface Setting {
 
 
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
+const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const sessionId = useStorage("sessionId", '');
   const isGeneratingResponse = ref(false)
@@ -373,7 +374,7 @@ const otherSettings = useStorage("otherSettings", {})
     setOtherSettings,
     getOtherSettings,
     deleteAllChats,
-    RAFIKEY_CHATBOT_URL
+    RAFIKEY_CHATBOT_FRONTEND_URL
 
 
     // setRegenerateInput
