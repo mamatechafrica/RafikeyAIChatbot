@@ -338,7 +338,7 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-          console.log('Rafikey response', res)
+          // console.log('Rafikey response', res)
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
@@ -379,7 +379,7 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-          console.log('Rafikey response', res)
+          // console.log('Rafikey response', res)
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
@@ -595,7 +595,7 @@ const isShare = ref(false)
 const shareData = {
   title:  "Rafikey Ai",
   text: "Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️",
-  url: `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/share/${rafikeyChatbotStore.sessionId}`
+  url: `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/guest-user/${rafikeyChatbotStore.sessionId}`
 
 }
 
@@ -618,7 +618,7 @@ async function  shareChat (){
 const generateLink = () => {
   isGeneratingLink.value = true
   setTimeout(() => {
-    linkChatInput.value = `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/share/${rafikeyChatbotStore.sessionId}`
+    linkChatInput.value = shareData.url
     isGeneratingLink.value = false
     showCopyBtn.value = true
     showSocials.value = true
@@ -646,7 +646,6 @@ const copyShareChatLink = ()=>{
         }, 2000)
       }
     }
-
   }
 }
 
