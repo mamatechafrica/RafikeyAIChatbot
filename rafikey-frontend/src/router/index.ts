@@ -187,8 +187,12 @@ const routes = [
     meta: {
       requiresAuth: false
     },
+    beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+      const chatbotStore = useRafikeyChatbotStore()
+      chatbotStore.sessionId = ''
+      next()
+    }
   }
-
 ]
 
 
