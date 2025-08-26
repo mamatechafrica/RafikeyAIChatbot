@@ -608,7 +608,7 @@ const accessButtonQuestionHandler = (message: string) =>{
               v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
               :user-message="conv.message"
               :user-name="'You'"
-              :created-at="now"
+              :created-at="conv.timestamp as string || ''"
               :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
             />
@@ -619,7 +619,7 @@ const accessButtonQuestionHandler = (message: string) =>{
               :is-typing="false"
               :is-copyable="false"
               :is-error="false"
-              :created-at="now"
+              :created-at="conv.timestamp as string || ''"
               :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
             />
@@ -754,7 +754,7 @@ const accessButtonQuestionHandler = (message: string) =>{
                 v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
                 :user-message="conv.message"
                 :user-name="'You'"
-                :created-at="now"
+                :created-at="conv.timestamp as string || ''"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
               />
@@ -765,7 +765,7 @@ const accessButtonQuestionHandler = (message: string) =>{
                 :is-typing="false"
                 :is-copyable="false"
                 :is-error="false"
-                :created-at="now"
+                :created-at="conv.timestamp as string"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
 
