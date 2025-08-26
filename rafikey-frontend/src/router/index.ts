@@ -131,6 +131,7 @@ const routes = [
           const authStore = useAuthStore()
           // Reset the chat history when entering a new chat
           chatbotStore.isNewChat = true
+          chatbotStore.sessionId = ''
           chatbotStore.setStreamError({
             hasError: false,
             errorMessage: '',
