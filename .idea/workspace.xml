@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update navigationguard">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove alert message">
       <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/ErrorPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/DialogModal.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ShareChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ChatHistory.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ChatHistory.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/HistoryPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,9 +45,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/play_ground&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -68,8 +72,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/rafikey-frontend/public" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/public" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/modules" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/toasts" />
@@ -135,7 +139,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
       </set>
     </attachedChunks>
   </component>
@@ -221,175 +225,21 @@
       <workItem from="1754416377817" duration="21517000" />
       <workItem from="1754463503156" duration="5502000" />
       <workItem from="1754469451880" duration="2000" />
-      <workItem from="1754880794756" duration="39416000" />
-    </task>
-    <task id="LOCAL-00341" summary="add profile ui">
-      <option name="closed" value="true" />
-      <created>1754310200062</created>
-      <option name="number" value="00341" />
-      <option name="presentableId" value="LOCAL-00341" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310200062</updated>
-    </task>
-    <task id="LOCAL-00342" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310216407</created>
-      <option name="number" value="00342" />
-      <option name="presentableId" value="LOCAL-00342" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310216407</updated>
-    </task>
-    <task id="LOCAL-00343" summary="remove toggleDark feature">
-      <option name="closed" value="true" />
-      <created>1754310239196</created>
-      <option name="number" value="00343" />
-      <option name="presentableId" value="LOCAL-00343" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310239196</updated>
-    </task>
-    <task id="LOCAL-00344" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310253690</created>
-      <option name="number" value="00344" />
-      <option name="presentableId" value="LOCAL-00344" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310253690</updated>
-    </task>
-    <task id="LOCAL-00345" summary="add navigation guards">
-      <option name="closed" value="true" />
-      <created>1754310288812</created>
-      <option name="number" value="00345" />
-      <option name="presentableId" value="LOCAL-00345" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310288812</updated>
-    </task>
-    <task id="LOCAL-00346" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310313553</created>
-      <option name="number" value="00346" />
-      <option name="presentableId" value="LOCAL-00346" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310313553</updated>
-    </task>
-    <task id="LOCAL-00347" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310321750</created>
-      <option name="number" value="00347" />
-      <option name="presentableId" value="LOCAL-00347" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310321750</updated>
-    </task>
-    <task id="LOCAL-00348" summary="add termsConditionHandler function">
-      <option name="closed" value="true" />
-      <created>1754310358185</created>
-      <option name="number" value="00348" />
-      <option name="presentableId" value="LOCAL-00348" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310358185</updated>
-    </task>
-    <task id="LOCAL-00349" summary="add showLogoutDialogModal function">
-      <option name="closed" value="true" />
-      <created>1754310376644</created>
-      <option name="number" value="00349" />
-      <option name="presentableId" value="LOCAL-00349" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310376644</updated>
-    </task>
-    <task id="LOCAL-00350" summary="add closeProfileSection function">
-      <option name="closed" value="true" />
-      <created>1754310414714</created>
-      <option name="number" value="00350" />
-      <option name="presentableId" value="LOCAL-00350" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310414714</updated>
-    </task>
-    <task id="LOCAL-00351" summary="add DialogModal">
-      <option name="closed" value="true" />
-      <created>1754310433398</created>
-      <option name="number" value="00351" />
-      <option name="presentableId" value="LOCAL-00351" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310433398</updated>
-    </task>
-    <task id="LOCAL-00352" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310447849</created>
-      <option name="number" value="00352" />
-      <option name="presentableId" value="LOCAL-00352" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310447849</updated>
-    </task>
-    <task id="LOCAL-00353" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310452699</created>
-      <option name="number" value="00353" />
-      <option name="presentableId" value="LOCAL-00353" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310452700</updated>
-    </task>
-    <task id="LOCAL-00354" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1754310458778</created>
-      <option name="number" value="00354" />
-      <option name="presentableId" value="LOCAL-00354" />
-      <option name="project" value="LOCAL" />
-      <updated>1754310458778</updated>
-    </task>
-    <task id="LOCAL-00355" summary="remove watcher">
-      <option name="closed" value="true" />
-      <created>1754311156609</created>
-      <option name="number" value="00355" />
-      <option name="presentableId" value="LOCAL-00355" />
-      <option name="project" value="LOCAL" />
-      <updated>1754311156610</updated>
-    </task>
-    <task id="LOCAL-00356" summary="remove watcher">
-      <option name="closed" value="true" />
-      <created>1754311161919</created>
-      <option name="number" value="00356" />
-      <option name="presentableId" value="LOCAL-00356" />
-      <option name="project" value="LOCAL" />
-      <updated>1754311161924</updated>
-    </task>
-    <task id="LOCAL-00357" summary="update isDark toggle">
-      <option name="closed" value="true" />
-      <created>1754318456509</created>
-      <option name="number" value="00357" />
-      <option name="presentableId" value="LOCAL-00357" />
-      <option name="project" value="LOCAL" />
-      <updated>1754318456510</updated>
-    </task>
-    <task id="LOCAL-00358" summary="remove  isDark toggle">
-      <option name="closed" value="true" />
-      <created>1754318475744</created>
-      <option name="number" value="00358" />
-      <option name="presentableId" value="LOCAL-00358" />
-      <option name="project" value="LOCAL" />
-      <updated>1754318475744</updated>
-    </task>
-    <task id="LOCAL-00359" summary="remove  isDark toggle">
-      <option name="closed" value="true" />
-      <created>1754318485515</created>
-      <option name="number" value="00359" />
-      <option name="presentableId" value="LOCAL-00359" />
-      <option name="project" value="LOCAL" />
-      <updated>1754318485515</updated>
-    </task>
-    <task id="LOCAL-00360" summary="remove  isDark toggle">
-      <option name="closed" value="true" />
-      <created>1754318493129</created>
-      <option name="number" value="00360" />
-      <option name="presentableId" value="LOCAL-00360" />
-      <option name="project" value="LOCAL" />
-      <updated>1754318493129</updated>
-    </task>
-    <task id="LOCAL-00361" summary="remove  isDark toggle">
-      <option name="closed" value="true" />
-      <created>1754318524822</created>
-      <option name="number" value="00361" />
-      <option name="presentableId" value="LOCAL-00361" />
-      <option name="project" value="LOCAL" />
-      <updated>1754318524822</updated>
+      <workItem from="1754880794756" duration="40944000" />
+      <workItem from="1754987932708" duration="941000" />
+      <workItem from="1755014191822" duration="695000" />
+      <workItem from="1755066558654" duration="49000" />
+      <workItem from="1755071392534" duration="613000" />
+      <workItem from="1755085441257" duration="2456000" />
+      <workItem from="1755175126832" duration="9000" />
+      <workItem from="1755262657399" duration="661000" />
+      <workItem from="1755625820844" duration="784000" />
+      <workItem from="1755797004515" duration="20000" />
+      <workItem from="1755838619928" duration="11688000" />
+      <workItem from="1756116362663" duration="7016000" />
+      <workItem from="1756127675877" duration="67000" />
+      <workItem from="1756141641794" duration="9466000" />
+      <workItem from="1756192996495" duration="16126000" />
     </task>
     <task id="LOCAL-00362" summary="move the isAnonymous flag to rafikeyStore">
       <option name="closed" value="true" />
@@ -615,39 +465,207 @@
       <option name="project" value="LOCAL" />
       <updated>1754924456290</updated>
     </task>
-    <option name="localTasksCounter" value="390" />
+    <task id="LOCAL-00390" summary="add GeneralTab Component">
+      <option name="closed" value="true" />
+      <created>1754926285086</created>
+      <option name="number" value="00390" />
+      <option name="presentableId" value="LOCAL-00390" />
+      <option name="project" value="LOCAL" />
+      <updated>1754926285086</updated>
+    </task>
+    <task id="LOCAL-00391" summary="add components array">
+      <option name="closed" value="true" />
+      <created>1754926333287</created>
+      <option name="number" value="00391" />
+      <option name="presentableId" value="LOCAL-00391" />
+      <option name="project" value="LOCAL" />
+      <updated>1754926333287</updated>
+    </task>
+    <task id="LOCAL-00392" summary="add tabHandler function">
+      <option name="closed" value="true" />
+      <created>1754926377846</created>
+      <option name="number" value="00392" />
+      <option name="presentableId" value="LOCAL-00392" />
+      <option name="project" value="LOCAL" />
+      <updated>1754926377846</updated>
+    </task>
+    <task id="LOCAL-00393" summary="add setting dialog modal">
+      <option name="closed" value="true" />
+      <created>1754926411911</created>
+      <option name="number" value="00393" />
+      <option name="presentableId" value="LOCAL-00393" />
+      <option name="project" value="LOCAL" />
+      <updated>1754926411911</updated>
+    </task>
+    <task id="LOCAL-00394" summary="add setting dialog modal">
+      <option name="closed" value="true" />
+      <created>1754926421655</created>
+      <option name="number" value="00394" />
+      <option name="presentableId" value="LOCAL-00394" />
+      <option name="project" value="LOCAL" />
+      <updated>1754926421655</updated>
+    </task>
+    <task id="LOCAL-00395" summary="add lucide package">
+      <option name="closed" value="true" />
+      <created>1756149572122</created>
+      <option name="number" value="00395" />
+      <option name="presentableId" value="LOCAL-00395" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149572122</updated>
+    </task>
+    <task id="LOCAL-00396" summary="add variables for shareChat feature">
+      <option name="closed" value="true" />
+      <created>1756149604206</created>
+      <option name="number" value="00396" />
+      <option name="presentableId" value="LOCAL-00396" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149604206</updated>
+    </task>
+    <task id="LOCAL-00397" summary="add copyShareChatLink function">
+      <option name="closed" value="true" />
+      <created>1756149638766</created>
+      <option name="number" value="00397" />
+      <option name="presentableId" value="LOCAL-00397" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149638766</updated>
+    </task>
+    <task id="LOCAL-00398" summary="add shareChat emit event">
+      <option name="closed" value="true" />
+      <created>1756149660871</created>
+      <option name="number" value="00398" />
+      <option name="presentableId" value="LOCAL-00398" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149660871</updated>
+    </task>
+    <task id="LOCAL-00399" summary="add dialogModal modal for shareChat">
+      <option name="closed" value="true" />
+      <created>1756149759724</created>
+      <option name="number" value="00399" />
+      <option name="presentableId" value="LOCAL-00399" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149759725</updated>
+    </task>
+    <task id="LOCAL-00400" summary="add socials images">
+      <option name="closed" value="true" />
+      <created>1756149792524</created>
+      <option name="number" value="00400" />
+      <option name="presentableId" value="LOCAL-00400" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149792524</updated>
+    </task>
+    <task id="LOCAL-00401" summary="add deleteAllChats function">
+      <option name="closed" value="true" />
+      <created>1756149822954</created>
+      <option name="number" value="00401" />
+      <option name="presentableId" value="LOCAL-00401" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149822954</updated>
+    </task>
+    <task id="LOCAL-00402" summary="add deleteAllChats function">
+      <option name="closed" value="true" />
+      <created>1756149844936</created>
+      <option name="number" value="00402" />
+      <option name="presentableId" value="LOCAL-00402" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149844936</updated>
+    </task>
+    <task id="LOCAL-00403" summary="add lucide package">
+      <option name="closed" value="true" />
+      <created>1756149864984</created>
+      <option name="number" value="00403" />
+      <option name="presentableId" value="LOCAL-00403" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149864985</updated>
+    </task>
+    <task id="LOCAL-00404" summary="add shareChat emit event">
+      <option name="closed" value="true" />
+      <created>1756149883427</created>
+      <option name="number" value="00404" />
+      <option name="presentableId" value="LOCAL-00404" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149883427</updated>
+    </task>
+    <task id="LOCAL-00405" summary="add shareChat function">
+      <option name="closed" value="true" />
+      <created>1756149938957</created>
+      <option name="number" value="00405" />
+      <option name="presentableId" value="LOCAL-00405" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149938957</updated>
+    </task>
+    <task id="LOCAL-00406" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1756149973516</created>
+      <option name="number" value="00406" />
+      <option name="presentableId" value="LOCAL-00406" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149973516</updated>
+    </task>
+    <task id="LOCAL-00407" summary="add deleteAllChats function">
+      <option name="closed" value="true" />
+      <created>1756149996949</created>
+      <option name="number" value="00407" />
+      <option name="presentableId" value="LOCAL-00407" />
+      <option name="project" value="LOCAL" />
+      <updated>1756149996949</updated>
+    </task>
+    <task id="LOCAL-00408" summary="add openClearChatDialog variable">
+      <option name="closed" value="true" />
+      <created>1756150017085</created>
+      <option name="number" value="00408" />
+      <option name="presentableId" value="LOCAL-00408" />
+      <option name="project" value="LOCAL" />
+      <updated>1756150017085</updated>
+    </task>
+    <task id="LOCAL-00409" summary="add DialogModal for clearChat confirmation">
+      <option name="closed" value="true" />
+      <created>1756150045883</created>
+      <option name="number" value="00409" />
+      <option name="presentableId" value="LOCAL-00409" />
+      <option name="project" value="LOCAL" />
+      <updated>1756150045883</updated>
+    </task>
+    <task id="LOCAL-00410" summary="remove alert message">
+      <option name="closed" value="true" />
+      <created>1756150532814</created>
+      <option name="number" value="00410" />
+      <option name="presentableId" value="LOCAL-00410" />
+      <option name="project" value="LOCAL" />
+      <updated>1756150532814</updated>
+    </task>
+    <option name="localTasksCounter" value="411" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove  isDark toggle" />
-    <MESSAGE value="remove navigation guards" />
-    <MESSAGE value="move the isAnonymous flag to rafikeyStore" />
-    <MESSAGE value="add isAnonymous flag" />
-    <MESSAGE value="add conditional class" />
-    <MESSAGE value="remove dark style class" />
-    <MESSAGE value="add  useMediaQuery composable" />
-    <MESSAGE value="add scrolling feature for small devices" />
-    <MESSAGE value="add accessQuestions  array" />
-    <MESSAGE value="add styling to renderer function" />
-    <MESSAGE value="update placeholder" />
-    <MESSAGE value="update toggleImage function" />
-    <MESSAGE value="remove background styling" />
     <MESSAGE value="\add custom colors" />
     <MESSAGE value="add TabComponent" />
     <MESSAGE value="add SecurityComponent" />
     <MESSAGE value="add Setting interface" />
     <MESSAGE value="add PersonalizationComponent" />
-    <MESSAGE value="add components array" />
     <MESSAGE value="update isShowSettings and isShowProfile flags" />
     <MESSAGE value="update shallowRef" />
-    <MESSAGE value="add tabHandler function" />
     <MESSAGE value="add setting section" />
-    <MESSAGE value="add styling" />
     <MESSAGE value="update navigationguard" />
-    <option name="LAST_COMMIT_MESSAGE" value="update navigationguard" />
+    <MESSAGE value="add GeneralTab Component" />
+    <MESSAGE value="add components array" />
+    <MESSAGE value="add tabHandler function" />
+    <MESSAGE value="add setting dialog modal" />
+    <MESSAGE value="add variables for shareChat feature" />
+    <MESSAGE value="add copyShareChatLink function" />
+    <MESSAGE value="add dialogModal modal for shareChat" />
+    <MESSAGE value="add socials images" />
+    <MESSAGE value="add lucide package" />
+    <MESSAGE value="add shareChat emit event" />
+    <MESSAGE value="add shareChat function" />
+    <MESSAGE value="add styling" />
+    <MESSAGE value="add deleteAllChats function" />
+    <MESSAGE value="add openClearChatDialog variable" />
+    <MESSAGE value="add DialogModal for clearChat confirmation" />
+    <MESSAGE value="remove alert message" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove alert message" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -669,7 +687,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>597</line>
+          <line>685</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -689,20 +707,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue</url>
-          <line>499</line>
+          <line>617</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue</url>
-          <line>8</line>
-          <properties lambdaOrdinal="-1" />
+          <line>14</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue</url>
           <line>28</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
+          <line>711</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -380,6 +380,7 @@ const shareChat = () =>{
                         <div class="flex gap-4 items-center">
                           <div
                             @click.stop="shareChat"
+                            v-if="!chatbotStore.isNewChat"
                             class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
                           >
                             <span
