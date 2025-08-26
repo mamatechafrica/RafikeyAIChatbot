@@ -595,7 +595,7 @@ const isShare = ref(false)
 const shareData = {
   title:  "Rafikey Ai",
   text: "Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️",
-  url: `${rafikeyChatbotStore.RAFIKEY_CHATBOT_URL}/guest-user/${rafikeyChatbotStore.sessionId}`
+  url: `${rafikeyChatbotStore. RAFIKEY_CHATBOT_FRONTEND_URL }/guest-user/${rafikeyChatbotStore.sessionId}`
 
 }
 
