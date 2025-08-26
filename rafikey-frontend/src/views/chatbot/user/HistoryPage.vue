@@ -10,8 +10,6 @@ import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 
 
 const chatbotStore  = useRafikeyChatbotStore()
-const now = moment().format('LT')
-const router = useRouter()
 const conversationContainerRef = ref<HTMLDivElement | null>()
 
 
@@ -68,7 +66,7 @@ setTimeout(()=>{
           v-if="conv && conv.isUser && conv.message.length > 0 && !conv.isTyping"
           :user-message="conv.message"
           :user-name="'You'"
-          :created-at="now"
+          :created-at="conv.timestamp as string || ''"
           :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
@@ -79,7 +77,7 @@ setTimeout(()=>{
           :is-typing="false"
           :is-copyable="false"
           :is-error="false"
-          :created-at="now"
+          :created-at="conv.timestamp as string || ''"
           :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
@@ -87,7 +85,6 @@ setTimeout(()=>{
     </ul>
     <div v-if="chatbotStore.isStreamError.hasError">
       <ErrorScreen :error-message="chatbotStore.isStreamError.errorMessage" :is-logged-in="chatbotStore.isStreamError.isLoggedIn" />
-
     </div>
     <div id="userInputPlaceholder" class="pt-10"></div>
   </div>
