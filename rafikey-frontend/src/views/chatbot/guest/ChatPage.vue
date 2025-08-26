@@ -432,6 +432,9 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 }
 
 const isShowDisclaimer = ref(false)
+const props = defineProps<{
+  sessionId: string | null
+}>()
 onMounted(() => {
   rafikeyChatbotStore.setSessionId(uuidV4())
   setTimeout(() => {
