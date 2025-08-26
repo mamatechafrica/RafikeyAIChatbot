@@ -20,7 +20,7 @@ import PersonalizationComponent from '@/components/tab/PersonalizationComponent.
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 
 
-interface HistoryConv {
+export interface HistoryConv {
   bot_response: string
   id: number
   thread_id: string
@@ -412,17 +412,17 @@ const handleUserInput = (formatted: string) => {
 
 //date format
 const timeFormatter = (timestamp: string) => {
-  const date = moment(timestamp)
+  const date = moment.utc(timestamp).local()
   if (now.isSame(date, 'day')) {
-    return now
-  } else if (now.subtract(1, 'days').isSame(date, 'day')) {
-    return date.format('[Yesterday] h: mm A')
-  } else if (now.subtract(1, 'weeks').isBefore(date, 'day')) {
-    return date.format('dddd h: mm A')
-  } else if (now.subtract(1, 'weeks').isAfter(date)) {
+    return date.format('[Today] h:mm A')
+  } else if (now.clone().subtract(1, 'days').isSame(date, 'day')) {
+    return date.format('[Yesterday] h:mm A')
+  } else if (now.clone().subtract(1, 'weeks').isBefore(date, 'day')) {
+    return date.format('dddd h:mm A')
+  } else if (now.clone().subtract(1, 'weeks').isAfter(date)) {
     return date.format('[Last]dddd h:mm A')
-  } else if (now.subtract(1, 'years').isBefore(date)) {
-    return date.format('MMMM D, dddd h:mm A')
+  } else if (now.clone().subtract(1, 'years').isBefore(date)) {
+    return date.format('MMMM D, dddd')
   } else {
     return date.format('YYYY')
   }
