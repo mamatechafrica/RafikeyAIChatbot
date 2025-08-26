@@ -544,11 +544,14 @@ const accessButtonQuestionHandler = (message: string) =>{
   <div class="min-h-screen dark:bg-lightgray w-full">
     <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
       <!--    top -->
-      <div class="flex justify-between sticky top-0  bg-opacity-30 white  backdrop-blur" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4': '']">
+      <div
+        class="flex justify-between sticky top-0 bg-opacity-30 white backdrop-blur"
+        :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4' : '']"
+      >
         <div>
           <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>
         </div>
-        <div class="flex items-end gap-2 ">
+        <div class="flex items-end gap-2">
           <div class="">
             <button
               @click="loginHandler"
@@ -570,7 +573,7 @@ const accessButtonQuestionHandler = (message: string) =>{
       </div>
 
       <!--    hero section-->
-      <div class="space-y-8 pt-12" v-if="rafikeyChatbotStore.conversation.length < 1">
+      <div class="space-y-8 pt-12" v-if="rafikeyChatbotStore.conversation.length < 1 && !props.sessionId">
         <div class="space-y-1">
           <h2
             class="text-extra-extra-large-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
@@ -599,7 +602,7 @@ const accessButtonQuestionHandler = (message: string) =>{
             </p>
           </div>
         </div>
-        <div class="flex justify-end" >
+        <div class="flex justify-end">
           <img src="@/assets/images/rafikey-hi.png" alt="rafikey-image" class="lg:w-60 w-40" />
         </div>
       </div>
@@ -629,8 +632,10 @@ const accessButtonQuestionHandler = (message: string) =>{
           </template>
         </ul>
         <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
-          <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage" :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"/>
-
+          <ErrorScreen
+            :error-message="rafikeyChatbotStore.isStreamError.errorMessage"
+            :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"
+          />
         </div>
       </div>
 
@@ -638,7 +643,7 @@ const accessButtonQuestionHandler = (message: string) =>{
       <div
         v-if="!rafikeyChatbotStore.isStreamError.hasError"
         ref="userInputContainerHeightRef"
-        class="sticky w-full bottom-0 bg-white  dark:bg-lightgray"
+        class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
       >
         <!--        <div-->
         <!--          v-if="isBottom"-->
@@ -646,12 +651,14 @@ const accessButtonQuestionHandler = (message: string) =>{
         <!--        ></div>-->
         <div
           class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6"
-          :class="[rafikeyChatbotStore.conversation.length > 0 ? 'fixed bottom-0 left-0 right-0' : '']"
+          :class="[
+            rafikeyChatbotStore.conversation.length > 0  || props.sessionId ? 'fixed bottom-0 left-4  w-[calc(100vw-2rem)] ' : '',
+          ]"
         >
           <div class="">
             <UserInput
               class="mx-auto"
-              :class="[rafikeyChatbotStore.conversation.length > 0 ? 'w-11/12 lg:w-9/12' : '']"
+              :class="[rafikeyChatbotStore.conversation.length > 0 || props.sessionId  ? 'w-11/12 lg:w-9/12' : 'w-full']"
               :disabled="false"
               :is-generating="rafikeyChatbotStore.isGeneratingResponse"
               @user-input="handleUserInput"
@@ -660,7 +667,7 @@ const accessButtonQuestionHandler = (message: string) =>{
           </div>
         </div>
       </div>
-      <div id="userInputPlaceholder" class="pt-20"></div>
+<!--      <div id="userInputPlaceholder" class="pt-20"></div>-->
     </div>
     <div class="px-4 w-full md:hidden block">
       <div v-if="!isStartChatSmallScreen">
@@ -677,7 +684,7 @@ const accessButtonQuestionHandler = (message: string) =>{
         <div class="space-y-12">
           <div class="cursor-pointer flex gap-4 pt-8 w-full">
             <div
-              class="w-full bg-link-water-50 flex flex-col  dark:bg-darkgray rounded-xl sm:p-4 p-2  space-y-2"
+              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"
               @click="startChatSmallScreen"
             >
               <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
@@ -688,7 +695,7 @@ const accessButtonQuestionHandler = (message: string) =>{
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
-            <div class="w-full bg-link-water-50   dark:bg-darkgray rounded-xl sm:p-4 p-2  space-y-2">
+            <div class="w-full bg-link-water-50 dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2">
               <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">mic_none</span>
               </div>
@@ -717,7 +724,7 @@ const accessButtonQuestionHandler = (message: string) =>{
           </div>
 
           <div class=" ">
-            <div class=" space-y-2 p-5">
+            <div class="space-y-2 p-5">
               <div class="flex justify-between sm:p-4">
                 <p class="dark:text-white text-extra-large">History</p>
                 <span class="text-purple-400 text-small">See all</span>
@@ -727,7 +734,7 @@ const accessButtonQuestionHandler = (message: string) =>{
                   @click="accessButtonQuestionHandler(qn.question)"
                   class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
                 >
-                  <span class="material-icons-outlined dark:text-white ">{{ qn.icon }}</span>
+                  <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>
                   <p class="dark:text-white text-small">{{ qn.question }}</p>
                 </div>
               </div>
@@ -737,15 +744,19 @@ const accessButtonQuestionHandler = (message: string) =>{
       </div>
       <div v-else>
         <!--        top side-->
-        <div class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">
-          <div class="flex gap-4 cursor-pointer" @click="isStartChatSmallScreen = !isStartChatSmallScreen">
+        <div
+          class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"
+        >
+          <div
+            class="flex gap-4 cursor-pointer"
+            @click="isStartChatSmallScreen = !isStartChatSmallScreen"
+          >
             <span class="material-icons-outlined dark:text-white">arrow_back</span>
             <span class="dark:text-white">Chatting With Rafikey</span>
           </div>
           <div>
             <span class="material-icons-outlined dark:text-white">more_horiz</span>
           </div>
-
         </div>
 
         <!--       Down side -->
@@ -764,23 +775,26 @@ const accessButtonQuestionHandler = (message: string) =>{
               <RafikeyBubble
                 v-if="!conv.isUser && !isError"
                 :chatbot-name="'Rafikey'"
-                :rafikey-chatbot-message="marked.parse(conv.message) as string"
+                :rafikey-chatbot-message="marked.parse(conv.message) as string || ''"
                 :is-typing="false"
                 :is-copyable="false"
                 :is-error="false"
                 :created-at="conv.timestamp as string"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
-
               />
             </template>
           </ul>
           <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
-            <ErrorScreen :error-message="rafikeyChatbotStore.isStreamError.errorMessage" :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn" />
+            <ErrorScreen
+              :error-message="rafikeyChatbotStore.isStreamError.errorMessage"
+              :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"
+            />
           </div>
         </div>
 
         <!--    text area-->
+<!--        <div id="userInputPlaceholder-small" class="pt-10"></div>-->
         <div
           v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
@@ -788,7 +802,9 @@ const accessButtonQuestionHandler = (message: string) =>{
         >
           <div
             class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6 fixed bottom-0"
-            :class="[rafikeyChatbotStore.conversation.length > 0 ? 'left-0 right-0': 'left-4 right-4']"
+            :class="[
+              rafikeyChatbotStore.conversation.length > 0 ? 'left-0 right-0' : 'left-4 right-4',
+            ]"
           >
             <div class="">
               <UserInput
@@ -802,9 +818,10 @@ const accessButtonQuestionHandler = (message: string) =>{
             </div>
           </div>
         </div>
-        <div id="userInputPlaceholder-small" class="pt-20"></div>
+<!--        <div id="userInputPlaceholder-small" class="pt-20"></div>-->
       </div>
     </div>
+    <div id="userInputPlaceholder-small" class="pt-20"></div>
   </div>
 </template>
 
