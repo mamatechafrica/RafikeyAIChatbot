@@ -6,12 +6,20 @@ import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
+import ImageLight from '@/assets/images/rafikey-icon-light.png'
+import ImageDark from '@/assets/images/rafikey-icon-dark.png'
 
 
 const chatbotStore = useRafikeyChatbotStore()
 // const isAnonymous = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
+
+const toggleImage = ()=>{
+  const isDark = chatbotStore.isDark
+  return isDark? ImageDark: ImageLight
+
+}
 
 
 
