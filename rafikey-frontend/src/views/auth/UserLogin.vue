@@ -189,7 +189,7 @@ onBeforeUnmount(()=>{
         <!--    left side-->
         <div class="col-span-1">
           <div class="">
-            <img src='@/assets/images/rafikey-icon-light.png' alt="rafikey-icon" class=" w-60" />
+            <img :src='toggleImage()' alt="rafikey-icon" class=" w-60" />
           </div>
           <div class="flex flex-col space-y-10">
             <div class="flex flex-col space-y-6">
