@@ -81,9 +81,11 @@ export default {
         'button': {
           'light': '#F2B04D',
           'dark': '#876532',
+          'inactive': '#6E6E6E'
         },
         darkgray: '#222222',
         lightgray: '#252525',
+        lightgrayTwo: '#605E5E',
         lightBackground: '#F6F6F6',
         bubbleDark: '#191919',
         veryLight: '#D9D9D9',
