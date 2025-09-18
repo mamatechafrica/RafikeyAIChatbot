@@ -193,6 +193,11 @@ const routes = [
       chatbotStore.sessionId = ''
       next()
     }
+  },
+  {
+    path: '/:notFound(.*)*',
+    name: 'not-found',
+    component: ()=>import('@/views/error/PageNotFound.vue')
   }
 ]
 
