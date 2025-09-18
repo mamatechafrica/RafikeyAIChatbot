@@ -58,8 +58,8 @@ const closeModal = () => {
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
-              class="w-full transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
-              :class="[props.maxWidth, chatbotStore.isAnonymous? '': 'dark:bg-lightgray ']"
+              class="w-full transform overflow-hidden rounded-2xl bg-white dark:bg-lightgray p-6 text-left align-middle shadow-xl transition-all"
+              :class="[props.maxWidth,]"
             >
               <DialogTitle as="h3">
                 <slot name="title">  </slot>
