@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { reactive, watch, computed, ref } from 'vue'
 import { useField } from 'vee-validate'
-import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
+import { useAuthStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
-// import imageLight from '@/assets/images/rafikey-icon-light.png'
-// import imageDark from '@/assets/images/rafikey-icon-dark.png'
+import { toggleImage } from '@/modules/imageToggle.ts'
+
 
 
 const isPasswordVisible = ref<boolean>(false)
@@ -141,17 +141,17 @@ const resetPasswordHandler = ()=>{
 
 <template>
   <div>
-    <div class="min-h-screen overflow-hidden w-full hidden lg:block ">
+    <div class="h-screen overflow-hidden w-full hidden lg:block dark:bg-lightgray ">
       <div class="grid grid-cols-2 w-10/12 mx-auto gap-8">
         <!--      left side-->
         <div class="col-span-1">
           <div>
-            <img src="@/assets/images/rafikey-icon-light.png" alt="rafikey-icon" class="w-60"/>
+            <img :src="toggleImage()" alt="rafikey-icon" class="w-60"/>
           </div>
           <div class="flex flex-col space-y-12">
             <div class="flex flex-col space-y-6">
-              <h2 class="text-extra-extra-large font-semibold ">Set a password</h2>
-              <p class="text-large text-gray-700 ">Your previous password has been reset.
+              <h2 class="text-extra-extra-large font-semibold dark:text-white">Set a password</h2>
+              <p class="text-large text-gray-700 dark:text-white ">Your previous password has been reset.
                 Please set a new password for your account</p>
             </div>
 
@@ -164,10 +164,10 @@ const resetPasswordHandler = ()=>{
                     :type="togglePasswordVisibility"
                     required
                     placeholder="******"
-                    class="w-full border-[1px] border-gray-300  rounded-2xl p-4 lg:text-lg text-sm "
+                    class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300  rounded-2xl p-4 lg:text-lg text-sm "
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 px-1 text-text-extra-extra-small bg-white  "
+                    class="absolute dark:text-white dark:bg-darkgray left-1 -top-3 text-slate-600 px-1 text-text-extra-extra-small bg-white  "
                     for="newPassword-1">
                     Create Password
                   </label>
@@ -182,10 +182,10 @@ const resetPasswordHandler = ()=>{
                     :type="toggleConfirmPasswordVisibility"
                     required
                     placeholder="******"
-                    class="w-full border-[1px] border-gray-300  rounded-2xl p-4 lg:text-lg text-sm  "
+                    class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300  rounded-2xl p-4 lg:text-lg text-sm  "
                   />
                   <label
-                    class="absolute left-1 -top-3 text-slate-600 px-1 text-text-extra-extra-small bg-white "
+                    class="absolute dark:text-white dark:bg-darkgray left-1 -top-3 text-slate-600 px-1 text-text-extra-extra-small bg-white "
                     for="confirmPassword-1">
                     Re-enter Password
                   </label>
@@ -210,8 +210,8 @@ const resetPasswordHandler = ()=>{
           </div>
         </div>
         <!--      right side-->
-        <div class="col-span-1 flex justify-center items-center ">
-          <div class="bg-gray-100 rounded-2xl dh-5/6">
+        <div class="col-span-1 flex justify-center items-center  ">
+          <div class="bg-gray-100 dark:bg-lightgray rounded-2xl h-5/6">
             <img src="@/assets/images/forgot-password.png" alt="reset-password-images"  />
           </div>
         </div>
@@ -220,51 +220,51 @@ const resetPasswordHandler = ()=>{
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block min-h-screen overflow-hidden w-full d">
+    <div class="lg:hidden block min-h-screen overflow-hidden w-full dark:bg-lightgray">
       <div class="flex justify-center">
         <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-6">
         <div class="flex flex-col items-center space-y-4">
-          <h2 class="text-extra-large font-semibold ">Reset your Password</h2>
+          <h2 class="text-extra-large font-semibold dark:text-white  ">Reset your Password</h2>
           <div class="text-extra-small md:space-y-2 space-y-0.5">
-            <p class=" text-gray-700 text-center ">Your previous password has been reset</p>
-            <p class="  text-gray-700 text-center ">Please set a new password for your account.</p>
+            <p class=" text-gray-700 text-center dark:text-white ">Your previous password has been reset</p>
+            <p class="  text-gray-700 text-center dark:text-white ">Please set a new password for your account.</p>
           </div>
         </div>
         <div class="border-b-[1px] border-stone-500 w-full pt-8"></div>
         <form class="space-y-8">
           <div class="relative space-y-2">
-            <label class="text-gray-950 text-extra-small " for="newPassword-2">
+            <label class="text-gray-950 dark:text-white text-extra-small " for="newPassword-2">
               Create Password
             </label>
             <input
               v-model="resetPassword.newPassword"
               id="newPassword-2"
               :type="togglePasswordVisibility"
-              class=" w-full border-[1px] border-gray-300  rounded-2xl  p-4 md:text-lg text-sm  "
+              class=" w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300  rounded-2xl  p-4 md:text-lg text-sm  "
               required
               placeholder="******"
             />
-            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
-            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility</span>
+            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined dark:text-white  absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
+            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer dark:text-white  right-3 md:top-12 top-10 ">visibility</span>
             <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
           </div>
 
           <div class="relative space-y-2">
-            <label class="text-gray-950  text-extra-small  " for="confirmPassword-2">
+            <label class="text-gray-950  dark:text-white  text-extra-small  " for="confirmPassword-2">
               Confirm Password
             </label>
             <input
               v-model="resetPassword.confirmPassword"
               :type="toggleConfirmPasswordVisibility"
               id="confirmPassword-2"
-              class=" w-full border-[1px] border-gray-300  rounded-2xl  p-4 md:text-lg text-sm  "
+              class=" w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300  rounded-2xl  p-4 md:text-lg text-sm  "
               required
               placeholder="******"
             />
-            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
-            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility</span>
+            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined dark:text-white  absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
+            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 dark:text-white  md:top-12 top-10 ">visibility</span>
             <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
 
           </div>
