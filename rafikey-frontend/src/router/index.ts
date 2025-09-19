@@ -195,6 +195,27 @@ const routes = [
     }
   },
   {
+    name: 'lets-play',
+    path: '/lets-play',
+    component: ()=> import('@/views/game/GamePage.vue'),
+    meta: {
+      requiresAuth: false
+    },
+    children: [
+      {
+        name: 'welcome-game',
+        path: '',
+        component: ()=> import('@/views/game/WelcomeGame.vue'),
+      },
+      {
+        name: 'game-page',
+        path: '/game-page',
+        component: ()=> import('@/views/game/QuizPage.vue'),
+      }
+    ]
+
+  },
+  {
     path: '/:notFound(.*)*',
     name: 'not-found',
     component: ()=>import('@/views/error/PageNotFound.vue')
