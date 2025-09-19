@@ -48,7 +48,7 @@ const isShowPlayButton = ref(false)
 const now = moment()
 
 // const isGeneratingResponse = ref(false)
-const now = moment()
+
 
 // Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
 const showPlayButton = () =>{
@@ -511,6 +511,9 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
+
+  // show the button on mounted at random
+  showPlayButton()
   const activeSessionId = route.params.sessionId as string
 
   // Set initial value for isSmallScreen
