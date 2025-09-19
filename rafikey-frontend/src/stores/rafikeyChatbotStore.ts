@@ -375,7 +375,8 @@ const otherSettings = useStorage("otherSettings", {})
     setOtherSettings,
     getOtherSettings,
     deleteAllChats,
-    RAFIKEY_CHATBOT_FRONTEND_URL
+    RAFIKEY_CHATBOT_FRONTEND_URL,
+    isMoveNext
 
 
     // setRegenerateInput
