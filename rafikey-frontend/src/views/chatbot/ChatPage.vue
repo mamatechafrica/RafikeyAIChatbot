@@ -683,6 +683,13 @@ const shareOn = (value: string) =>{
   }
   window.open(shareUrl, '_blank')
 }
+
+
+const closeGameButton = ()=>{
+  isShowPlayButton.value = false
+}
+
+
 </script>
 
 <template>
