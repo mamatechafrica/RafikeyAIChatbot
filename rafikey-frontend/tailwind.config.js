@@ -85,7 +85,9 @@ export default {
         },
         darkgray: '#222222',
         lightgray: '#252525',
+        lightgrayOne:'#BBBBBB',
         lightgrayTwo: '#605E5E',
+        lightgrayThree: '#515151',
         lightBackground: '#F6F6F6',
         bubbleDark: '#191919',
         veryLight: '#D9D9D9',
@@ -95,6 +97,9 @@ export default {
         veryLightFour: '#D2D2D2',
         veryLightFive: '#484848',
         veryLightSix: '#323232',
+        veryLightSeven: '#C7C7C7',
+        veryLightEight: '#2D2D2D',
+        greenTime: '#42D42C'
       },
       fontSize:{
         'extra-extra-small-2': '10px',
