@@ -41,6 +41,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isNewChat = useStorage("isNewChat", true)
   const isShowTermsButton = useStorage("isShowTermsButton", true)
   const isAnonymous = ref<boolean>(false)
+  const isMoveNext = ref(false)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
