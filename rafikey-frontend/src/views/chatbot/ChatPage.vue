@@ -829,6 +829,10 @@ const closeGameButton = ()=>{
       </div>
     </div>
 
+    <div v-if="isShowPlayButton" class="fixed bottom-44 right-16 ">
+      <SRHRGameButton @close-game-button="closeGameButton"  />
+    </div>
+
     <!--    <div v-else>-->
     <!--      <SpinnerLoading />-->
     <!--    </div>-->
