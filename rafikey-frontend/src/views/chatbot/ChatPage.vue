@@ -18,6 +18,7 @@ import TabComponent, { type Tabs } from '@/components/tab/TabComponent.vue'
 import GeneralTab from '@/components/tab/GeneralTab.vue'
 import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
+import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
 
 
 export interface HistoryConv {
@@ -31,6 +32,7 @@ export interface HistoryConv {
 }
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
+const notificationStore = useNotificationStore()
 const authStore = useAuthStore()
 const router = useRouter()
 const route = useRoute()
@@ -42,7 +44,8 @@ const showSocials = ref<boolean>(false)
 const isGeneratingLink = ref(false)
 const showCopyBtn = ref(false)
 const isShareChatLinkCopy = ref(false)
-const notificationStore = useNotificationStore()
+const isShowPlayButton = ref(false)
+const now = moment()
 
 // const isGeneratingResponse = ref(false)
 const now = moment()
