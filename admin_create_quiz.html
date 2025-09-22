@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Create Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; background: #f7f7f7; }
+    .container { background: #fff; padding: 2rem; border-radius: 8px; max-width: 800px; margin: auto; box-shadow: 0 2px 8px #0001; }
+    h1 { color: #4a148c; }
+    .question-block, .option-block { border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 6px; background: #fafafa; }
+    .option-block { margin-left: 2rem; }
+    label { display: block; margin-top: 0.5rem; }
+    input[type="text"], textarea { width: 100%; padding: 0.5rem; margin-top: 0.2rem; border-radius: 4px; border: 1px solid #ccc; }
+    button { margin-top: 1rem; padding: 0.5rem 1.5rem; border: none; border-radius: 4px; background: #4a148c; color: #fff; font-weight: bold; cursor: pointer; }
+    button:disabled { background: #ccc; }
+    .add-btn { background: #1976d2; }
+    .remove-btn { background: #d32f2f; }
+    .success { color: green; margin-top: 1rem; }
+    .error { color: red; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Create a New Quiz</h1>
+    <form id="quizForm">
+      <label>Quiz Title:
+        <input type="text" id="quizTitle" required>
+      </label>
+      <label>Description:
+        <textarea id="quizDescription"></textarea>
+      </label>
+      <div id="questions"></div>
+      <button type="button" class="add-btn" onclick="addQuestion()">Add Question</button>
+      <br>
+      <button type="submit">Submit Quiz</button>
+    </form>
+    <div id="result"></div>
+  </div>
+  <script>
+    let questions = [];
+
+    function addQuestion() {
+      const qIndex = questions.length;
+      questions.push({
+        text: "",
+        order: qIndex + 1,
+        options: [],
+        feedback: ""
+      });
+      renderQuestions();
+    }
+
+    function removeQuestion(idx) {
+      questions.splice(idx, 1);
+      // Reorder
+      questions.forEach((q, i) => q.order = i + 1);
+      renderQuestions();
+    }
+
+    function addOption(qIdx) {
+      questions[qIdx].options.push({ text: "", is_correct: false });
+      renderQuestions();
+    }
+
+    function removeOption(qIdx, oIdx) {
+      questions[qIdx].options.splice(oIdx, 1);
+      renderQuestions();
+    }
+
+    function renderQuestions() {
+      const questionsDiv = document.getElementById("questions");
+      questionsDiv.innerHTML = "";
+      questions.forEach((q, qIdx) => {
+        const qBlock = document.createElement("div");
+        qBlock.className = "question-block";
+        qBlock.innerHTML = `
+          <label>Question ${q.order}:
+            <input type="text" value="${q.text.replace(/"/g, '"')}" onchange="updateQuestionText(${qIdx}, this.value)" required>
+          </label>
+          <div id="options-${qIdx}"></div>
+          <button type="button" class="add-btn" onclick="addOption(${qIdx})">Add Option</button>
+          <button type="button" class="remove-btn" onclick="removeQuestion(${qIdx})">Remove Question</button>
+          <label>Feedback:
+            <textarea onchange="updateFeedback(${qIdx}, this.value)">${q.feedback || ""}</textarea>
+          </label>
+        `;
+        questionsDiv.appendChild(qBlock);
+        renderOptions(qIdx);
+      });
+    }
+
+    function renderOptions(qIdx) {
+      const optionsDiv = document.getElementById(`options-${qIdx}`);
+      optionsDiv.innerHTML = "";
+      questions[qIdx].options.forEach((opt, oIdx) => {
+        const oBlock = document.createElement("div");
+        oBlock.className = "option-block";
+        oBlock.innerHTML = `
+          <label>Option ${oIdx + 1}:
+            <input type="text" value="${opt.text.replace(/"/g, '"')}" onchange="updateOptionText(${qIdx}, ${oIdx}, this.value)" required>
+          </label>
+          <label>
+            <input type="checkbox" ${opt.is_correct ? "checked" : ""} onchange="updateOptionCorrect(${qIdx}, ${oIdx}, this.checked)">
+            Correct Answer
+          </label>
+          <button type="button" class="remove-btn" onclick="removeOption(${qIdx}, ${oIdx})">Remove Option</button>
+        `;
+        optionsDiv.appendChild(oBlock);
+      });
+    }
+
+    function updateQuestionText(qIdx, value) {
+      questions[qIdx].text = value;
+    }
+    function updateFeedback(qIdx, value) {
+      questions[qIdx].feedback = value;
+    }
+    function updateOptionText(qIdx, oIdx, value) {
+      questions[qIdx].options[oIdx].text = value;
+    }
+    function updateOptionCorrect(qIdx, oIdx, checked) {
+      questions[qIdx].options[oIdx].is_correct = checked;
+    }
+
+    document.getElementById("quizForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const title = document.getElementById("quizTitle").value.trim();
+      const description = document.getElementById("quizDescription").value.trim();
+      // Validate
+      if (!title || questions.length === 0 || questions.some(q => !q.text || q.options.length < 2 || !q.options.some(o => o.is_correct))) {
+        document.getElementById("result").innerHTML = '<div class="error">Please fill all fields, add at least 2 options per question, and mark a correct answer for each question.</div>';
+        return;
+      }
+      const payload = {
+        title,
+        description,
+        questions: questions.map(q => ({
+          text: q.text,
+          order: q.order,
+          options: q.options,
+          feedback: q.feedback
+        }))
+      };
+      try {
+        // You may need to set the correct API URL and add authentication headers (e.g., Bearer token)
+        const res = await fetch("/gamification/admin/quizzes", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // "Authorization": "Bearer <ADMIN_TOKEN_HERE>"
+          },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok) {
+          document.getElementById("result").innerHTML = '<div class="success">Quiz created successfully!</div>';
+          questions = [];
+          renderQuestions();
+          document.getElementById("quizForm").reset();
+        } else {
+          const err = await res.json();
+          document.getElementById("result").innerHTML = '<div class="error">Error: ' + (err.detail || "Failed to create quiz") + '</div>';
+        }
+      } catch (err) {
+        document.getElementById("result").innerHTML = '<div class="error">Network error: ' + err + '</div>';
+      }
+    };
+
+    // Initial render
+    renderQuestions();
+  </script>
+</body>
+</html>
