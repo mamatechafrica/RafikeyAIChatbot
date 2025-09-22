@@ -203,14 +203,24 @@ const routes = [
     },
     children: [
       {
-        name: 'welcome-game',
-        path: '',
-        component: ()=> import('@/views/game/WelcomeGame.vue'),
+        name: 'welcome-page-quiz',
+        path: 'welcome/plain/quiz',
+        component: ()=> import('@/views/game/plain/WelcomeGame.vue'),
       },
       {
-        name: 'game-page',
-        path: '/game-page',
-        component: ()=> import('@/views/game/QuizPage.vue'),
+        name: 'game-page-quiz',
+        path: 'plain/quiz',
+        component: ()=> import('@/views/game/plain/QuizPage.vue'),
+      },
+      {
+        name: 'welcome-page-deck',
+        path: 'welcome/deck/quiz',
+        component: ()=> import('@/views/game/deck/DeckWelcomePage.vue')
+      },
+      {
+        name: 'game-page-deck',
+        path: 'deck/quiz',
+        component: ()=> import('@/views/game/deck/DeckofCards.vue'),
       }
     ]
 
