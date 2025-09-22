@@ -58,12 +58,13 @@ export default {
           '300': '#ff9d9d',
           '400': '#ff6464',
           '500': '#ff3b3b',
-          '600': '#ed1515',
+          '600': '#E80000',
           '700': '#c80d0d',
           '800': '#a50f0f',
           '900': '#881414',
           '950': '#4b0404',
         },
+
 
         'casablanca': {
           '50': '#fef7ec',
@@ -99,7 +100,8 @@ export default {
         veryLightSix: '#323232',
         veryLightSeven: '#C7C7C7',
         veryLightEight: '#2D2D2D',
-        greenTime: '#42D42C'
+        greenTime: '#42D42C',
+        greenButtonGame: '#4CAF50'
       },
       fontSize:{
         'extra-extra-small-2': '10px',
