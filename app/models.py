@@ -40,3 +40,39 @@ class Conversations(SQLModel, table=True):
     
     # Relationship to user
     user: User = Relationship(back_populates="conversations")
+# --- Gamification Models ---
+
+class Quiz(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    title: str
+    description: str | None = None
+
+    questions: List["Question"] = Relationship(back_populates="quiz")
+
+
+class Question(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    text: str
+    order: int
+    quiz_id: int = Field(foreign_key="quiz.id")
+    
+    quiz: Quiz = Relationship(back_populates="questions")
+    options: List["Option"] = Relationship(back_populates="question")
+    feedback: "Feedback" = Relationship(back_populates="question")
+
+
+class Option(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    text: str
+    is_correct: bool = Field(default=False)
+    question_id: int = Field(foreign_key="question.id")
+
+    question: Question = Relationship(back_populates="options")
+
+
+class Feedback(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    text: str
+    question_id: int = Field(foreign_key="question.id", unique=True)
+
+    question: Question = Relationship(back_populates="feedback")

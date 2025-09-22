@@ -1,5 +1,5 @@
 from fastapi import FastAPI 
-from app.router import chatbot_analysis, bot_router_v2, chroma_db, metrics_analysis
+from app.router import chatbot_analysis, bot_router_v2, chroma_db, metrics_analysis, gamification
 from app.router.auth import login, admin
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -44,3 +44,4 @@ app.include_router(bot_router_v2.router)
 app.include_router(chatbot_analysis.router) 
 app.include_router(chroma_db.router)
 app.include_router(metrics_analysis.router)
+app.include_router(gamification.router)
