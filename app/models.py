@@ -40,6 +40,27 @@ class Conversations(SQLModel, table=True):
     
     # Relationship to user
     user: User = Relationship(back_populates="conversations")
+# --- Pydantic response models for API ---
+
+from pydantic import BaseModel
+
+class OptionRead(BaseModel):
+    id: int
+    text: str
+    is_correct: bool
+
+    class Config:
+        from_attributes = True
+
+class QuestionRead(BaseModel):
+    id: int
+    text: str
+    order: int
+    quiz_id: int
+    options: list[OptionRead]
+
+    class Config:
+        from_attributes = True
 # --- Gamification Models ---
 
 class Quiz(SQLModel, table=True):

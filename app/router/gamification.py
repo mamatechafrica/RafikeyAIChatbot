@@ -3,6 +3,7 @@ from app.router.auth.login import get_current_active_user
 from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import select, Session
 from typing import List
+from app.models import QuestionRead, OptionRead
 from app.models import Quiz, Question, Option, Feedback
 from app.core.database import SessionDep
 
@@ -46,12 +47,20 @@ def get_quiz_questions(quiz_id: int, session: SessionDep):
         raise HTTPException(status_code=404, detail="Quiz not found")
     return quiz.questions
 
-@router.get("/questions/{question_id}", response_model=Question)
+@router.get("/questions/{question_id}", response_model=QuestionRead)
 def get_question(question_id: int, session: SessionDep):
     question = session.get(Question, question_id)
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
-    return question
+    options = session.exec(select(Option).where(Option.question_id == question_id)).all()
+    option_reads = [OptionRead.from_orm(opt) for opt in options]
+    return QuestionRead(
+        id=question.id,
+        text=question.text,
+        order=question.order,
+        quiz_id=question.quiz_id,
+        options=option_reads
+    )
 
 @router.post("/questions/{question_id}/answer")
 def submit_answer(question_id: int, selected_option_id: int, session: SessionDep):
