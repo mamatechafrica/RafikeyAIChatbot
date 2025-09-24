@@ -100,6 +100,7 @@ export default {
         veryLightSix: '#323232',
         veryLightSeven: '#C7C7C7',
         veryLightEight: '#2D2D2D',
+        veryLightNine: '#2B2B2B',
         greenTime: '#42D42C',
         greenButtonGame: '#4CAF50'
       },
