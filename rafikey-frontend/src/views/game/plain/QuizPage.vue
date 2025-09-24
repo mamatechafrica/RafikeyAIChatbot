@@ -45,6 +45,9 @@ const selectedAnswer = (value: Answer) => {
       isLoading.value = true
       console.log('Answer response: ', res)
       if (res?.result === 'ok') {
+        if(res.data?.correct){
+          chatbotStore.score += 1
+        }
         chatbotStore.setCorrectAnswer(res.data)
         moveNextQuestion.value = true
       } else {
