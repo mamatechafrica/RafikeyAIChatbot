@@ -687,7 +687,7 @@ const shareOn = (value: string) =>{
   window.open(shareUrl, '_blank')
 }
 
-
+const showFeedbackDialog = ref(false)
 const closeGameButton = ()=>{
   isShowPlayButton.value = false
 }
