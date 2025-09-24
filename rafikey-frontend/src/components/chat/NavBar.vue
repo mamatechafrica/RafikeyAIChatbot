@@ -40,6 +40,7 @@ const components = [
 
 const activeComponent = shallowRef(components[0])
 onMounted(() => {
+  chatbotStore.setColor()
   chatbotStore
     .getChatHistoryTitles()
     .then((response) => {
