@@ -13,7 +13,7 @@ const closePLayButton = () => {
 
 const goToPlayPage = () =>{
   router.push({
-    name: 'welcome-game'
+    name: 'welcome-page-quiz'
   })
 }
 </script>
