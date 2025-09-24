@@ -319,6 +319,162 @@ const otherSettings = useStorage("otherSettings", {})
     }
   }
 
+  async function getQuizCategory () {
+    try{
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/quizzes`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${authStore.token}`
+        }
+      })
+
+      const res = await response.json()
+
+      if(!response.ok){
+        return {
+          result: 'fail',
+          data: null
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: res
+        }
+      }
+    } catch(e){
+      console.log(e)
+    }
+  }
+
+
+  async function getQuizzes(quizId: Number){
+    try{
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/quizzes/${quizId}/questions`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${authStore.token}`
+        }
+      })
+      const res = await response.json()
+      if(!response.ok){
+        return{
+          result: 'fail',
+          data: null
+        }
+      }else{
+        return {
+          result: 'ok',
+          data: res
+        }
+      }
+    }  catch(e){
+      console.log(e)
+    }
+  }
+
+  async function getQuestion(questionId: Number){
+    try{
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/questions/${questionId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${authStore.token}`
+        }
+      })
+      const res = await response.json()
+      if(!response.ok){
+        return{
+          result: 'fail',
+          data: null
+        }
+      }else{
+        return {
+          result: 'ok',
+          data: res
+        }
+        // return{
+        //   result: 'fail',
+        //   data: null
+        // }
+      }
+    }  catch(e){
+      console.log(e)
+    }
+  }
+
+
+  async function answerQuestion (payload: Answer){
+    const formData = new FormData();
+    // formData.append('question_id', payload.questionId.toString())
+    formData.append('selected_option_id', payload.optionId.toString())
+    try{
+      const response = await  fetch(`${RAFIKEY_CHATBOT_URL}/gamification/questions/${payload.questionId}/answer/?selected_option_id=${payload.optionId}`, {
+        method: 'POST',
+        headers: {
+          // 'Authorization': `Bearer ${authStore.token}`
+        },
+        // body: formData
+      })
+      const res = await response.json()
+      if(!response.ok){
+        return {
+          result: 'fail',
+          data: null
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: res
+        }
+      }
+    }
+    catch(e){
+      console.error(e)
+    }
+  }
+
+  // async function getScore(){
+  //   try{
+  //
+  //   }
+  // }
+
+  async function ratingFeedback(payload: Feedback){
+    const authStore =  useAuthStore()
+    try{
+      const response  = await fetch(`${RAFIKEY_CHATBOT_URL}/metrics/rating`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authStore.token}`
+        },
+        body: JSON.stringify({
+          emoji: payload.emoji,
+          option:payload.comment
+        })
+      })
+
+      const res = await response.json()
+      if(!response.ok){
+        return {
+          result: 'fail',
+          message: 'An error occurred, please try again later'
+        }
+      } else {
+        return{
+          result: 'ok',
+          message: 'Thank you for your feedback'
+        }
+      }
+    } catch(e){
+      console.error(e)
+    }
+  }
+
+
+
   // Set active chat hitory
 
   const setActiveChatHistory = (value: string)=>{
