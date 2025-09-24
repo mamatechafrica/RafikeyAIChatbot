@@ -6,7 +6,7 @@ import { useRouter } from 'vue-router'
 import { shallowRef, ref } from 'vue'
 
 const router = useRouter()
-const delayTime = 5000
+const delayTime = ref(3000)
 
 const pages = [
   {
@@ -27,6 +27,15 @@ const pages = [
   },
 ]
 
+// watch(
+//   () => chatbotStore.isMoveNext,
+//   (newValue) => {
+//     if (newValue) {
+//       delayTime.value = 0
+//       displayPages()
+//     }
+//   },
+// )
 const currentPageIndex = ref(0)
 const currentPage = shallowRef(pages[currentPageIndex.value].component)
 
@@ -34,21 +43,18 @@ const currentPage = shallowRef(pages[currentPageIndex.value].component)
 const displayPages = () => {
   // console.log('Here********', currentPage.value)
   if (currentPageIndex.value < pages.length) {
-
     setTimeout(() => {
       currentPageIndex.value++
-      if(currentPageIndex.value < pages.length){
+      if (currentPageIndex.value < pages.length) {
         currentPage.value = pages[currentPageIndex.value].component
         displayPages()
+      } else {
+        router.push({
+          name: 'set-profile',
+        })
       }
-   else {
-    console.log('Here********')
-    router.push({
-      name: 'set-profile',
-    })
+    }, pages[currentPageIndex.value].delay.value)
   }
-  }, pages[currentPageIndex.value].delay)
-}
 }
 // calling the displayPages function recursively until all pages are displayed
 displayPages()

@@ -3,7 +3,7 @@ import {ref, watch} from 'vue'
 import {RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption,} from '@headlessui/vue'
 
 
-interface RadioGroup {
+export interface RadioGroup {
   name: string
   id: number
 }
@@ -26,10 +26,10 @@ watch(() => selected.value, (newVal) => {
 
 
 <template>
-  <div class="w-full">
+  <div class="w-full ">
     <div class="w-full">
       <RadioGroup v-model="selected">
-        <div class="gap-4 flex justify-center">
+        <div class="gap-4 flex justify-center flex-wrap">
           <RadioGroupOption
             v-for="rad in props.radioType"
             :key="rad.name"
@@ -42,14 +42,14 @@ watch(() => selected.value, (newVal) => {
                 active
                   ? ''
                   : '',
-                checked ? 'bg-casablanca-600/75' : ' border-button-light bg-stone-200 border ',
+                checked ? 'bg-casablanca-600/75' : ' border-button-light dark:bg-transparent bg-link-water-50 border ',
               ]"
               class="relative flex cursor-pointer rounded-xl px-10  py-1  focus:outline-none"
             >
-              <div class="flex w-full items-center justify-between">
+              <div class="flex w-full  items-center justify-between">
                 <div class="flex items-center">
                   <div class="text-sm">
-                    <div class="flex flex-row gap-3 items-center">
+                    <div class="flex flex-row  gap-3 items-center">
                       <RadioGroupDescription
                         :class="checked ? 'text-sky-100' : 'text-gray-500'"
                         as="span"
