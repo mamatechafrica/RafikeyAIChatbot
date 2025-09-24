@@ -574,7 +574,9 @@ const otherSettings = useStorage("otherSettings", {})
     correctAnswer,
     isSelected,
     ratingFeedback,
-    textColor, darkBgColor, bgColor, setColor
+    textColor, darkBgColor, bgColor, setColor,
+    score,
+    totalQuestions
 
 
 
