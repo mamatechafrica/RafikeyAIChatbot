@@ -1,6 +1,10 @@
 <script setup lang="ts">
 
+import { useRafikeyChatbotStore } from '@/stores'
 
+const chatbotStore = useRafikeyChatbotStore()
+// console.log('score', chatbotStore.score)
+// console.log('totalQuestion', chatbotStore.quizzes[chatbotStore.quizzes.length - 1].order)
 </script>
 
 <template>
@@ -12,11 +16,16 @@
       <div>
         <p class="dark:text-white">Your score</p>
       </div>
+<!--      <div>-->
+<!--        <img v-if="chatbotStore.score >= (chatbotStore.totalQuestions / 2)" src="@/assets/images/confetti.png" alt="confetti-image" />-->
+<!--        <img v-else src="@/assets/images/poor-score.svg" alt="poor-score-image" />-->
+<!--      </div>-->
       <div>
-        <img src="@/assets/images/confetti.png" alt="confetti-image" />
+                <img  src="@/assets/images/confetti.png" alt="confetti-image" />
       </div>
+
       <div>
-        <p class="dark:text-white">4/5</p>
+        <p class="font-semibold text-extra-large dark:text-white">{{chatbotStore.score}} / {{chatbotStore.totalQuestions}}</p>
       </div>
     </div>
   </div>
