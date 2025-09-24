@@ -527,6 +527,7 @@ const otherSettings = useStorage("otherSettings", {})
   }
   return {
     sendMessageToRafikeyChatbot,
+    setCorrectAnswer,
     sessionId,
     setSessionId,
     getSessionId,
@@ -561,7 +562,20 @@ const otherSettings = useStorage("otherSettings", {})
     getOtherSettings,
     deleteAllChats,
     RAFIKEY_CHATBOT_FRONTEND_URL,
-    isMoveNext
+    isMoveNext,
+    getQuizCategory,
+    getQuizzes,
+    getQuestion,
+    answerQuestion,
+    setQuiz,
+    quizzes,
+    correctAnswer,
+    isSelected,
+    ratingFeedback,
+    textColor, darkBgColor, bgColor, setColor
+
+
+
 
 
     // setRegenerateInput
