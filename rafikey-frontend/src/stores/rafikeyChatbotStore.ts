@@ -518,7 +518,13 @@ const otherSettings = useStorage("otherSettings", {})
     }
   })
 
+  const setQuiz = (data: Quiz[]) => {
+    quizzes.value = data.sort((a: Quiz, b: Quiz) => a.order - b.order)
+  }
 
+  const setCorrectAnswer = (value: CorrectAnswer) => {
+    correctAnswer.value = value
+  }
   return {
     sendMessageToRafikeyChatbot,
     sessionId,
