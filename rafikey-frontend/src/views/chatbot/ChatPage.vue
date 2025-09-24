@@ -732,7 +732,7 @@ const showFeedbackDialogHandler = () =>{
             >
             <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
-          <div class="">
+          <div @click="showFeedbackDialogHandler">
             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
