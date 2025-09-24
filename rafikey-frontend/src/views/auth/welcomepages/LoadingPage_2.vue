@@ -3,12 +3,12 @@ import { toggleImage } from '@/modules/imageToggle.ts'
 import AuthLoadingButtons from '@/components/chat/AuthLoadingButtons.vue'
 import { useRafikeyChatbotStore } from '@/stores'
 
-const chatbotSstore = useRafikeyChatbotStore()
-const moveNext = () => {
-  chatbotSstore.isMoveNext = true
-  // navigate to the next welcome page
-
-}
+// const chatbotSstore = useRafikeyChatbotStore()
+// const moveNext = () => {
+//   chatbotSstore.isMoveNext = true
+//   // navigate to the next welcome page
+//
+// }
 </script>
 
 <template>
@@ -38,9 +38,9 @@ const moveNext = () => {
         </div>
         <AuthLoadingButtons />
       </div>
-      <div  @click="moveNext" class="cursor-pointer dark:bg-darkgray flex  absolute right-1  top-1/2  rounded-sm -translate-y-1/2">
-        <span class="material-icons-outlined dark:text-white">keyboard_arrow_right</span>
-      </div>
+<!--      <div  @click="moveNext" class="cursor-pointer dark:bg-darkgray flex  absolute right-1  top-1/2  rounded-sm -translate-y-1/2">-->
+<!--        <span class="material-icons-outlined dark:text-white">keyboard_arrow_right</span>-->
+<!--      </div>-->
     </div>
 
 
