@@ -5,14 +5,12 @@ import QuestionItem, { type Answer } from '@/components/game/QuestionItem.vue'
 import { useRouter } from 'vue-router'
 
 const chatbotStore = useRafikeyChatbotStore()
-const props = defineProps<{
-  quizCategory: string
-}>()
+// const props = defineProps<{
+//   quizCategory: string
+// }>()
 
 const isError = ref(false)
-
 const isErrorQuestion = ref(false)
-
 const errorQuestion = (value: boolean) => {
   isErrorQuestion.value = value
 }
@@ -33,6 +31,8 @@ const errorQuestion = (value: boolean) => {
 //     })
 // })
 
+
+
 const moveNextQuestion = ref(false)
 
 const isLoading = ref(false)
@@ -43,7 +43,7 @@ const selectedAnswer = (value: Answer) => {
     .answerQuestion(value)
     .then((res) => {
       isLoading.value = true
-      console.log('Answer response: ', res)
+      chatbotStore.totalQuestions += 1
       if (res?.result === 'ok') {
         if(res.data?.correct){
           chatbotStore.score += 1
@@ -68,6 +68,7 @@ const removeFirstQuestion = () => {
 }
 const skipQuestionHandler = () => {
   removeFirstQuestion()
+  chatbotStore.totalQuestions += 1
 }
 
 const moveNextQuestionHandler = () => {
