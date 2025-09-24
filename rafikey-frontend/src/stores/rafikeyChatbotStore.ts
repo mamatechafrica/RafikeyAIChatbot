@@ -62,6 +62,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isMoveNext = ref(false)
   const correctAnswer = ref<CorrectAnswer>()
   const isSelected = ref(false)
+  const totalQuestions =useStorage("totalQuestions", 0)
+  const score = useStorage('score', 0)
   const {textColor, darkBgColor, bgColor, setColor} = useColorGenerator(JSON.parse(authStore.user).username)
   const isStreamError = reactive({
     hasError: false,
