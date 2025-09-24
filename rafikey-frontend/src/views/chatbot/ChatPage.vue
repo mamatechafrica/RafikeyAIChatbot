@@ -692,6 +692,10 @@ const closeGameButton = ()=>{
   isShowPlayButton.value = false
 }
 
+const showFeedbackDialogHandler = () =>{
+  showFeedbackDialog.value = !showFeedbackDialog.value
+}
+
 
 </script>
 
