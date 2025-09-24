@@ -841,6 +841,10 @@ const showFeedbackDialogHandler = () =>{
       <SRHRGameButton @close-game-button="closeGameButton"  />
     </div>
 
+    <div v-if="showFeedbackDialog" class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2  md:bottom-44 md:right-16 z-50">
+      <FeebackDialog  @close-feedback-dialog="showFeedbackDialog = false" />
+    </div>
+
     <!--    <div v-else>-->
     <!--      <SpinnerLoading />-->
     <!--    </div>-->
