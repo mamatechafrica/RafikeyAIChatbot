@@ -30,6 +30,19 @@ export interface Setting {
   value: boolean
 }
 
+export interface Quiz {
+  text: string
+  order: number
+  id: number
+  quiz_id: number
+}
+interface CorrectAnswer {
+  correct: boolean | null
+  feedback: string
+  correctAnswerId?: string
+}
+
+
 
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
