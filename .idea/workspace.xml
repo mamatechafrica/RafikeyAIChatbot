@@ -4,16 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add WelcomePage">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/celebration.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/flash-card.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/deck/DeckWelcomePage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/deck/DeckofCards.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add welcome-page-deck route">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/confetti.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-angered.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-happy.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-loveit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-neutral.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-sucks.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/no-data.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/QuestionItem.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/modules/colorGenerator.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/WelcomeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/WelcomeGame.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +44,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -255,63 +275,9 @@
       <workItem from="1758348055339" duration="55000" />
       <workItem from="1758351551120" duration="10000" />
       <workItem from="1758528125039" duration="702000" />
-      <workItem from="1758529093729" duration="29885000" />
-    </task>
-    <task id="LOCAL-00408" summary="add openClearChatDialog variable">
-      <option name="closed" value="true" />
-      <created>1756150017085</created>
-      <option name="number" value="00408" />
-      <option name="presentableId" value="LOCAL-00408" />
-      <option name="project" value="LOCAL" />
-      <updated>1756150017085</updated>
-    </task>
-    <task id="LOCAL-00409" summary="add DialogModal for clearChat confirmation">
-      <option name="closed" value="true" />
-      <created>1756150045883</created>
-      <option name="number" value="00409" />
-      <option name="presentableId" value="LOCAL-00409" />
-      <option name="project" value="LOCAL" />
-      <updated>1756150045883</updated>
-    </task>
-    <task id="LOCAL-00410" summary="remove alert message">
-      <option name="closed" value="true" />
-      <created>1756150532814</created>
-      <option name="number" value="00410" />
-      <option name="presentableId" value="LOCAL-00410" />
-      <option name="project" value="LOCAL" />
-      <updated>1756150532814</updated>
-    </task>
-    <task id="LOCAL-00411" summary="hide share if no active chat">
-      <option name="closed" value="true" />
-      <created>1756209822965</created>
-      <option name="number" value="00411" />
-      <option name="presentableId" value="LOCAL-00411" />
-      <option name="project" value="LOCAL" />
-      <updated>1756209822965</updated>
-    </task>
-    <task id="LOCAL-00412" summary="add sessionId string parameter">
-      <option name="closed" value="true" />
-      <created>1756209875608</created>
-      <option name="number" value="00412" />
-      <option name="presentableId" value="LOCAL-00412" />
-      <option name="project" value="LOCAL" />
-      <updated>1756209875612</updated>
-    </task>
-    <task id="LOCAL-00413" summary="clear sessionId in the route guard">
-      <option name="closed" value="true" />
-      <created>1756209922228</created>
-      <option name="number" value="00413" />
-      <option name="presentableId" value="LOCAL-00413" />
-      <option name="project" value="LOCAL" />
-      <updated>1756209922228</updated>
-    </task>
-    <task id="LOCAL-00414" summary="pass timestamp">
-      <option name="closed" value="true" />
-      <created>1756209979082</created>
-      <option name="number" value="00414" />
-      <option name="presentableId" value="LOCAL-00414" />
-      <option name="project" value="LOCAL" />
-      <updated>1756209979082</updated>
+      <workItem from="1758529093729" duration="31288000" />
+      <workItem from="1758600980460" duration="36319000" />
+      <workItem from="1758686680476" duration="29336000" />
     </task>
     <task id="LOCAL-00415" summary="add styling">
       <option name="closed" value="true" />
@@ -649,7 +615,63 @@
       <option name="project" value="LOCAL" />
       <updated>1758300980131</updated>
     </task>
-    <option name="localTasksCounter" value="457" />
+    <task id="LOCAL-00457" summary="add custom classes">
+      <option name="closed" value="true" />
+      <created>1758564238541</created>
+      <option name="number" value="00457" />
+      <option name="presentableId" value="LOCAL-00457" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564238542</updated>
+    </task>
+    <task id="LOCAL-00458" summary="add WelcomeGame">
+      <option name="closed" value="true" />
+      <created>1758564287561</created>
+      <option name="number" value="00458" />
+      <option name="presentableId" value="LOCAL-00458" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564287561</updated>
+    </task>
+    <task id="LOCAL-00459" summary="add images">
+      <option name="closed" value="true" />
+      <created>1758564300145</created>
+      <option name="number" value="00459" />
+      <option name="presentableId" value="LOCAL-00459" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564300145</updated>
+    </task>
+    <task id="LOCAL-00460" summary="add DeckOfCards">
+      <option name="closed" value="true" />
+      <created>1758564320450</created>
+      <option name="number" value="00460" />
+      <option name="presentableId" value="LOCAL-00460" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564320450</updated>
+    </task>
+    <task id="LOCAL-00461" summary="add image">
+      <option name="closed" value="true" />
+      <created>1758564337508</created>
+      <option name="number" value="00461" />
+      <option name="presentableId" value="LOCAL-00461" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564337508</updated>
+    </task>
+    <task id="LOCAL-00462" summary="add DeckWelcomePage">
+      <option name="closed" value="true" />
+      <created>1758564357137</created>
+      <option name="number" value="00462" />
+      <option name="presentableId" value="LOCAL-00462" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564357137</updated>
+    </task>
+    <task id="LOCAL-00463" summary="add welcome-page-deck route">
+      <option name="closed" value="true" />
+      <created>1758564399010</created>
+      <option name="number" value="00463" />
+      <option name="presentableId" value="LOCAL-00463" />
+      <option name="project" value="LOCAL" />
+      <updated>1758564399010</updated>
+    </task>
+    <option name="localTasksCounter" value="464" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,10 +689,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update the placeholder" />
-    <MESSAGE value="import  RAFIKEY_CHATBOT_FRONTEND_URL variable" />
-    <MESSAGE value="add not-found route" />
-    <MESSAGE value="add useDark composable" />
     <MESSAGE value="add PageNotFound page" />
     <MESSAGE value="add font files" />
     <MESSAGE value="add  toggleImage  function" />
@@ -681,18 +699,22 @@
     <MESSAGE value="add isShowPlayButton reactive variable" />
     <MESSAGE value="call showPlayButton function" />
     <MESSAGE value="call closeGameButton  function" />
-    <MESSAGE value="add images" />
     <MESSAGE value="add GamePage" />
     <MESSAGE value="add imageToggle module" />
     <MESSAGE value="add lets-play route" />
     <MESSAGE value="add QuizPage" />
     <MESSAGE value="add isMoveNext reactive variable flag" />
     <MESSAGE value="add SRHRGameButton component" />
-    <MESSAGE value="add custom classes" />
     <MESSAGE value="add dynamic image file path src attribute" />
-    <MESSAGE value="add image" />
     <MESSAGE value="add WelcomePage" />
-    <option name="LAST_COMMIT_MESSAGE" value="add WelcomePage" />
+    <MESSAGE value="add custom classes" />
+    <MESSAGE value="add WelcomeGame" />
+    <MESSAGE value="add images" />
+    <MESSAGE value="add DeckOfCards" />
+    <MESSAGE value="add image" />
+    <MESSAGE value="add DeckWelcomePage" />
+    <MESSAGE value="add welcome-page-deck route" />
+    <option name="LAST_COMMIT_MESSAGE" value="add welcome-page-deck route" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -704,7 +726,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
-          <line>307</line>
+          <line>308</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -714,7 +736,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>709</line>
+          <line>717</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -749,7 +771,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>735</line>
+          <line>743</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
