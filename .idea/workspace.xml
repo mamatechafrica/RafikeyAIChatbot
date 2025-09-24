@@ -4,37 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add welcome-page-deck route">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/confetti.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-angered.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-happy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-loveit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-neutral.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/emoji-sucks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/no-data.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/QuestionItem.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/modules/colorGenerator.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add QuestionItem component">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/poor-score.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/RadioGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/WelcomeGame.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,263 +254,7 @@
       <workItem from="1758528125039" duration="702000" />
       <workItem from="1758529093729" duration="31288000" />
       <workItem from="1758600980460" duration="36319000" />
-      <workItem from="1758686680476" duration="29336000" />
-    </task>
-    <task id="LOCAL-00415" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1756209993580</created>
-      <option name="number" value="00415" />
-      <option name="presentableId" value="LOCAL-00415" />
-      <option name="project" value="LOCAL" />
-      <updated>1756209993580</updated>
-    </task>
-    <task id="LOCAL-00416" summary="import type HistoryConv">
-      <option name="closed" value="true" />
-      <created>1756210009236</created>
-      <option name="number" value="00416" />
-      <option name="presentableId" value="LOCAL-00416" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210009236</updated>
-    </task>
-    <task id="LOCAL-00417" summary="add timeFormatter function">
-      <option name="closed" value="true" />
-      <created>1756210054739</created>
-      <option name="number" value="00417" />
-      <option name="presentableId" value="LOCAL-00417" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210054739</updated>
-    </task>
-    <task id="LOCAL-00418" summary="pass timestamp">
-      <option name="closed" value="true" />
-      <created>1756210103349</created>
-      <option name="number" value="00418" />
-      <option name="presentableId" value="LOCAL-00418" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210103349</updated>
-    </task>
-    <task id="LOCAL-00419" summary="add props">
-      <option name="closed" value="true" />
-      <created>1756210125412</created>
-      <option name="number" value="00419" />
-      <option name="presentableId" value="LOCAL-00419" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210125412</updated>
-    </task>
-    <task id="LOCAL-00420" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1756210210727</created>
-      <option name="number" value="00420" />
-      <option name="presentableId" value="LOCAL-00420" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210210727</updated>
-    </task>
-    <task id="LOCAL-00421" summary="fetch history if props(sessionId)">
-      <option name="closed" value="true" />
-      <created>1756210295152</created>
-      <option name="number" value="00421" />
-      <option name="presentableId" value="LOCAL-00421" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210295152</updated>
-    </task>
-    <task id="LOCAL-00422" summary="update timeFormatter for local time">
-      <option name="closed" value="true" />
-      <created>1756210383357</created>
-      <option name="number" value="00422" />
-      <option name="presentableId" value="LOCAL-00422" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210383357</updated>
-    </task>
-    <task id="LOCAL-00423" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1756210421056</created>
-      <option name="number" value="00423" />
-      <option name="presentableId" value="LOCAL-00423" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210421056</updated>
-    </task>
-    <task id="LOCAL-00424" summary="clear sessionId on newChat route">
-      <option name="closed" value="true" />
-      <created>1756210453573</created>
-      <option name="number" value="00424" />
-      <option name="presentableId" value="LOCAL-00424" />
-      <option name="project" value="LOCAL" />
-      <updated>1756210453573</updated>
-    </task>
-    <task id="LOCAL-00425" summary="pass the frontend url">
-      <option name="closed" value="true" />
-      <created>1756211549619</created>
-      <option name="number" value="00425" />
-      <option name="presentableId" value="LOCAL-00425" />
-      <option name="project" value="LOCAL" />
-      <updated>1756211549620</updated>
-    </task>
-    <task id="LOCAL-00426" summary="update the placeholder">
-      <option name="closed" value="true" />
-      <created>1756211561473</created>
-      <option name="number" value="00426" />
-      <option name="presentableId" value="LOCAL-00426" />
-      <option name="project" value="LOCAL" />
-      <updated>1756211561473</updated>
-    </task>
-    <task id="LOCAL-00427" summary="import  RAFIKEY_CHATBOT_FRONTEND_URL variable">
-      <option name="closed" value="true" />
-      <created>1756211601178</created>
-      <option name="number" value="00427" />
-      <option name="presentableId" value="LOCAL-00427" />
-      <option name="project" value="LOCAL" />
-      <updated>1756211601178</updated>
-    </task>
-    <task id="LOCAL-00428" summary="add dark styling">
-      <option name="closed" value="true" />
-      <created>1758226496043</created>
-      <option name="number" value="00428" />
-      <option name="presentableId" value="LOCAL-00428" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226496044</updated>
-    </task>
-    <task id="LOCAL-00429" summary="add not-found route">
-      <option name="closed" value="true" />
-      <created>1758226614558</created>
-      <option name="number" value="00429" />
-      <option name="presentableId" value="LOCAL-00429" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226614558</updated>
-    </task>
-    <task id="LOCAL-00430" summary="add useDark composable">
-      <option name="closed" value="true" />
-      <created>1758226640549</created>
-      <option name="number" value="00430" />
-      <option name="presentableId" value="LOCAL-00430" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226640549</updated>
-    </task>
-    <task id="LOCAL-00431" summary="add PageNotFound page">
-      <option name="closed" value="true" />
-      <created>1758226660808</created>
-      <option name="number" value="00431" />
-      <option name="presentableId" value="LOCAL-00431" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226660808</updated>
-    </task>
-    <task id="LOCAL-00432" summary="add custom classes">
-      <option name="closed" value="true" />
-      <created>1758226680233</created>
-      <option name="number" value="00432" />
-      <option name="presentableId" value="LOCAL-00432" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226680233</updated>
-    </task>
-    <task id="LOCAL-00433" summary="add font files">
-      <option name="closed" value="true" />
-      <created>1758226701160</created>
-      <option name="number" value="00433" />
-      <option name="presentableId" value="LOCAL-00433" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226701160</updated>
-    </task>
-    <task id="LOCAL-00434" summary="add  toggleImage  function">
-      <option name="closed" value="true" />
-      <created>1758226727803</created>
-      <option name="number" value="00434" />
-      <option name="presentableId" value="LOCAL-00434" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226727803</updated>
-    </task>
-    <task id="LOCAL-00435" summary="add dark styling">
-      <option name="closed" value="true" />
-      <created>1758226756347</created>
-      <option name="number" value="00435" />
-      <option name="presentableId" value="LOCAL-00435" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226756347</updated>
-    </task>
-    <task id="LOCAL-00436" summary="add dynamic image path">
-      <option name="closed" value="true" />
-      <created>1758226801778</created>
-      <option name="number" value="00436" />
-      <option name="presentableId" value="LOCAL-00436" />
-      <option name="project" value="LOCAL" />
-      <updated>1758226801778</updated>
-    </task>
-    <task id="LOCAL-00437" summary="add AuthLoadingButtons component">
-      <option name="closed" value="true" />
-      <created>1758300403272</created>
-      <option name="number" value="00437" />
-      <option name="presentableId" value="LOCAL-00437" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300403273</updated>
-    </task>
-    <task id="LOCAL-00438" summary="add showPlayButton function">
-      <option name="closed" value="true" />
-      <created>1758300451103</created>
-      <option name="number" value="00438" />
-      <option name="presentableId" value="LOCAL-00438" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300451103</updated>
-    </task>
-    <task id="LOCAL-00439" summary="add isShowPlayButton reactive variable">
-      <option name="closed" value="true" />
-      <created>1758300480051</created>
-      <option name="number" value="00439" />
-      <option name="presentableId" value="LOCAL-00439" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300480051</updated>
-    </task>
-    <task id="LOCAL-00440" summary="call showPlayButton function">
-      <option name="closed" value="true" />
-      <created>1758300529324</created>
-      <option name="number" value="00440" />
-      <option name="presentableId" value="LOCAL-00440" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300529324</updated>
-    </task>
-    <task id="LOCAL-00441" summary="call closeGameButton  function">
-      <option name="closed" value="true" />
-      <created>1758300551797</created>
-      <option name="number" value="00441" />
-      <option name="presentableId" value="LOCAL-00441" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300551797</updated>
-    </task>
-    <task id="LOCAL-00442" summary="add SRHRGameButton component">
-      <option name="closed" value="true" />
-      <created>1758300603307</created>
-      <option name="number" value="00442" />
-      <option name="presentableId" value="LOCAL-00442" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300603307</updated>
-    </task>
-    <task id="LOCAL-00443" summary="add images">
-      <option name="closed" value="true" />
-      <created>1758300618796</created>
-      <option name="number" value="00443" />
-      <option name="presentableId" value="LOCAL-00443" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300618796</updated>
-    </task>
-    <task id="LOCAL-00444" summary="add GamePage">
-      <option name="closed" value="true" />
-      <created>1758300634782</created>
-      <option name="number" value="00444" />
-      <option name="presentableId" value="LOCAL-00444" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300634782</updated>
-    </task>
-    <task id="LOCAL-00445" summary="add imageToggle module">
-      <option name="closed" value="true" />
-      <created>1758300671120</created>
-      <option name="number" value="00445" />
-      <option name="presentableId" value="LOCAL-00445" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300671120</updated>
-    </task>
-    <task id="LOCAL-00446" summary="add lets-play route">
-      <option name="closed" value="true" />
-      <created>1758300695212</created>
-      <option name="number" value="00446" />
-      <option name="presentableId" value="LOCAL-00446" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300695212</updated>
+      <workItem from="1758686680476" duration="33592000" />
     </task>
     <task id="LOCAL-00447" summary="add dynamic image file path src attribute">
       <option name="closed" value="true" />
@@ -671,7 +392,263 @@
       <option name="project" value="LOCAL" />
       <updated>1758564399010</updated>
     </task>
-    <option name="localTasksCounter" value="464" />
+    <task id="LOCAL-00464" summary="add WelcomePage component">
+      <option name="closed" value="true" />
+      <created>1758720891062</created>
+      <option name="number" value="00464" />
+      <option name="presentableId" value="LOCAL-00464" />
+      <option name="project" value="LOCAL" />
+      <updated>1758720891063</updated>
+    </task>
+    <task id="LOCAL-00465" summary="add images">
+      <option name="closed" value="true" />
+      <created>1758720979977</created>
+      <option name="number" value="00465" />
+      <option name="presentableId" value="LOCAL-00465" />
+      <option name="project" value="LOCAL" />
+      <updated>1758720979977</updated>
+    </task>
+    <task id="LOCAL-00466" summary="add show-feedback-dialog  emits">
+      <option name="closed" value="true" />
+      <created>1758721024717</created>
+      <option name="number" value="00466" />
+      <option name="presentableId" value="LOCAL-00466" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721024717</updated>
+    </task>
+    <task id="LOCAL-00467" summary="add 30% probability">
+      <option name="closed" value="true" />
+      <created>1758721043999</created>
+      <option name="number" value="00467" />
+      <option name="presentableId" value="LOCAL-00467" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721043999</updated>
+    </task>
+    <task id="LOCAL-00468" summary="add showFeedbackDialogHandler function">
+      <option name="closed" value="true" />
+      <created>1758721059744</created>
+      <option name="number" value="00468" />
+      <option name="presentableId" value="LOCAL-00468" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721059744</updated>
+    </task>
+    <task id="LOCAL-00469" summary="add showFeedbackDialog flag">
+      <option name="closed" value="true" />
+      <created>1758721076238</created>
+      <option name="number" value="00469" />
+      <option name="presentableId" value="LOCAL-00469" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721076238</updated>
+    </task>
+    <task id="LOCAL-00470" summary="bind showFeedbackDialogHandler on click directive">
+      <option name="closed" value="true" />
+      <created>1758721108882</created>
+      <option name="number" value="00470" />
+      <option name="presentableId" value="LOCAL-00470" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721108882</updated>
+    </task>
+    <task id="LOCAL-00471" summary="add FeebackDialog  child component">
+      <option name="closed" value="true" />
+      <created>1758721137123</created>
+      <option name="number" value="00471" />
+      <option name="presentableId" value="LOCAL-00471" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721137123</updated>
+    </task>
+    <task id="LOCAL-00472" summary="add colorGenerator composable">
+      <option name="closed" value="true" />
+      <created>1758721154061</created>
+      <option name="number" value="00472" />
+      <option name="presentableId" value="LOCAL-00472" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721154061</updated>
+    </task>
+    <task id="LOCAL-00473" summary="addFeedBackDialog component">
+      <option name="closed" value="true" />
+      <created>1758721175891</created>
+      <option name="number" value="00473" />
+      <option name="presentableId" value="LOCAL-00473" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721175891</updated>
+    </task>
+    <task id="LOCAL-00474" summary="add backToChatHandler  function">
+      <option name="closed" value="true" />
+      <created>1758721204601</created>
+      <option name="number" value="00474" />
+      <option name="presentableId" value="LOCAL-00474" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721204601</updated>
+    </task>
+    <task id="LOCAL-00475" summary="add GameResult">
+      <option name="closed" value="true" />
+      <created>1758721222632</created>
+      <option name="number" value="00475" />
+      <option name="presentableId" value="LOCAL-00475" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721222633</updated>
+    </task>
+    <task id="LOCAL-00476" summary="add toggleImage function">
+      <option name="closed" value="true" />
+      <created>1758721279375</created>
+      <option name="number" value="00476" />
+      <option name="presentableId" value="LOCAL-00476" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721279375</updated>
+    </task>
+    <task id="LOCAL-00477" summary="add params on game-page-quiz route">
+      <option name="closed" value="true" />
+      <created>1758721333388</created>
+      <option name="number" value="00477" />
+      <option name="presentableId" value="LOCAL-00477" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721333388</updated>
+    </task>
+    <task id="LOCAL-00478" summary="add toggleImage function">
+      <option name="closed" value="true" />
+      <created>1758721371451</created>
+      <option name="number" value="00478" />
+      <option name="presentableId" value="LOCAL-00478" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721371451</updated>
+    </task>
+    <task id="LOCAL-00479" summary="add showFeedbackDialog function">
+      <option name="closed" value="true" />
+      <created>1758721411380</created>
+      <option name="number" value="00479" />
+      <option name="presentableId" value="LOCAL-00479" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721411380</updated>
+    </task>
+    <task id="LOCAL-00480" summary="add showFeedbackDialog function">
+      <option name="closed" value="true" />
+      <created>1758721418617</created>
+      <option name="number" value="00480" />
+      <option name="presentableId" value="LOCAL-00480" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721418617</updated>
+    </task>
+    <task id="LOCAL-00481" summary="add route name">
+      <option name="closed" value="true" />
+      <created>1758721449180</created>
+      <option name="number" value="00481" />
+      <option name="presentableId" value="LOCAL-00481" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721449180</updated>
+    </task>
+    <task id="LOCAL-00482" summary="add custom classes">
+      <option name="closed" value="true" />
+      <created>1758721465010</created>
+      <option name="number" value="00482" />
+      <option name="presentableId" value="LOCAL-00482" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721465010</updated>
+    </task>
+    <task id="LOCAL-00483" summary="add toggleImage function">
+      <option name="closed" value="true" />
+      <created>1758721508346</created>
+      <option name="number" value="00483" />
+      <option name="presentableId" value="LOCAL-00483" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721508346</updated>
+    </task>
+    <task id="LOCAL-00484" summary="add interfaces">
+      <option name="closed" value="true" />
+      <created>1758721541833</created>
+      <option name="number" value="00484" />
+      <option name="presentableId" value="LOCAL-00484" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721541833</updated>
+    </task>
+    <task id="LOCAL-00485" summary="add colorGenerator composable">
+      <option name="closed" value="true" />
+      <created>1758721596150</created>
+      <option name="number" value="00485" />
+      <option name="presentableId" value="LOCAL-00485" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721596150</updated>
+    </task>
+    <task id="LOCAL-00486" summary="add quizzes on local storage">
+      <option name="closed" value="true" />
+      <created>1758721621636</created>
+      <option name="number" value="00486" />
+      <option name="presentableId" value="LOCAL-00486" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721621636</updated>
+    </task>
+    <task id="LOCAL-00487" summary="add quizzes on local storage">
+      <option name="closed" value="true" />
+      <created>1758721630028</created>
+      <option name="number" value="00487" />
+      <option name="presentableId" value="LOCAL-00487" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721630028</updated>
+    </task>
+    <task id="LOCAL-00488" summary="add  getQuizCategory  function">
+      <option name="closed" value="true" />
+      <created>1758721656832</created>
+      <option name="number" value="00488" />
+      <option name="presentableId" value="LOCAL-00488" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721656832</updated>
+    </task>
+    <task id="LOCAL-00489" summary="add setCorrectAnswer function">
+      <option name="closed" value="true" />
+      <created>1758721681448</created>
+      <option name="number" value="00489" />
+      <option name="presentableId" value="LOCAL-00489" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721681448</updated>
+    </task>
+    <task id="LOCAL-00490" summary="add setCorrectAnswer function">
+      <option name="closed" value="true" />
+      <created>1758721694185</created>
+      <option name="number" value="00490" />
+      <option name="presentableId" value="LOCAL-00490" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721694185</updated>
+    </task>
+    <task id="LOCAL-00491" summary="add generated user avators">
+      <option name="closed" value="true" />
+      <created>1758721787181</created>
+      <option name="number" value="00491" />
+      <option name="presentableId" value="LOCAL-00491" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721787182</updated>
+    </task>
+    <task id="LOCAL-00492" summary="add selectedRadio function">
+      <option name="closed" value="true" />
+      <created>1758721840846</created>
+      <option name="number" value="00492" />
+      <option name="presentableId" value="LOCAL-00492" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721840846</updated>
+    </task>
+    <task id="LOCAL-00493" summary="add selectedRadio function">
+      <option name="closed" value="true" />
+      <created>1758721851006</created>
+      <option name="number" value="00493" />
+      <option name="presentableId" value="LOCAL-00493" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721851006</updated>
+    </task>
+    <task id="LOCAL-00494" summary="add QuestionItem component">
+      <option name="closed" value="true" />
+      <created>1758721936072</created>
+      <option name="number" value="00494" />
+      <option name="presentableId" value="LOCAL-00494" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721936072</updated>
+    </task>
+    <task id="LOCAL-00495" summary="add QuestionItem component">
+      <option name="closed" value="true" />
+      <created>1758721955114</created>
+      <option name="number" value="00495" />
+      <option name="presentableId" value="LOCAL-00495" />
+      <option name="project" value="LOCAL" />
+      <updated>1758721955114</updated>
+    </task>
+    <option name="localTasksCounter" value="496" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,32 +666,32 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add PageNotFound page" />
-    <MESSAGE value="add font files" />
-    <MESSAGE value="add  toggleImage  function" />
-    <MESSAGE value="add dark styling" />
-    <MESSAGE value="add dynamic image path" />
-    <MESSAGE value="add AuthLoadingButtons component" />
-    <MESSAGE value="add showPlayButton function" />
-    <MESSAGE value="add isShowPlayButton reactive variable" />
-    <MESSAGE value="call showPlayButton function" />
-    <MESSAGE value="call closeGameButton  function" />
-    <MESSAGE value="add GamePage" />
-    <MESSAGE value="add imageToggle module" />
-    <MESSAGE value="add lets-play route" />
-    <MESSAGE value="add QuizPage" />
-    <MESSAGE value="add isMoveNext reactive variable flag" />
-    <MESSAGE value="add SRHRGameButton component" />
-    <MESSAGE value="add dynamic image file path src attribute" />
-    <MESSAGE value="add WelcomePage" />
-    <MESSAGE value="add custom classes" />
-    <MESSAGE value="add WelcomeGame" />
-    <MESSAGE value="add images" />
-    <MESSAGE value="add DeckOfCards" />
-    <MESSAGE value="add image" />
-    <MESSAGE value="add DeckWelcomePage" />
     <MESSAGE value="add welcome-page-deck route" />
-    <option name="LAST_COMMIT_MESSAGE" value="add welcome-page-deck route" />
+    <MESSAGE value="add WelcomePage component" />
+    <MESSAGE value="add images" />
+    <MESSAGE value="add show-feedback-dialog  emits" />
+    <MESSAGE value="add 30% probability" />
+    <MESSAGE value="add showFeedbackDialogHandler function" />
+    <MESSAGE value="add showFeedbackDialog flag" />
+    <MESSAGE value="bind showFeedbackDialogHandler on click directive" />
+    <MESSAGE value="add FeebackDialog  child component" />
+    <MESSAGE value="addFeedBackDialog component" />
+    <MESSAGE value="add backToChatHandler  function" />
+    <MESSAGE value="add GameResult" />
+    <MESSAGE value="add params on game-page-quiz route" />
+    <MESSAGE value="add showFeedbackDialog function" />
+    <MESSAGE value="add route name" />
+    <MESSAGE value="add custom classes" />
+    <MESSAGE value="add toggleImage function" />
+    <MESSAGE value="add interfaces" />
+    <MESSAGE value="add colorGenerator composable" />
+    <MESSAGE value="add quizzes on local storage" />
+    <MESSAGE value="add  getQuizCategory  function" />
+    <MESSAGE value="add setCorrectAnswer function" />
+    <MESSAGE value="add generated user avators" />
+    <MESSAGE value="add selectedRadio function" />
+    <MESSAGE value="add QuestionItem component" />
+    <option name="LAST_COMMIT_MESSAGE" value="add QuestionItem component" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,6 +750,12 @@
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
           <line>743</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

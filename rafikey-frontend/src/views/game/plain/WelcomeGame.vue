@@ -49,6 +49,8 @@ onMounted(() => {
 })
 const selectedRadio = (value: RadioButton) => {
   selectedCategory.value = value.id
+  chatbotStore.score = 0
+  chatbotStore.totalQuestions = 0
   chatbotStore
     .getQuizzes(value.id)
     .then((data) => {
