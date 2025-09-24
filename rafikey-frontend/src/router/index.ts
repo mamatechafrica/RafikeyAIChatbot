@@ -209,8 +209,19 @@ const routes = [
       },
       {
         name: 'game-page-quiz',
-        path: 'plain/quiz',
+        path: 'plain/quiz/:quizCategory',
         component: ()=> import('@/views/game/plain/QuizPage.vue'),
+        props: (route: RouteLocationNormalized)=>{
+          const { params } = route
+          return {
+            quizCategory: params.quizCategory,
+          }
+        }
+      },
+      {
+        name: 'game-page-quiz-result',
+        path: 'game-page-quiz-result',
+        component: ()=> import('@/views/game/GameResult.vue')
       },
       {
         name: 'welcome-page-deck',
