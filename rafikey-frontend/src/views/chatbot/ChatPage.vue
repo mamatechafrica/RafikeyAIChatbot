@@ -54,7 +54,7 @@ const now = moment()
 // Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
 const showPlayButton = () =>{
   const showButtonProbs = Math.random()
-  if(showButtonProbs < 0.9){
+  if(showButtonProbs < 0.3){
     const delay = Math.random() * 10000
     setTimeout(()=>{
       isShowPlayButton.value = true
