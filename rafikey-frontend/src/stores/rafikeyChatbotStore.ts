@@ -49,6 +49,7 @@ interface CorrectAnswer {
 
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
+
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const authStore = useAuthStore()
   const sessionId = useStorage("sessionId", '');
@@ -67,6 +68,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     errorMessage: '',
     isLoggedIn: true,
   })
+
+  const quizzes = useStorage('quizzes',<Quiz[]>([]))
   const getSessionId = computed(()=> sessionId.value)
   const buffer = ref<string>('')
   const regenerateResponse = ref(false)
