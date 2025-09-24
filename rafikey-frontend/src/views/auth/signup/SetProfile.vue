@@ -7,6 +7,7 @@ import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 // import imageLight from '@/assets/images/rafikey-icon-light.png'
 // import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
+import { toggleImage } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
@@ -256,15 +257,15 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-if="!isLoading">
-    <div class="min-h-screen w-full hidden overflow-hidden md:flex py-10 ">
-      <div class="bg-lightBackground flex flex-col w-11/12 mx-auto rounded-2xl">
+    <div class="min-h-screen w-full dark:bg-lightgray hidden overflow-hidden md:flex py-10 ">
+      <div class="dark:bg-darkgray bg-lightBackground flex flex-col w-11/12 mx-auto rounded-2xl">
         <div class="w-60 h-16">
-          <img src=@/assets/images/rafikey-icon-light.png alt="rafikey-logo" />
+          <img :src='toggleImage()' alt="rafikey-logo" />
         </div>
         <div class="w-3/4 xl:space-y-5 space-y-4 mx-auto rounded-2xl">
           <div class="flex flex-col pt-32 items-center space-y-1">
-            <h2 class="text-4xl font-semibold ">Set up your profile</h2>
-            <p class="text-lg text-stone-700 text-center ">
+            <h2 class="text-4xl font-semibold dark:text-white  ">Set up your profile</h2>
+            <p class="text-lg text-stone-700 text-center dark:text-stone-300 ">
               Let's get you set up so you can access your personal account for a more personalized
               experience
             </p>
@@ -276,7 +277,7 @@ onBeforeUnmount(() => {
                 <div class="grid grid-cols-2 gap-8">
                   <div class="col-span-1 flex-col space-y-1">
                     <label
-                      class="form-control w-full text-gray-950  text-sm"
+                      class="form-control w-full dark:text-white text-gray-950  text-sm"
                       for="username"
                       >Username</label
                     >
@@ -284,7 +285,7 @@ onBeforeUnmount(() => {
                       v-model="setProfileData.username"
                       id="username-lg"
                       type="text"
-                      class="w-full border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Choose a username"
                     />
@@ -295,12 +296,12 @@ onBeforeUnmount(() => {
                     >
                   </div>
                   <div class="col-span-1 space-y-1">
-                    <label class="text-gray-950 text-sm " for="email">Email</label>
+                    <label class="text-gray-950 dark:text-white text-sm " for="email">Email</label>
                     <input
                       v-model="setProfileData.email"
                       id="email-lg"
                       type="email"
-                      class="w-full border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Enter your email"
                     />
@@ -314,34 +315,34 @@ onBeforeUnmount(() => {
                   <input
                     v-model="chatbotStore.isAnonymous"
                     type="checkbox"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
+                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800 "
                   />
-                  <p class="text-sm  pt-1">Remain Anonymous</p>
+                  <p class="text-sm dark:text-white  pt-1">Remain Anonymous</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-8">
                   <div class="relative space-y-1">
-                    <label class="text-gray-950 text-sm d" for="password">
+                    <label class="text-gray-950 dark:text-white text-sm d" for="password">
                       Password
                     </label>
                     <input
                       v-model="setProfileData.password"
                       id="password-lg"
                       :type="togglePasswordVisibility"
-                      class="w-full border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Enter password"
                     />
                     <span
                       v-if="isPasswordVisible"
                       @click="isPasswordVisible = false"
-                      class="material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isPasswordVisible = true"
-                      class="material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                     <span
@@ -351,14 +352,14 @@ onBeforeUnmount(() => {
                     >
                   </div>
                   <div class="relative space-y-1">
-                    <label class="text-gray-950 text-sm " for="confirmPassword">
+                    <label class="text-gray-950 dark:text-white text-sm " for="confirmPassword">
                       Confirm Password
                     </label>
                     <input
                       v-model="setProfileData.confirmPassword"
                       id="confirmPassword-lg"
                       :type="toggleConfirmPasswordVisibility"
-                      class="w-full border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Confirm password"
                     />
@@ -371,13 +372,13 @@ onBeforeUnmount(() => {
                     <span
                       v-if="isConfirmPasswordVisible"
                       @click="isConfirmPasswordVisible = false"
-                      class="material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isConfirmPasswordVisible = true"
-                      class="material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                   </div>
@@ -385,7 +386,7 @@ onBeforeUnmount(() => {
               </div>
             </form>
           </div>
-          <div v-if="SetProfileError.isError" class="flex gap-2">
+          <div v-if="SetProfileError.isError" class="w-3/4 mx-auto flex gap-2">
             <span class="material-icons-outlined text-rose-500">error</span>
             <span class="text-rose-500">{{ SetProfileError.message }}</span>
           </div>
@@ -394,13 +395,14 @@ onBeforeUnmount(() => {
           <div class="w-4/6 mx-auto pt-24 flex justify-between items-center">
             <button
               @click="goToKnowYou"
-              class="btn w-full btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none"
+              :class="[!everyThingOk? 'bg-button-inactive': 'bg-button-light ']"
+              class="btn w-full btn-sm text-lg rounded-2xl py-6 border-none shadow-none"
             >
               Next
             </button>
           </div>
           <div class="flex justify-center pb-2">
-            <p class="text-sm">
+            <p class="text-sm dark:text-white">
               Already have an account?
               <RouterLink to="/auth/login" class="text-sm text-rose-400">Log in</RouterLink>
             </p>
@@ -410,14 +412,16 @@ onBeforeUnmount(() => {
     </div>
 
     <!--    Small screens-->
-    <div class="md:hidden block overflow-hidden h-screen w-full ">
-      <div class="flex justify-center">
-        <img src="@/assets/images/rafikey-key.png" class="w-24" alt="rafikey-logo" />
+    <div class="md:hidden block dark:bg-darkgray overflow-hidden h-screen w-full ">
+      <div class=" w-44 h-24 mx-auto">
+          <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
+
+
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-3">
         <div class="flex flex-col items-center space-y-2">
-          <h2 class="text-2xl font-semibold ">Set up your profile</h2>
-          <p class="text-sm text-gray-700 text-center ">
+          <h2 class="text-2xl font-semibold dark:text-white ">Set up your profile</h2>
+          <p class="text-sm text-gray-700 dark:text-stone-300 text-center ">
             Let's get you set up so you can access your personal account for a more personalized
             experience
           </p>
@@ -425,14 +429,14 @@ onBeforeUnmount(() => {
         <div class="border-b border-stone-400  w-full"></div>
         <form class="space-y-2">
           <div class="space-y-0.5">
-            <label for="username" class="text-black  md:text-lg text-sm"
+            <label for="username" class="dark:text-white text-black  md:text-lg text-sm"
               >Username</label
             >
             <input
               v-model="setProfileData.username"
               id="username"
               type="text"
-              class="w-full border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              class="w-full dark:bg-darkgray dark:text-white  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
               required
               placeholder="Choose a username"
             />
@@ -445,18 +449,18 @@ onBeforeUnmount(() => {
               id="checkbox"
               v-model="chatbotStore.isAnonymous"
               type="checkbox"
-              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 "
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800 "
             />
-            <p class="md:text-lg text-sm text-black  pt-1">Remain Anonymous</p>
+            <p class="md:text-lg text-sm dark:text-white text-black  pt-1">Remain Anonymous</p>
           </div>
 
           <div class="space-y-0.5">
-            <label for="email" class="text-black  md:text-lg text-sm">Email</label>
+            <label for="email" class="dark:text-white text-black  md:text-lg text-sm">Email</label>
             <input
               v-model="setProfileData.email"
               id="email"
               type="email"
-              class="w-full border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
               required
               placeholder="Enter your email"
             />
@@ -468,14 +472,14 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="relative space-y-0.5">
-            <label class="text-black md:text-lg text-sm " for="password">
+            <label class="dark:text-white text-black md:text-lg text-sm " for="password">
               Password
             </label>
             <input
               v-model="setProfileData.password"
               id="password"
               :type="togglePasswordVisibility"
-              class="w-full border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
               required
               placeholder="Enter password"
             />
@@ -499,14 +503,14 @@ onBeforeUnmount(() => {
           </div>
 
           <div class="relative space-y-0.5">
-            <label class="text-black  md:text-lg text-sm" for="password">
+            <label class="dark:text-white text-black  md:text-lg text-sm" for="password">
               Confirm Password
             </label>
             <input
               v-model="setProfileData.confirmPassword"
               id="ConfirmPassword"
               :type="toggleConfirmPasswordVisibility"
-              class="w-full border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
               required
               placeholder="Enter password"
             />
@@ -545,7 +549,7 @@ onBeforeUnmount(() => {
           </button>
         </div>
         <div class="flex justify-center">
-          <p class="text-sm">
+          <p class="text-sm dark:text-white">
             Already have an account?
             <RouterLink to="/auth/login" class="text-sm text-rose-400">Log in</RouterLink>
           </p>
@@ -566,8 +570,8 @@ onBeforeUnmount(() => {
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class=" md:text-large text-small  ">Are you Sure?</p>
-            <span class=" md:text-small text-nowrap text-extra-small"
+            <p class=" md:text-large text-small dark:text-white  ">Are you Sure?</p>
+            <span class="md:text-small dark:text-white  text-nowrap text-extra-small"
               >Your chat's won't be saved, if you login anonymously</span
             >
           </div>
@@ -589,7 +593,7 @@ onBeforeUnmount(() => {
                 @click.stop="chatbotStore.setDialogModal(false)"
                 class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg "
               >
-                <span class="text-extra-small md:text-small">Cancel</span>
+                <span class="text-extra-small dark:text-white md:text-small">Cancel</span>
               </button>
             </div>
           </div>
