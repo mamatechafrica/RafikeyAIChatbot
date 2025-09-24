@@ -57,6 +57,13 @@ onMounted(() => {
     })
 })
 
+
+const showFeedbackDialog = () =>{
+  chatbotStore.setCollapseSidebarSmall(true)
+  emits('showFeedbackDialog')
+
+
+}
 // reduce the chat titles according to the dates
 const groupChat = () => {
   const now = moment()
@@ -94,6 +101,7 @@ const emits = defineEmits<{
   (event: 'profileHandler'): void
   (event: 'isProfile', value: boolean): void
   (event: 'shareChat'): void
+  (event: 'showFeedbackDialog'): void
 }>()
 
 // fetch clicked chat History title
@@ -229,19 +237,19 @@ const shareChat = () =>{
             >
               <span class="material-icons-outlined text-white">add</span>
             </div>
-            <div>
-              <span class="material-icons-outlined !text-3xl dark:text-stone-300">home</span>
-            </div>
-            <div>
-              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"
-                >history</span
-              >
-            </div>
-            <div>
-              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"
-                >explore</span
-              >
-            </div>
+<!--            <div>-->
+<!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">home</span>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
+<!--                >history</span-->
+<!--              >-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
+<!--                >explore</span-->
+<!--              >-->
+<!--            </div>-->
           </div>
         </div>
 
@@ -258,11 +266,13 @@ const shareChat = () =>{
             <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>-->
             <!--            </div>-->
             <div @click.stop="profileHandler" class="cursor-pointer">
-              <img
-                src="@/assets/images/Avatar.png"
-                alt="rafikey-avatar"
-                class="w-8 h-8 rounded-full"
-              />
+              <div
+                :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
+
+                class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                <span  class="dark:text-white ">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+                <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
+              </div>
             </div>
           </div>
         </div>
@@ -390,16 +400,19 @@ const shareChat = () =>{
                             </span>
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
-                          <div class="">
+                          <div class="cursor-pointer"
+                          @click.stop="showFeedbackDialog">
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
                         <div @click="showProfile" class="cursor-pointer">
-                          <img
-                            src="@/assets/images/Avatar.png"
-                            alt="rafikey-avatar"
-                            class="w-10 h-10 rounded-full"
-                          />
+                          <div
+                            :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
+
+                            class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
+                            <span class="dark:text-white">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+                            <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
+                          </div>
                         </div>
                       </div>
                       <div class="border-b border-darkgray"></div>
