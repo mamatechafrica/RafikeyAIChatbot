@@ -19,6 +19,7 @@ import GeneralTab from '@/components/tab/GeneralTab.vue'
 import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
+import FeebackDialog from '@/components/chat/FeebackDialog.vue'
 
 
 export interface HistoryConv {
@@ -58,6 +59,8 @@ const showPlayButton = () =>{
     setTimeout(()=>{
       isShowPlayButton.value = true
     }, delay)
+  } else {
+    return
   }
 
 }
@@ -700,6 +703,7 @@ const closeGameButton = ()=>{
         @share-chat="shareChat"
         @profile-handler="profileHandler"
         @is-profile="isProfileHandler"
+        @show-feedback-dialog = "showFeedbackDialogHandler"
       />
     </div>
     <!--    right side-->
