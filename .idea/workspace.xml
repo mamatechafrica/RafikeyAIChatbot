@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add QuestionItem component">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/poor-score.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="increament score and totalQuestions">
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,63 +249,7 @@
       <workItem from="1758528125039" duration="702000" />
       <workItem from="1758529093729" duration="31288000" />
       <workItem from="1758600980460" duration="36319000" />
-      <workItem from="1758686680476" duration="33592000" />
-    </task>
-    <task id="LOCAL-00447" summary="add dynamic image file path src attribute">
-      <option name="closed" value="true" />
-      <created>1758300756853</created>
-      <option name="number" value="00447" />
-      <option name="presentableId" value="LOCAL-00447" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300756853</updated>
-    </task>
-    <task id="LOCAL-00448" summary="add QuizPage">
-      <option name="closed" value="true" />
-      <created>1758300770461</created>
-      <option name="number" value="00448" />
-      <option name="presentableId" value="LOCAL-00448" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300770461</updated>
-    </task>
-    <task id="LOCAL-00449" summary="add isMoveNext reactive variable flag">
-      <option name="closed" value="true" />
-      <created>1758300808210</created>
-      <option name="number" value="00449" />
-      <option name="presentableId" value="LOCAL-00449" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300808210</updated>
-    </task>
-    <task id="LOCAL-00450" summary="add isMoveNext reactive variable flag">
-      <option name="closed" value="true" />
-      <created>1758300816048</created>
-      <option name="number" value="00450" />
-      <option name="presentableId" value="LOCAL-00450" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300816048</updated>
-    </task>
-    <task id="LOCAL-00451" summary="add SRHRGameButton component">
-      <option name="closed" value="true" />
-      <created>1758300847064</created>
-      <option name="number" value="00451" />
-      <option name="presentableId" value="LOCAL-00451" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300847064</updated>
-    </task>
-    <task id="LOCAL-00452" summary="add custom classes">
-      <option name="closed" value="true" />
-      <created>1758300863643</created>
-      <option name="number" value="00452" />
-      <option name="presentableId" value="LOCAL-00452" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300863643</updated>
-    </task>
-    <task id="LOCAL-00453" summary="add dynamic image file path src attribute">
-      <option name="closed" value="true" />
-      <created>1758300943959</created>
-      <option name="number" value="00453" />
-      <option name="presentableId" value="LOCAL-00453" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300943959</updated>
+      <workItem from="1758686680476" duration="34109000" />
     </task>
     <task id="LOCAL-00454" summary="add dynamic image file path src attribute">
       <option name="closed" value="true" />
@@ -648,7 +587,63 @@
       <option name="project" value="LOCAL" />
       <updated>1758721955114</updated>
     </task>
-    <option name="localTasksCounter" value="496" />
+    <task id="LOCAL-00496" summary="pass score">
+      <option name="closed" value="true" />
+      <created>1758725129885</created>
+      <option name="number" value="00496" />
+      <option name="presentableId" value="LOCAL-00496" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725129885</updated>
+    </task>
+    <task id="LOCAL-00497" summary="add image">
+      <option name="closed" value="true" />
+      <created>1758725139997</created>
+      <option name="number" value="00497" />
+      <option name="presentableId" value="LOCAL-00497" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725139997</updated>
+    </task>
+    <task id="LOCAL-00498" summary="reset score and totalQuestions">
+      <option name="closed" value="true" />
+      <created>1758725249224</created>
+      <option name="number" value="00498" />
+      <option name="presentableId" value="LOCAL-00498" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725249224</updated>
+    </task>
+    <task id="LOCAL-00499" summary="add score and totalQuestions on localstorage">
+      <option name="closed" value="true" />
+      <created>1758725281513</created>
+      <option name="number" value="00499" />
+      <option name="presentableId" value="LOCAL-00499" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725281513</updated>
+    </task>
+    <task id="LOCAL-00500" summary="return score and totalQuestions">
+      <option name="closed" value="true" />
+      <created>1758725302676</created>
+      <option name="number" value="00500" />
+      <option name="presentableId" value="LOCAL-00500" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725302676</updated>
+    </task>
+    <task id="LOCAL-00501" summary="increament score and totalQuestions">
+      <option name="closed" value="true" />
+      <created>1758725350250</created>
+      <option name="number" value="00501" />
+      <option name="presentableId" value="LOCAL-00501" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725350250</updated>
+    </task>
+    <task id="LOCAL-00502" summary="increament score and totalQuestions">
+      <option name="closed" value="true" />
+      <created>1758725356511</created>
+      <option name="number" value="00502" />
+      <option name="presentableId" value="LOCAL-00502" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725356511</updated>
+    </task>
+    <option name="localTasksCounter" value="503" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -666,12 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add welcome-page-deck route" />
-    <MESSAGE value="add WelcomePage component" />
-    <MESSAGE value="add images" />
-    <MESSAGE value="add show-feedback-dialog  emits" />
-    <MESSAGE value="add 30% probability" />
-    <MESSAGE value="add showFeedbackDialogHandler function" />
     <MESSAGE value="add showFeedbackDialog flag" />
     <MESSAGE value="bind showFeedbackDialogHandler on click directive" />
     <MESSAGE value="add FeebackDialog  child component" />
@@ -691,7 +680,13 @@
     <MESSAGE value="add generated user avators" />
     <MESSAGE value="add selectedRadio function" />
     <MESSAGE value="add QuestionItem component" />
-    <option name="LAST_COMMIT_MESSAGE" value="add QuestionItem component" />
+    <MESSAGE value="pass score" />
+    <MESSAGE value="add image" />
+    <MESSAGE value="reset score and totalQuestions" />
+    <MESSAGE value="add score and totalQuestions on localstorage" />
+    <MESSAGE value="return score and totalQuestions" />
+    <MESSAGE value="increament score and totalQuestions" />
+    <option name="LAST_COMMIT_MESSAGE" value="increament score and totalQuestions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

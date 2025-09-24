@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import EmojiAngered from '@/assets/images/emoji-angered.png'
-import EmojiSucks from '@/assets/images/emoji-sucks.png'
-import EmojiHappy from '@/assets/images/emoji-happy.png'
-import EmojiVeryHappy from '@/assets/images/emoji-loveit.png'
-import EmojiNeutral from '@/assets/images/emoji-neutral.png'
 import { ref } from 'vue'
 import { useNotificationStore, useRafikeyChatbotStore } from '@/stores'
 
