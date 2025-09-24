@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
+import { useColorGenerator } from '@/modules/colorGenerator.ts'
 
 export interface UserBubbleProps {
   userName: string
@@ -13,8 +15,21 @@ export interface UserBubbleProps {
 }
 
 const props = defineProps<UserBubbleProps>()
+const authStore = useAuthStore()
 const hasText = computed(() => {
   return props.userMessage.length > 0
+})
+
+// const generateAvator = () => {
+//   console.log('Avator---', useColorGenerator(authStore.user))
+//   return useColorGenerator(authStore.user).
+//
+// }
+
+const chatbotStore = useRafikeyChatbotStore()
+onMounted(() => {
+  chatbotStore.setColor()
+  console.log('Avator---', chatbotStore.textColor)
 })
 </script>
 
@@ -22,30 +37,27 @@ const hasText = computed(() => {
   <div class="chat chat-end">
     <div class="flex flex-row-reverse gap-2">
       <div>
-        <div>
-          <img alt="user-avatar" src="@/assets/images/Avatar.png" />
+        <div
+          :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
+
+          class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
+          <span  class="dark:text-white">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+          <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
         </div>
       </div>
       <div class="flex flex-col">
-        <div
-          class="chat-header dark:text-white flex justify-end items-end text-small"
-        >
+        <div class="chat-header dark:text-white flex justify-end items-end text-small">
           {{ props.userName }}
-          <time class="text-extra-small opacity-50 flex ">{{ props.createdAt }}</time>
+          <time class="text-extra-small opacity-50 flex">{{ props.createdAt }}</time>
         </div>
         <div class="bg-lightBackground dark:bg-bubbleDark p-4 rounded-2xl">
-          <div
-            v-if="hasText"
-            v-html="props.userMessage"
-            class="text-small dark:text-white"
-          ></div>
+          <div v-if="hasText" v-html="props.userMessage" class="text-small dark:text-white"></div>
         </div>
       </div>
     </div>
     <!--    <div class="chat-footer opacity-50">Seen at 12:46</div>-->
-<!--    <p>Hello</p>-->
+    <!--    <p>Hello</p>-->
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
