@@ -3,6 +3,9 @@ import { computed, ref, watch, reactive } from 'vue'
 import { useDark, useStorage } from '@vueuse/core'
 import { get } from 'lodash';
 import { useAuthStore } from '@/stores/authStore.ts'
+import type { Answer } from '@/components/game/QuestionItem.vue'
+import type { Feedback } from '@/components/chat/FeebackDialog.vue'
+import { useColorGenerator } from '@/modules/colorGenerator.ts'
 
 
 interface ChatbotConversationPayload {
@@ -55,6 +58,9 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isShowTermsButton = useStorage("isShowTermsButton", true)
   const isAnonymous = ref<boolean>(false)
   const isMoveNext = ref(false)
+  const correctAnswer = ref<CorrectAnswer>()
+  const isSelected = ref(false)
+  const {textColor, darkBgColor, bgColor, setColor} = useColorGenerator(JSON.parse(authStore.user).username)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
