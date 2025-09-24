@@ -50,6 +50,7 @@ interface CorrectAnswer {
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
+  const authStore = useAuthStore()
   const sessionId = useStorage("sessionId", '');
   const isGeneratingResponse = ref(false)
   const isDarkMode = useStorage("isDarkMode", false)
