@@ -1,6 +1,7 @@
 from typing import Annotated, List, Optional
 from sqlmodel import Field, Session, SQLModel, create_engine, select, Relationship
 from datetime import datetime
+from pydantic import BaseModel
 
 
 class Hero(SQLModel, table=True):
@@ -25,6 +26,7 @@ class User(SQLModel, table=True):
     
     # Relationship to conversations
     conversations: List["Conversations"] = Relationship(back_populates="user")
+    ratings: List["Rating"] = Relationship(back_populates="user")
 
 
 class Conversations(SQLModel, table=True):
@@ -40,9 +42,7 @@ class Conversations(SQLModel, table=True):
     
     # Relationship to user
     user: User = Relationship(back_populates="conversations")
-# --- Pydantic response models for API ---
 
-from pydantic import BaseModel
 
 class OptionRead(BaseModel):
     id: int
@@ -97,3 +97,14 @@ class Feedback(SQLModel, table=True):
     question_id: int = Field(foreign_key="question.id", unique=True)
 
     question: Question = Relationship(back_populates="feedback")
+
+
+class Rating(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    emoji: str
+    option: str | None = None
+
+    user: "User" = Relationship(back_populates="ratings")
+
+    
