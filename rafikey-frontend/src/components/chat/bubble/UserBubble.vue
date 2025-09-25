@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import { computed, inject} from 'vue'
+import { useAuthStore,} from '@/stores'
 
 export interface UserBubbleProps {
   userName: string
@@ -20,17 +19,9 @@ const hasText = computed(() => {
   return props.userMessage.length > 0
 })
 
-// const generateAvator = () => {
-//   console.log('Avator---', useColorGenerator(authStore.user))
-//   return useColorGenerator(authStore.user).
-//
-// }
 
-const chatbotStore = useRafikeyChatbotStore()
-onMounted(() => {
-  chatbotStore.setColor()
-  console.log('Avator---', chatbotStore.textColor)
-})
+const bgColor = inject('bgColor')
+const darkBgColor = inject('darkBgColor')
 </script>
 
 <template>
@@ -38,10 +29,12 @@ onMounted(() => {
     <div class="flex flex-row-reverse gap-2">
       <div>
         <div
-          :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
-
-          class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
-          <span  class="dark:text-white">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+          :class="[darkBgColor, bgColor]"
+          class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
+        >
+          <span class="dark:text-white">{{
+            JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
+          }}</span>
           <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
         </div>
       </div>
