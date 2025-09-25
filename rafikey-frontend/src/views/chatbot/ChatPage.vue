@@ -697,6 +697,18 @@ const showFeedbackDialogHandler = () =>{
   showFeedbackDialog.value = !showFeedbackDialog.value
 }
 
+const userString = authStore.user;
+let username = '';
+try {
+  if (userString) {
+    username = JSON.parse(userString).username || 'ME';
+  }
+} catch (e) {
+  username = 'ME';
+}
+const { darkBgColor, bgColor, setColor} = useColorGenerator(username)
+
+setColor()
 
 </script>
 
