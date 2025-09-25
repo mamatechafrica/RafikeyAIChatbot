@@ -15,7 +15,7 @@ const goBackHome = () =>{
   <div class="min-h-screen flex flex-col items-center pt-32 px-2 dark:bg-lightgray">
     <div class="space-y-4 flex flex-col items-center">
       <div
-        class="border-[1px] rounded-[11px] w-fit px-4 py-2 border-darkgray flex flex-col items-center"
+        class="border-[1px] rounded-[11px] w-fit px-4 py-2 dark:border-stone-300 border-darkgray flex flex-col items-center"
       >
         <p class="text-small font-semibold dark:text-white ">OOPS!</p>
         <P class="text-extra-extra-large-2 dark:text-white ">404 - ERROR</P>
