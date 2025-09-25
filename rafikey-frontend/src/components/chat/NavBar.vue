@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, defineEmits, shallowRef } from 'vue'
+import { onMounted, ref, watch, defineEmits, shallowRef, inject } from 'vue'
 import { type ChatHistoryTitle, useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import ChatHistory from '@/components/chat/ChatHistory.vue'
@@ -40,7 +40,7 @@ const components = [
 
 const activeComponent = shallowRef(components[0])
 onMounted(() => {
-  chatbotStore.setColor()
+  // chatbotStore.setColor()
   chatbotStore
     .getChatHistoryTitles()
     .then((response) => {
@@ -57,12 +57,9 @@ onMounted(() => {
     })
 })
 
-
-const showFeedbackDialog = () =>{
+const showFeedbackDialog = () => {
   chatbotStore.setCollapseSidebarSmall(true)
   emits('showFeedbackDialog')
-
-
 }
 // reduce the chat titles according to the dates
 const groupChat = () => {
@@ -192,12 +189,12 @@ watch(
   },
 )
 
-
-const shareChat = () =>{
+const shareChat = () => {
   emits('shareChat')
-
 }
 
+const bgColor = inject('bgColor')
+const darkBgColor = inject('darkBgColor')
 </script>
 
 <template>
@@ -237,19 +234,19 @@ const shareChat = () =>{
             >
               <span class="material-icons-outlined text-white">add</span>
             </div>
-<!--            <div>-->
-<!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">home</span>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
-<!--                >history</span-->
-<!--              >-->
-<!--            </div>-->
-<!--            <div>-->
-<!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
-<!--                >explore</span-->
-<!--              >-->
-<!--            </div>-->
+            <!--            <div>-->
+            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">home</span>-->
+            <!--            </div>-->
+            <!--            <div>-->
+            <!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
+            <!--                >history</span-->
+            <!--              >-->
+            <!--            </div>-->
+            <!--            <div>-->
+            <!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
+            <!--                >explore</span-->
+            <!--              >-->
+            <!--            </div>-->
           </div>
         </div>
 
@@ -267,10 +264,12 @@ const shareChat = () =>{
             <!--            </div>-->
             <div @click.stop="profileHandler" class="cursor-pointer">
               <div
-                :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
-
-                class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
-                <span  class="dark:text-white ">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+                :class="[darkBgColor, bgColor]"
+                class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
+              >
+                <span class="dark:text-white">{{
+                  JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
+                }}</span>
                 <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
               </div>
             </div>
@@ -400,17 +399,18 @@ const shareChat = () =>{
                             </span>
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
-                          <div class="cursor-pointer"
-                          @click.stop="showFeedbackDialog">
+                          <div class="cursor-pointer" @click.stop="showFeedbackDialog">
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
                         <div @click="showProfile" class="cursor-pointer">
                           <div
-                            :class="[chatbotStore.darkBgColor, chatbotStore.bgColor]"
-
-                            class="rounded-full h-10 w-10 flex items-center justify-center font-bold">
-                            <span class="dark:text-white">{{ JSON.parse(authStore.user).username.substring(0,2).toUpperCase() }}</span>
+                            :class="[darkBgColor, bgColor]"
+                            class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
+                          >
+                            <span class="dark:text-white">{{
+                              JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
+                            }}</span>
                             <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
                           </div>
                         </div>
