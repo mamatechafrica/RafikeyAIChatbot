@@ -20,6 +20,7 @@ import PersonalizationComponent from '@/components/tab/PersonalizationComponent.
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
 import FeebackDialog from '@/components/chat/FeebackDialog.vue'
+import { useColorGenerator } from '@/modules/colorGenerator.ts'
 
 
 export interface HistoryConv {
