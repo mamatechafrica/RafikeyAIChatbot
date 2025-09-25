@@ -710,6 +710,10 @@ const { darkBgColor, bgColor, setColor} = useColorGenerator(username)
 
 setColor()
 
+
+
+provide('bgColor', bgColor)
+provide('darkBgColor', darkBgColor)
 </script>
 
 <template>
