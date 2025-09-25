@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="increament score and totalQuestions">
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove emoji imports">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/icons/192x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/icons/512x512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,11 +79,11 @@
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/modules" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rafikey-frontend/public/icons" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/game" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/game" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/error" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/tab" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -249,15 +256,9 @@
       <workItem from="1758528125039" duration="702000" />
       <workItem from="1758529093729" duration="31288000" />
       <workItem from="1758600980460" duration="36319000" />
-      <workItem from="1758686680476" duration="34109000" />
-    </task>
-    <task id="LOCAL-00454" summary="add dynamic image file path src attribute">
-      <option name="closed" value="true" />
-      <created>1758300954375</created>
-      <option name="number" value="00454" />
-      <option name="presentableId" value="LOCAL-00454" />
-      <option name="project" value="LOCAL" />
-      <updated>1758300954375</updated>
+      <workItem from="1758686680476" duration="34750000" />
+      <workItem from="1758771953958" duration="58000" />
+      <workItem from="1758788164859" duration="6979000" />
     </task>
     <task id="LOCAL-00455" summary="add image">
       <option name="closed" value="true" />
@@ -643,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1758725356511</updated>
     </task>
-    <option name="localTasksCounter" value="503" />
+    <task id="LOCAL-00503" summary="remove emoji imports">
+      <option name="closed" value="true" />
+      <created>1758725643793</created>
+      <option name="number" value="00503" />
+      <option name="presentableId" value="LOCAL-00503" />
+      <option name="project" value="LOCAL" />
+      <updated>1758725643793</updated>
+    </task>
+    <option name="localTasksCounter" value="504" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add showFeedbackDialog flag" />
     <MESSAGE value="bind showFeedbackDialogHandler on click directive" />
     <MESSAGE value="add FeebackDialog  child component" />
     <MESSAGE value="addFeedBackDialog component" />
@@ -686,7 +694,8 @@
     <MESSAGE value="add score and totalQuestions on localstorage" />
     <MESSAGE value="return score and totalQuestions" />
     <MESSAGE value="increament score and totalQuestions" />
-    <option name="LAST_COMMIT_MESSAGE" value="increament score and totalQuestions" />
+    <MESSAGE value="remove emoji imports" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove emoji imports" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -749,7 +758,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue</url>
           <line>19</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
