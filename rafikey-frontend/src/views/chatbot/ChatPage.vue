@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef } from 'vue'
+import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef, provide } from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
