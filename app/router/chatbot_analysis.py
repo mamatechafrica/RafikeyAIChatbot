@@ -7,6 +7,7 @@ from app.models import Hero, Conversations, User as UserModel
 from app.core.database import SessionDep
 from langgraph.prebuilt import create_react_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 from app.router.auth.login import get_current_active_user
 from typing import Annotated
 
@@ -24,7 +25,11 @@ router = APIRouter(
 )
 
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+# llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+llm = ChatOpenAI(
+    model='gpt-4o-mini',
+    temperature=0,
+)
 
 def extract_questions_with_counts(ai_response: str) -> List[Dict[str, any]]:
     """

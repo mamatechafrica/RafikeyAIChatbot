@@ -1,10 +1,8 @@
-from fastapi import APIRouter, Depends, status
-from pydantic import BaseModel
+from fastapi import APIRouter, Depends
 from sqlmodel import Session, select, func
 from datetime import datetime, timedelta
-from app.models import Rating, User, Conversations
+from app.models import User, Conversations
 from app.core.database import SessionDep
-from app.router.auth.login import get_current_active_user
 
 router = APIRouter(
     prefix="/metrics",
@@ -302,7 +300,11 @@ def get_cross_platform_reach():
     """
     return {"cross_platform_reach": None, "message": "Not implemented. Requires platform usage data."}
 
-# --- User Rating Submission Endpoint --
+# --- User Rating Submission Endpoint ---
+from fastapi import status, HTTPException
+from pydantic import BaseModel
+from app.models import Rating
+from app.router.auth.login import get_current_active_user
 
 class RatingCreate(BaseModel):
     emoji: str

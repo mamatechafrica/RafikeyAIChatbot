@@ -76,6 +76,8 @@ def submit_answer(question_id: int, selected_option_id: int, session: SessionDep
         "feedback": feedback.text if feedback else None
     }
 
+
+# Admin 
 @router.post("/quizzes", response_model=Quiz)
 def create_quiz(quiz: QuizCreate, session: SessionDep):
     db_quiz = Quiz(title=quiz.title, description=quiz.description)
