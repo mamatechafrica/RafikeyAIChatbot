@@ -54,31 +54,38 @@ def extract_questions_with_counts(ai_response: str) -> List[Dict[str, any]]:
 
 def extract_json_from_response(response_text: str):
     """
-    Extract and parse JSON from a text response that might contain markdown code blocks
+    Extract and parse JSON (object or array) from a text response that might contain markdown code blocks.
     """
-    # Try to extract JSON from markdown code blocks first
+    # Try to extract JSON from markdown code blocks first (object or array)
     json_code_block_pattern = r'```(?:json)?\n(.*?)\n```'
     code_block_match = re.search(json_code_block_pattern, response_text, re.DOTALL)
-    
     if code_block_match:
-        # Found a code block, try to parse its content as JSON
         try:
             json_str = code_block_match.group(1).strip()
             return json.loads(json_str)
         except json.JSONDecodeError:
             pass
-    
-    # If no code block or parsing failed, try to find any JSON-like structure
-    json_pattern = r'\{.*\}'
-    json_match = re.search(json_pattern, response_text, re.DOTALL)
-    
-    if json_match:
+
+    # Try to find a top-level JSON array
+    json_array_pattern = r'\[\s*{.*?}\s*\]'
+    json_array_match = re.search(json_array_pattern, response_text, re.DOTALL)
+    if json_array_match:
         try:
-            json_str = json_match.group(0)
+            json_str = json_array_match.group(0)
             return json.loads(json_str)
         except json.JSONDecodeError:
             pass
-    
+
+    # Try to find a top-level JSON object
+    json_object_pattern = r'\{.*\}'
+    json_object_match = re.search(json_object_pattern, response_text, re.DOTALL)
+    if json_object_match:
+        try:
+            json_str = json_object_match.group(0)
+            return json.loads(json_str)
+        except json.JSONDecodeError:
+            pass
+
     # If all parsing attempts fail, return None
     return None
 
