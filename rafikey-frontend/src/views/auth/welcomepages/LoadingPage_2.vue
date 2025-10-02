@@ -15,8 +15,8 @@ import { useRafikeyChatbotStore } from '@/stores'
   <div
     class="relative h-screen flex justify-center md:block s flex-col w-full space-y-5 dark:bg-lightgray"
   >
-    <div class="flex w-full justify-center ">
-      <img :src="toggleImage()"  alt="rafikey-logo-image" class="hidden md:block" />
+    <div class=" md:flex hidden justify-center  items-center">
+      <img :src='toggleImage()' alt="rafikey-logo" class="w-44"  />
     </div>
     <div class="relative w-11/12 mx-auto ">
       <div
