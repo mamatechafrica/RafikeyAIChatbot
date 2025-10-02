@@ -223,8 +223,8 @@ const resetPasswordHandler = ()=>{
 
     <!--    Small screens-->
     <div class="lg:hidden block min-h-screen overflow-hidden w-full dark:bg-lightgray">
-      <div class="flex justify-center">
-        <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
+      <div class=" w-44 h-24 mx-auto flex justify-center items-center">
+        <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-6">
         <div class="flex flex-col items-center space-y-4">
