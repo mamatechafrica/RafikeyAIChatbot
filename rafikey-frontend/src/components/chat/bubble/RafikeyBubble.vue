@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
+import { imageToggleSmallDevice } from '@/modules/imageToggle.ts'
 
 export interface RafikeyChatbot {
   chatbotName: string
@@ -31,9 +32,9 @@ const hasText = computed(() => {
       <div>
         <div class="w-12">
           <img
-            class="w-full  rounded-full"
+            class="w-full"
             alt="Rafikey chatbot image"
-            src="@/assets/images/rafikey-avator.png"
+           :src="imageToggleSmallDevice()"
           />
         </div>
       </div>
