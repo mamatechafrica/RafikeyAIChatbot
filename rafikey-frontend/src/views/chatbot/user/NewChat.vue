@@ -7,6 +7,7 @@ import imageIconLight from '@/assets/images/rafikey-icon-light.png'
 import imageIconDark from '@/assets/images/rafikey-icon-dark.png'
 import { v4 as uuidV4 } from 'uuid'
 import { useRouter } from 'vue-router'
+import { useColorGenerator } from '@/modules/colorGenerator.ts'
 
 export interface AccessQuestion {
   id: number
