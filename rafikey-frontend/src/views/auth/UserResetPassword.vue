@@ -4,7 +4,7 @@ import { useField } from 'vee-validate'
 import { useAuthStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
 import { useRouter } from 'vue-router'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage, imageToggleSmallDevice} from '@/modules/imageToggle.ts'
 
 
 
@@ -15,17 +15,12 @@ const toggleConfirmPasswordVisibility = computed(() => isConfirmPasswordVisible.
 const isLoading = ref(false)
 const authStore = useAuthStore()
 const router = useRouter()
-// const chatbotStore = useRafikeyChatbotStore()
 
 
 const resetPasswordError = reactive({
   isError: false,
   message: ''
 })
-// const toggleImage = computed(()=>{
-//   console.log("Mode", chatbotStore.isDarkMode)
-//   return chatbotStore.isDarkMode? imageDark : imageLight
-// })
 
 const props = defineProps<{
   token: string
@@ -137,9 +132,8 @@ const resetPasswordHandler = ()=>{
     resetPasswordError.message = 'Please fill in all the fields correctly'
   }
 }
-
-
 </script>
+
 
 <template>
   <div>
