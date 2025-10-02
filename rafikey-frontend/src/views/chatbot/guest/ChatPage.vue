@@ -5,16 +5,13 @@ import _ from 'lodash'
 import UserInput from '@/components/chat/UserInput.vue'
 import type { Conversation } from '@/stores/rafikeyChatbotStore.ts'
 import { v4 as uuidV4 } from 'uuid'
-import { useRafikeyChatbotStore } from '@/stores'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { marked, type RendererObject, type Tokens } from 'marked'
 import hljs from 'highlight.js'
 import RafikeyBubble from '@/components/chat/bubble/RafikeyBubble.vue'
-import UserBubble from '@/components/chat/bubble/UserBubble.vue'
 import moment from 'moment/moment'
 import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 import { useRouter } from 'vue-router'
-import imageLight from '@/assets/images/rafikey-icon-light.png'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
@@ -291,14 +288,13 @@ const handleUserInput = (formatted: string) => {
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
 
-
           if (currentRafikeyObject) {
             currentRafikeyObject.message = res?.data as string
           }
         } else {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
-            errorMessage: res?.data as string,
+            errorMessage: res?.data as string || 'An error occurred while generating the response. Please regenerate or refresh chat.',
             isLoggedIn: true,
           })
         }
@@ -334,7 +330,7 @@ const handleUserInput = (formatted: string) => {
         } else {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
-            errorMessage: res?.data as string,
+            errorMessage: res?.data as string || 'An error occurred while generating the response. Please regenerate or refresh chat.',
             isLoggedIn: true,
           })
         }
@@ -477,12 +473,6 @@ const signUpHandler = () => {
   })
 }
 
-// toggle images in dark ans light mode
-const toggleImage = computed(() => {
-  // console.log('rafikeyChatbotStore.isDarkMode', rafikeyChatbotStore.isDarkMode)
-  return rafikeyChatbotStore.isDarkMode ? imageLight : imageDark
-})
-
 const isStartChatSmallScreen = ref(false)
 const startChatSmallScreen = () => {
   isStartChatSmallScreen.value = true
@@ -512,15 +502,15 @@ const scrollToBottom = () => {
     //   }
     // }
 
-      const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
-      if (userInputPlaceholderSmall) {
-        console.log('Scrolling small')
-        userInputPlaceholderSmall.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-          inline: 'nearest',
-        })
-      }
+    const userInputPlaceholderSmall = document.getElementById('userInputPlaceholder-small')
+    if (userInputPlaceholderSmall) {
+      console.log('Scrolling small')
+      userInputPlaceholderSmall.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+        inline: 'nearest',
+      })
+    }
 
     // <div id="userInputPlaceholder-small" class="pt-20"></div>
   })
@@ -534,7 +524,6 @@ watch(
     scrollToBottom()
   },
 )
-
 
 // check if the regenerate has been punched to regenerate the response
 watch(
@@ -581,12 +570,12 @@ const accessButtonQuestionHandler = (message: string) => {
     <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
       <!--    top -->
       <div
-        class="flex justify-between sticky top-0 bg-opacity-30 white backdrop-blur"
+        class="flex justify-end sticky top-0 bg-opacity-30 white backdrop-blur"
         :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4' : '']"
       >
-        <div>
-          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>
-        </div>
+<!--        <div>-->
+<!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
+<!--        </div>-->
         <div class="flex items-end gap-2">
           <div class="">
             <button
@@ -609,7 +598,10 @@ const accessButtonQuestionHandler = (message: string) => {
       </div>
 
       <!--    hero section-->
-      <div class="space-y-8 pt-12" v-if="rafikeyChatbotStore.conversation.length < 1 && !props.sessionId">
+      <div
+        class="space-y-8 pt-12"
+        v-if="rafikeyChatbotStore.conversation.length < 1 && !props.sessionId"
+      >
         <div class="space-y-1">
           <h2
             class="text-extra-extra-large-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
@@ -646,13 +638,15 @@ const accessButtonQuestionHandler = (message: string) => {
       <div class="py-10 h-full">
         <ul>
           <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
-            <UserBubble
+            <UserBubbleGuest
               v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
               :user-message="conv.message"
               :user-name="'You'"
-              :created-at="conv.timestamp as string || ''"
+              :created-at="(conv.timestamp as string) || ''"
               :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
+              :bg-color="bgColor"
+              :dark-bg-color="darkBgColor"
             />
             <RafikeyBubble
               v-if="!conv.isUser && !isError"
@@ -661,7 +655,7 @@ const accessButtonQuestionHandler = (message: string) => {
               :is-typing="false"
               :is-copyable="false"
               :is-error="false"
-              :created-at="conv.timestamp as string || ''"
+              :created-at="(conv.timestamp as string) || ''"
               :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
               :key="conv.uniqueId"
             />
@@ -688,13 +682,19 @@ const accessButtonQuestionHandler = (message: string) => {
         <div
           class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6"
           :class="[
-            rafikeyChatbotStore.conversation.length > 0  || props.sessionId ? 'fixed bottom-0 left-4  w-[calc(100vw-2rem)] ' : '',
+            rafikeyChatbotStore.conversation.length > 0 || props.sessionId
+              ? 'fixed bottom-0 left-4  w-[calc(100vw-2rem)] '
+              : '',
           ]"
         >
           <div class="">
             <UserInput
               class="mx-auto"
-              :class="[rafikeyChatbotStore.conversation.length > 0 || props.sessionId  ? 'w-11/12 lg:w-9/12' : 'w-full']"
+              :class="[
+                rafikeyChatbotStore.conversation.length > 0 || props.sessionId
+                  ? 'w-11/12 lg:w-9/12'
+                  : 'w-full',
+              ]"
               :disabled="false"
               :is-generating="rafikeyChatbotStore.isGeneratingResponse"
               @user-input="handleUserInput"
@@ -703,13 +703,13 @@ const accessButtonQuestionHandler = (message: string) => {
           </div>
         </div>
       </div>
-<!--      <div id="userInputPlaceholder" class="pt-20"></div>-->
+      <!--      <div id="userInputPlaceholder" class="pt-20"></div>-->
     </div>
     <div class="px-4 w-full md:hidden block">
       <div v-if="!isStartChatSmallScreen">
         <div class="flex items-center justify-between">
           <div class="w-32">
-            <img :src="toggleImage" alt="rafikey-icon" />
+            <img :src="toggleImage()" alt="rafikey-icon" />
           </div>
           <div
             class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"
@@ -762,8 +762,8 @@ const accessButtonQuestionHandler = (message: string) => {
           <div class=" ">
             <div class="space-y-2 p-5">
               <div class="flex justify-between sm:p-4">
-                <p class="dark:text-white text-extra-large">History</p>
-                <span class="text-purple-400 text-small">See all</span>
+                <p class="dark:text-white text-extra-large">Ask Rafikey</p>
+<!--                <span class="text-purple-400 text-small">See all</span>-->
               </div>
               <div v-for="qn in accessQuestions" :key="qn.id">
                 <div
@@ -800,11 +800,11 @@ const accessButtonQuestionHandler = (message: string) => {
         <div class="py-12 h-full">
           <ul>
             <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
-              <UserBubble
+              <UserBubbleGuest
                 v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
                 :user-message="conv.message"
                 :user-name="'You'"
-                :created-at="conv.timestamp as string || ''"
+                :created-at="(conv.timestamp as string) || ''"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
                 :bg-color="bgColor"
