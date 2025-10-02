@@ -18,6 +18,9 @@ import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
+import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import UserBubbleGuest from '@/components/chat/bubble/UserBubbleGuest.vue'
+import { toggleImage} from '@/modules/imageToggle.ts'
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
@@ -26,6 +29,20 @@ const now = moment()
 const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 const formattedResponse = ref<string>('')
+
+const authStore = useAuthStore()
+const userString = authStore.user
+let username = ''
+try {
+  if (userString) {
+    username = JSON.parse(userString).username || 'ME'
+  }
+} catch (e) {
+  username = 'ME'
+}
+const { darkBgColor, bgColor, setColor } = useColorGenerator(username)
+
+setColor()
 
 // Marked parse function
 const renderer: RendererObject = {
