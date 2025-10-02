@@ -356,10 +356,8 @@ const handleUserInput = (formatted: string) => {
       })
       .then((res) => {
         if (res?.result === 'ok') {
-          // console.log('Rafikey response', res)
           const rafikeyAllObject = rafikeyChatbotStore.conversation.filter((conv) => !conv.isUser)
           const currentRafikeyObject = rafikeyAllObject[rafikeyAllObject.length - 1]
-
           if (currentRafikeyObject) {
             currentRafikeyObject.message = res.data as string
           }
@@ -520,8 +518,8 @@ onMounted(() => {
   showPlayButton()
   const activeSessionId = route.params.sessionId as string
 
-  // Set initial value for isSmallScreen
-  isSmallScreen.value = rafikeyChatbotStore.isNewChat && isSmallDevice.value;
+  // Set initial value for isShowInput
+  isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
 
   // We can only load chat history if the user is not on the new chat page
   if (!rafikeyChatbotStore.isNewChat) {
@@ -584,13 +582,17 @@ const cancelLogout = () =>{
   isShowProfile.value = false
 }
 
-const isSmallScreen = ref(false)
+const isShowInput = ref(false)
 const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 
 // Checking for small devices and hiding the user input
-watch(()=>isSmallDevice.value, (val)=>{
-    isSmallScreen.value = rafikeyChatbotStore.isNewChat && val;
+watch(()=>rafikeyChatbotStore.isNewChat, (val)=>{
+    if(val){
+      isShowInput.value = rafikeyChatbotStore.isNewChat && val;
+    } else{
+      isShowInput.value = true
+    }
 })
 
 const termsConditionHandler = ()=>{
@@ -830,7 +832,7 @@ provide('darkBgColor', darkBgColor)
 
         <!--    text area-->
         <div
-          v-if="!rafikeyChatbotStore.isStreamError.hasError && !isSmallScreen"
+          v-if="!rafikeyChatbotStore.isStreamError.hasError && isShowInput"
           ref="userInputContainerHeightRef"
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
