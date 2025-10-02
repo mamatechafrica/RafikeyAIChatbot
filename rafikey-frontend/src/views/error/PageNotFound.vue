@@ -18,7 +18,7 @@ const goBackHome = () =>{
         class="border-[1px] rounded-[11px] w-fit px-4 py-2 dark:border-stone-300 border-darkgray flex flex-col items-center"
       >
         <p class="text-small font-semibold dark:text-white ">OOPS!</p>
-        <P class="text-extra-extra-large-2 dark:text-white ">404 - ERROR</P>
+        <p class="text-extra-extra-large-2 dark:text-white ">404 - ERROR</p>
       </div>
       <div class="border-[1px] rounded-[20px] px-4 py-2 dark:border-stone-300 border-darkgray">
         <p class="text-[64px] dark:text-white font-semibold">PAGE NOT FOUND</p>

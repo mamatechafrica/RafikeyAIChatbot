@@ -12,6 +12,7 @@ import GeneralTab from '@/components/tab/GeneralTab.vue'
 import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 import { type Tabs } from '@/components/tab/TabComponent.vue'
+import { imageToggleSmallDevice } from '@/modules/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
@@ -208,11 +209,11 @@ const darkBgColor = inject('darkBgColor')
       :class="[!chatbotStore.collapseSidebarLarge ? 'pe-8' : '']"
     >
       <div
-        class="w-28"
+        class="w-24 flex justify-center"
         @click="expandSideNavHandler"
         :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']"
       >
-        <img src="../../assets/images/rafikey-icon.png" alt="rafikey-icon" />
+        <img :src="imageToggleSmallDevice()" alt="rafikey-icon" class="w-14 pt-4"/>
       </div>
       <div
         v-if="!chatbotStore.collapseSidebarLarge"
