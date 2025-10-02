@@ -7,7 +7,7 @@ import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 // import imageLight from '@/assets/images/rafikey-icon-light.png'
 // import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage, imageToggleSmallDevice } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
@@ -256,13 +256,13 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="!isLoading">
-    <div class="min-h-screen w-full dark:bg-lightgray hidden overflow-hidden md:flex py-10 ">
-      <div class="dark:bg-darkgray bg-lightBackground flex flex-col w-11/12 mx-auto rounded-2xl">
-        <div class="w-60 h-16">
-          <img :src='toggleImage()' alt="rafikey-logo" />
+  <div>
+    <div class="min-h-screen w-full dark:bg-lightgray hidden overflow-hidden md:flex py-8 ">
+      <div class="dark:bg-darkgray bg-lightBackground flex flex-col w-11/12 mx-auto rounded-[34px]">
+        <div class=" h-20 flex justify-start items-center">
+          <img :src='toggleImage()' alt="rafikey-logo" class="w-40 pt-6 ps-4"  />
         </div>
-        <div class="w-3/4 xl:space-y-5 space-y-4 mx-auto rounded-2xl">
+        <div class="w-3/4 xl:space-y-5 space-y-4 mx-auto">
           <div class="flex flex-col pt-32 items-center space-y-1">
             <h2 class="text-4xl font-semibold dark:text-white  ">Set up your profile</h2>
             <p class="text-lg text-stone-700 text-center dark:text-stone-300 ">
@@ -394,11 +394,14 @@ onBeforeUnmount(() => {
           <div class="border-b pt-4 border-gray-400 w-1/2 mx-auto "></div>
           <div class="w-4/6 mx-auto pt-24 flex justify-between items-center">
             <button
+
               @click="goToKnowYou"
               :class="[!everyThingOk? 'bg-button-inactive': 'bg-button-light ']"
               class="btn w-full btn-sm text-lg rounded-2xl py-6 border-none shadow-none"
             >
-              Next
+              <span v-if="!isLoading" class="text-sm">Next</span>
+              <span v-else class="loading loading-spinner loading-sm"></span>
+
             </button>
           </div>
           <div class="flex justify-center pb-2">
@@ -413,10 +416,8 @@ onBeforeUnmount(() => {
 
     <!--    Small screens-->
     <div class="md:hidden block dark:bg-darkgray overflow-hidden h-screen w-full ">
-      <div class=" w-44 h-24 mx-auto">
-          <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" />
-
-
+      <div class=" w-44 h-24 mx-auto flex justify-center items-center">
+          <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-3">
         <div class="flex flex-col items-center space-y-2">
@@ -491,13 +492,13 @@ onBeforeUnmount(() => {
             <span
               v-if="isPasswordVisible"
               @click="isPasswordVisible = false"
-              class="material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility_off</span
             >
             <span
               v-else
               @click="isPasswordVisible = true"
-              class="material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility</span
             >
           </div>
@@ -522,13 +523,13 @@ onBeforeUnmount(() => {
             <span
               v-if="isConfirmPasswordVisible"
               @click="isConfirmPasswordVisible = false"
-              class="material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
+              class="material-icons-outlined absolute dark:text-white !text-xl cursor-pointer right-3 top-8 "
               >visibility_off</span
             >
             <span
               v-else
               @click="isConfirmPasswordVisible = true"
-              class="material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility</span
             >
           </div>
@@ -542,7 +543,8 @@ onBeforeUnmount(() => {
         <div class="w-3/4 mx-auto flex justify-between items-center">
           <button
             @click="goToKnowYou"
-            class="btn w-full btn-sm text-sm rounded-2xl py-5 bg-button-light border-none shadow-none"
+            :class="[!everyThingOk? 'bg-button-inactive': 'bg-button-light ']"
+            class="btn w-full btn-sm text-sm rounded-2xl py-5 border-none shadow-none"
           >
             <span v-if="!isLoading" class="text-sm">Next</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
@@ -602,9 +604,9 @@ onBeforeUnmount(() => {
     </Teleport>
   </div>
 
-  <div v-else>
-    <LoadingSpinner />
-  </div>
+<!--  <div v-else>-->
+<!--    <LoadingSpinner />-->
+<!--  </div>-->
 </template>
 
 <style scoped></style>
