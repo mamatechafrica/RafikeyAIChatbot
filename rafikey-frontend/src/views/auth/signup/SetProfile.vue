@@ -2,7 +2,6 @@
 import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import LoadingSpinner from '@/views/auth/welcomepages/LoadingSpinner.vue'
 import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 // import imageLight from '@/assets/images/rafikey-icon-light.png'
 // import imageDark from '@/assets/images/rafikey-icon-dark.png'
