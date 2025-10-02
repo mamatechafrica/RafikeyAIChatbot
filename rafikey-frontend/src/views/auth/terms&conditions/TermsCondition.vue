@@ -2,18 +2,13 @@
 import  { useRouter } from 'vue-router'
 import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 import { showSweetAlert } from '@/modules/alert.ts'
-import imageLight from '@/assets/images/rafikey-icon-light.png'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
-import { computed } from 'vue'
+import { toggleImage } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
 const createAccountFormStore = useCreateAccountFormStore()
 const chatbotStore = useRafikeyChatbotStore()
 
-const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ? imageDark: imageLight
-})
-console.log("MOde---", chatbotStore.isDarkMode)
+
 const isTermsConditionHandler = (value: boolean) =>{
   createAccountFormStore.setProfile({
     terms_accepted: value
@@ -55,17 +50,19 @@ const goBack = () =>{
             <span v-else  class="text-extra-extra-small  font-light dark:text-white">Back to Chats</span>
           </div>
         </div>
-        <div class="flex   w-full   md:justify-center justify-end col-span-2  md:col-span-1">
-          <img :src="toggleImage" alt="rafikey-icon" class="md:w-60 w-40"/>
+        <div class="flex w-full   md:justify-center justify-end col-span-2  md:col-span-1">
+          <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40"/>
         </div>
       </div>
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
         <div>
           <div class="flex justify-end">
-            <router-link to="/auth/register/privacy-policy-2" class="bg-casablanca-200 md:text-small text-extra-extra-small-2  w-fit rounded-lg flex justify-center items-center md:px-2 px-3 py-1"><span>Privacy Policy</span></router-link>
+            <router-link to="/auth/register/privacy-policy-2" class="bg-casablanca-300 dark:opacity-50  md:text-small text-extra-extra-small-2  w-fit rounded-lg flex justify-center items-center md:px-2 px-3 py-1">
+              <span class="">Privacy Policy</span>
+            </router-link>
           </div>
-          <div class="flex  flex-col items-center space-y-3" >
-            <h2 class="md:text-extra-extra-large-1 text-large font-semibold dark:text-white">Terms of Use </h2>
+          <div class="flex  flex-col items-center space-y-3">
+            <h2 class="md:text-extra-extra-large-1 text-large  font-semibold dark:text-white">Terms of Use </h2>
             <p class="md:text-large text-text-extra-extra-small-2 dark:text-white">Last updated: <span class="text-casablanca-300  md:text-large text-extra-extra-small-2">19 June 2025</span></p>
             <div class="border-b border-gray-500 w-64 mx-auto"></div>
           </div>
