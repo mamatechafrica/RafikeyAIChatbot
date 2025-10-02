@@ -1,17 +1,10 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { computed } from 'vue'
-import imageLight from '@/assets/images/rafikey-icon-light.png'
-import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import { useRafikeyChatbotStore } from '@/stores'
+import { toggleImage } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
-
-const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ?  imageDark: imageLight
-})
-
 
 </script>
 
@@ -29,8 +22,8 @@ const toggleImage = computed(() => {
             <span v-else class="text-extra-extra-small font-light dark:text-white">Go back</span>
           </div>
         </div>
-        <div class="flex   w-full   md:justify-center justify-end col-span-2  md:col-span-1">
-          <img :src="toggleImage" alt="rafikey-icon" class="md:w-60 w-40" />
+        <div class="flex md:visible invisible w-full md:justify-center justify-end col-span-2  md:col-span-1">
+          <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
@@ -38,7 +31,7 @@ const toggleImage = computed(() => {
           <div class="flex justify-end">
             <router-link
               to="/auth/register/terms-of-service"
-              class="bg-casablanca-200 md:text-small text-extra-extra-small-2 w-fit rounded-lg flex justify-center items-center md:px-2 px-3 py-1"
+              class="bg-casablanca-300 dark:opacity-50 md:text-small text-extra-extra-small-2 w-fit rounded-lg flex justify-center items-center md:px-2 px-3 py-1"
             >
               <span>Terms of Use</span></router-link
             >
