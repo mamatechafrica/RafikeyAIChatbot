@@ -2,60 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'SF Pro Italic';
 
-  src: url('@/assets/fonts/SFPRODISPLAYBLACKITALIC.OTF');
+@font-face {
+  font-family: 'Changa One Italic';
+
+  src: url('@/assets/fonts/CHANGAONEITALIC.woff');
 
   font-weight: 400;
 
-  font-style: normal
+  font-style: italic;
 }
 
 @font-face {
-  font-family: 'SF Pro Bold';
+  font-family: 'Changa One Regular';
 
-  src: url('@/assets/fonts/SFPRODISPLAYBOLD.OTF');
+  src: url('@/assets/fonts/CHANGAONEREGULAR.woff');
+
+  font-weight: 400;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit Bold';
+
+  src: url('@/assets/fonts/OUTFITBOLD.woff');
 
   font-weight: 700;
 
-  font-style: normal
+  font-style: normal;
+
 }
 
 @font-face {
-  font-family: 'SF Pro Heavy Italic';
+  font-family: 'Outfit Extra Bold';
 
-  src: url('@/assets/fonts/SFPRODISPLAYHEAVYITALIC.OTF');
+  src: url('@/assets/fonts/OUTFITEXTRABOLD.woff');
 
-  font-weight: 900;
+  font-weight: 800;
 
-  font-style: normal
+  font-style: normal;
+
 }
 
 @font-face {
-  font-family: 'SF Pro Light Italic';
+  font-family: 'Outfit Extra Light';
 
-  src: url('@/assets/fonts/SFPRODISPLAYLIGHTITALIC.OTF');
+  src: url('@/assets/fonts/OUTFITEXTRALIGHT.woff');
+
+  font-weight: 200;
+
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Outfit Light';
+
+  src: url('@/assets/fonts/OUTFITLIGHT.woff');
 
   font-weight: 300;
 
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Medium';
+  font-family: 'Outfit Medium';
 
-  src: url('@/assets/fonts/SFPRODISPLAYMEDIUM.OTF');
+  src: url('@/assets/fonts/OUTFITMEDIUM.woff');
 
   font-weight: 500;
 
-  font-style: normal
+  font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Regular';
+  font-family: 'Outfit Regular';
 
-  src: url('@/assets/fonts/SFPRODISPLAYREGULAR.OTF');
+  src: url('@/assets/fonts/OUTFITREGULAR.woff');
 
   font-weight: 400;
 
@@ -63,32 +86,21 @@
 }
 
 @font-face {
-  font-family: 'SF Pro Semibold Italic';
+  font-family: 'Outfit Semi Bold';
 
-  src: url('@/assets/fonts/SFPRODISPLAYSEMIBOLDITALIC.OTF');
+  src: url('@/assets/fonts/OUTFITSEMIBOLD.woff');
 
   font-weight: 600;
-
-  font-style: normal;
+]
+font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Thin Italic';
+  font-family: 'Outfit Black';
 
-  src: url('@/assets/fonts/SFPRODISPLAYTHINITALIC.OTF');
+  src: url('@/assets/fonts/OUTFITBLACK.woff');
 
-  font-weight: 100;
-
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'SF Pro Ultralight';
-
-  src: url('@/assets/fonts/SFPRODISPLAYULTRALIGHTITALIC.OTF');
-
-  font-weight: 300;
+  font-weight: 900;
 
   font-style: normal;
 }
-
