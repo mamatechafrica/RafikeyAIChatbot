@@ -18,9 +18,9 @@
 <template>
   <div class="min-h-screen  bg-lightgray flex  justify-center items-center flex-col py-10 w-full">
 
-      <div class="flex w-full justify-center">
-        <img :src="toggleImage()" alt="rafikey-logo-image"  class="hidden md:block" />
-      </div>
+    <div class=" md:flex hidden  justify-start items-center">
+      <img :src='toggleImage()' alt="rafikey-logo" class="w-44"  />
+    </div>
       <div class=" w-10/12 mx-auto space-y-4  flex flex-col items-center py-10 bg-lightBackground dark:bg-darkgray rounded-2xl">
         <div class="">
           <p class="text-extra-extra-large-1   text-center font-semibold dark:text-white ">Private & Safe:</p>

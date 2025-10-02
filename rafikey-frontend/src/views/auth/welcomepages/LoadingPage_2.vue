@@ -1,14 +1,7 @@
 <script setup lang="ts">
 import { toggleImage } from '@/modules/imageToggle.ts'
 import AuthLoadingButtons from '@/components/chat/AuthLoadingButtons.vue'
-import { useRafikeyChatbotStore } from '@/stores'
 
-// const chatbotSstore = useRafikeyChatbotStore()
-// const moveNext = () => {
-//   chatbotSstore.isMoveNext = true
-//   // navigate to the next welcome page
-//
-// }
 </script>
 
 <template>
