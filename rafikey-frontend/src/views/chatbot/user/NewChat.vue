@@ -19,7 +19,6 @@ const chatbotStore = useRafikeyChatbotStore()
 const authStore = useAuthStore()
 const router = useRouter()
 
-
 const toggleImage = computed(() => {
   return chatbotStore.isDarkMode ? imageDark : imageLight
 })
@@ -45,8 +44,6 @@ const startVoiceChat = () => {}
 const message = ref('')
 const welcomeMessages = ['Welcome To Rafikey 🎉', 'GET READY TO MAKE INFORMED CHOICES'] as string[]
 const showWelcomeDialogModal = ref(true)
-
-
 
 const accessQuestions = [
   {
@@ -86,7 +83,6 @@ onMounted(() => {
   message.value = welcomeMessages[0]
 })
 
-
 const emits = defineEmits<{
   (event: 'userInput', formatted: string): void
 }>()
@@ -99,6 +95,18 @@ const accessButtonQuestionHandler = (message: string) => {
   chatbotStore.conversation = []
   emits('userInput', message)
 }
+const userString = authStore.user
+let username = ''
+try {
+  if (userString) {
+    username = JSON.parse(userString).username || 'ME'
+  }
+} catch (e) {
+  username = 'ME'
+}
+const { darkBgColor, bgColor, setColor } = useColorGenerator(username)
+
+setColor()
 
 </script>
 
@@ -128,7 +136,7 @@ const accessButtonQuestionHandler = (message: string) => {
       </div>
     </div>
 
-    <div class="relative h-screen  overflow-hidden md:hidden">
+    <div class="relative h-screen overflow-hidden md:hidden">
       <div class="flex items-center justify-between">
         <div class="w-32" @click="chatbotStore.setCollapseSidebarSmall(false)">
           <img :src="toggleImageIcon" alt="rafikey-icon" />
@@ -139,13 +147,16 @@ const accessButtonQuestionHandler = (message: string) => {
           >
             <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
           </div>
-          <div
-            class="">
-            <img
-              src="@/assets/images/Avatar.png"
-              alt="rafikey-avatar"
-              class="w-10 h-10 rounded-full"
-            />
+          <div >
+            <div
+              :class="[darkBgColor, bgColor]"
+              class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
+            >
+                <span class="dark:text-white">{{
+                    JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
+                  }}</span>
+              <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
+            </div>
           </div>
         </div>
       </div>
