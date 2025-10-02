@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "serve": "PORT=4433 serve dist",
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
     "clear-pub": "rm -rfv public/assets/*.js public/assets/*.css",
@@ -23,6 +24,7 @@
     "@vueuse/core": "^13.1.0",
     "dompurify": "^3.2.5",
     "highlight.js": "^11.8.0",
+    "https-localhost": "^4.7.1",
     "jwt-decode": "^4.0.0",
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.541.0",
