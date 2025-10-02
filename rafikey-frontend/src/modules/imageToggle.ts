@@ -7,3 +7,8 @@ export const toggleImage = ()=>{
   const isDark = chatbotStore.isDark
   return isDark? ImageDark: ImageLight
 }
+
+export  const imageToggleSmallDevice = () =>{
+  const isDark = chatbotStore.isDark
+  return isDark? ImageSmallLDark: ImageSmallLight
+}
