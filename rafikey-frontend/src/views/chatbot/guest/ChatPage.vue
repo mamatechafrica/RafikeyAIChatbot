@@ -807,11 +807,13 @@ const accessButtonQuestionHandler = (message: string) => {
                 :created-at="conv.timestamp as string || ''"
                 :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
                 :key="conv.uniqueId"
+                :bg-color="bgColor"
+                :dark-bg-color="darkBgColor"
               />
               <RafikeyBubble
                 v-if="!conv.isUser && !isError"
                 :chatbot-name="'Rafikey'"
-                :rafikey-chatbot-message="marked.parse(conv.message) as string || ''"
+                :rafikey-chatbot-message="(marked.parse(conv.message) as string) || ''"
                 :is-typing="false"
                 :is-copyable="false"
                 :is-error="false"
@@ -830,7 +832,7 @@ const accessButtonQuestionHandler = (message: string) => {
         </div>
 
         <!--    text area-->
-<!--        <div id="userInputPlaceholder-small" class="pt-10"></div>-->
+        <!--        <div id="userInputPlaceholder-small" class="pt-10"></div>-->
         <div
           v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
@@ -854,7 +856,7 @@ const accessButtonQuestionHandler = (message: string) => {
             </div>
           </div>
         </div>
-<!--        <div id="userInputPlaceholder-small" class="pt-20"></div>-->
+        <!--        <div id="userInputPlaceholder-small" class="pt-20"></div>-->
       </div>
     </div>
     <div id="userInputPlaceholder-small" class="pt-20"></div>
