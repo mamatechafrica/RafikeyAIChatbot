@@ -5,7 +5,7 @@ import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
 import { range } from 'lodash'
 import { useAuthStore, useCreateAccountFormStore } from '@/stores'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { imageToggleSmallDevice, toggleImage } from '@/modules/imageToggle.ts'
 // import imageLight from '@/assets/images/rafikey-icon-light.png'
 // import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
@@ -182,14 +182,14 @@ onBeforeMount(() => {
 <template>
   <div class="min-h-screen dark:bg-lightgray w-full overflow-hidden hidden py-6 md:flex ">
     <div
-      class="relative bg-lightBackground dark:bg-darkgray  flex flex-col w-10/12 mx-auto rounded-2xl pb-10"
+      class="relative bg-lightBackground dark:bg-darkgray  flex flex-col w-10/12 mx-auto rounded-[34px] pb-10"
     >
       <div>
-        <div class="w-60 h-16">
-          <img :src="toggleImage()" alt="rafikey-logo" />
+        <div class=" h-20 flex justify-start items-center">
+          <img :src='toggleImage()' alt="rafikey-logo" class="w-40 pt-6 ps-4"  />
         </div>
-        <div class="w-11/12 space-y-7 xl:space-7-9 rounded-2xl mx-auto">
-          <div class="md:pt-14 pt-16">
+        <div class="w-11/12 space-y-7 xl:space-y-5 rounded-2xl mx-auto">
+          <div class="md:pt-14 pt-1">
             <div class="flex flex-col items-center">
               <h2 class="text-extra-extra-large dark:text-white font-semibold ">
                 Let's Get To Know You Better
@@ -291,8 +291,8 @@ onBeforeMount(() => {
 
   <!--    Small screen -->
   <div class="md:hidden dark:bg-darkgray block min-h-screen w-full overflow-hidden ">
-    <div class="flex justify-center">
-      <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo" class="w-24" />
+    <div class=" w-36 h-20 mx-auto flex justify-center items-center">
+      <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
     </div>
     <div class="md:px-20 px-6 space-y-2 sm:space-y-4">
       <div>
