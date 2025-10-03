@@ -588,7 +588,7 @@ const darkBgColor = inject('darkBgColor')
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
+            <p class="dark:text-white text-lg lg:text-xl">Are you sure?</p>
             <span class="dark:text-white text-lg lg:text-lg">You want to log out?</span>
           </div>
         </template>
