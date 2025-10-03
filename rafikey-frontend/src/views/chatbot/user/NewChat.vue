@@ -111,7 +111,7 @@ setColor()
 </script>
 
 <template>
-  <div class="min-h-screen overflow-hidden dark:bg-lightgray ">
+  <div class="min-h-screen overflow-hidden dark:bg-lightgray">
     <div class="space-y-28 h-screen overflow-hidden md:block hidden">
       <div class="space-y-8 pt-12">
         <div class="space-y-4">
@@ -161,8 +161,6 @@ setColor()
         </div>
       </div>
 
-
-
       <div class="flex gap-2">
         <div
           @click.stop="startChatHandler"
@@ -190,7 +188,7 @@ setColor()
         </div>
       </div>
 
-      <div class="space-y-2 pt-10 ">
+      <div class="space-y-2 pt-10">
         <div class="flex justify-between sm:p-4">
           <p class="dark:text-white text-extra-large">History</p>
           <span class="text-purple-400 text-small">See all</span>
@@ -200,13 +198,13 @@ setColor()
             @click="accessButtonQuestionHandler(qn.question)"
             class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
           >
-            <span class="material-icons-outlined dark:text-white ">{{ qn.icon }}</span>
+            <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>
             <p class="dark:text-white text-small">{{ qn.question }}</p>
           </div>
         </div>
       </div>
 
-      <div class="fixed bottom-4 left-0  w-full">
+      <div class="fixed bottom-4 left-0 w-full">
         <div class="text-center pb-10">
           <p class="text-extra-large dark:text-white">Quick Links</p>
         </div>
@@ -228,10 +226,8 @@ setColor()
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
 </template>
 
 <style scoped>
