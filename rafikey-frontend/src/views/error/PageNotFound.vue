@@ -12,16 +12,16 @@ const goBackHome = () =>{
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col items-center pt-32 px-2 dark:bg-lightgray">
-    <div class="space-y-4 flex flex-col items-center">
+  <div class="min-h-screen flex flex-col items-center py-16 px-2 dark:bg-lightgray">
+    <div class="space-y-4 flex flex-col items-center justify-center">
       <div
         class="border-[1px] rounded-[11px] w-fit px-4 py-2 dark:border-stone-300 border-darkgray flex flex-col items-center"
       >
-        <p class="text-small font-semibold dark:text-white ">OOPS!</p>
-        <p class="text-extra-extra-large-2 dark:text-white ">404 - ERROR</p>
+        <p class="md:text-small text-extra-extra-small-2 font-semibold dark:text-white ">OOPS!</p>
+        <p class="md:text-extra-extra-large-2 text-extra-large dark:text-white ">404 - ERROR</p>
       </div>
       <div class="border-[1px] rounded-[20px] px-4 py-2 dark:border-stone-300 border-darkgray">
-        <p class="text-[64px] dark:text-white font-semibold">PAGE NOT FOUND</p>
+        <p class="md:text-[64px] text-nowrap text-extra-extra-large-1 dark:text-white font-semibold">PAGE NOT FOUND</p>
       </div>
 
       <div class="mt-4">
@@ -39,7 +39,7 @@ const goBackHome = () =>{
         <img alt="rafikey-image" src="@/assets/images/rafikey-hi.png" />
       </div>
 
-      <div>
+      <div class="w-3/4 md:w-full mx-auto text-center">
         <p class="text-extra-extra-small dark:text-stone-300 text-lightgrayTwo tracking-[-0.7%]">
           Rafikey provides helpful response, but it may not always be 100% accurate.
         </p>
