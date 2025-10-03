@@ -16,7 +16,7 @@
 </script>
 
 <template>
-  <div class="min-h-screen  bg-lightgray flex  justify-center items-center flex-col py-10 w-full">
+  <div class="min-h-screen  dark:bg-lightgray flex  justify-center items-center flex-col py-10 w-full">
 
     <div class=" md:flex hidden  justify-start items-center">
       <img :src='toggleImage()' alt="rafikey-logo" class="w-44"  />
