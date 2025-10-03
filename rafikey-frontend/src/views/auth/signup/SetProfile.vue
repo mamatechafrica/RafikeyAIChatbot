@@ -571,9 +571,9 @@ onBeforeUnmount(() => {
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class=" md:text-large text-small dark:text-white  ">Are you Sure?</p>
+            <p class=" md:text-large text-small dark:text-white  ">Are you sure?</p>
             <span class="md:text-small dark:text-white  text-nowrap text-extra-small"
-              >Your chat's won't be saved, if you login anonymously</span
+              >Your chats won’t be saved for future reference !</span
             >
           </div>
         </template>
