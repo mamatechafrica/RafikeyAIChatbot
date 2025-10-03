@@ -39,34 +39,29 @@ const chatbotStore = useRafikeyChatbotStore()
           <h2
             class="md:text-extra-extra-large-1 sm:text-large text-extra-small font-semibold dark:text-white"
           >
-            Privacy Policy
+            Terms of Use
           </h2>
         </div>
         <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
-          <div class="text-center w-10/12">
-            <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white">
-              At Rafikey, your privacy is our priority.
+          <div class="flex flex-col">
+            <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6 mb-2">
+              Here’s a quick guide to how we keep this space safe and supportive:
             </p>
-          </div>
-          <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
-            <div class="flex flex-col">
-              <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6 mb-2">
-                Here’s a quick guide to how we keep this space safe and supportive:
-              </p>
-                <ul class="list-disc md:pl-6 pl-4 space-y-1">
-                  <li class="md:text-large text-extra-small">We follow strict data protection rules (GDPR-compliant).</li>
-                  <li class="md:text-large text-extra-small">Your info is used only to improve your experience.</li>
-                  <li class="md:text-large text-extra-small">We never share your personal data without your permission.</li>
-                </ul>
-              <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
-                Learn more about how we collect, use, and protect your data in our full policy.
-              </p>
-            </div>
+              <ul class="list-disc md:pl-6 pl-4 space-y-1">
+                <li class="md:text-large text-extra-small"><strong>Respect:</strong> Be kind. No bullying, hate speech, or harmful content.</li>
+                <li class="md:text-large text-extra-small"><strong>Safe Space:</strong> Rafikey shares information, games, and referrals—but it’s not a substitute for medical, legal, or emergency help.</li>
+                <li class="md:text-large text-extra-small"><strong>Your Choice:</strong> You’re always in control of what you click, share, or explore.</li>
+                <li class="md:text-large text-extra-small"><strong>Under 18:</strong> We encourage you to use Rafikey with a parent, caregiver, or trusted adult.</li>
+              </ul>
+            <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
+              These are just the highlights. Please review the full Terms of Use to understand your rights, 
+              responsibilities, and how Rafikey protects your privacy and safety.
+            </p>
           </div>
         </div>
         <div class="flex flex-col items-center py-4 md:py-10">
           <router-link
-            to="/auth/register/privacy-policy-2"
+            to="/auth/register/terms-of-service"
             class="text-casablanca-500 border-b md:text-small sm:text-small text-extra-small border-casablanca-500"
             >Continue</router-link
           >

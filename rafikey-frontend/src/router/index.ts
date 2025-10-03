@@ -55,6 +55,11 @@ const routes = [
             component: () => import('@/views/auth/signup/GetToKnowYou.vue')
           },
           {
+            name: 'terms-condition-1',
+            path: 'terms-condition-1',
+            component: () => import('@/views/auth/terms&conditions/TermsCondition_1.vue')
+          },
+          {
             name: 'privacy-policy-1',
             path: 'privacy-policy-1',
             component: () => import('@/views/auth/terms&conditions/PrivacyPolicy_1.vue')
@@ -69,7 +74,6 @@ const routes = [
             path: 'terms-of-service',
             component: () => import('@/views/auth/terms&conditions/TermsCondition.vue')
           }
-
         ]
       },
       {

@@ -256,7 +256,7 @@ onBeforeMount(() => {
               <div class="flex justify-center">
                 <span class="pe-1  text-small dark:text-white">Read our full</span>
                 <router-link
-                  to="/auth/register/privacy-policy-1"
+                  to="/auth/register/terms-condition-1"
                   class="text-small cursor-pointer text-button-light"
                   >Terms of Use
                 </router-link>
@@ -271,7 +271,7 @@ onBeforeMount(() => {
             </div>
 
             <div class="flex justify-center">
-              <p class="text-small dark:text-white">By Proceeding you agree to our terms and privacy policy.</p>
+              <p class="text-small dark:text-white">By proceeding you agree to our terms and privacy policy.</p>
             </div>
           </div>
           <div class="flex justify-center">
@@ -356,7 +356,7 @@ onBeforeMount(() => {
           >Creating an account means you are okay with our</span
         >
         <router-link
-          to="/auth/register/privacy-policy-1"
+          to="/auth/register/terms-condition-1"
           class="cursor-pointer md:text-lg text-sm text-button-light"
         >
           Terms of Use
