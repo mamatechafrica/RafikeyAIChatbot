@@ -1,21 +1,16 @@
 <script setup lang="ts">
-
 import { reactive, ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
-import  { toggleImage} from '@/modules/imageToggle.ts'
-
+import { imageToggleSmallDevice, toggleImage } from '@/modules/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 // const isAnonymous = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
 const isUserGuestLoading = ref<boolean>(false)
-
-
-
 
 const authStore = useAuthStore()
 const loginData = reactive({
@@ -45,15 +40,14 @@ const appLoading = ref(true)
 const isPasswordVisible = ref(false)
 const loginError = reactive({
   isError: false,
-  message: ''
+  message: '',
 })
 
-
-const toggleVisibility = computed(()=>{
+const toggleVisibility = computed(() => {
   return isPasswordVisible.value ? 'text' : 'password'
 })
-const usernameValidator = (value: string) =>{
-  if(!value){
+const usernameValidator = (value: string) => {
+  if (!value) {
     return 'Username is required'
   }
   return true
@@ -62,201 +56,231 @@ const usernameValidator = (value: string) =>{
 const {
   value: username,
   errorMessage: usernameErrorMessage,
-  meta: usernameMeta
+  meta: usernameMeta,
 } = useField('username', usernameValidator)
 
-watch(()=> loginData.username, (value)=>{
-  username.value = value
-})
+watch(
+  () => loginData.username,
+  (value) => {
+    username.value = value
+  },
+)
 
-const passwordValidator = (value: string) =>{
-  if(!value){
+const passwordValidator = (value: string) => {
+  if (!value) {
     return 'Password is required'
   }
   return true
 }
 
-
 const {
   value: password,
   errorMessage: passwordErrorMessage,
-  meta: passwordMeta
+  meta: passwordMeta,
 } = useField('password', passwordValidator)
 
-watch(()=> loginData.password, (value)=>{
-  password.value = value
-})
+watch(
+  () => loginData.password,
+  (value) => {
+    password.value = value
+  },
+)
 
 // before going to know you page, check if all fields are valid
-const everyThingOk = computed(()=>{
-  return(
-    usernameMeta.validated && usernameMeta.valid &&
-    passwordMeta.validated && passwordMeta.valid
+const everyThingOk = computed(() => {
+  return (
+    usernameMeta.validated && usernameMeta.valid && passwordMeta.validated && passwordMeta.valid
   )
 })
 
-watch(everyThingOk, (value) =>{
-  if(value){
+watch(everyThingOk, (value) => {
+  if (value) {
     loginError.isError = false
     loginError.message = ''
   }
 })
-const loginHandler = ()=>{
-  if(everyThingOk.value){
+const loginHandler = () => {
+  if (everyThingOk.value) {
     isLoading.value = true
-      authStore.login(loginData)
-      .then(response =>{
-        if(response.result === 'ok'){
+    authStore
+      .login(loginData)
+      .then((response) => {
+        if (response.result === 'ok') {
           router.push({
-            name:'newChat'
+            name: 'newChat',
           })
-        } else{
+        } else {
           loginError.message = response.message
           loginError.isError = true
         }
       })
-      .catch(()=>{
+      .catch(() => {
         loginError.isError = true
-        loginError.message =  'An error occurred while logging in, please try again later'
+        loginError.message = 'An error occurred while logging in, please try again later'
       })
-        .finally(()=>{
-          isLoading.value = false
-
-        })
-
-    } else {
-    loginError.isError= true
-    loginError.message =  'Please fill in all fields correctly'
-
+      .finally(() => {
+        isLoading.value = false
+      })
+  } else {
+    loginError.isError = true
+    loginError.message = 'Please fill in all fields correctly'
   }
 }
-
 
 watch(
   () => chatbotStore.isAnonymous,
   (value) => {
-    if(value){
+    if (value) {
       chatbotStore.setDialogModal(true)
-    }
-    else{
+    } else {
       chatbotStore.setDialogModal(false)
     }
-
   },
 )
 
 // watch for isUserGuest and redirect to guest page after 3 seconds
-watch(()=>isUserGuest.value, (value)=>{
-  if(value){
-    isUserGuestLoading.value = true
-    setTimeout(()=>{
-            router.push({
-              name: 'guest-page'
-            })
-    }, 3000)
-  }
-  // chatbotStore.isAnonymous = false
-})
+watch(
+  () => isUserGuest.value,
+  (value) => {
+    if (value) {
+      isUserGuestLoading.value = true
+      setTimeout(() => {
+        router.push({
+          name: 'guest-page',
+        })
+      }, 3000)
+    }
+    // chatbotStore.isAnonymous = false
+  },
+)
 
 // Load the welcome page 3 seconds before loading the login page
-onMounted(()=>{
-  setTimeout(()=>{
+onMounted(() => {
+  setTimeout(() => {
     appLoading.value = false
   }, 3000)
   chatbotStore.isAnonymous = false
 })
 
 //before unmounting if the user is a guest, close the dialog modal
-onBeforeUnmount(()=>{
-  if(isUserGuest.value){
+onBeforeUnmount(() => {
+  if (isUserGuest.value) {
     chatbotStore.setDialogModal(false)
   }
 })
-
-
 </script>
 
 <template>
   <div v-if="!appLoading" class="dark:bg-lightgray">
-    <div class="min-h-screen overflow-hidden w-full  hidden lg:block ">
-      <div class="grid grid-cols-2 w-10/12 mx-auto ">
+    <div class="min-h-screen overflow-hidden w-full hidden lg:block">
+      <div class="grid grid-cols-2 w-10/12 mx-auto">
         <!--    left side-->
         <div class="col-span-1">
           <div class="">
-            <img :src='toggleImage()' alt="rafikey-icon" class=" w-60" />
+            <img :src="toggleImage()" alt="rafikey-icon" class="w-60" />
           </div>
           <div class="flex flex-col space-y-10">
             <div class="flex flex-col space-y-6">
-              <h2 class="text-extra-extra-large dark:text-white  font-semibold">Login</h2>
-              <p class="text-large text-gray-700 dark:text-white ">Login to access your Rafikey account.</p>
+              <h2 class="text-extra-extra-large dark:text-white font-semibold">Login</h2>
+              <p class="text-large text-gray-700 dark:text-white">
+                Login to access your Rafikey account.
+              </p>
             </div>
 
             <!--          login form-->
             <div class="">
-              <form class="flex flex-col  w-10/12" :class="[loginError.isError?'space-y-4 xl:space-y-12': 'space-y-6 xl:space-y-12']">
+              <form
+                class="flex flex-col w-10/12"
+                :class="[
+                  loginError.isError ? 'space-y-4 xl:space-y-12' : 'space-y-6 xl:space-y-12',
+                ]"
+              >
                 <div class="relative">
                   <input
                     v-model="loginData.username"
                     id="usernameLarge"
                     type="text"
                     required
-                    class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300  rounded-2xl p-4 text-small d"
+                    class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-2xl p-4 text-small d"
                     placeholder="johndoe"
                   />
                   <label
-                    class="absolute dark:text-white dark:bg-darkgray left-1 -top-3 text-slate-600 px-1 text-extra-extra-small bg-white "
-                    for="usernameLarge">
+                    class="absolute dark:text-white dark:bg-darkgray left-1 -top-3 text-slate-600 px-1 text-extra-extra-small bg-white"
+                    for="usernameLarge"
+                  >
                     Username
                   </label>
-                  <span  v-if="usernameMeta.validated && !usernameMeta.valid" class="text-rose-500">{{usernameErrorMessage}}</span>
+                  <span
+                    v-if="usernameMeta.validated && !usernameMeta.valid"
+                    class="text-rose-500"
+                    >{{ usernameErrorMessage }}</span
+                  >
                 </div>
                 <div class="relative">
                   <input
                     v-model="loginData.password"
                     id="passwordLarge"
                     :type="toggleVisibility"
-                    class=" w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-2xl p-4  text-small "
+                    class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-2xl p-4 text-small"
                     required
                     placeholder="********"
                   />
                   <label
-                    class="absolute dark:bg-darkgray dark:text-white left-1 -top-3 text-slate-600  px-1 text-extra-extra-small bg-white "
-                    for="passwordLarge">
+                    class="absolute dark:bg-darkgray dark:text-white left-1 -top-3 text-slate-600 px-1 text-extra-extra-small bg-white"
+                    for="passwordLarge"
+                  >
                     Password
                   </label>
-                  <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
+                  <span
+                    v-if="passwordMeta.validated && !passwordMeta.valid"
+                    class="text-rose-500"
+                    >{{ passwordErrorMessage }}</span
+                  >
 
-
-                  <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-4 ">visibility_off</span>
-                  <span v-else @click="isPasswordVisible= true" class="dark:text-white material-icons-outlined absolute right-3 top-4 cursor-pointer d">visibility</span>
+                  <span
+                    v-if="isPasswordVisible"
+                    @click="isPasswordVisible = false"
+                    class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-4"
+                    >visibility_off</span
+                  >
+                  <span
+                    v-else
+                    @click="isPasswordVisible = true"
+                    class="dark:text-white material-icons-outlined absolute right-3 top-4 cursor-pointer d"
+                    >visibility</span
+                  >
                 </div>
                 <div v-if="loginError.isError" class="flex gap-2">
                   <span class="material-icons-outlined text-rose-500">error</span>
-                  <span class="text-rose-500">{{loginError.message}}</span>
+                  <span class="text-rose-500">{{ loginError.message }}</span>
                 </div>
                 <div class="flex justify-between">
                   <div class="flex gap-2">
                     <input
                       v-model="chatbotStore.isAnonymous"
                       type="checkbox"
-                      class="checked:bg-button-light  mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800 "
+                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800"
                     />
-                    <span class=" text-extra-small dark:text-white">Remain Anonymous</span>
+                    <span class="text-extra-small dark:text-white">Remain Anonymous</span>
                   </div>
                   <div>
-                    <router-link to="/auth/forgot-password" class="text-casablanca-300 text-extra-small">Forgot Password
+                    <router-link
+                      to="/auth/forgot-password"
+                      class="text-casablanca-300 text-extra-small"
+                      >Forgot Password
                     </router-link>
                   </div>
                 </div>
 
                 <div
                   @click="loginHandler"
-                  class="btn btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none">
-                  <span  v-if="!isLoading" class="text-small">Login</span>
+                  class="btn btn-sm text-lg rounded-2xl py-6 bg-button-light border-none shadow-none"
+                >
+                  <span v-if="!isLoading" class="text-small">Login</span>
                   <span v-else class="loading loading-spinner loading-sm"></span>
                 </div>
               </form>
-              <div class=" w-10/12">
+              <div class="w-10/12">
                 <p class="text-center text-slate-800 dark:text-white extra-small mt-4">
                   Don't have an account?
                   <router-link to="/auth/register" class="text-rose-400 hover:text-rose-300">
@@ -268,114 +292,139 @@ onBeforeUnmount(()=>{
           </div>
         </div>
         <!--    right side-->
-        <div class="col-span-1 relative flex  justify-center  w-full">
+        <div class="col-span-1 relative flex justify-center w-full">
           <img src="@/assets/images/login.png" alt="rafikey-login-image" />
-<!--          <img src="../../assets/images/rafikey-bot.png" alt="bot-image"-->
-<!--               class="absolute bottom-16 left-1/4" />-->
+          <!--          <img src="../../assets/images/rafikey-bot.png" alt="bot-image"-->
+          <!--               class="absolute bottom-16 left-1/4" />-->
         </div>
       </div>
     </div>
 
     <!--    Small screens-->
-    <div class="lg:hidden block  min-h-screen overflow-hidden w-full ">
-      <div class="flex justify-center ">
-        <div class="w-44 h-24">
-          <img src="@/assets/images/rafikey-key.png" alt="rafikey-logo"  />
+    <div class="lg:hidden block min-h-screen overflow-hidden w-full">
+      <div class="flex justify-center">
+        <div class="w-44 h-24 mx-auto flex justify-center items-center">
+          <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
         </div>
       </div>
       <div class="flex flex-col md:px-20 px-10 md:space-y-10 space-y-2">
-        <div class="flex flex-col items-center md:space-y-4 space-y-2 ">
-          <h2 class="text-extra-large font-semibold dark:text-white ">Login</h2>
-          <p class="text-extra-small text-gray-700 text-center dark:text-white ">Welcome back to Rafikey</p>
+        <div class="flex flex-col items-center md:space-y-4 space-y-2">
+          <h2 class="text-extra-large font-semibold dark:text-white">Login</h2>
+          <p class="text-extra-small text-gray-700 text-center dark:text-white">
+            Welcome back to Rafikey
+          </p>
         </div>
         <div class="border-b-[1px] border-stone-500 w-full pt-10 md:pt-0"></div>
         <form class="md:space-y-4 space-y-2">
           <div class="space-y-3">
-            <label for="username" class="dark:text-white text-black  text-extra-small">Username</label>
-            <input id="username"
-                   v-model="loginData.username"
-                   type="text"
-                   class="dark:bg-darkgray dark:text-white  w-full p-4 text-extra-small border-[1px] border-gray-300  rounded-2xl "
-                   required
-                   placeholder="Choose a username"
+            <label for="username" class="dark:text-white text-black text-extra-small"
+              >Username</label
+            >
+            <input
+              id="username"
+              v-model="loginData.username"
+              type="text"
+              class="dark:bg-darkgray dark:text-white w-full p-4 text-extra-small border-[1px] border-gray-300 rounded-2xl"
+              required
+              placeholder="Choose a username"
             />
           </div>
           <div class="flex gap-2">
             <input
               v-model="chatbotStore.isAnonymous"
               type="checkbox"
-              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white "
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white"
             />
-            <span class=" text-extra-small dark:text-white ">Remain Anonymous</span>
+            <span class="text-extra-small dark:text-white">Remain Anonymous</span>
           </div>
           <div class="relative space-y-3">
-            <label class="dark:text-white text-black   text-extra-small" for="password">
+            <label class="dark:text-white text-black text-extra-small" for="password">
               Password
             </label>
             <input
               v-model="loginData.password"
               id="password"
               :type="toggleVisibility"
-              class=" dark:bg-darkgray dark:text-white w-full border-[1px] border-gray-300  rounded-2xl md:p-4 p-4  text-extra-small "
+              class="dark:bg-darkgray dark:text-white w-full border-[1px] border-gray-300 rounded-2xl md:p-4 p-4 text-extra-small"
               required
               placeholder="********"
             />
-            <span v-if="isPasswordVisible" @click="isPasswordVisible=false" class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-10 md:top-10 ">visibility_off</span>
-            <span v-else @click="isPasswordVisible= true" class="dark:text-white material-icons-outlined absolute right-3 top-10 md:top-10 cursor-pointer ">visibility</span>
+            <span
+              v-if="isPasswordVisible"
+              @click="isPasswordVisible = false"
+              class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-10 md:top-10"
+              >visibility_off</span
+            >
+            <span
+              v-else
+              @click="isPasswordVisible = true"
+              class="dark:text-white material-icons-outlined absolute right-3 top-10 md:top-10 cursor-pointer"
+              >visibility</span
+            >
           </div>
         </form>
         <div v-if="loginError.isError" class="flex gap-2">
           <span class="material-icons-outlined text-rose-500">error</span>
-          <span class="text-rose-500">{{loginError.message}}</span>
+          <span class="text-rose-500">{{ loginError.message }}</span>
         </div>
         <div class="border-b-[1px] border-stone-500 w-full pt-10"></div>
-        <div class="flex  justify-between">
+        <div class="flex justify-between">
           <div class="space-x-2">
-            <input type="checkbox" class="checkbox w-4 h-4 rounded-full border-slate-800 dark:border-white text-casablanca-300"/>
-            <span class=" text-extra-small dark:text-white">Remember me</span>
+            <input
+              type="checkbox"
+              class="checkbox w-4 h-4 rounded-full border-slate-800 dark:border-white text-casablanca-300"
+            />
+            <span class="text-extra-small dark:text-white">Remember me</span>
           </div>
           <div>
-            <router-link to="/auth/forgot-password" class="text-casablanca-300 md:text-lg text-sm ">Forgot Password</router-link>
+            <router-link to="/auth/forgot-password" class="text-casablanca-300 md:text-lg text-sm"
+              >Forgot Password</router-link
+            >
           </div>
-
         </div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center pt-6">
           <button
             @click="loginHandler"
-            class="btn w-full btn-sm  md:text-lg text-sm rounded-2xl py-6 px-4 bg-button-light border-none shadow-none">
+            class="btn w-full btn-sm md:text-lg text-sm rounded-2xl py-6 px-4 bg-button-light border-none shadow-none"
+          >
             <span v-if="!isLoading" class="text-extra-small">Login</span>
             <span v-else class="loading loading-spinner loading-sm"></span>
           </button>
         </div>
         <div>
-          <p class="text-center text-slate-800  dark:text-white text-extra-small  mt-4">
+          <p class="text-center text-slate-800 dark:text-white text-extra-small mt-4">
             Don't have an account?
             <router-link to="/auth/register" class="text-rose-400 text-extra-small">
               Sign Up
             </router-link>
           </p>
         </div>
-
       </div>
     </div>
     <Teleport to="body">
-      <DialogModal :is-open="chatbotStore.dialogModal.isOpen" @close-modal="chatbotStore.setDialogModal(false)" >
+      <DialogModal
+        :is-open="chatbotStore.dialogModal.isOpen"
+        @close-modal="chatbotStore.setDialogModal(false)"
+      >
         <template #title>
           <div class="flex justify-center">
-            <span class="material-icons-outlined text-casablanca-300 !text-3xl lg:!text-4xl" >info</span>
+            <span class="material-icons-outlined text-casablanca-300 !text-3xl lg:!text-4xl"
+              >info</span
+            >
           </div>
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class=" text-ssmall lg:text-large dark:text-white">Are you Sure?</p>
-            <span class=" text-extra-small lg:text-small dark:text-white">Your chats won't be saved, if you login anonymously</span>
+            <p class="text-ssmall lg:text-large dark:text-white">Are you Sure?</p>
+            <span class="text-extra-small lg:text-small dark:text-white"
+              >Your chats won't be saved, if you login anonymously</span
+            >
           </div>
-
         </template>
         <template #footer>
           <div class="grid grid-cols-2 gap-4">
-            <div class="col-span-1 w-full ">
+            <div class="col-span-1 w-full">
               <button
                 @click.stop="isUserGuest = true"
                 class="w-full btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg"
@@ -388,7 +437,7 @@ onBeforeUnmount(()=>{
             <div class="col-span-1">
               <button
                 @click.stop="chatbotStore.setDialogModal(false)"
-                class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg "
+                class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg"
               >
                 <span class="text-extra-small md:text-small dark:text-white">Cancel</span>
               </button>
@@ -403,6 +452,4 @@ onBeforeUnmount(()=>{
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
