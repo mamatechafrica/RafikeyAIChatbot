@@ -58,8 +58,8 @@ const chatbotStore = useRafikeyChatbotStore()
                   <li class="md:text-large text-extra-small">Your info is used only to improve your experience.</li>
                   <li class="md:text-large text-extra-small">We never share your personal data without your permission.</li>
                 </ul>
-              <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
-                Learn more about how we collect, use, and protect your data in our full policy.
+              <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
+                Please take a moment to read the full the Privacy Policy to learn more about how we collect, use, and protect your data.
               </p>
             </div>
           </div>
