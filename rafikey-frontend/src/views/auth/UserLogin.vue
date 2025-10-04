@@ -240,13 +240,13 @@ onBeforeUnmount(() => {
                   <span
                     v-if="isPasswordVisible"
                     @click="isPasswordVisible = false"
-                    class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-4"
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute right-3 cursor-pointer top-4"
                     >visibility_off</span
                   >
                   <span
                     v-else
                     @click="isPasswordVisible = true"
-                    class="dark:text-white material-icons-outlined absolute right-3 top-4 cursor-pointer d"
+                    class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute right-3 top-4 cursor-pointer"
                     >visibility</span
                   >
                 </div>
@@ -352,13 +352,13 @@ onBeforeUnmount(() => {
             <span
               v-if="isPasswordVisible"
               @click="isPasswordVisible = false"
-              class="dark:text-white material-icons-outlined absolute right-3 cursor-pointer top-10 md:top-10"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute right-3 cursor-pointer top-10 md:top-10"
               >visibility_off</span
             >
             <span
               v-else
               @click="isPasswordVisible = true"
-              class="dark:text-white material-icons-outlined absolute right-3 top-10 md:top-10 cursor-pointer"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute right-3 top-10 md:top-10 cursor-pointer"
               >visibility</span
             >
           </div>
