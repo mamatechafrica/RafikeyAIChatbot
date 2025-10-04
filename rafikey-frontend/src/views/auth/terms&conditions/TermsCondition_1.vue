@@ -51,11 +51,10 @@ const chatbotStore = useRafikeyChatbotStore()
                 <li class="md:text-large text-extra-small"><strong>Respect:</strong> Be kind. No bullying, hate speech, or harmful content.</li>
                 <li class="md:text-large text-extra-small"><strong>Safe Space:</strong> Rafikey shares information, games, and referrals—but it’s not a substitute for medical, legal, or emergency help.</li>
                 <li class="md:text-large text-extra-small"><strong>Your Choice:</strong> You’re always in control of what you click, share, or explore.</li>
-                <li class="md:text-large text-extra-small"><strong>Under 18:</strong> We encourage you to use Rafikey with a parent, caregiver, or trusted adult.</li>
               </ul>
-            <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
-              These are just the highlights. Please review the full Terms of Use to understand your rights, 
-              responsibilities, and how Rafikey protects your privacy and safety.
+            <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
+              Please take a moment to read the full Terms of Use carefully to understand your rights, 
+              responsibilities, and how we protect your experience.
             </p>
           </div>
         </div>
