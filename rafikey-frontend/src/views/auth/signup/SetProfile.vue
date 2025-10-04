@@ -371,13 +371,13 @@ onBeforeUnmount(() => {
                     <span
                       v-if="isConfirmPasswordVisible"
                       @click="isConfirmPasswordVisible = false"
-                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isConfirmPasswordVisible = true"
-                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                   </div>
@@ -491,13 +491,13 @@ onBeforeUnmount(() => {
             <span
               v-if="isPasswordVisible"
               @click="isPasswordVisible = false"
-              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility_off</span
             >
             <span
               v-else
               @click="isPasswordVisible = true"
-              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility</span
             >
           </div>
@@ -522,13 +522,13 @@ onBeforeUnmount(() => {
             <span
               v-if="isConfirmPasswordVisible"
               @click="isConfirmPasswordVisible = false"
-              class="material-icons-outlined absolute dark:text-white !text-xl cursor-pointer right-3 top-8 "
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility_off</span
             >
             <span
               v-else
               @click="isConfirmPasswordVisible = true"
-              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute !text-xl cursor-pointer right-3 top-8 "
               >visibility</span
             >
           </div>
