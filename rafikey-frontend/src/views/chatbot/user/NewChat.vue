@@ -40,7 +40,8 @@ const startChatHandler = () => {
   chatbotStore.isNewChat = false
 }
 
-const startVoiceChat = () => {}
+// Voice chat function temporarily disabled
+// const startVoiceChat = () => {}
 const message = ref('')
 const welcomeMessages = ['Welcome To Rafikey 🎉', 'GET READY TO MAKE INFORMED CHOICES'] as string[]
 const showWelcomeDialogModal = ref(true)
@@ -161,20 +162,21 @@ setColor()
         </div>
       </div>
 
-      <div class="flex gap-2">
+      <div class="flex justify-center">
         <div
           @click.stop="startChatHandler"
-          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
+          class="cursor-pointer w-full max-w-sm dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-4 sm:space-y-4 space-y-3 mx-auto"
         >
-          <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
-            <span class="material-icons-outlined dark:text-white">sms</span>
+          <div class="bg-purple-500 rounded-full h-12 w-12 flex justify-center items-center mx-auto">
+            <span class="material-icons-outlined dark:text-white text-white">sms</span>
           </div>
-          <div class="flex dark:text-white sm:gap-4">
-            <p class="text-small">Chat with Rafikey</p>
-            <span class="material-icons-outlined text-sm">arrow_forward</span>
+          <div class="flex justify-center items-center dark:text-white gap-2">
+            <p class="text-base font-medium">Chat with Rafikey</p>
+            <span class="material-icons-outlined text-lg">arrow_forward</span>
           </div>
         </div>
-        <div
+        <!-- Voice chat feature temporarily disabled -->
+        <!-- <div
           @click.stop="startVoiceChat"
           class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
         >
@@ -185,7 +187,7 @@ setColor()
             <p class="text-small">Chat with Rafikey</p>
             <span class="material-icons-outlined text-sm">arrow_forward</span>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="space-y-2 pt-10">
