@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, defineEmits } from 'vue'
-import imageDark from '@/assets/images/welcome-frames-dark.png'
-import imageLight from '@/assets/images/welcome-frames-light.png'
+import { computed, onMounted, ref, defineEmits} from 'vue'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
-import imageIconLight from '@/assets/images/rafikey-icon-light.png'
-import imageIconDark from '@/assets/images/rafikey-icon-dark.png'
+import access2Light from '@/assets/images/access2Light.png'
+import access2Dark from '@/assets/images/access2Dark.png'
 import { v4 as uuidV4 } from 'uuid'
 import { useRouter } from 'vue-router'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import { useColorGenerator } from '@/composables/colorGenerator.ts'
+import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 export interface AccessQuestion {
   id: number
@@ -15,21 +15,38 @@ export interface AccessQuestion {
   icon: string
 }
 
+interface AccessButton {
+  id: number
+  image: string
+}
+
+const accessButtonsArray = [
+  {
+    id: 1,
+    images: {
+      light: access2Light,
+      dark: access2Dark,
+    },
+    content: 'Learn more about SRHR information',
+  },
+]
+
+const accessButtonDisplay = ref<AccessButton[]>([])
+
 const chatbotStore = useRafikeyChatbotStore()
 const authStore = useAuthStore()
 const router = useRouter()
 
-const toggleImage = computed(() => {
-  return chatbotStore.isDarkMode ? imageDark : imageLight
+const toggleAccessButton = computed(() => {
+  return chatbotStore.isDarkMode ? accessButtonsArray[0].images.dark : accessButtonsArray[0].images.light
 })
 
 // toggle image icons in dark and light mode
-const toggleImageIcon = computed(() => {
-  return chatbotStore.isDarkMode ? imageIconDark : imageIconLight
-})
+// const toggleImageIcon = computed(() => {
+//   return chatbotStore.isDarkMode ? imageIconDark : imageIconLight
+// })
 
 const startChatHandler = () => {
-  console.log('Start chat')
   chatbotStore.setSessionId(uuidV4())
   router.push({
     name: 'chatWithId',
@@ -65,6 +82,7 @@ const accessQuestions = [
 
 // don't show the welcome messages if user already logged in
 onMounted(() => {
+  chatbotStore.isShowPlayButton = true
   // const routes = ['/auth/login', '/auth/register']
   // if(routes.indexOf(chatbotStore.previousRoute) === -1 ) {
   //   showWelcomeDialogModal.value = false
@@ -88,10 +106,7 @@ const emits = defineEmits<{
 }>()
 
 const accessButtonQuestionHandler = (message: string) => {
-  // router.push({
-  //   name: 'chatWithId',
-  // })
-  // chatbotStore.setAccessButtonRequest(message)
+
   chatbotStore.conversation = []
   emits('userInput', message)
 }
@@ -108,6 +123,9 @@ const { darkBgColor, bgColor, setColor } = useColorGenerator(username)
 
 setColor()
 
+const closeGameButton = () => {
+  chatbotStore.isShowPlayButton = false
+}
 </script>
 
 <template>
@@ -126,20 +144,27 @@ setColor()
         </div>
       </div>
 
-      <div class="flex">
-        <div>
-          <img :src="toggleImage" alt="welcome-screen-image" />
+      <div class="w-full flex justify-between" v-if="accessButtonDisplay">
+        <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-16 gap-6">
+          <div class="col-span-1 cursor-pointer" @click="accessButtonQuestionHandler(accessButtonsArray[0].content)">
+            <img :src=" toggleAccessButton " alt="access-buttons" />
+          </div>
+          <div v-if="chatbotStore.isShowPlayButton" class="col-span-1">
+            <SRHRGameButton @close-game-button="closeGameButton" />
+          </div>
+
+          <div class="lg:col-span-1 flex mb-10 justify-end  col-span-2">
+            <img src="../../../assets/images/Rafikey-mascot.png" alt="rafikey-mascot" class="lg:w-64 w-28" />
+          </div>
         </div>
-        <div>
-          <img src="@/assets/images/rafikey-bot.png" alt="rafikey-image" />
-        </div>
+
       </div>
     </div>
 
     <div class="relative h-screen overflow-hidden md:hidden">
       <div class="flex items-center justify-between">
         <div class="w-32" @click="chatbotStore.setCollapseSidebarSmall(false)">
-          <img :src="toggleImageIcon" alt="rafikey-icon" />
+          <img :src="toggleImage()" alt="rafikey-icon" />
         </div>
         <div class="flex items-center justify-between gap-6">
           <div
@@ -147,14 +172,14 @@ setColor()
           >
             <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
           </div>
-          <div >
+          <div>
             <div
               :class="[darkBgColor, bgColor]"
               class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
             >
-                <span class="dark:text-white">{{
-                    JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
-                  }}</span>
+              <span class="dark:text-white">{{
+                JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
+              }}</span>
               <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
             </div>
           </div>
@@ -204,28 +229,28 @@ setColor()
         </div>
       </div>
 
-      <div class="fixed bottom-4 left-0 w-full">
-        <div class="text-center pb-10">
-          <p class="text-extra-large dark:text-white">Quick Links</p>
-        </div>
-        <div class="px-10 flex items-center justify-between">
-          <div
-            class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_5px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-          >
-            <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
-          </div>
-          <div
-            class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-          >
-            <img src="@/assets/images/clinic.png" alt="clinic-image" />
-          </div>
-          <div
-            class="sidebar-button-blue shadow-[0_0_32px_5px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-          >
-            <img src="@/assets/images/learn.png" alt="lear-image" />
-          </div>
-        </div>
-      </div>
+<!--      <div class="fixed bottom-4 left-0 w-full">-->
+<!--        <div class="text-center pb-10">-->
+<!--          <p class="text-extra-large dark:text-white">Quick Links</p>-->
+<!--        </div>-->
+<!--        <div class="px-10 flex items-center justify-between">-->
+<!--          <div-->
+<!--            class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_5px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--          >-->
+<!--            <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />-->
+<!--          </div>-->
+<!--          <div-->
+<!--            class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--          >-->
+<!--            <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
+<!--          </div>-->
+<!--          <div-->
+<!--            class="sidebar-button-blue shadow-[0_0_32px_5px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--          >-->
+<!--            <img src="@/assets/images/learn.png" alt="lear-image" />-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
   </div>
 </template>
