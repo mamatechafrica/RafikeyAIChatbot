@@ -126,3 +126,15 @@ def admin_create_quiz(
         session.commit()
 
     return db_quiz
+
+
+# Delete a quiz by ID
+@router.delete("/quizzes/{quiz_id}", status_code=204)
+def delete_quiz(quiz_id: int, session: SessionDep):
+    quiz = session.get(Quiz, quiz_id)
+    if not quiz:
+        raise HTTPException(status_code=404, detail="Quiz not found")
+    session.delete(quiz)
+    session.commit()
+    return
+
