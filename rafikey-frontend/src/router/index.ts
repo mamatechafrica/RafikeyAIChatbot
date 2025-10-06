@@ -12,7 +12,7 @@ const routes = [
   {
     name: 'trying',
     path: '/trying',
-    // component: () => import('@/views/auth/welcomepages/LoadingSpinner.vue')
+    // component: () => import('@/views/auth/welcomepages/LoadingSpnpm inner.vue')
     component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue')
   },
 
