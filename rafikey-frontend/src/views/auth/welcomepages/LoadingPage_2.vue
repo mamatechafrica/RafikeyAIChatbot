@@ -21,7 +21,7 @@ import AuthLoadingButtons from '@/components/chat/AuthLoadingButtons.vue'
           </p>
         </div>
         <div class="flex justify-center">
-          <img src="@/assets/images/rafikey-bot.png" alt="rafikey-image" class="lg:w-full w-1/2" />
+          <img src="@/assets/images/Rafikey-mascot.png" alt="rafikey-image" class="w-20 md:w-32" />
         </div>
         <div class="xl:w-6/12 w-9/12">
           <p class="text-small text-gray-700 dark:text-white text-center flex justify-center">
