@@ -5,7 +5,7 @@ import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
 import { range } from 'lodash'
 import { useAuthStore, useCreateAccountFormStore } from '@/stores'
-import { imageToggleSmallDevice, toggleImage } from '@/modules/imageToggle.ts'
+import { imageToggleSmallDevice, toggleImage } from '@/composables/imageToggle.ts'
 // import imageLight from '@/assets/images/rafikey-icon-light.png'
 // import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
@@ -31,7 +31,6 @@ const getToKnowYouData = reactive({
   age: '',
   gender: '',
   relationship_status: '',
-  isTermsCondition: false,
 })
 
 const signupError = reactive({
@@ -118,8 +117,7 @@ const everyThingOk = computed(() => {
 
     getToKnowYouData.age &&
     getToKnowYouData.gender &&
-    getToKnowYouData.relationship_status &&
-    getToKnowYouData.isTermsCondition
+    getToKnowYouData.relationship_status
   )
 })
 
@@ -138,7 +136,6 @@ const createAccountHandler = () => {
       age: getToKnowYouData.age,
       gender: getToKnowYouData.gender,
       relationship_status: getToKnowYouData.relationship_status,
-      terms_accepted: getToKnowYouData.isTermsCondition,
     })
     isLoading.value = true
     authStore
@@ -168,9 +165,6 @@ const createAccountHandler = () => {
     signupError.message = 'Please fill in all fields correctly'
   }
 }
-onMounted(() => {
-  getToKnowYouData.isTermsCondition = createAccountFormStore.getProfile.terms_accepted
-})
 
 onBeforeMount(() => {
   setTimeout(() => {
@@ -180,7 +174,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="min-h-screen dark:bg-lightgray w-full overflow-hidden hidden py-6 md:flex ">
+  <div class="min-h-screen dark:bg-lightgray w-full py-6 md:flex ">
     <div
       class="relative bg-lightBackground dark:bg-darkgray  flex flex-col w-10/12 mx-auto rounded-[34px] pb-10"
     >
@@ -188,7 +182,7 @@ onBeforeMount(() => {
         <div class=" h-20 flex justify-start items-center">
           <img :src='toggleImage()' alt="rafikey-logo" class="w-40 pt-6 ps-4"  />
         </div>
-        <div class="w-11/12 space-y-7 xl:space-y-5 rounded-2xl mx-auto">
+        <div class="w-11/12 space-y-12 rounded-2xl mx-auto">
           <div class="md:pt-14 pt-1">
             <div class="flex flex-col items-center">
               <h2 class="text-extra-extra-large dark:text-white font-semibold ">
@@ -198,10 +192,10 @@ onBeforeMount(() => {
           </div>
 
           <div class="border-b border-gray-400 w-1/3 mx-auto "></div>
-          <div class="space-y-4 ">
+          <div class="space-y-6 ">
             <div class="space-y-4">
               <div class="flex flex-col items-center">
-                <p class="text-small dark:text-white ">How old are you</p>
+                <p class="text-small dark:text-white ">How old are you (Required)</p>
                 <span class="text-small text-gray-700 dark:text-stone-300 "
                   >So we can tailor content and support</span
                 >
@@ -213,7 +207,7 @@ onBeforeMount(() => {
 
             <div class="space-y-4">
               <div class="flex justify-center">
-                <p class="text-small dark:text-white ">Which gender are you</p>
+                <p class="text-small dark:text-white ">Which gender are you (Required)</p>
               </div>
               <div class="">
                 <RadioGroup :radio-type="genderSet" @change="selectedRadio" />
@@ -221,7 +215,7 @@ onBeforeMount(() => {
             </div>
             <div class="space-y-4">
               <div class="flex justify-center flex-col items-center">
-                <p class="text-small dark:text-white">Are you in a relationship?</p>
+                <p class="text-small dark:text-white">Are you in a relationship? (Required)</p>
                 <span class="text-small text-gray-700 dark:text-stone-300 "
                   >Helps with personalized advice</span
                 >
@@ -240,45 +234,11 @@ onBeforeMount(() => {
             </div>
           </div>
           <div class="border-b border-gray-400 w-1/3 mx-auto "></div>
-          <div class="flex flex-col space-y-10">
-            <div>
-              <div class="flex gap-1 xl:gap-1 justify-center">
-                <input
-                  type="checkbox"
-                  v-model="getToKnowYouData.isTermsCondition"
-                  class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4  text-button-light dark:border-stone-300 border-slate-800 "
-                />
-                <p class="text-small text-center dark:text-white">
-                  We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be
-                  shared without your consent.
-                </p>
-              </div>
-              <div class="flex justify-center">
-                <span class="pe-1  text-small dark:text-white">Read our full</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-small cursor-pointer text-button-light"
-                  >Terms of Use
-                </router-link>
-                <span class="px-1  text-small dark:text-white">and</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-small cursor-pointer text-button-light"
-                >
-                  Privacy Policy
-                </router-link>
-              </div>
-            </div>
-
-            <div class="flex justify-center">
-              <p class="text-small dark:text-white">By Proceeding you agree to our terms and privacy policy.</p>
-            </div>
-          </div>
           <div class="flex justify-center">
             <button
               @click="createAccountHandler"
               :class="[!everyThingOk? 'bg-button-inactive' : 'bg-button-light']"
-              class="btn w-1/3 btn-sm text-lg py-6 rounded-2xl bg-button-light border-none shadow-none"
+              class="btn w-1/3 btn-sm text-lg py-6 rounded-2xl  border-none shadow-none"
             >
               <span v-if="!isLoading" class="text-extra-small">Sign up</span>
               <span v-else class="loading loading-spinner loading-sm"></span>
@@ -294,7 +254,7 @@ onBeforeMount(() => {
     <div class=" w-36 h-20 mx-auto flex justify-center items-center">
       <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
     </div>
-    <div class="md:px-20 px-6 space-y-2 sm:space-y-4">
+    <div class="md:px-20 px-6 space-y-4 sm:space-y-6">
       <div>
         <h2 class="text-extra-large dark:text-white font-semibold text-center ">
           Let's Know You Better
@@ -303,7 +263,7 @@ onBeforeMount(() => {
       <div class=" border-b-[1px] border-stone-400  smx-auto "></div>
 
       <div class="space-y-2">
-        <p class="text-gray-950 dark:text-white  text-extra-small">Age Range</p>
+        <p class="text-gray-950 dark:text-white  text-extra-small">Age Range (Required)</p>
         <LisxBox
           :list-items="ageRange"
           :place-holder="ageRangePlaceholder"
@@ -314,7 +274,7 @@ onBeforeMount(() => {
         </p>
       </div>
       <div class="space-y-2">
-        <p class="text-gray-950 text-extra-small dark:text-white ">Gender</p>
+        <p class="text-gray-950 text-extra-small dark:text-white ">Gender (Required)</p>
         <LisxBox
           :list-items="genderSet"
           :place-holder="genderPlaceholder"
@@ -325,50 +285,19 @@ onBeforeMount(() => {
         </p>
       </div>
       <div class="space-y-2">
-        <p class="text-gray-950 text-extra-small dark:text-white">Are you in a relationship</p>
+        <p class="text-gray-950 text-extra-small dark:text-white">Are you in a relationship (Required)</p>
         <LisxBox
           :list-items="relationshipStatus"
           :place-holder="relationshipPlaceholder"
           @selected-list-item="selectedRadio"
         />
-        <p class="text-gray-400 text-extra-extra-small ">
-          Optional - help with personalized advice.
-        </p>
+        <p class="text-gray-400 text-extra-extra-small ">To proceed fill all the fields</p>
       </div>
       <div v-if="signupError.isError" class="flex gap-2">
         <span class="material-icons-outlined text-rose-500">error</span>
         <span class="text-rose-500 md:text-lg text-sm">{{ signupError.message }}</span>
       </div>
       <div class="border-b-[1px] border-stone-400 mx-auto "></div>
-      <div>
-        <p class="text-gray-950 text-extra-extra-small dark:text-white ">
-          We follow strict privacy rules (GDPR-compliant). Your info is safe and won't be shared
-          without your consent.
-        </p>
-      </div>
-      <div class="">
-        <input
-          type="checkbox"
-          v-model="getToKnowYouData.isTermsCondition"
-          class="checked:bg-button-light checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800 "
-        />
-        <span class="text-gray-950 dark:text-white md:text-lg text-sm ps-4"
-          >Creating an account means you are okay with our</span
-        >
-        <router-link
-          to="/auth/register/privacy-policy-1"
-          class="cursor-pointer md:text-lg text-sm text-button-light"
-        >
-          Terms of Use
-        </router-link>
-        <span class=" md:text-lg text-sm dark:text-white"> and</span>
-        <router-link
-          to="/auth/register/privacy-policy-1"
-          class="md:text-lg text-sm cursor-pointer text-button-light"
-        >
-          Privacy Policy
-        </router-link>
-      </div>
       <div class="w-3/4 mx-auto  flex justify-between items-center">
         <button
           @click="createAccountHandler"
