@@ -3,10 +3,8 @@ import { ref, watch, computed, reactive } from 'vue'
 import { useField } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores'
-import { showSweetAlert } from '@/modules/alert.ts'
-// import imageLight from '@/assets/images/rafikey-icon-light.png'
-// import imageDark from '@/assets/images/rafikey-icon-dark.png'
-import { imageToggleSmallDevice, toggleImage } from '@/modules/imageToggle.ts'
+import { showSweetAlert } from '@/composables/alert.ts'
+import { imageToggleSmallDevice, toggleImage } from '@/composables/imageToggle.ts'
 
 const router = useRouter()
 const emailData = ref<string>('')

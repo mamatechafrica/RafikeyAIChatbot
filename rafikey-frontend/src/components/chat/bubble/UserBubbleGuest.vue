@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import { useColorGenerator } from '@/composables/colorGenerator.ts'
 
 export interface UserBubbleProps {
   userName: string
