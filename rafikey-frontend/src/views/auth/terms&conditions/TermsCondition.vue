@@ -1,29 +1,61 @@
 <script setup lang="ts">
 import  { useRouter } from 'vue-router'
-import { toggleImage } from '@/composables/imageToggle.ts'
+import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
+import { showSweetAlert } from '@/modules/alert.ts'
+import { toggleImage } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
+const createAccountFormStore = useCreateAccountFormStore()
+const chatbotStore = useRafikeyChatbotStore()
+
+
+const isTermsConditionHandler = (value: boolean) =>{
+  createAccountFormStore.setProfile({
+    terms_accepted: value
+  })
+  if(value) {
+    router.push({
+      name: 'get-to-know-you'
+    })
+  }
+    else{
+      console.log("Decline terms")
+      showSweetAlert({
+        type: 'warning',
+        message: 'You must accept the terms and conditions to continue or use Rafikey anonymously',
+      })
+    }
+}
+const goBack = () =>{
+  if(chatbotStore.isShowTermsButton){
+    router.push({ name: 'get-to-know-you' })
+  } else{
+    router.push({ name: 'newChat' })
+  }
+}
+
 
 </script>
 
 <template>
   <div class="min-h-screen w-full dark:bg-lightgray">
-    <div class="md:w-10/12 w-11/12 mx-auto pb-10">
-      <div class="grid grid-cols-3 sticky top-0 pt-10 md:pt-0 z-40 bg-white dark:bg-lightgray">
+    <div class="w-10/12 mx-auto space-y-4 pb-10">
+      <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col items-start justify-end ">
           <div
-            @click="router.go(-1)"
+            @click="goBack"
             class="flex  lg:pb-10 pb-8  cursor-pointer text-gray-1000 text-nowrap justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
             <span class="material-icons-outlined dark:text-white  md:text-lg text-sm ">chevron_left</span>
-            <span class="text-extra-extra-small  font-light dark:text-white">Go Back</span>
+            <span v-if="chatbotStore.isShowTermsButton" class="text-extra-extra-small font-light dark:text-white">Back to Sign Up</span>
+            <span v-else  class="text-extra-extra-small  font-light dark:text-white">Back to Chats</span>
           </div>
         </div>
-        <div class="md:flex hidden w-full   md:justify-center justify-end col-span-2  md:col-span-1">
+        <div class="flex w-full   md:justify-center justify-end col-span-2  md:col-span-1">
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40"/>
         </div>
       </div>
-      <div class="bg-gray-100 dark:bg-darkgray mx-auto px-10 py-8 rounded-2xl space-y-5">
-        <div class="space-y-3 md:space-y-0">
+      <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
+        <div>
           <div class="flex justify-end">
             <router-link to="/auth/register/privacy-policy-2" class="bg-casablanca-300 dark:opacity-50  md:text-small text-extra-extra-small-2  w-fit rounded-lg flex justify-center items-center md:px-2 px-3 py-1">
               <span class="">Privacy Policy</span>
@@ -47,7 +79,7 @@ const router = useRouter()
               <li class="md:text-large text-extra-small">Chat with a helpful bot about health and relationships.</li>
               <li class="md:text-large text-extra-small">Find trusted information and articles.</li>
               <li class="md:text-large text-extra-small">Located friendly clinics and services near them</li>
-              <li class="md:text-large text-extra-small">Talk safely and privately about what matters to young people.</li>
+              <li class="md:text-large text-extra-small">Talk safely and privately about what matters to them.</li>
             </ul>
           </div>
           <div>
@@ -69,8 +101,8 @@ const router = useRouter()
             <p class="md:text-large text-extra-small">By using Rafikey, you agree to:</p>
             <ul class="list-disc pl-10 md:text-large text-extra-small">
               <li>Be honest about your questions and needs.</li>
-              <li>Do not harm others or share harmful, violent or illegal content.</li>
-              <li>Do not pretend to be someone else.</li>
+              <li>Not harm others or share harmful, violent or illegal content.</li>
+              <li>Not pretend to be someone else.</li>
             </ul>
             <p class="md:text-large text-extra-small">We never sell or share your information with third parties for advertising or tracking.</p>
             <p class="md:text-large text-extra-small">Rafikey is here to support and guide - please use it kindly and responsibly.</p>
@@ -87,6 +119,13 @@ const router = useRouter()
             <h2 class="md:text-extra-extra-large-1  text-extra-small font-semibold">7. Contact Us</h2>
             <p class="md:text-large text-extra-small">If you have questions or concerns about your privacy, contact us at  <a href="mailto:Support@rafikey.org" class="text-casablanca-600">support@rafikey.org</a> </p>
           </div>
+        </div>
+      </div>
+
+      <div v-if="chatbotStore.isShowTermsButton" class="fixed bottom-0 left-0 right-0 w-full py-4  bg-white dark:bg-lightgray">
+        <div class="flex justify-center text-gray-950 text-xl gap-16">
+          <div @click="isTermsConditionHandler(false)" class="bg-transparent  border border-casablanca-400 rounded-2xl text-small py-2  px-5 dark:text-white">Decline</div>
+          <div @click="isTermsConditionHandler(true)" class="bg-casablanca-400 rounded-2xl text-small  py-2  px-5">Accept</div>
         </div>
       </div>
     </div>

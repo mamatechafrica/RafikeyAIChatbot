@@ -713,20 +713,21 @@ const accessButtonQuestionHandler = (message: string) => {
           </div>
         </div>
         <div class="space-y-12">
-          <div class="cursor-pointer flex gap-4 pt-8 w-full">
+          <div class="flex justify-center pt-8 w-full">
             <div
-              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"
+              class="w-full max-w-sm bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-5 p-4 space-y-3 cursor-pointer mx-auto"
               @click="startChatSmallScreen"
             >
-              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
-                <span class="material-icons-outlined dark:text-white">sms</span>
+              <div class="bg-purple-500 rounded-full h-12 w-12 flex justify-center items-center mx-auto">
+                <span class="material-icons-outlined text-white">sms</span>
               </div>
-              <div class="flex justify-between dark:text-white gap-4">
-                <p class="text-small">Chat with Rafikey</p>
-                <span class="material-icons-outlined text-sm">arrow_forward</span>
+              <div class="flex justify-center items-center dark:text-white gap-2">
+                <p class="text-base font-medium">Chat with Rafikey</p>
+                <span class="material-icons-outlined text-lg">arrow_forward</span>
               </div>
             </div>
-            <div class="w-full bg-link-water-50 dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2">
+            <!-- Voice chat feature temporarily disabled -->
+            <!-- <div class="w-full bg-link-water-50 dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2">
               <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
                 <span class="material-icons-outlined dark:text-white">mic_none</span>
               </div>
@@ -734,7 +735,7 @@ const accessButtonQuestionHandler = (message: string) => {
                 <p class="text-small">Chat with Rafikey</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
-            </div>
+            </div> -->
           </div>
           <div class="space-y-4">
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">

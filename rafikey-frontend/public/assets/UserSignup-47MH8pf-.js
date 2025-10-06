@@ -1,0 +1,1 @@
+import{_ as s,r as a,b as o,o as t,w as c,d as _,e as l}from"./index-DmnJlZDj.js";const u={};function f(i,m){const r=a("RouterView");return t(),o(r,null,{default:c(({Component:e,route:n})=>[e?(t(),o(l(e),{key:n.fullPath})):_("",!0)]),_:1})}const d=s(u,[["render",f]]);export{d as default};

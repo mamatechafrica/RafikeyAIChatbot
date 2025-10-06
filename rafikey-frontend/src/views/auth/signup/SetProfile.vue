@@ -3,8 +3,10 @@ import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
+// import imageLight from '@/assets/images/rafikey-icon-light.png'
+// import imageDark from '@/assets/images/rafikey-icon-dark.png'
 import DialogModal from '@/components/DialogModal.vue'
-import { toggleImage, imageToggleSmallDevice } from '@/composables/imageToggle.ts'
+import { toggleImage, imageToggleSmallDevice } from '@/modules/imageToggle.ts'
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
@@ -32,11 +34,26 @@ const setProfileData = reactive({
   password: '',
   confirmPassword: '',
   remainAnonymous: false,
-  isTermsCondition: false,
 })
 
 // const isAnonymous = ref<boolean>(false)
 const isLoading = ref(false)
+
+// watch(
+//   () => isAnonymous.value,
+//   (value) => {
+//     isLoading.value = true
+//     if (value) {
+//       setTimeout(() => {
+//         isLoading.value = false
+//         router.push({
+//           name: 'guest-page',
+//         })
+//       }, 3000)
+//     }
+//   },
+// )
+
 watch(
   () => chatbotStore.isAnonymous,
   (value) => {
@@ -75,7 +92,6 @@ onMounted(() => {
   setProfileData.email = createAccountFormStore.getProfile.email
   setProfileData.password = ''
   setProfileData.confirmPassword = ''
-  setProfileData.isTermsCondition = createAccountFormStore.getProfile.terms_accepted
   chatbotStore.isAnonymous = false
 })
 
@@ -111,11 +127,11 @@ const emailValidator = (value: string) => {
   if (!value) {
     return 'Email is required'
   }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-  if (!emailRegex.test(value)) {
-    return 'Email must be valid'
-  }
+  // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  //
+  // if (!emailRegex.test(value)) {
+  //   return 'Email must be valid'
+  // }
   return true
 }
 
@@ -196,8 +212,7 @@ const everyThingOk = computed(() => {
     passwordMeta.validated &&
     passwordMeta.valid &&
     confirmPasswordMeta.validated &&
-    confirmPasswordMeta.valid &&
-    setProfileData.isTermsCondition
+    confirmPasswordMeta.valid
   )
 })
 
@@ -215,7 +230,6 @@ const goToKnowYou = () => {
       username: setProfileData.username,
       email: setProfileData.email,
       password: setProfileData.password,
-      terms_accepted: setProfileData.isTermsCondition,
     })
     chatbotStore.isAnonymous = false
     isLoading.value = true
@@ -236,40 +250,41 @@ onBeforeUnmount(() => {
   if (isUserGuest.value) {
     chatbotStore.setDialogModal(false)
   }
+
 })
 </script>
 
 <template>
   <div>
-    <div class="min-h-screen w-full dark:bg-lightgray hidden md:flex py-8">
+    <div class="min-h-screen w-full dark:bg-lightgray hidden overflow-hidden md:flex py-8 ">
       <div class="dark:bg-darkgray bg-lightBackground flex flex-col w-11/12 mx-auto rounded-[34px]">
-        <div class="h-20 flex justify-start items-center">
-          <img :src="toggleImage()" alt="rafikey-logo" class="w-40 pt-6 ps-4" />
+        <div class=" h-20 flex justify-start items-center">
+          <img :src='toggleImage()' alt="rafikey-logo" class="w-40 pt-6 ps-4"  />
         </div>
         <div class="w-3/4 xl:space-y-5 space-y-4 mx-auto">
-          <div class="flex flex-col pt-8 items-center space-y-1">
-            <h2 class="text-4xl font-semibold dark:text-white">Set up your profile</h2>
-            <p class="text-lg text-stone-700 text-center dark:text-stone-300">
+          <div class="flex flex-col pt-32 items-center space-y-1">
+            <h2 class="text-4xl font-semibold dark:text-white  ">Set up your profile</h2>
+            <p class="text-lg text-stone-700 text-center dark:text-stone-300 ">
               Let's get you set up so you can access your personal account for a more personalized
               experience
             </p>
           </div>
-          <div class="border-b pt-8 border-gray-400 w-1/2 mx-auto"></div>
-          <div class="space-y-10">
+          <div class="border-b pt-8 border-gray-400 w-1/2 mx-auto "></div>
+          <div>
             <form>
-              <div class="space-y-2 lg:w-3/4 w-full mx-auto">
+              <div class="space-y-2 w-3/4 mx-auto">
                 <div class="grid grid-cols-2 gap-8">
                   <div class="col-span-1 flex-col space-y-1">
                     <label
-                      class="form-control w-full dark:text-white text-gray-950 text-sm"
+                      class="form-control w-full dark:text-white text-gray-950  text-sm"
                       for="username"
-                      >Username (Required)</label
+                      >Username</label
                     >
                     <input
                       v-model="setProfileData.username"
                       id="username-lg"
                       type="text"
-                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm"
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Choose a username"
                     />
@@ -280,14 +295,12 @@ onBeforeUnmount(() => {
                     >
                   </div>
                   <div class="col-span-1 space-y-1">
-                    <label class="text-gray-950 dark:text-white text-sm" for="email"
-                      >Email (Required)</label
-                    >
+                    <label class="text-gray-950 dark:text-white text-sm " for="email">Email</label>
                     <input
                       v-model="setProfileData.email"
                       id="email-lg"
                       type="email"
-                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm"
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Enter your email"
                     />
@@ -301,34 +314,34 @@ onBeforeUnmount(() => {
                   <input
                     v-model="chatbotStore.isAnonymous"
                     type="checkbox"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
+                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800 "
                   />
-                  <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+                  <p class="text-sm dark:text-white  pt-1">Remain Anonymous</p>
                 </div>
 
                 <div class="grid grid-cols-2 gap-8">
                   <div class="relative space-y-1">
                     <label class="text-gray-950 dark:text-white text-sm d" for="password">
-                      Password (Required)
+                      Password
                     </label>
                     <input
                       v-model="setProfileData.password"
                       id="password-lg"
                       :type="togglePasswordVisibility"
-                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm"
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Enter password"
                     />
                     <span
                       v-if="isPasswordVisible"
                       @click="isPasswordVisible = false"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isPasswordVisible = true"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                     <span
@@ -338,14 +351,14 @@ onBeforeUnmount(() => {
                     >
                   </div>
                   <div class="relative space-y-1">
-                    <label class="text-gray-950 dark:text-white text-sm" for="confirmPassword">
-                      Confirm Password (Required)
+                    <label class="text-gray-950 dark:text-white text-sm " for="confirmPassword">
+                      Confirm Password
                     </label>
                     <input
                       v-model="setProfileData.confirmPassword"
                       id="confirmPassword-lg"
                       :type="toggleConfirmPasswordVisibility"
-                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm"
+                      class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 lg:text-lg text-sm "
                       required
                       placeholder="Confirm password"
                     />
@@ -358,65 +371,36 @@ onBeforeUnmount(() => {
                     <span
                       v-if="isConfirmPasswordVisible"
                       @click="isConfirmPasswordVisible = false"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isConfirmPasswordVisible = true"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                   </div>
                 </div>
               </div>
             </form>
-            <div class="flex flex-col gap-2 items-center">
-              <div>
-                <span class="pe-1 text-sm dark:text-white">Read our full</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-sm cursor-pointer text-button-light"
-                >Terms of Use
-                </router-link>
-                <span class="text-sm dark:text-white px-1">and</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-sm cursor-pointer text-button-light"
-                >
-                  Privacy Policy
-                </router-link>
-              </div>
-              <div class="flex items-center gap-2">
-                <div class="flex gap-1 xl:gap-1 justify-center">
-                  <input
-                    type="checkbox"
-                    v-model="setProfileData.isTermsCondition"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-stone-300 border-slate-800"
-                  />
-                </div>
-                <div>
-                  <p class="dark:text-white text-sm">Please accept before proceeding</p>
-                </div>
-
-              </div>
-
-            </div>
           </div>
           <div v-if="SetProfileError.isError" class="w-3/4 mx-auto flex gap-2">
             <span class="material-icons-outlined text-rose-500">error</span>
             <span class="text-rose-500">{{ SetProfileError.message }}</span>
           </div>
 
-          <div class="border-b pt-4 border-gray-400 w-1/2 mx-auto"></div>
-          <div class="w-4/6 mx-auto flex pt-12 justify-between items-center">
+          <div class="border-b pt-4 border-gray-400 w-1/2 mx-auto "></div>
+          <div class="w-4/6 mx-auto pt-24 flex justify-between items-center">
             <button
+
               @click="goToKnowYou"
-              :class="[!everyThingOk ? 'bg-button-inactive' : 'bg-button-light  ']"
+              :class="[!everyThingOk? 'bg-button-inactive': 'bg-button-light ']"
               class="btn w-full btn-sm text-lg rounded-2xl py-6 border-none shadow-none"
             >
               <span v-if="!isLoading" class="text-sm">Next</span>
               <span v-else class="loading loading-spinner loading-sm"></span>
+
             </button>
           </div>
           <div class="flex justify-center pb-2">
@@ -430,172 +414,135 @@ onBeforeUnmount(() => {
     </div>
 
     <!--    Small screens-->
-    <div class="md:hidden block dark:bg-darkgray min-h-screen w-full">
-      <div class="w-44 h-24 mx-auto flex justify-center items-center">
-        <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
+    <div class="md:hidden block dark:bg-darkgray overflow-hidden h-screen w-full ">
+      <div class=" w-44 h-24 mx-auto flex justify-center items-center">
+          <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-3">
         <div class="flex flex-col items-center space-y-2">
-          <h2 class="text-2xl font-semibold dark:text-white">Set up your profile</h2>
-          <p class="text-sm text-gray-700 dark:text-stone-300 text-center">
+          <h2 class="text-2xl font-semibold dark:text-white ">Set up your profile</h2>
+          <p class="text-sm text-gray-700 dark:text-stone-300 text-center ">
             Let's get you set up so you can access your personal account for a more personalized
             experience
           </p>
         </div>
-        <div class="border-b border-stone-400 w-full"></div>
-        <div class="space-y-2">
-          <form class="space-y-2">
-            <div class="space-y-0.5">
-              <label for="username" class="dark:text-white text-black md:text-lg text-sm"
-                >Username (Required)</label
-              >
-              <input
-                v-model="setProfileData.username"
-                id="username"
-                type="text"
-                class="w-full dark:bg-darkgray dark:text-white border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
-                required
-                placeholder="Choose a username"
-              />
-              <div v-if="usernameMeta.validated && !usernameMeta.valid">
-                <span class="md:text-lg text-sm text-rose-500">{{ usernameErrorMessage }}</span>
-              </div>
-            </div>
-            <div class="space-x-2 flex items-center">
-              <input
-                id="checkbox"
-                v-model="chatbotStore.isAnonymous"
-                type="checkbox"
-                class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
-              />
-              <p class="md:text-lg text-sm dark:text-white text-black pt-1">Remain Anonymous</p>
-            </div>
-
-            <div class="space-y-0.5">
-              <label for="email" class="dark:text-white text-black md:text-lg text-sm"
-                >Email (Required)</label
-              >
-              <input
-                v-model="setProfileData.email"
-                id="email"
-                type="email"
-                class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
-                required
-                placeholder="Enter your email"
-              />
-              <span
-                v-if="emailMeta.validated && !emailMeta.valid"
-                class="md:text-lg text-sm text-rose-500"
-                >{{ emailErrorMessage }}</span
-              >
-            </div>
-
-            <div class="relative space-y-0.5">
-              <label class="dark:text-white text-black md:text-lg text-sm" for="password">
-                Password (Required)
-              </label>
-              <input
-                v-model="setProfileData.password"
-                id="password"
-                :type="togglePasswordVisibility"
-                class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
-                required
-                placeholder="Enter password"
-              />
-              <span
-                v-if="passwordMeta.validated && !passwordMeta.valid"
-                class="md:text-lg text-sm text-rose-500"
-                >{{ passwordErrorMessage }}</span
-              >
-              <span
-                v-if="isPasswordVisible"
-                @click="isPasswordVisible = false"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility_off</span
-              >
-              <span
-                v-else
-                @click="isPasswordVisible = true"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility</span
-              >
-            </div>
-
-            <div class="relative space-y-0.5">
-              <label class="dark:text-white text-black md:text-lg text-sm" for="password">
-                Confirm Password (Required)
-              </label>
-              <input
-                v-model="setProfileData.confirmPassword"
-                id="ConfirmPassword"
-                :type="toggleConfirmPasswordVisibility"
-                class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
-                required
-                placeholder="Enter password"
-              />
-              <span
-                v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"
-                class="text-rose-500 md:text-lg text-sm"
-                >{{ confirmPasswordErrorMessage }}</span
-              >
-              <span
-                v-if="isConfirmPasswordVisible"
-                @click="isConfirmPasswordVisible = false"
-                class="material-icons-outlined absolute dark:text-white !text-xl cursor-pointer right-3 top-8"
-                >visibility_off</span
-              >
-              <span
-                v-else
-                @click="isConfirmPasswordVisible = true"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility</span
-              >
-            </div>
-          </form>
-
-          <div class="flex gap-2">
-            <div>
-              <div class="text-nowrap">
-                <span class="pe-1 text-sm dark:text-white">Read our full</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-sm cursor-pointer text-button-light"
-                >Terms of Use
-                </router-link>
-                <span class="text-sm dark:text-white px-1">and</span>
-                <router-link
-                  to="/auth/register/privacy-policy-1"
-                  class="text-sm cursor-pointer text-button-light"
-                >
-                  Privacy Policy
-                </router-link>
-              </div>
-              <div class="flex items-center gap-2">
-                <div class="flex gap-1 xl:gap-1 justify-center">
-                  <input
-                    type="checkbox"
-                    v-model="setProfileData.isTermsCondition"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-stone-300 border-slate-800"
-                  />
-                </div>
-                <div>
-                  <p class="dark:text-white text-sm">Please accept before proceeding</p>
-                </div>
-              </div>
+        <div class="border-b border-stone-400  w-full"></div>
+        <form class="space-y-2">
+          <div class="space-y-0.5">
+            <label for="username" class="dark:text-white text-black  md:text-lg text-sm"
+              >Username</label
+            >
+            <input
+              v-model="setProfileData.username"
+              id="username"
+              type="text"
+              class="w-full dark:bg-darkgray dark:text-white  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              required
+              placeholder="Choose a username"
+            />
+            <div v-if="usernameMeta.validated && !usernameMeta.valid">
+              <span class="md:text-lg text-sm text-rose-500">{{ usernameErrorMessage }}</span>
             </div>
           </div>
-        </div>
+          <div class="space-x-2 flex">
+            <input
+              id="checkbox"
+              v-model="chatbotStore.isAnonymous"
+              type="checkbox"
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800 "
+            />
+            <p class="md:text-lg text-sm dark:text-white text-black  pt-1">Remain Anonymous</p>
+          </div>
 
+          <div class="space-y-0.5">
+            <label for="email" class="dark:text-white text-black  md:text-lg text-sm">Email</label>
+            <input
+              v-model="setProfileData.email"
+              id="email"
+              type="email"
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              required
+              placeholder="Enter your email"
+            />
+            <span
+              v-if="emailMeta.validated && !emailMeta.valid"
+              class="md:text-lg text-sm text-rose-500"
+              >{{ emailErrorMessage }}</span
+            >
+          </div>
+
+          <div class="relative space-y-0.5">
+            <label class="dark:text-white text-black md:text-lg text-sm " for="password">
+              Password
+            </label>
+            <input
+              v-model="setProfileData.password"
+              id="password"
+              :type="togglePasswordVisibility"
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              required
+              placeholder="Enter password"
+            />
+            <span
+              v-if="passwordMeta.validated && !passwordMeta.valid"
+              class="md:text-lg text-sm text-rose-500"
+              >{{ passwordErrorMessage }}</span
+            >
+            <span
+              v-if="isPasswordVisible"
+              @click="isPasswordVisible = false"
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              >visibility_off</span
+            >
+            <span
+              v-else
+              @click="isPasswordVisible = true"
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              >visibility</span
+            >
+          </div>
+
+          <div class="relative space-y-0.5">
+            <label class="dark:text-white text-black  md:text-lg text-sm" for="password">
+              Confirm Password
+            </label>
+            <input
+              v-model="setProfileData.confirmPassword"
+              id="ConfirmPassword"
+              :type="toggleConfirmPasswordVisibility"
+              class="w-full dark:text-white dark:bg-darkgray  border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm "
+              required
+              placeholder="Enter password"
+            />
+            <span
+              v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"
+              class="text-rose-500 md:text-lg text-sm"
+              >{{ confirmPasswordErrorMessage }}</span
+            >
+            <span
+              v-if="isConfirmPasswordVisible"
+              @click="isConfirmPasswordVisible = false"
+              class="material-icons-outlined absolute dark:text-white !text-xl cursor-pointer right-3 top-8 "
+              >visibility_off</span
+            >
+            <span
+              v-else
+              @click="isConfirmPasswordVisible = true"
+              class="material-icons-outlined dark:text-white  absolute !text-xl cursor-pointer right-3 top-8 "
+              >visibility</span
+            >
+          </div>
+        </form>
         <div v-if="SetProfileError.isError" class="flex gap-2">
           <span class="material-icons-outlined text-rose-500">error</span>
           <span class="text-rose-500 text-sm">{{ SetProfileError.message }}</span>
         </div>
-        <div class="border-b border-stone-400 w-full pt-2"></div>
+        <div class="border-b border-stone-400  w-full pt-2"></div>
 
         <div class="w-3/4 mx-auto flex justify-between items-center">
           <button
             @click="goToKnowYou"
-            :class="[!everyThingOk ? 'bg-button-inactive' : 'bg-button-light ']"
+            :class="[!everyThingOk? 'bg-button-inactive': 'bg-button-light ']"
             class="btn w-full btn-sm text-sm rounded-2xl py-5 border-none shadow-none"
           >
             <span v-if="!isLoading" class="text-sm">Next</span>
@@ -624,15 +571,15 @@ onBeforeUnmount(() => {
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class="md:text-large text-small dark:text-white">Are you sure?</p>
-            <span class="md:text-small dark:text-white text-center text-extra-small"
-              >If you login anonymously, your chats won't be saved for future reference.</span
+            <p class=" md:text-large text-small dark:text-white  ">Are you Sure?</p>
+            <span class="md:text-small dark:text-white  text-nowrap text-extra-small"
+              >Your chat's won't be saved, if you login anonymously</span
             >
           </div>
         </template>
         <template #footer>
           <div class="grid grid-cols-2 gap-4">
-            <div class="col-span-1 w-full">
+            <div class="col-span-1 w-full ">
               <button
                 @click.stop="isUserGuest = true"
                 class="w-full btn btn-sm border-none bg-casablanca-300 shadow-none px-4 rounded-lg"
@@ -645,7 +592,7 @@ onBeforeUnmount(() => {
             <div class="col-span-1">
               <button
                 @click.stop="chatbotStore.setDialogModal(false)"
-                class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg"
+                class="w-full btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg "
               >
                 <span class="text-extra-small dark:text-white md:text-small">Cancel</span>
               </button>
@@ -655,6 +602,10 @@ onBeforeUnmount(() => {
       </DialogModal>
     </Teleport>
   </div>
+
+<!--  <div v-else>-->
+<!--    <LoadingSpinner />-->
+<!--  </div>-->
 </template>
 
 <style scoped></style>

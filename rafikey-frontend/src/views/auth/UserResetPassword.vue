@@ -167,8 +167,8 @@ const resetPasswordHandler = ()=>{
                     for="newPassword-1">
                     Create Password
                   </label>
-                  <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility_off</span>
-                  <span v-else  @click="isPasswordVisible = true"  class="dark:text-white  material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility</span>
+                  <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility_off</span>
+                  <span v-else  @click="isPasswordVisible = true"  class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility</span>
                   <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
                 </div>
                 <div class="relative">
@@ -186,8 +186,8 @@ const resetPasswordHandler = ()=>{
                     Re-enter Password
                   </label>
                   <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
-                  <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility_off</span>
-                  <span v-else  @click="isConfirmPasswordVisible = true"  class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility</span>
+                  <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible=false" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility_off</span>
+                  <span v-else  @click="isConfirmPasswordVisible = true"  class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-6 ">visibility</span>
                 </div>
               </form>
               <div v-if="resetPasswordError.isError" class="flex gap-2">
@@ -242,8 +242,8 @@ const resetPasswordHandler = ()=>{
               required
               placeholder="******"
             />
-            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="material-icons-outlined dark:text-white  absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
-            <span v-else  @click="isPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer dark:text-white  right-3 md:top-12 top-10 ">visibility</span>
+            <span v-if="isPasswordVisible" @click= "isPasswordVisible = false" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
+            <span v-else  @click="isPasswordVisible = true"  class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility</span>
             <span  v-if="passwordMeta.validated && !passwordMeta.valid"  class="text-rose-500">{{passwordErrorMessage}}</span>
           </div>
 
@@ -259,8 +259,8 @@ const resetPasswordHandler = ()=>{
               required
               placeholder="******"
             />
-            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="material-icons-outlined dark:text-white  absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
-            <span v-else  @click="isConfirmPasswordVisible = true"  class="material-icons-outlined absolute cursor-pointer right-3 dark:text-white  md:top-12 top-10 ">visibility</span>
+            <span v-if="isConfirmPasswordVisible" @click= "isConfirmPasswordVisible = false" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility_off</span>
+            <span v-else  @click="isConfirmPasswordVisible = true"  class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 md:top-12 top-10 ">visibility</span>
             <span  v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"  class="text-rose-500">{{confirmPasswordErrorMessage}}</span>
 
           </div>

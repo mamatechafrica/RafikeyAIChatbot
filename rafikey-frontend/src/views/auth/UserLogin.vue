@@ -5,7 +5,7 @@ import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { useRouter } from 'vue-router'
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import DialogModal from '@/components/DialogModal.vue'
-import { imageToggleSmallDevice, toggleImage } from '@/composables/imageToggle.ts'
+import { imageToggleSmallDevice, toggleImage } from '@/modules/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 // const isAnonymous = ref<boolean>(false)
@@ -416,9 +416,9 @@ onBeforeUnmount(() => {
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class=" md:text-large text-small dark:text-white">Are you sure?</p>
-            <span class="md:text-small dark:text-white text-center text-extra-small"
-            >If you login anonymously, your chats won't be saved for future reference.</span
+            <p class="text-ssmall lg:text-large dark:text-white">Are you Sure?</p>
+            <span class="text-extra-small lg:text-small dark:text-white"
+              >Your chats won't be saved, if you login anonymously</span
             >
           </div>
         </template>
