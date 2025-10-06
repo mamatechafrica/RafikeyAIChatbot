@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import router from '@/router'
 import { useRafikeyChatbotStore } from '@/stores'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 </script>
@@ -18,22 +18,22 @@ const chatbotStore = useRafikeyChatbotStore()
             <span class="material-icons-outlined dark:text-white md:text-lg text-sm"
               >chevron_left</span
             >
-            <span
-              v-if="chatbotStore.isShowTermsButton"
-              class="text-extra-extra-small font-light dark:text-white"
-              >Back to Sign Up</span
-            >
-            <span v-else class="!text-extra-extra-small font-light dark:text-white"
-              >Back to Chats</span
+<!--            <span-->
+<!--              v-if="chatbotStore.isShowTermsButton"-->
+<!--              class="text-extra-extra-small font-light dark:text-white"-->
+<!--              >Back to Sign Up</span-->
+<!--            >-->
+            <span class="!text-extra-extra-small font-light dark:text-white"
+              >Go Back</span
             >
           </div>
         </div>
-        <div class="flex md:visible invisible w-full md:justify-center justify-end col-span-2 md:col-span-1">
+        <div class="md:flex hidden w-full md:justify-center justify-end col-span-2 md:col-span-1">
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>
       <div
-        class="bg-gray-100 dark:bg-darkgray w-full mx-auto px-10 py-10 rounded-[34px] sm:space-y-4 md:space-y-12 lg:space-y-6"
+        class="bg-gray-100 dark:bg-darkgray mt-10 md:mt-0 w-full mx-auto px-10 py-10 rounded-[34px] sm:space-y-4 md:space-y-12 lg:space-y-6"
       >
         <div class="flex justify-center pb-10">
           <h2
@@ -45,18 +45,15 @@ const chatbotStore = useRafikeyChatbotStore()
         <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
           <div class="text-center w-10/12">
             <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white">
-              We follow strict data protection rules (GDPR-compliant)
+              We follow strict data protection rules (GDPR-compliant) to make sure your details stay safe and confidential.
             </p>
           </div>
           <div class="flex flex-col items-center text-center">
-            <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6">
-              To male sure your details stay safe and confidential.
-            </p>
             <p
               class="text-center md:text-large sm:text-small text-extra-small dark:text-white leading-6"
             >
               At Rafikey, your privacy is a top priority. Any information you share is only used to
-              improve your experience and provide the support you need. Wee never share your
+              improve your experience and provide the support you need. We never share your
               personal data with anyone without your permission.
             </p>
           </div>
