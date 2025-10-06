@@ -1,28 +1,26 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useRafikeyChatbotStore } from '@/stores'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 const router = useRouter()
-const chatbotStore = useRafikeyChatbotStore()
+
 
 </script>
 
 <template>
   <div class="min-h-screen w-full dark:bg-lightgray">
     <div class="md:w-10/12 w-11/12 mx-auto pb-10">
-      <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
+      <div class="grid grid-cols-3 sticky top-0 pt-10 md:pt-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col items-start justify-end">
           <div
             @click="router.go(-1)"
             class="flex lg:pb-10 pb-8 cursor-pointer text-nowrap text-gray-1000 justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none"
           >
             <span class="material-icons-outlined dark:text-white md:text-lg text-sm">chevron_left</span>
-            <span v-if="chatbotStore.isShowTermsButton" class="text-extra-extra-small font-light dark:text-white">Back to Sign Up</span>
-            <span v-else class="text-extra-extra-small font-light dark:text-white">Go back</span>
+            <span class="text-extra-extra-small font-light dark:text-white">Go Back</span>
           </div>
         </div>
-        <div class="flex md:visible invisible w-full md:justify-center justify-end col-span-2  md:col-span-1">
+        <div class="md:flex hidden  w-full md:justify-center justify-end col-span-2  md:col-span-1">
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import router from '@/router'
-import { useRafikeyChatbotStore } from '@/stores'
-import { toggleImage } from '@/modules/imageToggle.ts'
 
-const chatbotStore = useRafikeyChatbotStore()
+import { toggleImage } from '@/composables/imageToggle.ts'
+
 </script>
 
 <template>
@@ -18,13 +17,13 @@ const chatbotStore = useRafikeyChatbotStore()
             <span class="material-icons-outlined dark:text-white md:text-lg text-sm"
               >chevron_left</span
             >
-            <span
-              v-if="chatbotStore.isShowTermsButton"
-              class="text-extra-extra-small font-light dark:text-white"
-              >Back to Sign Up</span
-            >
-            <span v-else class="!text-extra-extra-small font-light dark:text-white"
-              >Back to Chats</span
+<!--            <span-->
+<!--              v-if="chatbotStore.isShowTermsButton"-->
+<!--              class="text-extra-extra-small font-light dark:text-white"-->
+<!--              >Back to Sign Up</span-->
+<!--            >-->
+            <span class="!text-extra-extra-small font-light dark:text-white"
+              >Go Back</span
             >
           </div>
         </div>
