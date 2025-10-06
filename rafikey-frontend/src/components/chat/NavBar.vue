@@ -12,7 +12,7 @@ import GeneralTab from '@/components/tab/GeneralTab.vue'
 import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 import { type Tabs } from '@/components/tab/TabComponent.vue'
-import { imageToggleSmallDevice } from '@/modules/imageToggle.ts'
+import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
@@ -134,10 +134,6 @@ const newChatHandler = () => {
 
 const modeToggleHandler = useToggle(isDark)
 const isShowProfile = ref(true)
-const termsConditionHandler = () => {
-  router.push({ name: 'privacy-policy-1' })
-  chatbotStore.isShowTermsButton = false
-}
 
 const showLogoutDialogModal = ref(false)
 const confirmLogoutHandler = () => {
@@ -213,7 +209,7 @@ const darkBgColor = inject('darkBgColor')
         @click="expandSideNavHandler"
         :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']"
       >
-        <img :src="imageToggleSmallDevice()" alt="rafikey-icon" class="w-14 pt-4"/>
+        <img :src="imageToggleSmallDevice()" alt="rafikey-icon" class="w-14 pt-4" />
       </div>
       <div
         v-if="!chatbotStore.collapseSidebarLarge"
@@ -253,8 +249,8 @@ const darkBgColor = inject('darkBgColor')
 
         <!--    bottom side-->
         <div
-          class="absolute bottom-4 w-full"
-          :class="[!chatbotStore.collapseSidebarLarge ? 'flex ' : '']"
+          class="absolute bottom-4  w-full"
+          :class="[!chatbotStore.collapseSidebarLarge ? 'flex left-4' : '']"
         >
           <div class="flex flex-col items-center gap-4">
             <!--            <div>-->
@@ -280,7 +276,7 @@ const darkBgColor = inject('darkBgColor')
 
       <div class="relative h-[calc(100vh-10rem)] w-full">
         <div
-          class="h-[calc(100vh-21rem)] overflow-y-auto"
+          class="h-[calc(100vh-16rem)] overflow-y-auto"
           v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarLarge"
         >
           <div v-for="(titles, date) in groupChat()" :key="date">
@@ -305,23 +301,23 @@ const darkBgColor = inject('darkBgColor')
               />
             </div>
           </div>
-          <div class="absolute bottom-4 grid grid-cols-12 w-full">
-            <div
-              class="col-span-4 sidebar-button-yellow shadow-[0_0_20px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-            >
-              <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />
-            </div>
-            <div
-              class="col-span-4 sidebar-button-pink shadow-[0_0_20px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-            >
-              <img src="@/assets/images/clinic.png" alt="clinic-image" />
-            </div>
-            <div
-              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-            >
-              <img src="@/assets/images/learn.png" alt="lear-image" />
-            </div>
-          </div>
+<!--          <div class="absolute bottom-4 grid grid-cols-12 w-full">-->
+<!--            <div-->
+<!--              class="col-span-4 sidebar-button-yellow shadow-[0_0_20px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--            >-->
+<!--              <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />-->
+<!--            </div>-->
+<!--            <div-->
+<!--              class="col-span-4 sidebar-button-pink shadow-[0_0_20px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--            >-->
+<!--              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
+<!--            </div>-->
+<!--            <div-->
+<!--              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--            >-->
+<!--              <img src="@/assets/images/learn.png" alt="lear-image" />-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -491,15 +487,6 @@ const darkBgColor = inject('darkBgColor')
                       class="md:hidden block shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] bg-white divide-y divide-solid z-999 dark:divide-stone-700 dark:bg-darkgray cursor-pointer absolute space-y-4 bottom-0 w-full p-4 rounded-br-[20px] rounded-tl-[20px]"
                     >
                       <div class="space-y-1">
-                        <div
-                          @click.stop="termsConditionHandler"
-                          class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
-                        >
-                          <span class="material-icons-outlined dark:text-white !text-xl"
-                            >article</span
-                          >
-                          <span class="dark:text-white text-gray-700">Terms and Conditions</span>
-                        </div>
                         <div
                           @click="settingsHandler"
                           class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"

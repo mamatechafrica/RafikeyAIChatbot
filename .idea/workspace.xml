@@ -4,38 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove images">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Rafikey-mascot-x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Rafikey-mascot.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access1Dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access1Light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access2Dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access2Light.png" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add ui styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/alert.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/alert.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/colorGenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/colorGenerator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/imageToggle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/imageToggle.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_3.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
@@ -308,71 +289,7 @@
       <workItem from="1759483959640" duration="68000" />
       <workItem from="1759484050663" duration="24000" />
       <workItem from="1759499595946" duration="3600000" />
-      <workItem from="1759725999673" duration="30593000" />
-    </task>
-    <task id="LOCAL-00507" summary="add vite-plugin-pwa package">
-      <option name="closed" value="true" />
-      <created>1758801137476</created>
-      <option name="number" value="00507" />
-      <option name="presentableId" value="LOCAL-00507" />
-      <option name="project" value="LOCAL" />
-      <updated>1758801137476</updated>
-    </task>
-    <task id="LOCAL-00508" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1758801237860</created>
-      <option name="number" value="00508" />
-      <option name="presentableId" value="LOCAL-00508" />
-      <option name="project" value="LOCAL" />
-      <updated>1758801237860</updated>
-    </task>
-    <task id="LOCAL-00509" summary="add bgColor and darkbgColor inject">
-      <option name="closed" value="true" />
-      <created>1758806349484</created>
-      <option name="number" value="00509" />
-      <option name="presentableId" value="LOCAL-00509" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806349484</updated>
-    </task>
-    <task id="LOCAL-00510" summary="add bgColor and darkbgColor inject">
-      <option name="closed" value="true" />
-      <created>1758806355411</created>
-      <option name="number" value="00510" />
-      <option name="presentableId" value="LOCAL-00510" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806355412</updated>
-    </task>
-    <task id="LOCAL-00511" summary="add bgColor and darkbgColor inject">
-      <option name="closed" value="true" />
-      <created>1758806401508</created>
-      <option name="number" value="00511" />
-      <option name="presentableId" value="LOCAL-00511" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806401508</updated>
-    </task>
-    <task id="LOCAL-00512" summary="add bgColor and darkbgColor provide">
-      <option name="closed" value="true" />
-      <created>1758806465692</created>
-      <option name="number" value="00512" />
-      <option name="presentableId" value="LOCAL-00512" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806465692</updated>
-    </task>
-    <task id="LOCAL-00513" summary="add useColorGenerator composable">
-      <option name="closed" value="true" />
-      <created>1758806491914</created>
-      <option name="number" value="00513" />
-      <option name="presentableId" value="LOCAL-00513" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806491914</updated>
-    </task>
-    <task id="LOCAL-00514" summary="add setColor function call">
-      <option name="closed" value="true" />
-      <created>1758806524743</created>
-      <option name="number" value="00514" />
-      <option name="presentableId" value="LOCAL-00514" />
-      <option name="project" value="LOCAL" />
-      <updated>1758806524744</updated>
+      <workItem from="1759725999673" duration="31868000" />
     </task>
     <task id="LOCAL-00515" summary="add bgColor and darkbgColor provide">
       <option name="closed" value="true" />
@@ -702,7 +619,71 @@
       <option name="project" value="LOCAL" />
       <updated>1759761995370</updated>
     </task>
-    <option name="localTasksCounter" value="556" />
+    <task id="LOCAL-00556" summary="remove mic icon">
+      <option name="closed" value="true" />
+      <created>1759763110170</created>
+      <option name="number" value="00556" />
+      <option name="presentableId" value="LOCAL-00556" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763110170</updated>
+    </task>
+    <task id="LOCAL-00557" summary="remove confirm buttons">
+      <option name="closed" value="true" />
+      <created>1759763174515</created>
+      <option name="number" value="00557" />
+      <option name="presentableId" value="LOCAL-00557" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763174515</updated>
+    </task>
+    <task id="LOCAL-00558" summary="add isTermsCondition data">
+      <option name="closed" value="true" />
+      <created>1759763243473</created>
+      <option name="number" value="00558" />
+      <option name="presentableId" value="LOCAL-00558" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763243473</updated>
+    </task>
+    <task id="LOCAL-00559" summary="add images">
+      <option name="closed" value="true" />
+      <created>1759763304258</created>
+      <option name="number" value="00559" />
+      <option name="presentableId" value="LOCAL-00559" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763304258</updated>
+    </task>
+    <task id="LOCAL-00560" summary="clear conversation container on onMounted">
+      <option name="closed" value="true" />
+      <created>1759763391664</created>
+      <option name="number" value="00560" />
+      <option name="presentableId" value="LOCAL-00560" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763391664</updated>
+    </task>
+    <task id="LOCAL-00561" summary="add  isShowPlayButton flag">
+      <option name="closed" value="true" />
+      <created>1759763444350</created>
+      <option name="number" value="00561" />
+      <option name="presentableId" value="LOCAL-00561" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763444350</updated>
+    </task>
+    <task id="LOCAL-00562" summary="add imageToggleSmallDevice function">
+      <option name="closed" value="true" />
+      <created>1759763507528</created>
+      <option name="number" value="00562" />
+      <option name="presentableId" value="LOCAL-00562" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763507528</updated>
+    </task>
+    <task id="LOCAL-00563" summary="add ui styling">
+      <option name="closed" value="true" />
+      <created>1759763536426</created>
+      <option name="number" value="00563" />
+      <option name="presentableId" value="LOCAL-00563" />
+      <option name="project" value="LOCAL" />
+      <updated>1759763536426</updated>
+    </task>
+    <option name="localTasksCounter" value="564" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -720,13 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add imageToggleSmallDevice import" />
-    <MESSAGE value="add function login for user avator" />
-    <MESSAGE value="add rafikey logo" />
-    <MESSAGE value="add UserBubbleGuest component" />
-    <MESSAGE value="add dynamic class" />
-    <MESSAGE value="add toggleImage function" />
-    <MESSAGE value="add fontFamily" />
     <MESSAGE value="add toggleImage" />
     <MESSAGE value="add https-localhost package" />
     <MESSAGE value="edit font-family" />
@@ -741,11 +715,18 @@
     <MESSAGE value="remove https-localhost package" />
     <MESSAGE value="add useColorGenerator" />
     <MESSAGE value="add darkBgColor, bgColor dynamic class" />
-    <MESSAGE value="add imageToggleSmallDevice function" />
     <MESSAGE value="add styling" />
     <MESSAGE value="add custom class" />
     <MESSAGE value="remove images" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove images" />
+    <MESSAGE value="remove mic icon" />
+    <MESSAGE value="remove confirm buttons" />
+    <MESSAGE value="add isTermsCondition data" />
+    <MESSAGE value="add images" />
+    <MESSAGE value="clear conversation container on onMounted" />
+    <MESSAGE value="add  isShowPlayButton flag" />
+    <MESSAGE value="add imageToggleSmallDevice function" />
+    <MESSAGE value="add ui styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="add ui styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -782,7 +763,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue</url>
-          <line>626</line>
+          <line>627</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
