@@ -19,7 +19,7 @@ const goToPlayPage = () =>{
 </script>
 
 <template>
-<div class="dark:bg-darkgray bg-white space-y-2 border-[1px] px-[20px] pt-[27px] pb-[20px]  rounded-[20px] dark:border-lightgrayThree">
+<div class=" dark:bg-darkgray bg-white space-y-2 border-[1px]  px-4 py-2 md:py-8 pb-[20px]  rounded-[20px] dark:border-lightgrayThree">
   <div class="flex justify-between">
     <div>
       <p class="dark:text-white text-small">Let's have fun</p>
