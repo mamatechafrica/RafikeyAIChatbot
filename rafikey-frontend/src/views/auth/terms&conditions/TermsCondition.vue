@@ -1,38 +1,8 @@
 <script setup lang="ts">
 import  { useRouter } from 'vue-router'
-import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
-import { showSweetAlert } from '@/modules/alert.ts'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 const router = useRouter()
-const createAccountFormStore = useCreateAccountFormStore()
-const chatbotStore = useRafikeyChatbotStore()
-
-
-const isTermsConditionHandler = (value: boolean) =>{
-  createAccountFormStore.setProfile({
-    terms_accepted: value
-  })
-  if(value) {
-    router.push({
-      name: 'get-to-know-you'
-    })
-  }
-    else{
-      console.log("Decline terms")
-      showSweetAlert({
-        type: 'warning',
-        message: 'You must accept the terms and conditions to continue or use Rafikey anonymously',
-      })
-    }
-}
-const goBack = () =>{
-  if(chatbotStore.isShowTermsButton){
-    router.push({ name: 'get-to-know-you' })
-  } else{
-    router.push({ name: 'newChat' })
-  }
-}
 
 
 </script>
@@ -40,20 +10,19 @@ const goBack = () =>{
 <template>
   <div class="min-h-screen w-full dark:bg-lightgray">
     <div class="w-10/12 mx-auto space-y-4 pb-10">
-      <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
-        <div class="col-span-1 flex flex-col items-start justify-end ">
-          <div
-            @click="goBack"
-            class="flex  lg:pb-10 pb-8  cursor-pointer text-gray-1000 text-nowrap justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
-            <span class="material-icons-outlined dark:text-white  md:text-lg text-sm ">chevron_left</span>
-            <span v-if="chatbotStore.isShowTermsButton" class="text-extra-extra-small font-light dark:text-white">Back to Sign Up</span>
-            <span v-else  class="text-extra-extra-small  font-light dark:text-white">Back to Chats</span>
-          </div>
-        </div>
-        <div class="flex w-full   md:justify-center justify-end col-span-2  md:col-span-1">
-          <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40"/>
+      <div class="grid grid-cols-3 sticky top-0 pt-10 md:pt-0 z-40 bg-white dark:bg-lightgray">
+      <div class="col-span-1 flex flex-col items-start justify-end ">
+        <div
+          @click="router.go(-1)"
+          class="flex  lg:pb-10 pb-8  cursor-pointer text-gray-1000 text-nowrap justify-start w-fit hover:bg-transparent border-none hover:border-none btn btn-sm btn-ghost shadow-none">
+          <span class="material-icons-outlined dark:text-white  md:text-lg text-sm ">chevron_left</span>
+          <span class="text-extra-extra-small  font-light dark:text-white">Go Back</span>
         </div>
       </div>
+      <div class="md:flex hidden w-full   md:justify-center justify-end col-span-2  md:col-span-1">
+        <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40"/>
+      </div>
+    </div>
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
         <div>
           <div class="flex justify-end">
@@ -119,13 +88,6 @@ const goBack = () =>{
             <h2 class="md:text-extra-extra-large-1  text-extra-small font-semibold">7. Contact Us</h2>
             <p class="md:text-large text-extra-small">If you have questions or concerns about your privacy, contact us at  <a href="mailto:Support@rafikey.org" class="text-casablanca-600">support@rafikey.org</a> </p>
           </div>
-        </div>
-      </div>
-
-      <div v-if="chatbotStore.isShowTermsButton" class="fixed bottom-0 left-0 right-0 w-full py-4  bg-white dark:bg-lightgray">
-        <div class="flex justify-center text-gray-950 text-xl gap-16">
-          <div @click="isTermsConditionHandler(false)" class="bg-transparent  border border-casablanca-400 rounded-2xl text-small py-2  px-5 dark:text-white">Decline</div>
-          <div @click="isTermsConditionHandler(true)" class="bg-casablanca-400 rounded-2xl text-small  py-2  px-5">Accept</div>
         </div>
       </div>
     </div>

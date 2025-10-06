@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import router from '@/router'
-import { useRafikeyChatbotStore } from '@/stores'
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
-const chatbotStore = useRafikeyChatbotStore()
+// const chatbotStore = useRafikeyChatbotStore()
 </script>
 
 <template>
@@ -18,13 +17,13 @@ const chatbotStore = useRafikeyChatbotStore()
             <span class="material-icons-outlined dark:text-white md:text-lg text-sm"
               >chevron_left</span
             >
-            <span
-              v-if="chatbotStore.isShowTermsButton"
-              class="text-extra-extra-small font-light dark:text-white"
-              >Back to Sign Up</span
-            >
-            <span v-else class="!text-extra-extra-small font-light dark:text-white"
-              >Back to Chats</span
+<!--            <span-->
+<!--              v-if="chatbotStore.isShowTermsButton"-->
+<!--              class="text-extra-extra-small font-light dark:text-white"-->
+<!--              >Go Back</span-->
+<!--            >-->
+            <span class="!text-extra-extra-small font-light dark:text-white"
+              >Go Back</span
             >
           </div>
         </div>
@@ -53,7 +52,7 @@ const chatbotStore = useRafikeyChatbotStore()
                 <li class="md:text-large text-extra-small"><strong>Your Choice:</strong> You’re always in control of what you click, share, or explore.</li>
               </ul>
             <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
-              Please take a moment to read the full Terms of Use carefully to understand your rights, 
+              Please take a moment to read the full Terms of Use carefully to understand your rights,
               responsibilities, and how we protect your experience.
             </p>
           </div>
