@@ -57,8 +57,6 @@ const startChatHandler = () => {
   chatbotStore.isNewChat = false
 }
 
-// Voice chat function temporarily disabled
-// const startVoiceChat = () => {}
 const message = ref('')
 const welcomeMessages = ['Welcome To Rafikey 🎉', 'GET READY TO MAKE INFORMED CHOICES'] as string[]
 const showWelcomeDialogModal = ref(true)
@@ -130,8 +128,8 @@ const closeGameButton = () => {
 </script>
 
 <template>
-  <div class="min-h-screen overflow-hidden dark:bg-lightgray">
-    <div class="space-y-28 h-screen overflow-hidden md:block hidden">
+  <div class="min-h-screen  dark:bg-lightgray">
+    <div class="space-y-28 min-h-screen md:block hidden">
       <div class="space-y-8 pt-12">
         <div class="space-y-4">
           <h2
@@ -155,30 +153,30 @@ const closeGameButton = () => {
           </div>
 
           <div class="lg:col-span-1 flex mb-10 justify-end  col-span-2">
-            <img src="../../../assets/images/Rafikey-mascot.png" alt="rafikey-mascot" class="lg:w-64 w-28" />
+            <img src="../../../assets/images/Rafikey-mascot.png" alt="rafikey-mascot" class="lg:w-64  w-28" />
           </div>
         </div>
 
       </div>
     </div>
 
-    <div class="relative h-screen overflow-hidden md:hidden">
+    <div class="relative min-h-screen  md:hidden">
       <div class="flex items-center justify-between">
-        <div class="w-32" @click="chatbotStore.setCollapseSidebarSmall(false)">
+        <div class="w-20" @click="chatbotStore.setCollapseSidebarSmall(false)">
           <img :src="toggleImage()" alt="rafikey-icon" />
         </div>
         <div class="flex items-center justify-between gap-6">
-          <div
-            class="border dark:border-stone-300 rounded-full flex h-6 w-6 justify-center items-center"
-          >
-            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
-          </div>
+<!--          <div-->
+<!--            class="border dark:border-stone-300 rounded-full flex h-6 w-6 justify-center items-center"-->
+<!--          >-->
+<!--            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>-->
+<!--          </div>-->
           <div>
             <div
               :class="[darkBgColor, bgColor]"
-              class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
+              class="rounded-full h-8 w-8 flex items-center justify-center font-bold"
             >
-              <span class="dark:text-white">{{
+              <span class="dark:text-white text-sm">{{
                 JSON.parse(authStore.user).username.substring(0, 2).toUpperCase()
               }}</span>
               <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
@@ -187,38 +185,37 @@ const closeGameButton = () => {
         </div>
       </div>
 
-      <div class="flex justify-center">
+      <div class="flex gap-2">
         <div
           @click.stop="startChatHandler"
-          class="cursor-pointer w-full max-w-sm dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-4 sm:space-y-4 space-y-3 mx-auto"
-        >
-          <div class="bg-purple-500 rounded-full h-12 w-12 flex justify-center items-center mx-auto">
-            <span class="material-icons-outlined dark:text-white text-white">sms</span>
-          </div>
-          <div class="flex justify-center items-center dark:text-white gap-2">
-            <p class="text-base font-medium">Chat with Rafikey</p>
-            <span class="material-icons-outlined text-lg">arrow_forward</span>
-          </div>
-        </div>
-        <!-- Voice chat feature temporarily disabled -->
-        <!-- <div
-          @click.stop="startVoiceChat"
           class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
         >
-          <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
-            <span class="material-icons-outlined dark:text-white">mic_none</span>
+          <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
+            <span class="material-icons-outlined dark:text-white">sms</span>
           </div>
-          <div class="flex dark:text-white gap-4">
+          <div class="flex dark:text-white sm:gap-4  justify-between">
             <p class="text-small">Chat with Rafikey</p>
             <span class="material-icons-outlined text-sm">arrow_forward</span>
           </div>
-        </div> -->
+        </div>
+<!--        <div-->
+<!--          @click.stop="startVoiceChat"-->
+<!--          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--        >-->
+<!--          <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+<!--            <span class="material-icons-outlined dark:text-white">mic_none</span>-->
+<!--          </div>-->
+<!--          <div class="flex dark:text-white gap-4">-->
+<!--            <p class="text-small">Chat with Rafikey</p>-->
+<!--            <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
 
       <div class="space-y-2 pt-10">
         <div class="flex justify-between sm:p-4">
-          <p class="dark:text-white text-extra-large">History</p>
-          <span class="text-purple-400 text-small">See all</span>
+          <p class="dark:text-white text-extra-large">Quick Access</p>
+<!--          <span class="text-purple-400 text-small">See all</span>-->
         </div>
         <div v-for="qn in accessQuestions" :key="qn.id">
           <div
@@ -230,43 +227,9 @@ const closeGameButton = () => {
           </div>
         </div>
       </div>
-
-<!--      <div class="fixed bottom-4 left-0 w-full">-->
-<!--        <div class="text-center pb-10">-->
-<!--          <p class="text-extra-large dark:text-white">Quick Links</p>-->
-<!--        </div>-->
-<!--        <div class="px-10 flex items-center justify-between">-->
-<!--          <div-->
-<!--            class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_5px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--          >-->
-<!--            <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />-->
-<!--          </div>-->
-<!--          <div-->
-<!--            class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--          >-->
-<!--            <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
-<!--          </div>-->
-<!--          <div-->
-<!--            class="sidebar-button-blue shadow-[0_0_32px_5px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--          >-->
-<!--            <img src="@/assets/images/learn.png" alt="lear-image" />-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
     </div>
   </div>
 </template>
 
 <style scoped>
-.sidebar-button-blue {
-  background-color: #2b42d1;
-}
-
-.sidebar-button-pink {
-  background-color: #d56d9c;
-}
-
-.sidebar-button-yellow {
-  background-color: #fae44b;
-}
 </style>

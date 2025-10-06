@@ -455,29 +455,29 @@ const darkBgColor = inject('darkBgColor')
                             />
                           </div>
                         </div>
-                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">
-                          <div class="flex px-10 justify-between w-full">
-                            <div
-                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img
-                                src="@/assets/images/talk-about-it.png"
-                                alt="talk-to-someone-image"
-                                class=""
-                              />
-                            </div>
-                            <div
-                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img src="@/assets/images/clinic.png" alt="clinic-image" />
-                            </div>
-                            <div
-                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"
-                            >
-                              <img src="@/assets/images/learn.png" alt="lear-image" />
-                            </div>
-                          </div>
-                        </div>
+<!--                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">-->
+<!--                          <div class="flex px-10 justify-between w-full">-->
+<!--                            <div-->
+<!--                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--                            >-->
+<!--                              <img-->
+<!--                                src="@/assets/images/talk-about-it.png"-->
+<!--                                alt="talk-to-someone-image"-->
+<!--                                class=""-->
+<!--                              />-->
+<!--                            </div>-->
+<!--                            <div-->
+<!--                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--                            >-->
+<!--                              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
+<!--                            </div>-->
+<!--                            <div-->
+<!--                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+<!--                            >-->
+<!--                              <img src="@/assets/images/learn.png" alt="lear-image" />-->
+<!--                            </div>-->
+<!--                          </div>-->
+<!--                        </div>-->
                       </div>
                     </div>
                     <!--        profile section-->
@@ -575,7 +575,7 @@ const darkBgColor = inject('darkBgColor')
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class="dark:text-white text-lg lg:text-xl">Are you sure?</p>
+            <p class="dark:text-white text-lg lg:text-xl">Are you Sure?</p>
             <span class="dark:text-white text-lg lg:text-lg">You want to log out?</span>
           </div>
         </template>
