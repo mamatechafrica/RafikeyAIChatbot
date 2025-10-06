@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores/rafikeyChatbotStore'
 import DialogModal from '@/components/DialogModal.vue'
-import { showSweetAlert } from '@/modules/alert.ts'
+import { showSweetAlert } from '@/composables/alert.ts'
 import { useRouter } from 'vue-router'
 
 
