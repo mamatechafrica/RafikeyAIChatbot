@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
-import { imageToggleSmallDevice } from '@/modules/imageToggle.ts'
+import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
 
 export interface RafikeyChatbot {
   chatbotName: string
