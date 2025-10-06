@@ -13,7 +13,6 @@ import moment from 'moment/moment'
 import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 import { useRouter } from 'vue-router'
 import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
-import { useMediaQuery } from '@vueuse/core'
 import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
 import UserBubbleGuest from '@/components/chat/bubble/UserBubbleGuest.vue'
@@ -23,7 +22,7 @@ const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
 const router = useRouter()
 const now = moment()
-const isSmallDevice = useMediaQuery('(max-width: 767px)')
+// const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 const formattedResponse = ref<string>('')
 
@@ -577,7 +576,7 @@ const accessButtonQuestionHandler = (message: string) => {
 <!--        <div>-->
 <!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
 <!--        </div>-->
-        <div class="flex items-end gap-2">
+        <div class="flex items-end gap-2" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pb-4' : 'pb-0']">
           <div class="">
             <button
               @click="loginHandler"
@@ -600,7 +599,7 @@ const accessButtonQuestionHandler = (message: string) => {
 
       <!--    hero section-->
       <div
-        class="space-y-8 pt-12"
+        class="space-y-8 pt-6"
         v-if="rafikeyChatbotStore.conversation.length < 1 && !props.sessionId"
       >
         <div class="space-y-1">
@@ -632,11 +631,11 @@ const accessButtonQuestionHandler = (message: string) => {
           </div>
         </div>
         <div class="flex justify-end">
-          <img src="@/assets/images/rafikey-hi.png" alt="rafikey-image" class="lg:w-60 w-40" />
+          <img src="@/assets/images/Rafikey-mascot.png" alt="rafikey-image" class="lg:w-60 w-40" />
         </div>
       </div>
       <!--    conversation section-->
-      <div class="py-10 h-full">
+      <div class="h-full">
         <ul>
           <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
             <UserBubbleGuest
@@ -676,10 +675,6 @@ const accessButtonQuestionHandler = (message: string) => {
         ref="userInputContainerHeightRef"
         class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
       >
-        <!--        <div-->
-        <!--          v-if="isBottom"-->
-        <!--          class="py-4 mt-6 bg-gradient-to-t from-main-color-light-color block"-->
-        <!--        ></div>-->
         <div
           class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6"
           :class="[
@@ -704,7 +699,6 @@ const accessButtonQuestionHandler = (message: string) => {
           </div>
         </div>
       </div>
-      <!--      <div id="userInputPlaceholder" class="pt-20"></div>-->
     </div>
     <div class="px-4 w-full md:hidden block">
       <div v-if="!isStartChatSmallScreen">
@@ -837,7 +831,7 @@ const accessButtonQuestionHandler = (message: string) => {
         <div
           v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
-          class="sticky w-full bottom-0 bg-white dark:bg-lightgray"
+          class="sticky w-full bottom-0 bg-red-400 dark:bg-lightgray"
         >
           <div
             class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6 fixed bottom-0"

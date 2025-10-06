@@ -20,7 +20,7 @@ import PersonalizationComponent from '@/components/tab/PersonalizationComponent.
 import SecurityComponent from '@/components/tab/SecurityComponent.vue'
 import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
 import FeebackDialog from '@/components/chat/FeebackDialog.vue'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import { useColorGenerator } from '@/composables/colorGenerator.ts'
 
 
 export interface HistoryConv {
@@ -63,8 +63,9 @@ const showPlayButton = () =>{
   } else {
     return
   }
-
 }
+
+
 
 const components = [
   {
@@ -519,7 +520,7 @@ onMounted(() => {
   const activeSessionId = route.params.sessionId as string
 
   // Set initial value for isShowInput
-  isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
+  // isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
 
   // We can only load chat history if the user is not on the new chat page
   if (!rafikeyChatbotStore.isNewChat) {
@@ -583,7 +584,7 @@ const cancelLogout = () =>{
 }
 
 const isShowInput = ref(false)
-const isSmallDevice = useMediaQuery('(max-width: 767px)')
+// const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
 
 // Checking for small devices and hiding the user input
@@ -594,11 +595,6 @@ watch(()=>rafikeyChatbotStore.isNewChat, (val)=>{
       isShowInput.value = true
     }
 })
-
-const termsConditionHandler = ()=>{
-  router.push({ name: 'privacy-policy-1' })
-  rafikeyChatbotStore.isShowTermsButton = false
-}
 
 const modeToggleHandler = useToggle(isDark)
 const isProfile = ref(false)
@@ -716,6 +712,7 @@ setColor()
 
 provide('bgColor', bgColor)
 provide('darkBgColor', darkBgColor)
+provide('showPlayButton', isShowPlayButton)
 </script>
 
 <template>
@@ -787,13 +784,6 @@ provide('darkBgColor', darkBgColor)
         >
           <div class="space-y-1">
             <div
-              @click.stop="termsConditionHandler"
-              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
-            >
-              <span class="material-icons-outlined dark:text-white !text-xl">article</span>
-              <span class="dark:text-white text-gray-700">Terms and Conditions</span>
-            </div>
-            <div
               @click="showSettingDialog = true"
               class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
             >
@@ -832,7 +822,7 @@ provide('darkBgColor', darkBgColor)
 
         <!--    text area-->
         <div
-          v-if="!rafikeyChatbotStore.isStreamError.hasError && isShowInput"
+          v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
