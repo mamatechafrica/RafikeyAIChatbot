@@ -36,7 +36,7 @@ const goBackHome = () =>{
 
     <div class="fixed bottom-3 space-y-4">
       <div class="flex justify-center">
-        <img alt="rafikey-image" src="@/assets/images/rafikey-hi.png" />
+        <img alt="rafikey-image" src="@/assets/images/Rafikey-mascot.png" class="w-40" />
       </div>
 
       <div class="w-3/4 md:w-full mx-auto text-center">
