@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 </script>
 <template>
   <div class="h-screen w-full dark:bg-lightgray ">

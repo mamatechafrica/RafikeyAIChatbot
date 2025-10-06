@@ -1,24 +1,14 @@
  <script setup lang="ts">
- import { computed } from 'vue'
- import imageLight from '@/assets/images/rafikey-icon-light.png'
- import imageDark from '@/assets/images/rafikey-icon-dark.png'
- import { useRafikeyChatbotStore } from '@/stores'
- import { toggleImage } from '@/modules/imageToggle.ts'
+ import { toggleImage } from '@/composables/imageToggle.ts'
  import AuthLoadingButtons from '@/components/chat/AuthLoadingButtons.vue'
 
-
- // const chatbotStore = useRafikeyChatbotStore()
- //
- // const toggleImage = computed(()=>{
- //   return chatbotStore.isDarkMode? imageDark : imageLight
- // })
 
 </script>
 
 <template>
-  <div class="min-h-screen  dark:bg-lightgray flex  justify-center items-center flex-col py-10 w-full">
+  <div class="min-h-screen flex justify-center md:block flex-col w-full space-y-5 dark:bg-lightgray">
 
-    <div class=" md:flex hidden  justify-start items-center">
+    <div class="md:flex hidden justify-center  items-center">
       <img :src='toggleImage()' alt="rafikey-logo" class="w-44"  />
     </div>
       <div class=" w-10/12 mx-auto space-y-4  flex flex-col items-center py-10 bg-lightBackground dark:bg-darkgray rounded-2xl">

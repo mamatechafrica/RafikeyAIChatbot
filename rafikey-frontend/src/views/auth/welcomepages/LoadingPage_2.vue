@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { toggleImage } from '@/modules/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 import AuthLoadingButtons from '@/components/chat/AuthLoadingButtons.vue'
 
 </script>
 
 <template>
   <div
-    class="relative h-screen flex justify-center md:block s flex-col w-full space-y-5 dark:bg-lightgray"
+    class="min-h-screen flex justify-center md:block flex-col w-full space-y-5 dark:bg-lightgray"
   >
     <div class=" md:flex hidden justify-center  items-center">
       <img :src='toggleImage()' alt="rafikey-logo" class="w-44"  />
