@@ -15,9 +15,9 @@ import { useRouter } from 'vue-router'
 import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
 import { useMediaQuery } from '@vueuse/core'
 import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
+import { useColorGenerator } from '@/composables/colorGenerator.ts'
 import UserBubbleGuest from '@/components/chat/bubble/UserBubbleGuest.vue'
-import { toggleImage} from '@/modules/imageToggle.ts'
+import { toggleImage} from '@/composables/imageToggle.ts'
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
@@ -449,6 +449,7 @@ const props = defineProps<{
   sessionId: string | null
 }>()
 onMounted(() => {
+  rafikeyChatbotStore.conversation = []
   setTimeout(() => {
     isShowDisclaimer.value = true
   }, 3000)
