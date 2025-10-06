@@ -152,10 +152,6 @@ const sendRequest = () => {
       </div>
 
       <div>
-        <button class="btn btn-sm btn-ghost hover:bg-transparent hover:border-none focus:outline-none">
-          <span class="material-icons !text-xl dark:text-white">mic</span>
-        </button>
-
         <button
           v-if="hasText && !props.isGenerating"
           class="btn btn-sm btn-ghost btn-circle"

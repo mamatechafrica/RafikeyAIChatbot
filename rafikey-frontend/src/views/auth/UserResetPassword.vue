@@ -2,9 +2,9 @@
 import { reactive, watch, computed, ref } from 'vue'
 import { useField } from 'vee-validate'
 import { useAuthStore } from '@/stores'
-import { showSweetAlert } from '@/modules/alert.ts'
+import { showSweetAlert } from '@/composables/alert.ts'
 import { useRouter } from 'vue-router'
-import { toggleImage, imageToggleSmallDevice} from '@/modules/imageToggle.ts'
+import { toggleImage, imageToggleSmallDevice} from '@/composables/imageToggle.ts'
 
 
 

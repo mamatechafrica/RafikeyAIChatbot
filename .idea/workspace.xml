@@ -4,11 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add imageToggleSmallDevice  function">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove images">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Rafikey-mascot-x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Rafikey-mascot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access1Dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access1Light.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access2Dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/access2Light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FeebackDialog.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/alert.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/alert.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/colorGenerator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/colorGenerator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/modules/imageToggle.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/imageToggle.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserForgotPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserResetPassword.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingSpinner.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/TermsCondition.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_1.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_4.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_3.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/WelcomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,35 +67,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.clear-pub.executor": "Run",
-    "npm.serve.executor": "Run",
-    "npm.sync-pub.executor": "Run",
-    "npm.zip-pub.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.clear-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.serve.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sync-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.zip-pub.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
@@ -273,119 +303,12 @@
       <workItem from="1759147917436" duration="20000" />
       <workItem from="1759150291353" duration="9235000" />
       <workItem from="1759204381721" duration="10801000" />
-      <workItem from="1759383311033" duration="21658000" />
-    </task>
-    <task id="LOCAL-00493" summary="add selectedRadio function">
-      <option name="closed" value="true" />
-      <created>1758721851006</created>
-      <option name="number" value="00493" />
-      <option name="presentableId" value="LOCAL-00493" />
-      <option name="project" value="LOCAL" />
-      <updated>1758721851006</updated>
-    </task>
-    <task id="LOCAL-00494" summary="add QuestionItem component">
-      <option name="closed" value="true" />
-      <created>1758721936072</created>
-      <option name="number" value="00494" />
-      <option name="presentableId" value="LOCAL-00494" />
-      <option name="project" value="LOCAL" />
-      <updated>1758721936072</updated>
-    </task>
-    <task id="LOCAL-00495" summary="add QuestionItem component">
-      <option name="closed" value="true" />
-      <created>1758721955114</created>
-      <option name="number" value="00495" />
-      <option name="presentableId" value="LOCAL-00495" />
-      <option name="project" value="LOCAL" />
-      <updated>1758721955114</updated>
-    </task>
-    <task id="LOCAL-00496" summary="pass score">
-      <option name="closed" value="true" />
-      <created>1758725129885</created>
-      <option name="number" value="00496" />
-      <option name="presentableId" value="LOCAL-00496" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725129885</updated>
-    </task>
-    <task id="LOCAL-00497" summary="add image">
-      <option name="closed" value="true" />
-      <created>1758725139997</created>
-      <option name="number" value="00497" />
-      <option name="presentableId" value="LOCAL-00497" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725139997</updated>
-    </task>
-    <task id="LOCAL-00498" summary="reset score and totalQuestions">
-      <option name="closed" value="true" />
-      <created>1758725249224</created>
-      <option name="number" value="00498" />
-      <option name="presentableId" value="LOCAL-00498" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725249224</updated>
-    </task>
-    <task id="LOCAL-00499" summary="add score and totalQuestions on localstorage">
-      <option name="closed" value="true" />
-      <created>1758725281513</created>
-      <option name="number" value="00499" />
-      <option name="presentableId" value="LOCAL-00499" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725281513</updated>
-    </task>
-    <task id="LOCAL-00500" summary="return score and totalQuestions">
-      <option name="closed" value="true" />
-      <created>1758725302676</created>
-      <option name="number" value="00500" />
-      <option name="presentableId" value="LOCAL-00500" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725302676</updated>
-    </task>
-    <task id="LOCAL-00501" summary="increament score and totalQuestions">
-      <option name="closed" value="true" />
-      <created>1758725350250</created>
-      <option name="number" value="00501" />
-      <option name="presentableId" value="LOCAL-00501" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725350250</updated>
-    </task>
-    <task id="LOCAL-00502" summary="increament score and totalQuestions">
-      <option name="closed" value="true" />
-      <created>1758725356511</created>
-      <option name="number" value="00502" />
-      <option name="presentableId" value="LOCAL-00502" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725356511</updated>
-    </task>
-    <task id="LOCAL-00503" summary="remove emoji imports">
-      <option name="closed" value="true" />
-      <created>1758725643793</created>
-      <option name="number" value="00503" />
-      <option name="presentableId" value="LOCAL-00503" />
-      <option name="project" value="LOCAL" />
-      <updated>1758725643793</updated>
-    </task>
-    <task id="LOCAL-00504" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1758800994422</created>
-      <option name="number" value="00504" />
-      <option name="presentableId" value="LOCAL-00504" />
-      <option name="project" value="LOCAL" />
-      <updated>1758800994423</updated>
-    </task>
-    <task id="LOCAL-00505" summary="add manifest images">
-      <option name="closed" value="true" />
-      <created>1758801061432</created>
-      <option name="number" value="00505" />
-      <option name="presentableId" value="LOCAL-00505" />
-      <option name="project" value="LOCAL" />
-      <updated>1758801061432</updated>
-    </task>
-    <task id="LOCAL-00506" summary="add manifest file">
-      <option name="closed" value="true" />
-      <created>1758801082645</created>
-      <option name="number" value="00506" />
-      <option name="presentableId" value="LOCAL-00506" />
-      <option name="project" value="LOCAL" />
-      <updated>1758801082646</updated>
+      <workItem from="1759383311033" duration="27465000" />
+      <workItem from="1759467479122" duration="6783000" />
+      <workItem from="1759483959640" duration="68000" />
+      <workItem from="1759484050663" duration="24000" />
+      <workItem from="1759499595946" duration="3600000" />
+      <workItem from="1759725999673" duration="30593000" />
     </task>
     <task id="LOCAL-00507" summary="add vite-plugin-pwa package">
       <option name="closed" value="true" />
@@ -667,7 +590,119 @@
       <option name="project" value="LOCAL" />
       <updated>1759405929227</updated>
     </task>
-    <option name="localTasksCounter" value="542" />
+    <task id="LOCAL-00542" summary="remove LoadingSpinner component">
+      <option name="closed" value="true" />
+      <created>1759406028551</created>
+      <option name="number" value="00542" />
+      <option name="presentableId" value="LOCAL-00542" />
+      <option name="project" value="LOCAL" />
+      <updated>1759406028551</updated>
+    </task>
+    <task id="LOCAL-00543" summary="remove LoadingSpinner component">
+      <option name="closed" value="true" />
+      <created>1759406106607</created>
+      <option name="number" value="00543" />
+      <option name="presentableId" value="LOCAL-00543" />
+      <option name="project" value="LOCAL" />
+      <updated>1759406106607</updated>
+    </task>
+    <task id="LOCAL-00544" summary="add bg-color and dark-bg-color props">
+      <option name="closed" value="true" />
+      <created>1759406251053</created>
+      <option name="number" value="00544" />
+      <option name="presentableId" value="LOCAL-00544" />
+      <option name="project" value="LOCAL" />
+      <updated>1759406251053</updated>
+    </task>
+    <task id="LOCAL-00545" summary="remove manifest.json file">
+      <option name="closed" value="true" />
+      <created>1759406986639</created>
+      <option name="number" value="00545" />
+      <option name="presentableId" value="LOCAL-00545" />
+      <option name="project" value="LOCAL" />
+      <updated>1759406986639</updated>
+    </task>
+    <task id="LOCAL-00546" summary="remove https-localhost package">
+      <option name="closed" value="true" />
+      <created>1759408113051</created>
+      <option name="number" value="00546" />
+      <option name="presentableId" value="LOCAL-00546" />
+      <option name="project" value="LOCAL" />
+      <updated>1759408113051</updated>
+    </task>
+    <task id="LOCAL-00547" summary="add useColorGenerator">
+      <option name="closed" value="true" />
+      <created>1759410098860</created>
+      <option name="number" value="00547" />
+      <option name="presentableId" value="LOCAL-00547" />
+      <option name="project" value="LOCAL" />
+      <updated>1759410098861</updated>
+    </task>
+    <task id="LOCAL-00548" summary="add darkBgColor, bgColor dynamic class">
+      <option name="closed" value="true" />
+      <created>1759410180517</created>
+      <option name="number" value="00548" />
+      <option name="presentableId" value="LOCAL-00548" />
+      <option name="project" value="LOCAL" />
+      <updated>1759410180517</updated>
+    </task>
+    <task id="LOCAL-00549" summary="add imageToggleSmallDevice function">
+      <option name="closed" value="true" />
+      <created>1759470229653</created>
+      <option name="number" value="00549" />
+      <option name="presentableId" value="LOCAL-00549" />
+      <option name="project" value="LOCAL" />
+      <updated>1759470229653</updated>
+    </task>
+    <task id="LOCAL-00550" summary="add imageToggleSmallDevice function">
+      <option name="closed" value="true" />
+      <created>1759470259727</created>
+      <option name="number" value="00550" />
+      <option name="presentableId" value="LOCAL-00550" />
+      <option name="project" value="LOCAL" />
+      <updated>1759470259727</updated>
+    </task>
+    <task id="LOCAL-00551" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1759470432403</created>
+      <option name="number" value="00551" />
+      <option name="presentableId" value="LOCAL-00551" />
+      <option name="project" value="LOCAL" />
+      <updated>1759470432403</updated>
+    </task>
+    <task id="LOCAL-00552" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1759470586775</created>
+      <option name="number" value="00552" />
+      <option name="presentableId" value="LOCAL-00552" />
+      <option name="project" value="LOCAL" />
+      <updated>1759470586775</updated>
+    </task>
+    <task id="LOCAL-00553" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1759472003755</created>
+      <option name="number" value="00553" />
+      <option name="presentableId" value="LOCAL-00553" />
+      <option name="project" value="LOCAL" />
+      <updated>1759472003755</updated>
+    </task>
+    <task id="LOCAL-00554" summary="add custom class">
+      <option name="closed" value="true" />
+      <created>1759472776997</created>
+      <option name="number" value="00554" />
+      <option name="presentableId" value="LOCAL-00554" />
+      <option name="project" value="LOCAL" />
+      <updated>1759472776997</updated>
+    </task>
+    <task id="LOCAL-00555" summary="remove images">
+      <option name="closed" value="true" />
+      <created>1759761995369</created>
+      <option name="number" value="00555" />
+      <option name="presentableId" value="LOCAL-00555" />
+      <option name="project" value="LOCAL" />
+      <updated>1759761995370</updated>
+    </task>
+    <option name="localTasksCounter" value="556" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,17 +720,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add styling" />
-    <MESSAGE value="add bgColor and darkbgColor inject" />
-    <MESSAGE value="add useColorGenerator composable" />
-    <MESSAGE value="add setColor function call" />
-    <MESSAGE value="add bgColor and darkbgColor provide" />
-    <MESSAGE value="remove fonts" />
-    <MESSAGE value="add changa and outfit fonts" />
     <MESSAGE value="add imageToggleSmallDevice import" />
-    <MESSAGE value="remove images" />
     <MESSAGE value="add function login for user avator" />
-    <MESSAGE value="add bg-color and dark-bg-color props" />
     <MESSAGE value="add rafikey logo" />
     <MESSAGE value="add UserBubbleGuest component" />
     <MESSAGE value="add dynamic class" />
@@ -705,12 +731,21 @@
     <MESSAGE value="add https-localhost package" />
     <MESSAGE value="edit font-family" />
     <MESSAGE value="toggle show userInput component" />
-    <MESSAGE value="add imageToggleSmallDevice function" />
     <MESSAGE value="add image files" />
     <MESSAGE value="add  font-outfit" />
     <MESSAGE value="remove LoadingPage_3 component" />
     <MESSAGE value="add imageToggleSmallDevice  function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add imageToggleSmallDevice  function" />
+    <MESSAGE value="remove LoadingSpinner component" />
+    <MESSAGE value="add bg-color and dark-bg-color props" />
+    <MESSAGE value="remove manifest.json file" />
+    <MESSAGE value="remove https-localhost package" />
+    <MESSAGE value="add useColorGenerator" />
+    <MESSAGE value="add darkBgColor, bgColor dynamic class" />
+    <MESSAGE value="add imageToggleSmallDevice function" />
+    <MESSAGE value="add styling" />
+    <MESSAGE value="add custom class" />
+    <MESSAGE value="remove images" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -722,17 +757,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
-          <line>307</line>
+          <line>294</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue</url>
-          <line>2</line>
+          <line>1</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>736</line>
+          <line>734</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -747,7 +782,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue</url>
-          <line>629</line>
+          <line>626</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -757,12 +792,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue</url>
-          <line>21</line>
+          <line>18</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue</url>
-          <line>762</line>
+          <line>760</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -773,14 +808,18 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue</url>
           <line>1</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/welcomepages/LoadingPage_2.vue</url>
           <line>1</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
+          <line>632</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

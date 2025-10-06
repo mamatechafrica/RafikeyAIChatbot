@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import LoadingPage_1 from '@/views/auth/welcomepages/LoadingPage_1.vue'
 import LoadingPage_2 from '@/views/auth/welcomepages/LoadingPage_2.vue'
-import LoadingPage_4 from '@/views/auth/welcomepages/LoadingPage_4.vue'
+import LoadingPage3 from '@/views/auth/welcomepages/LoadingPage_3.vue'
 import { useRouter } from 'vue-router'
 import { shallowRef, ref } from 'vue'
 
 const router = useRouter()
-const delayTime = ref(3000)
+const delayTime = ref(4000)
 
 const pages = [
   {
@@ -17,31 +17,17 @@ const pages = [
     component: LoadingPage_2,
     delay: delayTime,
   },
-  // {
-  //   component: LoadingPage_3,
-  //   delay: delayTime,
-  // },
   {
-    component: LoadingPage_4,
+    component: LoadingPage3,
     delay: delayTime,
   },
 ]
 
-// watch(
-//   () => chatbotStore.isMoveNext,
-//   (newValue) => {
-//     if (newValue) {
-//       delayTime.value = 0
-//       displayPages()
-//     }
-//   },
-// )
 const currentPageIndex = ref(0)
 const currentPage = shallowRef(pages[currentPageIndex.value].component)
 
 // displaying the welcome pages before the signup pages
 const displayPages = () => {
-  // console.log('Here********', currentPage.value)
   if (currentPageIndex.value < pages.length) {
     setTimeout(() => {
       currentPageIndex.value++
