@@ -5,7 +5,6 @@ import { get } from 'lodash';
 import { useAuthStore } from '@/stores/authStore.ts'
 import type { Answer } from '@/components/game/QuestionItem.vue'
 import type { Feedback } from '@/components/chat/FeebackDialog.vue'
-import { useColorGenerator } from '@/modules/colorGenerator.ts'
 
 
 interface ChatbotConversationPayload {
@@ -57,23 +56,14 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const isDarkMode = useStorage("isDarkMode", false)
   const previousRoute =  useStorage("previousRoute", '')
   const isNewChat = useStorage("isNewChat", true)
-  const isShowTermsButton = useStorage("isShowTermsButton", true)
   const isAnonymous = ref<boolean>(false)
   const isMoveNext = ref(false)
   const correctAnswer = ref<CorrectAnswer>()
   const isSelected = ref(false)
   const totalQuestions =useStorage("totalQuestions", 0)
   const score = useStorage('score', 0)
-  // const userString = authStore.user;
-  // let username = '';
-  // try {
-  //   if (userString) {
-  //     username = JSON.parse(userString).username || 'ME';
-  //   }
-  // } catch (e) {
-  //   username = 'ME';
-  // }
-  // const {textColor, darkBgColor, bgColor, setColor} = useColorGenerator(username)
+  const isShowPlayButton = ref(false)
+
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
@@ -564,7 +554,6 @@ const otherSettings = useStorage("otherSettings", {})
     setRegenerateResponse,
     regenerateUserInput,
     isDark,
-    isShowTermsButton,
     accessButtonRequest,
     setAccessButtonRequest,
     isAnonymous,
@@ -584,12 +573,8 @@ const otherSettings = useStorage("otherSettings", {})
     isSelected,
     ratingFeedback,
     score,
-    totalQuestions
-
-
-
-
-
+    totalQuestions,
+    isShowPlayButton
     // setRegenerateInput
 
   }
