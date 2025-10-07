@@ -4,21 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add copilot migration">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/Rafikey Logo (Light Mode).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/android-launchericon-192-192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x192.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x384.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x72.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/icons/maskable_icon_x96.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub Max).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy A51_71).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy S20 Ultra).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Surface Pro 7).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(iPhone 14 Pro Max).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-updates.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/usePWA.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/vite-env.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Frame 427318355 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Frame 427318356 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/Frame 427318357 1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/clinic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/learn.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-avator.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-hi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-icon-dark.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-icon-light.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafikey-key.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +60,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/components/chat",
+    "last_opened_file_path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,11 +85,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/chat" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/composables" />
+      <recent name="$PROJECT_DIR$/rafikey-frontend" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/public" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/stores" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/error" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rafikey-frontend/public/icons" />
@@ -289,31 +296,8 @@
       <workItem from="1759484050663" duration="24000" />
       <workItem from="1759499595946" duration="3600000" />
       <workItem from="1759725999673" duration="31868000" />
-      <workItem from="1759769082513" duration="5819000" />
-    </task>
-    <task id="LOCAL-00523" summary="add rafikey logo">
-      <option name="closed" value="true" />
-      <created>1759405024341</created>
-      <option name="number" value="00523" />
-      <option name="presentableId" value="LOCAL-00523" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405024341</updated>
-    </task>
-    <task id="LOCAL-00524" summary="add UserBubbleGuest component">
-      <option name="closed" value="true" />
-      <created>1759405072928</created>
-      <option name="number" value="00524" />
-      <option name="presentableId" value="LOCAL-00524" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405072928</updated>
-    </task>
-    <task id="LOCAL-00525" summary="add dynamic class">
-      <option name="closed" value="true" />
-      <created>1759405179291</created>
-      <option name="number" value="00525" />
-      <option name="presentableId" value="LOCAL-00525" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405179291</updated>
+      <workItem from="1759769082513" duration="6463000" />
+      <workItem from="1759836498131" duration="2797000" />
     </task>
     <task id="LOCAL-00526" summary="add toggleImage function">
       <option name="closed" value="true" />
@@ -683,7 +667,31 @@
       <option name="project" value="LOCAL" />
       <updated>1759774359047</updated>
     </task>
-    <option name="localTasksCounter" value="572" />
+    <task id="LOCAL-00572" summary="remove images">
+      <option name="closed" value="true" />
+      <created>1759775044504</created>
+      <option name="number" value="00572" />
+      <option name="presentableId" value="LOCAL-00572" />
+      <option name="project" value="LOCAL" />
+      <updated>1759775044504</updated>
+    </task>
+    <task id="LOCAL-00573" summary="add copilot migration">
+      <option name="closed" value="true" />
+      <created>1759775291657</created>
+      <option name="number" value="00573" />
+      <option name="presentableId" value="LOCAL-00573" />
+      <option name="project" value="LOCAL" />
+      <updated>1759775291657</updated>
+    </task>
+    <task id="LOCAL-00574" summary="add copilot migration">
+      <option name="closed" value="true" />
+      <created>1759775302908</created>
+      <option name="number" value="00574" />
+      <option name="presentableId" value="LOCAL-00574" />
+      <option name="project" value="LOCAL" />
+      <updated>1759775302908</updated>
+    </task>
+    <option name="localTasksCounter" value="575" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,7 +709,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add image files" />
     <MESSAGE value="add  font-outfit" />
     <MESSAGE value="remove LoadingPage_3 component" />
     <MESSAGE value="add imageToggleSmallDevice  function" />
@@ -712,7 +719,6 @@
     <MESSAGE value="add useColorGenerator" />
     <MESSAGE value="add darkBgColor, bgColor dynamic class" />
     <MESSAGE value="add custom class" />
-    <MESSAGE value="remove images" />
     <MESSAGE value="remove mic icon" />
     <MESSAGE value="add isTermsCondition data" />
     <MESSAGE value="add images" />
@@ -726,7 +732,9 @@
     <MESSAGE value="add rafikey mascot" />
     <MESSAGE value="add favicon image" />
     <MESSAGE value="add styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="add styling" />
+    <MESSAGE value="remove images" />
+    <MESSAGE value="add copilot migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="add copilot migration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,6 +763,12 @@
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/terms&amp;conditions/PrivacyPolicy_2.vue</url>
           <line>1</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue</url>
+          <line>55</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
