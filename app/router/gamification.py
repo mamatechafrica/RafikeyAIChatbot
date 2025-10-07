@@ -134,6 +134,22 @@ def delete_quiz(quiz_id: int, session: SessionDep):
     quiz = session.get(Quiz, quiz_id)
     if not quiz:
         raise HTTPException(status_code=404, detail="Quiz not found")
+
+    # Delete all related Options and Feedbacks for each Question
+    questions = session.exec(select(Question).where(Question.quiz_id == quiz_id)).all()
+    for question in questions:
+        # Delete Options
+        options = session.exec(select(Option).where(Option.question_id == question.id)).all()
+        for option in options:
+            session.delete(option)
+        # Delete Feedbacks
+        feedbacks = session.exec(select(Feedback).where(Feedback.question_id == question.id)).all()
+        for feedback in feedbacks:
+            session.delete(feedback)
+        # Delete Question
+        session.delete(question)
+
+    # Delete the Quiz
     session.delete(quiz)
     session.commit()
     return
