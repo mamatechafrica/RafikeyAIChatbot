@@ -53,6 +53,45 @@ const updateAppHandler = () =>{
       </template>
     </RouterView>
   </div>
+  <teleport to="body">
+    <DialogModal :is-open="isShowDialog" @close="isShowDialog = false">
+      <template #title>
+        <div class="flex flex-col items-center justify-center">
+          <p class="dark:text-white font-bold md:text-extra-large text-large">Rafikey Updates</p>
+          <img alt="rafikey-update-image" src="@/assets/images/rafikey-updates.svg" class="w-10"/>
+        </div>
+      </template>
+      <template #body>
+        <div class="flex flex-col text-center items-center">
+          <p class="dark:text-white">It seems you're using an older app version. Update for the newest features and experience.</p>
+        </div>
+      </template>
+      <template #footer>
+        <div class="flex  w-full">
+          <div class="flex gap-8">
+            <button
+              class="rounded-lg w-full btn shadow-none border-none bg-button-light offset-none outline-none "
+              @click="dontUpdateAppHandler"
+            >
+              Cancel
+            </button>
+            <button
+              class="rounded-lg w-full btn bg-transparent shadow-none border-button-light"
+              @click="updateAppHandler"
+            >
+              <span v-if="!isLoadingUpdates" class="text-button-light">  Refresh</span>
+              <span v-else class="loading loading-spinner loading-sm text-button-light"></span>
+
+            </button>
+          </div>
+
+
+        </div>
+
+
+      </template>
+    </DialogModal>
+  </teleport>
 
 </template>
 
