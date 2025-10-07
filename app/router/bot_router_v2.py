@@ -98,43 +98,79 @@ class ChatInput(BaseModel):
     session_id: Optional[str] = None
 
 
-async def generate_title_from_responses(responses: list[str]) -> str:
-    """Generate a conversation title based on the first few AI responses"""
+async def generate_title_from_conversation(user_messages: list[str], bot_responses: list[str]) -> str:
+    """Generate a conversation title based on user questions and bot responses"""
     try:
         # Initialize OpenAI model for title generation
         title_model = ChatOpenAI(
             model="gpt-4o-mini", 
             api_key=os.getenv("OPENAI_API_KEY"),
-            temperature=0.3
+            temperature=0.5  # Slightly higher for more creative titles
         )
         
-        # Combine the responses into a single text
-        combined_responses = "\n".join(responses[:5])  # Use first 5 responses
+        # Combine user messages and bot responses into conversation format
+        # Use first 3-4 exchanges for better context
+        conversation_text = ""
+        max_exchanges = min(4, len(user_messages), len(bot_responses))
         
-        # Create prompt for title generation
-        title_prompt = f"""Based on the following AI responses from a conversation, generate a short, descriptive title (maximum 6 words) that captures the main topic or theme of the conversation:
+        for i in range(max_exchanges):
+            if i < len(user_messages):
+                conversation_text += f"User: {user_messages[i]}\n"
+            if i < len(bot_responses):
+                # Truncate long responses to keep the prompt manageable
+                response_preview = bot_responses[i][:300] if len(bot_responses[i]) > 300 else bot_responses[i]
+                conversation_text += f"Rafiki: {response_preview}\n\n"
+        
+        # Enhanced prompt for better title generation
+        title_prompt = f"""You are generating a concise, descriptive title for a health conversation between a user and Rafiki (a sexual and reproductive health chatbot).
 
-{combined_responses}
+Based on this conversation excerpt:
 
-Generate only the title, nothing else. Make it concise and relevant to the main topic discussed."""
+{conversation_text}
+
+Generate a SHORT title (3-6 words maximum) that captures the MAIN health topic discussed. 
+
+Guidelines:
+- Focus on the PRIMARY health concern or topic (e.g., "Contraception Options", "STI Testing", "Period Pain")
+- Use clear, straightforward language
+- Be respectful and non-judgmental
+- Avoid using the user's name or personal details
+- Keep it under 6 words
+- Make it specific enough to be useful but general enough to protect privacy
+
+Examples of good titles:
+- "Birth Control Methods"
+- "STI Testing Locations"
+- "Irregular Period Concerns"
+- "Pregnancy Questions"
+- "Relationship Consent"
+
+Generate ONLY the title, nothing else:"""
         
         # Generate title
         response = await title_model.ainvoke(title_prompt)
         title = response.content.strip()
         
+        # Clean up the title (remove quotes if present)
+        title = title.strip('"').strip("'")
+        
         # Ensure title is not too long
-        if len(title) > 50:
-            title = title[:47] + "..."
+        if len(title) > 60:
+            title = title[:57] + "..."
+        
+        # Ensure we got something valid
+        if not title or len(title) < 3:
+            return "New Chat"
             
         return title
         
     except Exception as e:
         print(f"Error generating title: {e}")
-        return "Conversation"  # Fallback title
+        return "New Chat"  # Updated fallback title
     
 
 async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep):
-    """Update conversation title when we have enough responses"""
+    """Update conversation title when we have enough messages (at least 2-3 exchanges)"""
     try:
         # Get all conversations for this thread and user ordered by timestamp
         statement = select(Conversations).where(
@@ -143,15 +179,18 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
         ).order_by(Conversations.timestamp.asc())
         conversations = db.exec(statement).all()
         
-        if len(conversations) >= 5:
+        # Generate title after at least 3 exchanges (6 messages total)
+        # This ensures we have enough context for a meaningful title
+        if len(conversations) >= 3:
             # Check if title has already been generated
             first_conv = conversations[0]
-            if first_conv.title is None or first_conv.title == "":
-                # Get the first 5 bot responses
-                bot_responses = [conv.bot_response for conv in conversations[:5]]
+            if first_conv.title is None or first_conv.title == "" or first_conv.title == "New Chat":
+                # Extract user messages and bot responses separately
+                user_messages = [conv.user_message for conv in conversations[:4]]
+                bot_responses = [conv.bot_response for conv in conversations[:4]]
                 
-                # Generate title
-                title = await generate_title_from_responses(bot_responses)
+                # Generate title using both user questions and bot responses
+                title = await generate_title_from_conversation(user_messages, bot_responses)
                 
                 # Update ALL conversations in this thread for this user with the title
                 from sqlmodel import update
@@ -171,6 +210,7 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
                 
     except Exception as e:
         print(f"Error updating conversation title: {e}")
+        db.rollback()  # Rollback on error to prevent partial updates
 
 
 
@@ -222,19 +262,21 @@ async def generate_stream_response(user_input: str, thread_id: str, user_id: int
                 yield chunk.content
 
     # Store the conversation in the database with user_id
+    # Set initial title as "New Chat" for new conversations
     conversation = Conversations(
         thread_id=thread_id, 
         user_message=user_input,
         bot_response=full_response,
         timestamp=datetime.utcnow(),
-        user_id=user_id  # Add user_id to link conversation to user
+        user_id=user_id,  # Add user_id to link conversation to user
+        title="New Chat"  # Set default title
     )
 
     db.add(conversation)
     db.commit()
     db.refresh(conversation)
 
-    # Check if we should generate a title (after 5 responses)
+    # Check if we should generate a meaningful title (after 3 exchanges)
     await update_conversation_title(thread_id, user_id, db)
 
 @router.post('/anonymous_chat')
