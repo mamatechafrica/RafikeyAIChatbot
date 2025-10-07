@@ -10,12 +10,11 @@ import os
 
 load_dotenv()
 
-GROQ_API_KEY = os.getenv("GROK_API_KEY")
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 
-model = ChatGroq(model="llama-3.3-70b-versatile", api_key=GROQ_API_KEY)
 model = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
 
 
