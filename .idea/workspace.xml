@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove launcher image">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove SRHRGameButton">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/TabComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/TabComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,63 +288,7 @@
       <workItem from="1759725999673" duration="31868000" />
       <workItem from="1759769082513" duration="6463000" />
       <workItem from="1759836498131" duration="4119000" />
-      <workItem from="1759897328520" duration="2731000" />
-    </task>
-    <task id="LOCAL-00537" summary="add imageToggleSmallDevice function">
-      <option name="closed" value="true" />
-      <created>1759405717209</created>
-      <option name="number" value="00537" />
-      <option name="presentableId" value="LOCAL-00537" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405717209</updated>
-    </task>
-    <task id="LOCAL-00538" summary="add image files">
-      <option name="closed" value="true" />
-      <created>1759405747247</created>
-      <option name="number" value="00538" />
-      <option name="presentableId" value="LOCAL-00538" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405747247</updated>
-    </task>
-    <task id="LOCAL-00539" summary="add  font-outfit">
-      <option name="closed" value="true" />
-      <created>1759405829056</created>
-      <option name="number" value="00539" />
-      <option name="presentableId" value="LOCAL-00539" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405829056</updated>
-    </task>
-    <task id="LOCAL-00540" summary="remove LoadingPage_3 component">
-      <option name="closed" value="true" />
-      <created>1759405891793</created>
-      <option name="number" value="00540" />
-      <option name="presentableId" value="LOCAL-00540" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405891793</updated>
-    </task>
-    <task id="LOCAL-00541" summary="add imageToggleSmallDevice  function">
-      <option name="closed" value="true" />
-      <created>1759405929227</created>
-      <option name="number" value="00541" />
-      <option name="presentableId" value="LOCAL-00541" />
-      <option name="project" value="LOCAL" />
-      <updated>1759405929227</updated>
-    </task>
-    <task id="LOCAL-00542" summary="remove LoadingSpinner component">
-      <option name="closed" value="true" />
-      <created>1759406028551</created>
-      <option name="number" value="00542" />
-      <option name="presentableId" value="LOCAL-00542" />
-      <option name="project" value="LOCAL" />
-      <updated>1759406028551</updated>
-    </task>
-    <task id="LOCAL-00543" summary="remove LoadingSpinner component">
-      <option name="closed" value="true" />
-      <created>1759406106607</created>
-      <option name="number" value="00543" />
-      <option name="presentableId" value="LOCAL-00543" />
-      <option name="project" value="LOCAL" />
-      <updated>1759406106607</updated>
+      <workItem from="1759897328520" duration="24627000" />
     </task>
     <task id="LOCAL-00544" summary="add bg-color and dark-bg-color props">
       <option name="closed" value="true" />
@@ -676,7 +626,63 @@
       <option name="project" value="LOCAL" />
       <updated>1759841543989</updated>
     </task>
-    <option name="localTasksCounter" value="586" />
+    <task id="LOCAL-00586" summary="add goToPlayPage">
+      <option name="closed" value="true" />
+      <created>1759900138115</created>
+      <option name="number" value="00586" />
+      <option name="presentableId" value="LOCAL-00586" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900138115</updated>
+    </task>
+    <task id="LOCAL-00587" summary="remove condition">
+      <option name="closed" value="true" />
+      <created>1759900178873</created>
+      <option name="number" value="00587" />
+      <option name="presentableId" value="LOCAL-00587" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900178873</updated>
+    </task>
+    <task id="LOCAL-00588" summary="add play game div">
+      <option name="closed" value="true" />
+      <created>1759900211354</created>
+      <option name="number" value="00588" />
+      <option name="presentableId" value="LOCAL-00588" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900211354</updated>
+    </task>
+    <task id="LOCAL-00589" summary="add notification alert">
+      <option name="closed" value="true" />
+      <created>1759900255763</created>
+      <option name="number" value="00589" />
+      <option name="presentableId" value="LOCAL-00589" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900255763</updated>
+    </task>
+    <task id="LOCAL-00590" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1759900335837</created>
+      <option name="number" value="00590" />
+      <option name="presentableId" value="LOCAL-00590" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900335837</updated>
+    </task>
+    <task id="LOCAL-00591" summary="remove isShowPlayButton">
+      <option name="closed" value="true" />
+      <created>1759900386897</created>
+      <option name="number" value="00591" />
+      <option name="presentableId" value="LOCAL-00591" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900386897</updated>
+    </task>
+    <task id="LOCAL-00592" summary="remove SRHRGameButton">
+      <option name="closed" value="true" />
+      <created>1759900414808</created>
+      <option name="number" value="00592" />
+      <option name="presentableId" value="LOCAL-00592" />
+      <option name="project" value="LOCAL" />
+      <updated>1759900414808</updated>
+    </task>
+    <option name="localTasksCounter" value="593" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,19 +700,12 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove mic icon" />
-    <MESSAGE value="add isTermsCondition data" />
-    <MESSAGE value="add images" />
-    <MESSAGE value="clear conversation container on onMounted" />
-    <MESSAGE value="add  isShowPlayButton flag" />
-    <MESSAGE value="add imageToggleSmallDevice function" />
     <MESSAGE value="add ui styling" />
     <MESSAGE value="add required to the fields" />
     <MESSAGE value="remove confirm buttons" />
     <MESSAGE value="remove access buttons" />
     <MESSAGE value="add rafikey mascot" />
     <MESSAGE value="add favicon image" />
-    <MESSAGE value="add styling" />
     <MESSAGE value="add copilot migration" />
     <MESSAGE value="add virtual:pwa-register type" />
     <MESSAGE value="add pwa logic" />
@@ -719,7 +718,14 @@
     <MESSAGE value="add  images" />
     <MESSAGE value="remove images" />
     <MESSAGE value="remove launcher image" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove launcher image" />
+    <MESSAGE value="add goToPlayPage" />
+    <MESSAGE value="remove condition" />
+    <MESSAGE value="add play game div" />
+    <MESSAGE value="add notification alert" />
+    <MESSAGE value="add styling" />
+    <MESSAGE value="remove isShowPlayButton" />
+    <MESSAGE value="remove SRHRGameButton" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove SRHRGameButton" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -735,7 +741,7 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue</url>
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue</url>
           <line>14</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>

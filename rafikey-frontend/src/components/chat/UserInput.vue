@@ -28,7 +28,7 @@ const hasText = computed(() => {
 // adjust the textarea height
 const adjustTextAreaHeight = (element: HTMLTextAreaElement) => {
   if (element.scrollHeight > element.clientHeight) {
-    element.style.paddingBottom = '44px'
+    element.style.paddingBottom = '10px'
   }
   element.style.height = 'auto'
   element.style.height = `${element.scrollHeight}px`
