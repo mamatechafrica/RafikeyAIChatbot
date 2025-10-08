@@ -132,7 +132,7 @@ const sendRequest = () => {
     :class="[inputHasFocus ? '' : '', props.displayBottom ? 'bottom-0' : '']"
     class="relative grid grid-cols-12 border-2 bg-link-water-50 dark:bg-lightgray shadow-lg rounded-3xl"
   >
-    <div class="col-span-10 md:ms-16 w-full" id="text-area">
+    <div class="col-span-11 md:ms-6 w-full" id="text-area">
       <textarea
         class="px-4 py-4 hover:cursor-text dark:text-white overflow-hidden w-full grow bg-transparent border-none focus:outline-none resize-none"
         placeholder="Message Rafikey..."
@@ -144,29 +144,16 @@ const sendRequest = () => {
       >
       </textarea>
     </div>
-    <div class="absolute  w-full  px-4 bottom-2  flex justify-between items-center">
-
-        <div class="">
-          <span class="material-icons-outlined dark:text-white">attach_file</span>
-          <span class="material-icons-outlined dark:text-white">bolt</span>
-      </div>
-
+    <div class="absolute w-full  px-4 bottom-2 flex justify-end items-center">
       <div>
         <button
           v-if="hasText && !props.isGenerating"
           class="btn btn-sm btn-ghost btn-circle"
           :disabled="props.isGenerating || !hasText"
           @click.prevent="sendRequest"
-          :class="[
-              hasText && !props.isGenerating ? 'bg-casablanca-400' : '',
-            ]"
+          :class="[hasText && !props.isGenerating ? 'bg-casablanca-400' : '']"
         >
-          <span
-            class="material-icons-outlined !text-xl"
-
-          >
-            arrow_upward
-          </span>
+          <span class="material-icons-outlined !text-xl"> arrow_upward </span>
         </button>
       </div>
     </div>
