@@ -4,10 +4,8 @@ import { useRouter } from 'vue-router'
 import LisxBox from '@/components/LisxBox.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
 import { range } from 'lodash'
-import { useAuthStore, useCreateAccountFormStore } from '@/stores'
+import { useAuthStore, useCreateAccountFormStore, useNotificationStore } from '@/stores'
 import { imageToggleSmallDevice, toggleImage } from '@/composables/imageToggle.ts'
-// import imageLight from '@/assets/images/rafikey-icon-light.png'
-// import imageDark from '@/assets/images/rafikey-icon-dark.png'
 
 interface Buttons {
   name: string
@@ -16,7 +14,7 @@ interface Buttons {
 
 const createAccountFormStore = useCreateAccountFormStore()
 const authStore = useAuthStore()
-// const chatbotStore = useRafikeyChatbotStore()
+const notificationStore = useNotificationStore()
 const router = useRouter()
 const isLoading = ref(false)
 
@@ -107,17 +105,7 @@ const selectedRadio = (value: Buttons) => {
 // all the get-to-know-you-data is okay
 const everyThingOk = computed(() => {
   return (
-    // createAccountFormStore.getProfile.username &&
-    // createAccountFormStore.getProfile.email &&
-    // createAccountFormStore.getProfile.password &&
-    // createAccountFormStore.getProfile.age &&
-    // createAccountFormStore.getProfile.gender &&
-    // createAccountFormStore.getProfile.terms_accepted &&
-    // createAccountFormStore.getProfile.relationship_status
-
-    getToKnowYouData.age &&
-    getToKnowYouData.gender &&
-    getToKnowYouData.relationship_status
+    getToKnowYouData.age && getToKnowYouData.gender && getToKnowYouData.relationship_status
   )
 })
 
@@ -142,19 +130,21 @@ const createAccountHandler = () => {
       .createAccount()
       .then((response) => {
         if (response.result === 'ok') {
+          notificationStore.addNotification('Account created successfully', 'success')
+        setTimeout(()=>{
           router.push({
             name: 'login',
           })
           createAccountFormStore.clearProfile()
+        }, 2000)
         } else {
-          signupError.message = response.message
-          signupError.isError = true
+          notificationStore.addNotification(response.message, 'error')
         }
       })
       .catch((error) => {
         console.error('Error creating account:', error)
-        signupError.isError = true
-        signupError.message = 'An error occurred while logging in, please try again later'
+        notificationStore.addNotification('An error occurred while creating your account, please try again later', 'error')
+
       })
       .finally(() => {
         isLoading.value = false
