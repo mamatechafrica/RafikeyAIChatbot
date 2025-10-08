@@ -160,7 +160,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="min-h-screen dark:bg-lightgray w-full py-6 md:flex">
+  <div class="min-h-screen  hidden dark:bg-lightgray w-full py-6 md:flex">
     <div
       class="relative bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-[34px] pb-10"
     >
@@ -236,7 +236,7 @@ onBeforeMount(() => {
   </div>
 
   <!--    Small screen -->
-  <div class="md:hidden dark:bg-darkgray block min-h-screen w-full overflow-hidden">
+  <div class="md:hidden dark:bg-darkgray block min-h-screen w-full">
     <div class="w-36 h-20 mx-auto flex justify-center items-center">
       <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
     </div>

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add  setIsChatArchive function">
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/TabComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/TabComponent.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="rename Tab folder">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,15 +279,7 @@
       <workItem from="1759725999673" duration="31868000" />
       <workItem from="1759769082513" duration="6463000" />
       <workItem from="1759836498131" duration="4119000" />
-      <workItem from="1759897328520" duration="25324000" />
-    </task>
-    <task id="LOCAL-00553" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759472003755</created>
-      <option name="number" value="00553" />
-      <option name="presentableId" value="LOCAL-00553" />
-      <option name="project" value="LOCAL" />
-      <updated>1759472003755</updated>
+      <workItem from="1759897328520" duration="27163000" />
     </task>
     <task id="LOCAL-00554" summary="add custom class">
       <option name="closed" value="true" />
@@ -674,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759929795233</updated>
     </task>
-    <option name="localTasksCounter" value="602" />
+    <task id="LOCAL-00602" summary="rename Tab folder">
+      <option name="closed" value="true" />
+      <created>1759929882433</created>
+      <option name="number" value="00602" />
+      <option name="presentableId" value="LOCAL-00602" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929882433</updated>
+    </task>
+    <option name="localTasksCounter" value="603" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -692,7 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add pwa logic" />
     <MESSAGE value="add notification for virtual-pwa module hooks" />
     <MESSAGE value="add DialogModal for onNeedRefresh hook" />
     <MESSAGE value="add usePWA composable" />
@@ -717,7 +715,8 @@
     <MESSAGE value="add  isArchive flag" />
     <MESSAGE value="add isChatArchive" />
     <MESSAGE value="add  setIsChatArchive function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add  setIsChatArchive function" />
+    <MESSAGE value="rename Tab folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename Tab folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
