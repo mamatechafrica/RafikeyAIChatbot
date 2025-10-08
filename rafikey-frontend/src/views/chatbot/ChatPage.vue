@@ -10,15 +10,14 @@ import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
-import { useDark, useToggle, useMediaQuery } from '@vueuse/core'
+import { useDark, useToggle } from '@vueuse/core'
 import DialogModal from '@/components/DialogModal.vue'
 import { Copy } from 'lucide-vue-next'
 
-import TabComponent, { type Tabs } from '@/components/tab/TabComponent.vue'
-import GeneralTab from '@/components/tab/GeneralTab.vue'
-import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
-import SecurityComponent from '@/components/tab/SecurityComponent.vue'
-import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
+import TabComponent, { type Tabs } from '@/components/settingsTab/TabComponent.vue'
+import GeneralTab from '@/components/settingsTab/GeneralTab.vue'
+import PersonalizationComponent from '@/components/settingsTab/PersonalizationComponent.vue'
+import SecurityComponent from '@/components/settingsTab/SecurityComponent.vue'
 import FeebackDialog from '@/components/chat/FeebackDialog.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
 
@@ -615,7 +614,6 @@ const shareData = {
   title:  "Rafikey Ai",
   text: "Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️",
   url: `${rafikeyChatbotStore. RAFIKEY_CHATBOT_FRONTEND_URL}/guest-user/${rafikeyChatbotStore.sessionId}`
-
 }
 
 // share of the chat links using the webShare API

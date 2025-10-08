@@ -14,10 +14,10 @@ const backToChatHandler = () => {
 <template>
   <div
     class="dark:bg-lightgray min-h-screen"
-    :class="{ 'pt-[38px]': route.name != 'game-page-quiz-result' }"
+    :class="{ 'md:pt-[38px] pt-4': route.name != 'game-page-quiz-result' }"
   >
-    <div class="w-10/12 mx-auto space-y-4">
-      <div class="sticky top-10">
+    <div class="w-10/12 mx-auto">
+      <div class="sticky py-4 top-0 bg-white dark:bg-lightgray">
         <button
           @click="backToChatHandler"
           class="btn btn-sm bg-transparent shadow-none border-[1px] dark:border-['#CBD5E1'] rounded-[10px] px-[8px] py-[6px]"
