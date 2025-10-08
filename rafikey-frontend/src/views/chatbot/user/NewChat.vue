@@ -125,6 +125,14 @@ setColor()
 const closeGameButton = () => {
   chatbotStore.isShowPlayButton = false
 }
+
+
+  const goToPlayPage = () =>{
+    router.push({
+      name: 'welcome-page-quiz'
+    })
+  }
+
 </script>
 
 <template>
