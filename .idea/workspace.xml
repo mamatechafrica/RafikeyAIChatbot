@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove SRHRGameButton">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add  setIsChatArchive function">
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/tab/TabComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/TabComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,79 +280,7 @@
       <workItem from="1759725999673" duration="31868000" />
       <workItem from="1759769082513" duration="6463000" />
       <workItem from="1759836498131" duration="4119000" />
-      <workItem from="1759897328520" duration="24627000" />
-    </task>
-    <task id="LOCAL-00544" summary="add bg-color and dark-bg-color props">
-      <option name="closed" value="true" />
-      <created>1759406251053</created>
-      <option name="number" value="00544" />
-      <option name="presentableId" value="LOCAL-00544" />
-      <option name="project" value="LOCAL" />
-      <updated>1759406251053</updated>
-    </task>
-    <task id="LOCAL-00545" summary="remove manifest.json file">
-      <option name="closed" value="true" />
-      <created>1759406986639</created>
-      <option name="number" value="00545" />
-      <option name="presentableId" value="LOCAL-00545" />
-      <option name="project" value="LOCAL" />
-      <updated>1759406986639</updated>
-    </task>
-    <task id="LOCAL-00546" summary="remove https-localhost package">
-      <option name="closed" value="true" />
-      <created>1759408113051</created>
-      <option name="number" value="00546" />
-      <option name="presentableId" value="LOCAL-00546" />
-      <option name="project" value="LOCAL" />
-      <updated>1759408113051</updated>
-    </task>
-    <task id="LOCAL-00547" summary="add useColorGenerator">
-      <option name="closed" value="true" />
-      <created>1759410098860</created>
-      <option name="number" value="00547" />
-      <option name="presentableId" value="LOCAL-00547" />
-      <option name="project" value="LOCAL" />
-      <updated>1759410098861</updated>
-    </task>
-    <task id="LOCAL-00548" summary="add darkBgColor, bgColor dynamic class">
-      <option name="closed" value="true" />
-      <created>1759410180517</created>
-      <option name="number" value="00548" />
-      <option name="presentableId" value="LOCAL-00548" />
-      <option name="project" value="LOCAL" />
-      <updated>1759410180517</updated>
-    </task>
-    <task id="LOCAL-00549" summary="add imageToggleSmallDevice function">
-      <option name="closed" value="true" />
-      <created>1759470229653</created>
-      <option name="number" value="00549" />
-      <option name="presentableId" value="LOCAL-00549" />
-      <option name="project" value="LOCAL" />
-      <updated>1759470229653</updated>
-    </task>
-    <task id="LOCAL-00550" summary="add imageToggleSmallDevice function">
-      <option name="closed" value="true" />
-      <created>1759470259727</created>
-      <option name="number" value="00550" />
-      <option name="presentableId" value="LOCAL-00550" />
-      <option name="project" value="LOCAL" />
-      <updated>1759470259727</updated>
-    </task>
-    <task id="LOCAL-00551" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759470432403</created>
-      <option name="number" value="00551" />
-      <option name="presentableId" value="LOCAL-00551" />
-      <option name="project" value="LOCAL" />
-      <updated>1759470432403</updated>
-    </task>
-    <task id="LOCAL-00552" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759470586775</created>
-      <option name="number" value="00552" />
-      <option name="presentableId" value="LOCAL-00552" />
-      <option name="project" value="LOCAL" />
-      <updated>1759470586775</updated>
+      <workItem from="1759897328520" duration="25324000" />
     </task>
     <task id="LOCAL-00553" summary="add styling">
       <option name="closed" value="true" />
@@ -682,7 +602,79 @@
       <option name="project" value="LOCAL" />
       <updated>1759900414808</updated>
     </task>
-    <option name="localTasksCounter" value="593" />
+    <task id="LOCAL-00593" summary="reduce padding on textarea">
+      <option name="closed" value="true" />
+      <created>1759929359039</created>
+      <option name="number" value="00593" />
+      <option name="presentableId" value="LOCAL-00593" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929359039</updated>
+    </task>
+    <task id="LOCAL-00594" summary="remove mic">
+      <option name="closed" value="true" />
+      <created>1759929384878</created>
+      <option name="number" value="00594" />
+      <option name="presentableId" value="LOCAL-00594" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929384878</updated>
+    </task>
+    <task id="LOCAL-00595" summary="update service worker">
+      <option name="closed" value="true" />
+      <created>1759929409256</created>
+      <option name="number" value="00595" />
+      <option name="presentableId" value="LOCAL-00595" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929409256</updated>
+    </task>
+    <task id="LOCAL-00596" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1759929484506</created>
+      <option name="number" value="00596" />
+      <option name="presentableId" value="LOCAL-00596" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929484506</updated>
+    </task>
+    <task id="LOCAL-00597" summary="add notification toasts">
+      <option name="closed" value="true" />
+      <created>1759929648540</created>
+      <option name="number" value="00597" />
+      <option name="presentableId" value="LOCAL-00597" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929648540</updated>
+    </task>
+    <task id="LOCAL-00598" summary="add tooltip and tadio buttons">
+      <option name="closed" value="true" />
+      <created>1759929668191</created>
+      <option name="number" value="00598" />
+      <option name="presentableId" value="LOCAL-00598" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929668191</updated>
+    </task>
+    <task id="LOCAL-00599" summary="add  isArchive flag">
+      <option name="closed" value="true" />
+      <created>1759929752869</created>
+      <option name="number" value="00599" />
+      <option name="presentableId" value="LOCAL-00599" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929752869</updated>
+    </task>
+    <task id="LOCAL-00600" summary="add isChatArchive">
+      <option name="closed" value="true" />
+      <created>1759929778249</created>
+      <option name="number" value="00600" />
+      <option name="presentableId" value="LOCAL-00600" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929778249</updated>
+    </task>
+    <task id="LOCAL-00601" summary="add  setIsChatArchive function">
+      <option name="closed" value="true" />
+      <created>1759929795233</created>
+      <option name="number" value="00601" />
+      <option name="presentableId" value="LOCAL-00601" />
+      <option name="project" value="LOCAL" />
+      <updated>1759929795233</updated>
+    </task>
+    <option name="localTasksCounter" value="602" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,14 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ui styling" />
-    <MESSAGE value="add required to the fields" />
-    <MESSAGE value="remove confirm buttons" />
-    <MESSAGE value="remove access buttons" />
-    <MESSAGE value="add rafikey mascot" />
-    <MESSAGE value="add favicon image" />
-    <MESSAGE value="add copilot migration" />
-    <MESSAGE value="add virtual:pwa-register type" />
     <MESSAGE value="add pwa logic" />
     <MESSAGE value="add notification for virtual-pwa module hooks" />
     <MESSAGE value="add DialogModal for onNeedRefresh hook" />
@@ -722,10 +706,18 @@
     <MESSAGE value="remove condition" />
     <MESSAGE value="add play game div" />
     <MESSAGE value="add notification alert" />
-    <MESSAGE value="add styling" />
     <MESSAGE value="remove isShowPlayButton" />
     <MESSAGE value="remove SRHRGameButton" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove SRHRGameButton" />
+    <MESSAGE value="reduce padding on textarea" />
+    <MESSAGE value="remove mic" />
+    <MESSAGE value="update service worker" />
+    <MESSAGE value="add styling" />
+    <MESSAGE value="add notification toasts" />
+    <MESSAGE value="add tooltip and tadio buttons" />
+    <MESSAGE value="add  isArchive flag" />
+    <MESSAGE value="add isChatArchive" />
+    <MESSAGE value="add  setIsChatArchive function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add  setIsChatArchive function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
