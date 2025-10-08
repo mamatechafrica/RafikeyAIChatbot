@@ -516,7 +516,7 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 onMounted(() => {
 
   // show the button on mounted at random
-  showPlayButton()
+  // showPlayButton()
   const activeSessionId = route.params.sessionId as string
 
   // Set initial value for isShowInput
@@ -846,9 +846,9 @@ provide('darkBgColor', darkBgColor)
       </div>
     </div>
 
-    <div v-if="isShowPlayButton" class="fixed bottom-44 right-16 ">
-      <SRHRGameButton @close-game-button="closeGameButton"  />
-    </div>
+<!--    <div v-if="isShowPlayButton" class="fixed bottom-44 right-16 ">-->
+<!--      <SRHRGameButton @close-game-button="closeGameButton"  />-->
+<!--    </div>-->
 
     <div v-if="showFeedbackDialog" class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2  md:bottom-44 md:right-16 z-50">
       <FeebackDialog  @close-feedback-dialog="showFeedbackDialog = false" />
