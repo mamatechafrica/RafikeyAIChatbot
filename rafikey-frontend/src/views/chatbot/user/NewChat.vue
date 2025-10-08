@@ -206,18 +206,19 @@ const closeGameButton = () => {
             <span class="material-icons-outlined text-sm">arrow_forward</span>
           </div>
         </div>
-<!--        <div-->
-<!--          @click.stop="startVoiceChat"-->
-<!--          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
-<!--        >-->
-<!--          <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+        <div
+          @click.stop="goToPlayPage"
+          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
+        >
+          <div class="bg-casablanca-300 rounded-full h-10 w-10 flex justify-center items-center">
 <!--            <span class="material-icons-outlined dark:text-white">mic_none</span>-->
-<!--          </div>-->
-<!--          <div class="flex dark:text-white gap-4">-->
-<!--            <p class="text-small">Chat with Rafikey</p>-->
-<!--            <span class="material-icons-outlined text-sm">arrow_forward</span>-->
-<!--          </div>-->
-<!--        </div>-->
+            <img src="@/assets/images/game.png" alt="game-image"/>
+          </div>
+          <div class="flex dark:text-white gap-4">
+            <p class="text-small">Play games</p>
+            <span class="material-icons-outlined text-sm">arrow_forward</span>
+          </div>
+        </div>
       </div>
 
       <div class="space-y-2 pt-10">
