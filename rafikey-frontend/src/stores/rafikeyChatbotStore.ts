@@ -520,6 +520,10 @@ const otherSettings = useStorage("otherSettings", {})
     }
   })
 
+  const setIsChatArchive = (value: boolean) => {
+    isChatArchive.value = value
+  }
+
   const setQuiz = (data: Quiz[]) => {
     quizzes.value = data.sort((a: Quiz, b: Quiz) => a.order - b.order)
   }
@@ -575,8 +579,9 @@ const otherSettings = useStorage("otherSettings", {})
     ratingFeedback,
     score,
     totalQuestions,
-    isShowPlayButton
-    // setRegenerateInput
+    isShowPlayButton,
+    setIsChatArchive,
+    isChatArchive
 
   }
 })
