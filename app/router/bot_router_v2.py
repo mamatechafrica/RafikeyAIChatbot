@@ -124,28 +124,28 @@ async def generate_title_from_conversation(user_messages: list[str], bot_respons
         # Enhanced prompt for better title generation
         title_prompt = f"""You are generating a concise, descriptive title for a health conversation between a user and Rafiki (a sexual and reproductive health chatbot).
 
-Based on this conversation excerpt:
+        Based on this conversation excerpt:
 
-{conversation_text}
+        {conversation_text}
 
-Generate a SHORT title (3-6 words maximum) that captures the MAIN health topic discussed. 
+        Generate a SHORT title (3-6 words maximum) that captures the MAIN health topic discussed. 
 
-Guidelines:
-- Focus on the PRIMARY health concern or topic (e.g., "Contraception Options", "STI Testing", "Period Pain")
-- Use clear, straightforward language
-- Be respectful and non-judgmental
-- Avoid using the user's name or personal details
-- Keep it under 6 words
-- Make it specific enough to be useful but general enough to protect privacy
+        Guidelines:
+        - Focus on the PRIMARY health concern or topic (e.g., "Contraception Options", "STI Testing", "Period Pain")
+        - Use clear, straightforward language
+        - Be respectful and non-judgmental
+        - Avoid using the user's name or personal details
+        - Keep it under 6 words
+        - Make it specific enough to be useful but general enough to protect privacy
 
-Examples of good titles:
-- "Birth Control Methods"
-- "STI Testing Locations"
-- "Irregular Period Concerns"
-- "Pregnancy Questions"
-- "Relationship Consent"
+        Examples of good titles:
+        - "Birth Control Methods"
+        - "STI Testing Locations"
+        - "Irregular Period Concerns"
+        - "Pregnancy Questions"
+        - "Relationship Consent"
 
-Generate ONLY the title, nothing else:"""
+        Generate ONLY the title, nothing else:"""
         
         # Generate title
         response = await title_model.ainvoke(title_prompt)
@@ -170,7 +170,7 @@ Generate ONLY the title, nothing else:"""
     
 
 async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep):
-    """Update conversation title when we have enough messages (at least 2-3 exchanges)"""
+    """Update conversation title - generates from first 2 exchanges, updates at 4+ exchanges"""
     try:
         # Get all conversations for this thread and user ordered by timestamp
         statement = select(Conversations).where(
@@ -179,20 +179,53 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
         ).order_by(Conversations.timestamp.asc())
         conversations = db.exec(statement).all()
         
-        # Generate title after at least 3 exchanges (6 messages total)
-        # This ensures we have enough context for a meaningful title
-        if len(conversations) >= 3:
-            # Check if title has already been generated
-            first_conv = conversations[0]
-            if first_conv.title is None or first_conv.title == "" or first_conv.title == "New Chat":
-                # Extract user messages and bot responses separately
-                user_messages = [conv.user_message for conv in conversations[:4]]
-                bot_responses = [conv.bot_response for conv in conversations[:4]]
-                
-                # Generate title using both user questions and bot responses
-                title = await generate_title_from_conversation(user_messages, bot_responses)
-                
-                # Update ALL conversations in this thread for this user with the title
+        first_conv = conversations[0] if conversations else None
+        if not first_conv:
+            return
+        
+        current_title = first_conv.title
+        conversation_count = len(conversations)
+        
+        # FIRST TITLE GENERATION: After 2 exchanges (initial title)
+        if conversation_count == 2 and (current_title is None or current_title == "" or current_title == "New Chat"):
+            print(f"Generating initial title from first 2 exchanges for thread {thread_id}")
+            
+            # Use only the first 2 exchanges
+            user_messages = [conv.user_message for conv in conversations[:2]]
+            bot_responses = [conv.bot_response for conv in conversations[:2]]
+            
+            title = await generate_title_from_conversation(user_messages, bot_responses)
+            
+            # Update all conversations with the initial title
+            from sqlmodel import update
+            
+            update_statement = (
+                update(Conversations)
+                .where(
+                    Conversations.thread_id == thread_id,
+                    Conversations.user_id == user_id
+                )
+                .values(title=title)
+            )
+            
+            db.exec(update_statement)
+            db.commit()
+            print(f"Initial title generated for thread {thread_id} (user {user_id}): {title}")
+        
+        # TITLE UPDATE: After 4+ exchanges (refine with more context)
+        elif conversation_count >= 4 and conversation_count % 3 == 1:  # Update at 4, 7, 10, etc.
+            print(f"Updating title with more context for thread {thread_id}")
+            
+            # Use up to 5 exchanges for the refined title
+            max_exchanges = min(5, conversation_count)
+            user_messages = [conv.user_message for conv in conversations[:max_exchanges]]
+            bot_responses = [conv.bot_response for conv in conversations[:max_exchanges]]
+            
+            # Generate refined title
+            refined_title = await generate_title_from_conversation(user_messages, bot_responses)
+            
+            # Only update if the new title is different and meaningful
+            if refined_title != current_title and refined_title != "New Chat":
                 from sqlmodel import update
                 
                 update_statement = (
@@ -201,12 +234,12 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
                         Conversations.thread_id == thread_id,
                         Conversations.user_id == user_id
                     )
-                    .values(title=title)
+                    .values(title=refined_title)
                 )
                 
                 db.exec(update_statement)
                 db.commit()
-                print(f"Generated title for thread {thread_id} (user {user_id}): {title}")
+                print(f"Title updated for thread {thread_id} (user {user_id}): {current_title} -> {refined_title}")
                 
     except Exception as e:
         print(f"Error updating conversation title: {e}")
