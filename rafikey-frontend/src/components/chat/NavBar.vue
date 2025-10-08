@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, defineEmits, shallowRef, inject } from 'vue'
+import { onMounted, ref, watch, defineEmits, shallowRef, inject, computed } from 'vue'
 import { type ChatHistoryTitle, useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import ChatHistory from '@/components/chat/ChatHistory.vue'
@@ -7,19 +7,23 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 import { useRouter } from 'vue-router'
 import DialogModal from '@/components/DialogModal.vue'
 import { useDark, useToggle } from '@vueuse/core'
-import TabComponent from '@/components/tab/TabComponent.vue'
-import GeneralTab from '@/components/tab/GeneralTab.vue'
-import PersonalizationComponent from '@/components/tab/PersonalizationComponent.vue'
-import SecurityComponent from '@/components/tab/SecurityComponent.vue'
-import { type Tabs } from '@/components/tab/TabComponent.vue'
+import TabComponent from '@/components/settingsTab/TabComponent.vue'
+import GeneralTab from '@/components/settingsTab/GeneralTab.vue'
+import PersonalizationComponent from '@/components/settingsTab/PersonalizationComponent.vue'
+import SecurityComponent from '@/components/settingsTab/SecurityComponent.vue'
+import { type Tabs } from '@/components/settingsTab/TabComponent.vue'
 import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 const router = useRouter()
 const isDark = useDark()
 const authStore = useAuthStore()
-const isChatHIstoryError = ref(false)
+const isChatHistoryError = ref(false)
 const isShowSettings = ref(false)
+
+const bgColor = inject('bgColor')
+const darkBgColor = inject('darkBgColor')
+const isArchive = computed(() => chatbotStore.isChatArchive)
 
 const components = [
   {
@@ -45,16 +49,15 @@ onMounted(() => {
   chatbotStore
     .getChatHistoryTitles()
     .then((response) => {
-      // console.log('response', response)
       if (response) {
         chatbotStore.chatHistoryTitles = response.data
       } else {
-        isChatHIstoryError.value = true
+        isChatHistoryError.value = true
       }
     })
     .catch((error) => {
       // console.error('Error fetching chat history titles:', error)
-      isChatHIstoryError.value = true
+      isChatHistoryError.value = true
     })
 })
 
@@ -190,8 +193,6 @@ const shareChat = () => {
   emits('shareChat')
 }
 
-const bgColor = inject('bgColor')
-const darkBgColor = inject('darkBgColor')
 </script>
 
 <template>
@@ -249,7 +250,7 @@ const darkBgColor = inject('darkBgColor')
 
         <!--    bottom side-->
         <div
-          class="absolute bottom-4  w-full"
+          class="absolute bottom-4 w-full"
           :class="[!chatbotStore.collapseSidebarLarge ? 'flex left-4' : '']"
         >
           <div class="flex flex-col items-center gap-4">
@@ -274,10 +275,10 @@ const darkBgColor = inject('darkBgColor')
         </div>
       </div>
 
-      <div class="relative h-[calc(100vh-10rem)] w-full">
+      <div class="relative h-[calc(100vh-10rem)] w-full" v-if="!chatbotStore.collapseSidebarLarge">
         <div
           class="h-[calc(100vh-16rem)] overflow-y-auto"
-          v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarLarge"
+          v-if="chatbotStore.chatHistoryTitles && !isArchive"
         >
           <div v-for="(titles, date) in groupChat()" :key="date">
             <div
@@ -301,24 +302,16 @@ const darkBgColor = inject('darkBgColor')
               />
             </div>
           </div>
-<!--          <div class="absolute bottom-4 grid grid-cols-12 w-full">-->
-<!--            <div-->
-<!--              class="col-span-4 sidebar-button-yellow shadow-[0_0_20px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--            >-->
-<!--              <img src="@/assets/images/talk-about-it.png" alt="talk-to-someone-image" class="" />-->
-<!--            </div>-->
-<!--            <div-->
-<!--              class="col-span-4 sidebar-button-pink shadow-[0_0_20px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--            >-->
-<!--              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
-<!--            </div>-->
-<!--            <div-->
-<!--              class="col-span-4 sidebar-button-blue shadow-[0_0_20px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--            >-->
-<!--              <img src="@/assets/images/learn.png" alt="lear-image" />-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
+      </div>
+    </div>
+    <div
+      v-if="isChatHistoryError && !chatbotStore.collapseSidebarLarge"
+      class="absolute p-4 rounded-xl top-1/2 transition delay-400 -translate-y-[50%] left-1/2 w-3/4 -translate-x-1/2 bg-white flex justify-center items-center dark:bg-lightgray"
+    >
+      <div class="flex flex-col items-center">
+        <img src="@/assets/images/no-data.svg" class="w-16" />
+        <span class="text-center dark:text-white">Error fetching chat history, refresh</span>
       </div>
     </div>
   </div>
@@ -429,55 +422,69 @@ const darkBgColor = inject('darkBgColor')
 
                       <div
                         class="h-[calc(100vh-21rem)] overflow-y-auto"
-                        v-if="chatbotStore.chatHistoryTitles && !chatbotStore.collapseSidebarSmall"
+                        v-if="!chatbotStore.collapseSidebarSmall"
                       >
-                        <div v-for="(titles, date) in groupChat()" :key="date">
-                          <div
-                            class="flex justify-between sticky pb-1 top-0 backdrop-blur bg-opacity-30 font-bold"
-                          >
-                            <h1 class="dark:text-white ps-4 text-large">{{ date }}</h1>
-                            <div class="flex flex-row-reverse">
-                              <span class="material-icons-outlined dark:text-white"
-                                >expand_less</span
-                              >
-                              <span class="dark:text-stone-300 text-small text-nowrap">
-                                {{ titles.length }} total</span
-                              >
+                        <div v-show="chatbotStore.chatHistoryTitles && isArchive">
+                          <div v-for="(titles, date) in groupChat()" :key="date">
+                            <div
+                              class="flex justify-between sticky pb-1 top-0 backdrop-blur bg-opacity-30 font-bold"
+                            >
+                              <h1 class="dark:text-white ps-4 text-large">{{ date }}</h1>
+                              <div class="flex flex-row-reverse">
+                                <span class="material-icons-outlined dark:text-white"
+                                  >expand_less</span
+                                >
+                                <span class="dark:text-stone-300 text-small text-nowrap">
+                                  {{ titles.length }} total</span
+                                >
+                              </div>
+                            </div>
+
+                            <div v-for="title in titles" :key="title.thread_id" class="py-1">
+                              <ChatHistory
+                                :thread-id="title.thread_id"
+                                :last-message-at="title.last_message_at"
+                                :title="title.title"
+                                @fetch-history-handler="fetchHistoryHandler"
+                              />
                             </div>
                           </div>
-
-                          <div v-for="title in titles" :key="title.thread_id" class="py-1">
-                            <ChatHistory
-                              :thread-id="title.thread_id"
-                              :last-message-at="title.last_message_at"
-                              :title="title.title"
-                              @fetch-history-handler="fetchHistoryHandler"
-                            />
+                        </div>
+                        <div
+                          v-if="isChatHistoryError"
+                          class="absolute p-4 rounded-xl top-1/2 -translate-y-[50%] left-1/2 -translate-x-1/2 bg-white dark:bg-lightgray"
+                        >
+                          <div class="flex flex-col items-center">
+                            <img src="@/assets/images/no-data.svg" class="w-16" />
+                            <span class="dark:text-white text-nowrap"
+                              >Error fetching chat history, refresh</span
+                            >
                           </div>
                         </div>
-<!--                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">-->
-<!--                          <div class="flex px-10 justify-between w-full">-->
-<!--                            <div-->
-<!--                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--                            >-->
-<!--                              <img-->
-<!--                                src="@/assets/images/talk-about-it.png"-->
-<!--                                alt="talk-to-someone-image"-->
-<!--                                class=""-->
-<!--                              />-->
-<!--                            </div>-->
-<!--                            <div-->
-<!--                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--                            >-->
-<!--                              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
-<!--                            </div>-->
-<!--                            <div-->
-<!--                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-<!--                            >-->
-<!--                              <img src="@/assets/images/learn.png" alt="lear-image" />-->
-<!--                            </div>-->
-<!--                          </div>-->
-<!--                        </div>-->
+
+                        <!--                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">-->
+                        <!--                          <div class="flex px-10 justify-between w-full">-->
+                        <!--                            <div-->
+                        <!--                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+                        <!--                            >-->
+                        <!--                              <img-->
+                        <!--                                src="@/assets/images/talk-about-it.png"-->
+                        <!--                                alt="talk-to-someone-image"-->
+                        <!--                                class=""-->
+                        <!--                              />-->
+                        <!--                            </div>-->
+                        <!--                            <div-->
+                        <!--                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+                        <!--                            >-->
+                        <!--                              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
+                        <!--                            </div>-->
+                        <!--                            <div-->
+                        <!--                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
+                        <!--                            >-->
+                        <!--                              <img src="@/assets/images/learn.png" alt="lear-image" />-->
+                        <!--                            </div>-->
+                        <!--                          </div>-->
+                        <!--                        </div>-->
                       </div>
                     </div>
                     <!--        profile section-->
