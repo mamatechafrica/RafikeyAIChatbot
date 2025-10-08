@@ -2,61 +2,72 @@
 import { ref, watch } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores/rafikeyChatbotStore'
 import DialogModal from '@/components/DialogModal.vue'
-import { showSweetAlert } from '@/composables/alert.ts'
 import { useRouter } from 'vue-router'
+import { useNotificationStore } from '@/stores'
 
 
 const openClearChatDialog = ref(false)
 
 const chatbotStore = useRafikeyChatbotStore()
+const notificationStore = useNotificationStore()
 const router = useRouter()
 
 const isNotificationEnabled = ref(chatbotStore.getOtherSettings.notificationsEnabled || false)
-watch(()=> isNotificationEnabled.value, () =>{
-  chatbotStore.setOtherSettings({
-    key: 'notificationsEnabled',
-    value: isNotificationEnabled.value
-  })
+watch(
+  () => isNotificationEnabled.value,
+  () => {
+    chatbotStore.setOtherSettings({
+      key: 'notificationsEnabled',
+      value: isNotificationEnabled.value,
+    })
+  },
+)
+const isLoading = ref(false)
+const deleteAllChats = () => {
+  isLoading.value = true
+  chatbotStore
+    .deleteAllChats()
 
-})
-const isloading = ref(false)
-const deleteAllChats = () =>{
-  isloading.value = true
-  chatbotStore.deleteAllChats()
+    .then((res) => {
+      if (res.result === 'ok') {
+        notificationStore.addNotification(res.data, 'success')
 
-    .then((res)=>{
-      if(res.result === 'ok'){
-        showSweetAlert({
-          type: 'success',
-          message: res.data,
-        })
-        setTimeout(()=>{
+        setTimeout(() => {
           router.replace({
-            name: 'newChat'
+            name: 'newChat',
           })
           chatbotStore.sessionId = ''
           chatbotStore.conversation = []
         }, 3000)
-      } else{
-        showSweetAlert({
-          type: 'error',
-          message: res.data,
-        })
+      } else {
+        notificationStore.addNotification(res.data, 'error')
       }
     })
-    .catch((err)=>{
-      showSweetAlert({
-        type: 'error',
-        message: err.message,
-      })
+    .catch((err) => {
+      notificationStore.addNotification(
+        'An error occurred while deleting old chats, please try again',
+        'error',
+      )
     })
-    .finally(()=>{
-      isloading.value = false
+    .finally(() => {
+      isLoading.value = false
       openClearChatDialog.value = false
     })
 }
 
-console.log("chat history title", chatbotStore.chatHistoryTitles)
+
+const isArchived = ref(chatbotStore.isChatArchive)
+
+watch(isArchived, (value: boolean) => {
+
+  if (value) {
+    notificationStore.addNotification('All chats have been archived', 'success')
+  } else {
+    notificationStore.addNotification('Archived chats are now visible', 'success')
+  }
+  chatbotStore.setIsChatArchive(value)
+})
+
 </script>
 
 <template>
