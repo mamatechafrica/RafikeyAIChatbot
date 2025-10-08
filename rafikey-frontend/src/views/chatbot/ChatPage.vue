@@ -46,24 +46,24 @@ const showSocials = ref<boolean>(false)
 const isGeneratingLink = ref(false)
 const showCopyBtn = ref(false)
 const isShareChatLinkCopy = ref(false)
-const isShowPlayButton = ref(false)
+// const isShowPlayButton = ref(false)
 const now = moment()
 
 // const isGeneratingResponse = ref(false)
 
 
 // Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
-const showPlayButton = () =>{
-  const showButtonProbs = Math.random()
-  if(showButtonProbs < 0.3){
-    const delay = Math.random() * 10000
-    setTimeout(()=>{
-      isShowPlayButton.value = true
-    }, delay)
-  } else {
-    return
-  }
-}
+// const showPlayButton = () =>{
+//   const showButtonProbs = Math.random()
+//   if(showButtonProbs < 0.3){
+//     const delay = Math.random() * 10000
+//     setTimeout(()=>{
+//       isShowPlayButton.value = true
+//     }, delay)
+//   } else {
+//     return
+//   }
+// }
 
 
 
@@ -687,9 +687,9 @@ const shareOn = (value: string) =>{
 }
 
 const showFeedbackDialog = ref(false)
-const closeGameButton = ()=>{
-  isShowPlayButton.value = false
-}
+// const closeGameButton = ()=>{
+//   isShowPlayButton.value = false
+// }
 
 const showFeedbackDialogHandler = () =>{
   showFeedbackDialog.value = !showFeedbackDialog.value
@@ -712,7 +712,7 @@ setColor()
 
 provide('bgColor', bgColor)
 provide('darkBgColor', darkBgColor)
-provide('showPlayButton', isShowPlayButton)
+// provide('showPlayButton', isShowPlayButton)
 </script>
 
 <template>
