@@ -156,7 +156,7 @@ const closeGameButton = () => {
           <div class="col-span-1 cursor-pointer" @click="accessButtonQuestionHandler(accessButtonsArray[0].content)">
             <img :src=" toggleAccessButton " alt="access-buttons" />
           </div>
-          <div v-if="chatbotStore.isShowPlayButton" class="col-span-1">
+          <div class="col-span-1">
             <SRHRGameButton @close-game-button="closeGameButton" />
           </div>
 
