@@ -42,7 +42,6 @@ const hasText = computed(() => {
         <div
           class="chat-header flex dark:text-white justify-start items-end text-small"
         >
-          {{ props.chatbotName }}
           <time class="text-extra-small opacity-50">{{ props.createdAt }}</time>
         </div>
         <div class="py-4 rounded-2xl">
