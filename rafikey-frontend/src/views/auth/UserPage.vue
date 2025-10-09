@@ -7,7 +7,7 @@ const {needRefresh, offlineReady,   updateSW} = usePWA()
 
 
 const notificationStore = useNotificationStore()
-const isShowDialog = ref(false)
+const isShowDialog = ref(true)
 
 watch(offlineReady, (ready) => {
   if (ready) {
@@ -68,15 +68,15 @@ const updateAppHandler = () =>{
       </template>
       <template #footer>
         <div class="flex  w-full">
-          <div class="flex gap-8">
+          <div class="w-3/4 mx-auto flex gap-4">
             <button
-              class="rounded-lg w-full btn shadow-none border-none bg-button-light offset-none outline-none "
+              class="rounded-lg w-1/2 btn shadow-none border-none bg-button-light offset-none outline-none "
               @click="dontUpdateAppHandler"
             >
               Cancel
             </button>
             <button
-              class="rounded-lg w-full btn bg-transparent shadow-none border-button-light"
+              class="rounded-lg w-1/2 btn bg-transparent shadow-none border-button-light"
               @click="updateAppHandler"
             >
               <span v-if="!isLoadingUpdates" class="text-button-light">  Refresh</span>

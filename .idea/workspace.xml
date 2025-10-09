@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/RafikeyBubble.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubble.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/bubble/UserBubbleGuest.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,39 +282,7 @@
       <workItem from="1759897328520" duration="27856000" />
       <workItem from="1759952584319" duration="605000" />
       <workItem from="1759989162637" duration="2754000" />
-      <workItem from="1760000115644" duration="7561000" />
-    </task>
-    <task id="LOCAL-00555" summary="remove images">
-      <option name="closed" value="true" />
-      <created>1759761995369</created>
-      <option name="number" value="00555" />
-      <option name="presentableId" value="LOCAL-00555" />
-      <option name="project" value="LOCAL" />
-      <updated>1759761995370</updated>
-    </task>
-    <task id="LOCAL-00556" summary="remove mic icon">
-      <option name="closed" value="true" />
-      <created>1759763110170</created>
-      <option name="number" value="00556" />
-      <option name="presentableId" value="LOCAL-00556" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763110170</updated>
-    </task>
-    <task id="LOCAL-00557" summary="remove confirm buttons">
-      <option name="closed" value="true" />
-      <created>1759763174515</created>
-      <option name="number" value="00557" />
-      <option name="presentableId" value="LOCAL-00557" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763174515</updated>
-    </task>
-    <task id="LOCAL-00558" summary="add isTermsCondition data">
-      <option name="closed" value="true" />
-      <created>1759763243473</created>
-      <option name="number" value="00558" />
-      <option name="presentableId" value="LOCAL-00558" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763243473</updated>
+      <workItem from="1760000115644" duration="8044000" />
     </task>
     <task id="LOCAL-00559" summary="add images">
       <option name="closed" value="true" />
@@ -680,7 +644,39 @@
       <option name="project" value="LOCAL" />
       <updated>1759933841891</updated>
     </task>
-    <option name="localTasksCounter" value="604" />
+    <task id="LOCAL-00604" summary="remove bubble names">
+      <option name="closed" value="true" />
+      <created>1760008275069</created>
+      <option name="number" value="00604" />
+      <option name="presentableId" value="LOCAL-00604" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008275069</updated>
+    </task>
+    <task id="LOCAL-00605" summary="remove bubble names">
+      <option name="closed" value="true" />
+      <created>1760008280817</created>
+      <option name="number" value="00605" />
+      <option name="presentableId" value="LOCAL-00605" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008280817</updated>
+    </task>
+    <task id="LOCAL-00606" summary="remove bubble names">
+      <option name="closed" value="true" />
+      <created>1760008308133</created>
+      <option name="number" value="00606" />
+      <option name="presentableId" value="LOCAL-00606" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008308133</updated>
+    </task>
+    <task id="LOCAL-00607" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1760008332481</created>
+      <option name="number" value="00607" />
+      <option name="presentableId" value="LOCAL-00607" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008332481</updated>
+    </task>
+    <option name="localTasksCounter" value="608" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -698,7 +694,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add notification for virtual-pwa module hooks" />
     <MESSAGE value="add DialogModal for onNeedRefresh hook" />
     <MESSAGE value="add usePWA composable" />
     <MESSAGE value="add virtual-pwa type file" />
@@ -722,6 +717,7 @@
     <MESSAGE value="add isChatArchive" />
     <MESSAGE value="add  setIsChatArchive function" />
     <MESSAGE value="rename Tab folder" />
+    <MESSAGE value="remove bubble names" />
     <MESSAGE value="add styling" />
     <option name="LAST_COMMIT_MESSAGE" value="add styling" />
   </component>
