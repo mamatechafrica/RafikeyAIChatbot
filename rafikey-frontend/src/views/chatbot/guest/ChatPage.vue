@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch, nextTick } from 'vue'
+import { onMounted, ref, watch, nextTick } from 'vue'
 import _ from 'lodash'
 
 import UserInput from '@/components/chat/UserInput.vue'
@@ -16,7 +16,7 @@ import type { AccessQuestion } from '@/views/chatbot/user/NewChat.vue'
 import type { HistoryConv } from '@/views/chatbot/ChatPage.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
 import UserBubbleGuest from '@/components/chat/bubble/UserBubbleGuest.vue'
-import { toggleImage} from '@/composables/imageToggle.ts'
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const isError = ref(false)
@@ -251,6 +251,7 @@ marked.use({
 })
 // User Input
 const handleUserInput = (formatted: string) => {
+  isStartChatSmallScreen.value = true
   if (!rafikeyChatbotStore.regenerateResponse) {
     formattedResponse.value = formatted
     //   Create userMessage object
@@ -293,7 +294,9 @@ const handleUserInput = (formatted: string) => {
         } else {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
-            errorMessage: res?.data as string || 'An error occurred while generating the response. Please regenerate or refresh chat.',
+            errorMessage:
+              (res?.data as string) ||
+              'An error occurred while generating the response. Please regenerate or refresh chat.',
             isLoggedIn: true,
           })
         }
@@ -329,7 +332,9 @@ const handleUserInput = (formatted: string) => {
         } else {
           rafikeyChatbotStore.setStreamError({
             hasError: true,
-            errorMessage: res?.data as string || 'An error occurred while generating the response. Please regenerate or refresh chat.',
+            errorMessage:
+              (res?.data as string) ||
+              'An error occurred while generating the response. Please regenerate or refresh chat.',
             isLoggedIn: true,
           })
         }
@@ -563,20 +568,29 @@ const accessButtonQuestionHandler = (message: string) => {
   handleUserInput(message)
   isStartChatSmallScreen.value = true
 }
+
+// const goToPlayPage = () => {
+//   router.push({
+//     name: 'welcome-page-quiz',
+//   })
+// }
 </script>
 
 <template>
-  <div class="min-h-screen dark:bg-lightgray w-full">
-    <div class="lg:w-9/12 w-11/12 mx-auto py-10 hidden md:block">
+  <div class="min-h-screen md:py-4 dark:bg-lightgray w-full">
+    <div class="lg:w-9/12 w-11/12 mx-auto hidden md:block">
       <!--    top -->
       <div
         class="flex justify-end sticky top-0 bg-opacity-30 white backdrop-blur"
         :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pt-4' : '']"
       >
-<!--        <div>-->
-<!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
-<!--        </div>-->
-        <div class="flex items-end gap-2" :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pb-4' : 'pb-0']">
+        <!--        <div>-->
+        <!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
+        <!--        </div>-->
+        <div
+          class="flex items-end gap-2"
+          :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pb-4' : 'pb-0']"
+        >
           <div class="">
             <button
               @click="loginHandler"
@@ -630,8 +644,8 @@ const accessButtonQuestionHandler = (message: string) => {
             </p>
           </div>
         </div>
-        <div class="flex justify-end">
-          <img src="@/assets/images/Rafikey-mascot.png" alt="rafikey-image" class="lg:w-60 w-40" />
+        <div class="flex justify-end pb-8">
+          <img src="@/assets/images/Rafikey-mascot.png" alt="rafikey-image" class="lg:w-50 w-40" />
         </div>
       </div>
       <!--    conversation section-->
@@ -703,17 +717,17 @@ const accessButtonQuestionHandler = (message: string) => {
     <div class="px-4 w-full md:hidden block">
       <div v-if="!isStartChatSmallScreen">
         <div class="flex items-center justify-between">
-          <div class="w-32">
+          <div class="w-20">
             <img :src="toggleImage()" alt="rafikey-icon" />
           </div>
-          <div
-            class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"
-          >
-            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>
-          </div>
+<!--          <div-->
+<!--            class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"-->
+<!--          >-->
+<!--            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>-->
+<!--          </div>-->
         </div>
-        <div class="space-y-12">
-          <div class="cursor-pointer flex gap-4 pt-8 w-full">
+        <div class="space-y-6">
+          <div class="cursor-pointer flex gap-4 w-full">
             <div
               class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"
               @click="startChatSmallScreen"
@@ -726,15 +740,21 @@ const accessButtonQuestionHandler = (message: string) => {
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
-            <div class="w-full bg-link-water-50 dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2">
-              <div class="bg-yellow-500 rounded-full h-10 w-10 flex justify-center items-center">
-                <span class="material-icons-outlined dark:text-white">mic_none</span>
-              </div>
-              <div class="flex dark:text-white gap-4">
-                <p class="text-small">Chat with Rafikey</p>
-                <span class="material-icons-outlined text-sm">arrow_forward</span>
-              </div>
-            </div>
+<!--            <div-->
+<!--              @click.stop="goToPlayPage"-->
+<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--            >-->
+<!--              <div-->
+<!--                class="bg-casablanca-300 rounded-full h-10 w-10 flex justify-center items-center"-->
+<!--              >-->
+<!--                &lt;!&ndash;            <span class="material-icons-outlined dark:text-white">mic_none</span>&ndash;&gt;-->
+<!--                <img src="@/assets/images/game.png" alt="game-image" />-->
+<!--              </div>-->
+<!--              <div class="flex dark:text-white gap-4">-->
+<!--                <p class="text-small">Play games</p>-->
+<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+<!--              </div>-->
+<!--            </div>-->
           </div>
           <div class="space-y-4">
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">
@@ -754,27 +774,26 @@ const accessButtonQuestionHandler = (message: string) => {
             </div>
           </div>
 
-          <div class=" ">
-            <div class="space-y-2 p-5">
-              <div class="flex justify-between sm:p-4">
-                <p class="dark:text-white text-extra-large">Ask Rafikey</p>
-<!--                <span class="text-purple-400 text-small">See all</span>-->
-              </div>
-              <div v-for="qn in accessQuestions" :key="qn.id">
-                <div
-                  @click="accessButtonQuestionHandler(qn.question)"
-                  class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
-                >
-                  <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>
-                  <p class="dark:text-white text-small">{{ qn.question }}</p>
-                </div>
+          <div class="space-y-2 p-5">
+            <div class="flex justify-between sm:p-4">
+              <p class="dark:text-white text-extra-large">Ask Rafikey</p>
+              <!--                <span class="text-purple-400 text-small">See all</span>-->
+            </div>
+            <div v-for="qn in accessQuestions" :key="qn.id">
+              <div
+                @click="accessButtonQuestionHandler(qn.question)"
+                class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
+              >
+                <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>
+                <p class="dark:text-white text-small">{{ qn.question }}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div v-else>
+      <div>
         <!--        top side-->
+        <div v-if="isStartChatSmallScreen">
         <div
           class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"
         >
@@ -825,13 +844,14 @@ const accessButtonQuestionHandler = (message: string) => {
             />
           </div>
         </div>
+      </div>
 
         <!--    text area-->
         <!--        <div id="userInputPlaceholder-small" class="pt-10"></div>-->
         <div
           v-if="!rafikeyChatbotStore.isStreamError.hasError"
           ref="userInputContainerHeightRef"
-          class="sticky w-full bottom-0 bg-red-400 dark:bg-lightgray"
+          class="sticky w-full bottom-0 bg dark:bg-lightgray"
         >
           <div
             class="bg-white dark:bg-lightgray backdrop-blur-2xl pb-6 fixed bottom-0"
