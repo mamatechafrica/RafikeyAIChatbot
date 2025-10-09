@@ -179,7 +179,17 @@ onBeforeUnmount(() => {
           <div class="">
             <img :src="toggleImage()" alt="rafikey-icon" class="w-60" />
           </div>
-          <div class="flex flex-col space-y-10">
+          <div class="w-full mx-auto flex items-center gap-2 cursor-pointer ">
+            <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+              <input
+                v-model="chatbotStore.isAnonymous"
+                type="checkbox"
+                class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
+              />
+              <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+            </div>
+          </div>
+          <div class="flex flex-col space-y-10 pt-4">
             <div class="flex flex-col space-y-6">
               <h2 class="text-extra-extra-large dark:text-white font-semibold">Login</h2>
               <p class="text-large text-gray-700 dark:text-white">
@@ -254,15 +264,15 @@ onBeforeUnmount(() => {
                   <span class="material-icons-outlined text-rose-500">error</span>
                   <span class="text-rose-500">{{ loginError.message }}</span>
                 </div>
-                <div class="flex justify-between">
-                  <div class="flex gap-2">
-                    <input
-                      v-model="chatbotStore.isAnonymous"
-                      type="checkbox"
-                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800"
-                    />
-                    <span class="text-extra-small dark:text-white">Remain Anonymous</span>
-                  </div>
+                <div class="flex justify-end">
+<!--                  <div class="flex gap-2">-->
+<!--                    <input-->
+<!--                      v-model="chatbotStore.isAnonymous"-->
+<!--                      type="checkbox"-->
+<!--                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800"-->
+<!--                    />-->
+<!--                    <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
+<!--                  </div>-->
                   <div>
                     <router-link
                       to="/auth/forgot-password"
@@ -314,6 +324,16 @@ onBeforeUnmount(() => {
             Welcome back to Rafikey
           </p>
         </div>
+        <div class="w-full ps-2 mx-auto flex items-center gap-2 cursor-pointer ">
+          <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+            <input
+              v-model="chatbotStore.isAnonymous"
+              type="checkbox"
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
+            />
+            <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+          </div>
+        </div>
         <div class="border-b-[1px] border-stone-500 w-full pt-10 md:pt-0"></div>
         <form class="md:space-y-4 space-y-2">
           <div class="space-y-3">
@@ -329,14 +349,14 @@ onBeforeUnmount(() => {
               placeholder="Choose a username"
             />
           </div>
-          <div class="flex gap-2">
-            <input
-              v-model="chatbotStore.isAnonymous"
-              type="checkbox"
-              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white"
-            />
-            <span class="text-extra-small dark:text-white">Remain Anonymous</span>
-          </div>
+<!--          <div class="flex gap-2">-->
+<!--            <input-->
+<!--              v-model="chatbotStore.isAnonymous"-->
+<!--              type="checkbox"-->
+<!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white"-->
+<!--            />-->
+<!--            <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
+<!--          </div>-->
           <div class="relative space-y-3">
             <label class="dark:text-white text-black text-extra-small" for="password">
               Password

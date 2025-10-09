@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update isShowDialog  state">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,23 +288,8 @@
       <workItem from="1759897328520" duration="27856000" />
       <workItem from="1759952584319" duration="605000" />
       <workItem from="1759989162637" duration="2754000" />
-      <workItem from="1760000115644" duration="8044000" />
-    </task>
-    <task id="LOCAL-00559" summary="add images">
-      <option name="closed" value="true" />
-      <created>1759763304258</created>
-      <option name="number" value="00559" />
-      <option name="presentableId" value="LOCAL-00559" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763304258</updated>
-    </task>
-    <task id="LOCAL-00560" summary="clear conversation container on onMounted">
-      <option name="closed" value="true" />
-      <created>1759763391664</created>
-      <option name="number" value="00560" />
-      <option name="presentableId" value="LOCAL-00560" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763391664</updated>
+      <workItem from="1760000115644" duration="10583000" />
+      <workItem from="1760021058740" duration="8369000" />
     </task>
     <task id="LOCAL-00561" summary="add  isShowPlayButton flag">
       <option name="closed" value="true" />
@@ -676,7 +667,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760008332481</updated>
     </task>
-    <option name="localTasksCounter" value="608" />
+    <task id="LOCAL-00608" summary="add styling on update dialog">
+      <option name="closed" value="true" />
+      <created>1760008647469</created>
+      <option name="number" value="00608" />
+      <option name="presentableId" value="LOCAL-00608" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008647469</updated>
+    </task>
+    <task id="LOCAL-00609" summary="update isShowDialog  state">
+      <option name="closed" value="true" />
+      <created>1760008894777</created>
+      <option name="number" value="00609" />
+      <option name="presentableId" value="LOCAL-00609" />
+      <option name="project" value="LOCAL" />
+      <updated>1760008894777</updated>
+    </task>
+    <option name="localTasksCounter" value="610" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,8 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add DialogModal for onNeedRefresh hook" />
-    <MESSAGE value="add usePWA composable" />
     <MESSAGE value="add virtual-pwa type file" />
     <MESSAGE value="add maskable images" />
     <MESSAGE value="add screenshot images" />
@@ -719,7 +724,9 @@
     <MESSAGE value="rename Tab folder" />
     <MESSAGE value="remove bubble names" />
     <MESSAGE value="add styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="add styling" />
+    <MESSAGE value="add styling on update dialog" />
+    <MESSAGE value="update isShowDialog  state" />
+    <option name="LAST_COMMIT_MESSAGE" value="update isShowDialog  state" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -756,8 +763,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
+          <line>251</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

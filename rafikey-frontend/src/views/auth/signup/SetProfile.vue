@@ -254,6 +254,17 @@ onBeforeUnmount(() => {
               experience
             </p>
           </div>
+          <div class="lg:w-3/4 w-full mx-auto flex items-center gap-2 cursor-pointer ">
+            <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+              <input
+                v-model="chatbotStore.isAnonymous"
+                type="checkbox"
+                class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
+              />
+              <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+            </div>
+          </div>
+
           <div class="border-b pt-8 border-gray-400 w-1/2 mx-auto"></div>
           <div class="space-y-10">
             <form>
@@ -296,16 +307,6 @@ onBeforeUnmount(() => {
                     }}</span>
                   </div>
                 </div>
-
-                <div class="flex items-center gap-2">
-                  <input
-                    v-model="chatbotStore.isAnonymous"
-                    type="checkbox"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
-                  />
-                  <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
-                </div>
-
                 <div class="grid grid-cols-2 gap-8">
                   <div class="relative space-y-1">
                     <label class="text-gray-950 dark:text-white text-sm d" for="password">
@@ -442,6 +443,28 @@ onBeforeUnmount(() => {
             experience
           </p>
         </div>
+<!--        <div class="" >-->
+<!--          <div class=" flex gap-2 tooltip  tooltip-bottom" data-tip="Remain anonymous and use the Rafikey without creating an account">-->
+<!--            <input-->
+<!--              id="checkbox"-->
+<!--              v-model="chatbotStore.isAnonymous"-->
+<!--              type="checkbox"-->
+<!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"-->
+<!--            />-->
+<!--            <p class="md:text-lg text-sm dark:text-white text-black pt-1">Remain Anonymous</p>-->
+<!--          </div>-->
+<!--        </div>-->
+        <div class=" w-full mx-auto flex items-center gap-2 cursor-pointer ">
+          <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+            <input
+              v-model="chatbotStore.isAnonymous"
+              type="checkbox"
+              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
+            />
+            <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+          </div>
+        </div>
+
         <div class="border-b border-stone-400 w-full"></div>
         <div class="space-y-2">
           <form class="space-y-2">
@@ -461,15 +484,7 @@ onBeforeUnmount(() => {
                 <span class="md:text-lg text-sm text-rose-500">{{ usernameErrorMessage }}</span>
               </div>
             </div>
-            <div class="space-x-2 flex items-center">
-              <input
-                id="checkbox"
-                v-model="chatbotStore.isAnonymous"
-                type="checkbox"
-                class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
-              />
-              <p class="md:text-lg text-sm dark:text-white text-black pt-1">Remain Anonymous</p>
-            </div>
+
 
             <div class="space-y-0.5">
               <label for="email" class="dark:text-white text-black md:text-lg text-sm"
