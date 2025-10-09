@@ -7,7 +7,7 @@ const {needRefresh, offlineReady,   updateSW} = usePWA()
 
 
 const notificationStore = useNotificationStore()
-const isShowDialog = ref(true)
+const isShowDialog = ref(false)
 
 watch(offlineReady, (ready) => {
   if (ready) {
