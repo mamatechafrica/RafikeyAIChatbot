@@ -4,11 +4,11 @@ import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
 const router = useRouter()
 
-const backToChatHandler = () => {
-  router.push({
-    name: 'newChat',
-  })
-}
+// const backToChatHandler = () => {
+//   router.push({
+//     name: 'newChat',
+//   })
+// }
 </script>
 
 <template>
@@ -19,10 +19,10 @@ const backToChatHandler = () => {
     <div class="w-10/12 mx-auto">
       <div class="sticky py-4 top-0 bg-white dark:bg-lightgray">
         <button
-          @click="backToChatHandler"
+          @click="router.go(-1)"
           class="btn btn-sm bg-transparent shadow-none border-[1px] dark:border-['#CBD5E1'] rounded-[10px] px-[8px] py-[6px]"
         >
-          <span class="dark:text-white text-small">Back to chat</span>
+          <span class="dark:text-white text-small">Go back</span>
         </button>
       </div>
       <RouterView #default="{ Component, route }">

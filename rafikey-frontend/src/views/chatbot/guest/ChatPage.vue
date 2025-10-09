@@ -569,11 +569,11 @@ const accessButtonQuestionHandler = (message: string) => {
   isStartChatSmallScreen.value = true
 }
 
-// const goToPlayPage = () => {
-//   router.push({
-//     name: 'welcome-page-quiz',
-//   })
-// }
+const goToPlayPage = () => {
+  router.push({
+    name: 'welcome-page-quiz',
+  })
+}
 </script>
 
 <template>
@@ -588,26 +588,37 @@ const accessButtonQuestionHandler = (message: string) => {
         <!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
         <!--        </div>-->
         <div
-          class="flex items-end gap-2"
+          class="w-full flex justify-between "
           :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pb-4' : 'pb-0']"
         >
-          <div class="">
-            <button
-              @click="loginHandler"
-              class="btn btn-sm px-6 py-2 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-lg"
-            >
-              <span class="text-extra-small">Log in</span>
-            </button>
-          </div>
-          <span class="text-extra-small dark:text-white">or</span>
           <div>
             <button
-              @click="signUpHandler"
-              class="btn btn-sm px-6 py-2 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black"
+              @click="goToPlayPage"
+              class="btn btn-sm px-6 py-2 shadow-none bg-transparent rounded-xl border border-casablanca-300"
             >
-              <span class="text-extra-small">Sign up</span>
+              <span class="text-extra-small text-casablanca-300">Play games</span>
             </button>
           </div>
+          <div class="flex gap-2">
+            <div>
+              <button
+                @click="loginHandler"
+                class="btn btn-sm px-6 py-2 shadow-none border-none bg-black dark:bg-white text-white dark:text-black rounded-lg"
+              >
+                <span class="text-extra-small">Log in</span>
+              </button>
+            </div>
+            <span class="text-extra-small dark:text-white">or</span>
+            <div>
+              <button
+                @click="signUpHandler"
+                class="btn btn-sm px-6 py-2 shadow-none bg-white dark:bg-transparent rounded-xl border dark:border-white border-black dark:text-white text-black"
+              >
+                <span class="text-extra-small">Sign up</span>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -728,33 +739,33 @@ const accessButtonQuestionHandler = (message: string) => {
         </div>
         <div class="space-y-6">
           <div class="cursor-pointer flex gap-4 w-full">
-            <div
-              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"
-              @click="startChatSmallScreen"
-            >
-              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
-                <span class="material-icons-outlined dark:text-white">sms</span>
-              </div>
-              <div class="flex justify-between dark:text-white gap-4">
-                <p class="text-small">Chat with Rafikey</p>
-                <span class="material-icons-outlined text-sm">arrow_forward</span>
-              </div>
-            </div>
 <!--            <div-->
-<!--              @click.stop="goToPlayPage"-->
-<!--              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"-->
+<!--              @click="startChatSmallScreen"-->
 <!--            >-->
-<!--              <div-->
-<!--                class="bg-casablanca-300 rounded-full h-10 w-10 flex justify-center items-center"-->
-<!--              >-->
-<!--                &lt;!&ndash;            <span class="material-icons-outlined dark:text-white">mic_none</span>&ndash;&gt;-->
-<!--                <img src="@/assets/images/game.png" alt="game-image" />-->
+<!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+<!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
 <!--              </div>-->
-<!--              <div class="flex dark:text-white gap-4">-->
-<!--                <p class="text-small">Play games</p>-->
+<!--              <div class="flex justify-between dark:text-white gap-4">-->
+<!--&lt;!&ndash;                <p class="text-small">Chat with Rafikey</p>&ndash;&gt;-->
 <!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
 <!--              </div>-->
 <!--            </div>-->
+            <div
+              @click.stop="goToPlayPage"
+              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
+            >
+              <div
+                class="bg-casablanca-300 rounded-full h-10 w-10 flex justify-center items-center"
+              >
+                <!--            <span class="material-icons-outlined dark:text-white">mic_none</span>-->
+                <img src="@/assets/images/game.png" alt="game-image" />
+              </div>
+              <div class="flex dark:text-white gap-4 flex justify-between">
+                <p class="text-small">Play games</p>
+                <span class="material-icons-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
           </div>
           <div class="space-y-4">
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">

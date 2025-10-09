@@ -113,8 +113,7 @@ const otherSettings = useStorage("otherSettings", {})
     dialogModal.value.isOpen = value
   }
 
-
-//   send message to Rafikeychatbot
+  //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
     const authStore = useAuthStore()
     try {

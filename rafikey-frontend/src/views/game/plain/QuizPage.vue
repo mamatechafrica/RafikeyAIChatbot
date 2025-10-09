@@ -106,7 +106,7 @@ watch(
     </div>
     <div
       v-if="!isError && chatbotStore.quizzes.length"
-      class="lg:w-1/3 md:w-2/3 w-full dark:bg-transparent bg-link-water-50 dark:border-veryLightEight py-[27px] px-[33px] border-[1px] rounded-[14px]"
+      class="xl:w-1/3 md:w-2/3 w-full dark:bg-transparent bg-link-water-50 dark:border-veryLightEight py-[27px] px-[33px] border-[1px] rounded-[14px]"
     >
       <div class="space-y-8">
         <div class="flex justify-center">
