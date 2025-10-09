@@ -42,7 +42,7 @@ setColor()
       </div>
       <div class="flex flex-col">
         <div class="chat-header dark:text-white flex justify-end items-end text-small">
-          {{ props.userName }}
+<!--          {{ props.userName }}-->
           <time class="text-extra-small opacity-50 flex">{{ props.createdAt }}</time>
         </div>
         <div class="bg-lightBackground dark:bg-bubbleDark p-4 rounded-2xl">
