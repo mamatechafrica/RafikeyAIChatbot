@@ -168,7 +168,6 @@ async def generate_title_from_conversation(user_messages: list[str], bot_respons
         print(f"Error generating title: {e}")
         return "New Chat"  # Updated fallback title
     
-
 async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep):
     """Update conversation title - generates from first 2 exchanges, updates at 4+ exchanges"""
     try:
@@ -244,8 +243,6 @@ async def update_conversation_title(thread_id: str, user_id: int, db: SessionDep
     except Exception as e:
         print(f"Error updating conversation title: {e}")
         db.rollback()  # Rollback on error to prevent partial updates
-
-
 
 async def generate_stream_response_anonymous(user_input: str, thread_id: str) -> AsyncGenerator[str, None]:
     """Generate streaming response from the graph using the provided thread_id"""

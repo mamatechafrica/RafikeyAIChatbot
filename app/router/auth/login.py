@@ -20,7 +20,7 @@ load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = 'HS256'
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 15
 RESET_TOKEN_EXPIRE_MINUTES = 15  # Reset tokens expire in 15 minutes
 
 # Email configuration
@@ -28,7 +28,7 @@ SMTP_SERVER = os.getenv("SMTP_SERVER")  # or your email provider
 SMTP_PORT = int(os.getenv("SMTP_PORT"))
 EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")  # App password or email password
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://rafikeyaichatbot-frontend.onrender.com/auth/reset-password")  # Your frontend URL
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://chat.askrafikey.com/auth/reset-password")  # Your frontend URL
 
 class Token(BaseModel):
     access_token: str 

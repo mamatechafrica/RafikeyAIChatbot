@@ -8,6 +8,9 @@ from pydantic import BaseModel, Field
 from sqlalchemy import create_engine, text
 from typing import Annotated, List, Dict, Any, Optional
 import pandas as pd
+from langchain_core.tools import tool
+import requests
+from bs4 import BeautifulSoup
 
 # Database connection
 DATABASE_URL = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6?sslmode=require"
@@ -331,6 +334,39 @@ tools = [
     search_facilities_by_county
 ]
 
+
+BASE_URL = "https://lovemattersafrica.com/wp-json/wp/v2/clinics"
+
+
+@tool("get_clinics_by_location", return_direct=True)
+def get_clinics_by_location(location: str) -> str:
+    """
+    Get clinics or hospitals based on a given location name.
+    Returns a simple text summary of clinics in that area and their services.
+    """
+    try:
+        # Search clinics using the WordPress API
+        response = requests.get(BASE_URL, params={"search": location})
+        response.raise_for_status()
+        data = response.json()
+
+        if not data:
+            return f"No clinics found in {location}."
+
+        results = []
+        for clinic in data:
+            name = clinic["title"]["rendered"]
+            link = clinic["link"]
+            services = clinic.get("clinic_services", [])
+            results.append(f"🏥 {name}\n🔗 {link}\n🩺 Services IDs: {services}\n")
+
+        return "\n".join(results[:5])  # Limit to first 5 results
+    except Exception as e:
+        return f"Error fetching clinics: {e}"
+
+
+
+
 def test_tools():
     print("Testing LangGraph Hospital Tools...")
     
@@ -372,4 +408,5 @@ def test_tools():
     print(result)
 
 if __name__ == "__main__":
-    test_tools()
+    # Use it directly
+  print(get_clinics_by_location("Nairobi"))   

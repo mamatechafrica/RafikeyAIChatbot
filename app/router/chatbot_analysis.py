@@ -543,40 +543,6 @@ async def get_topics(session: SessionDep):
 
     return topic_data
 
-# @router.get('/thread_activity')
-# async def get_thread_activity(
-#     session: SessionDep,
-#     days: int = 30  # Number of days to look back
-# ):
-#     # Calculate the start date based on the number of days to look back
-#     start_date = datetime.utcnow() - timedelta(days=days)
-    
-#     # Query to get thread IDs and their timestamps
-#     query = select(
-#         Conversations.thread_id,
-#         Conversations.timestamp
-#     ).where(
-#         Conversations.timestamp >= start_date
-#     ).order_by(
-#         Conversations.timestamp
-#     )
-    
-#     # Execute the query
-#     results = session.exec(query).all()
-    
-#     # Format the results for plotting
-#     thread_activity = [
-#         {
-#             "thread_id": result.thread_id,
-#             "timestamp": result.timestamp.isoformat()
-#         }
-#         for result in results
-#     ]
-    
-#     return {
-#         "days_range": days,
-#         "data": thread_activity
-#     }
 
 
 @router.get('/thread_activity')
@@ -705,6 +671,36 @@ async def delete_all_conversations(
             session.delete(conversation)
         session.commit()
         return {"message": f"Deleted all ({count}) conversations for user '{current_user.username}'."}
+    except Exception as e:
+        session.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# Endpoint to delete conversations older than 30 days from user join date
+@router.delete('/conversations/expired', status_code=200)
+async def delete_expired_conversations(
+    session: SessionDep,
+    current_user: Annotated[UserModel, Depends(get_current_active_user)]
+):
+    """
+    Delete all conversations for the authenticated user that are older than 30 days from their join (created_at) date.
+    """
+    try:
+        # Calculate the cutoff date: 30 days after user joined
+        cutoff_date = current_user.created_at + timedelta(days=30)
+        # Delete conversations older than cutoff_date
+        statement = select(Conversations).where(
+            (Conversations.user_id == current_user.id) &
+            (Conversations.timestamp < cutoff_date)
+        )
+        conversations = session.exec(statement).all()
+        count = len(conversations)
+        if count == 0:
+            return {"message": "No expired conversations to delete for this user."}
+        for conversation in conversations:
+            session.delete(conversation)
+        session.commit()
+        return {"message": f"Deleted {count} expired conversations for user '{current_user.username}' (joined: {current_user.created_at.date()}, cutoff: {cutoff_date.date()})."}
     except Exception as e:
         session.rollback()
         raise HTTPException(status_code=500, detail=str(e))
