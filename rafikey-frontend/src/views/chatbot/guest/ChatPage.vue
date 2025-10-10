@@ -761,7 +761,7 @@ const goToPlayPage = () => {
                 <!--            <span class="material-icons-outlined dark:text-white">mic_none</span>-->
                 <img src="@/assets/images/game.png" alt="game-image" />
               </div>
-              <div class="flex dark:text-white gap-4 flex justify-between">
+              <div class="flex dark:text-white gap-4 justify-between">
                 <p class="text-small">Play games</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>

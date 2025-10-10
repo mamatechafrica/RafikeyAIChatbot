@@ -137,8 +137,8 @@ const closeGameButton = () => {
 
 <template>
   <div class="min-h-screen  dark:bg-lightgray">
-    <div class="space-y-28 min-h-screen md:block hidden">
-      <div class="space-y-8 pt-12">
+    <div class=" xl:space-y-28 space-y-16 min-h-screen md:block hidden">
+      <div class="space-y-8 lg:pt-12">
         <div class="space-y-4">
           <h2
             class="text-extra-extra-large-2 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-azure-radiance-600 to-coral-red-500"
@@ -153,15 +153,15 @@ const closeGameButton = () => {
 
       <div class="w-full flex justify-between" v-if="accessButtonDisplay">
         <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-16 gap-6">
-          <div class="col-span-1 cursor-pointer" @click="accessButtonQuestionHandler(accessButtonsArray[0].content)">
-            <img :src=" toggleAccessButton " alt="access-buttons" />
+          <div class="lg:col-span-1  col-span-4 cursor-pointer" @click="accessButtonQuestionHandler(accessButtonsArray[0].content)">
+            <img :src=" toggleAccessButton " alt="access-buttons" class="" />
           </div>
-          <div class="col-span-1">
+          <div class="lg:col-span-1 col-span-4">
             <SRHRGameButton @close-game-button="closeGameButton" />
           </div>
 
-          <div class="lg:col-span-1 flex mb-10 justify-end  col-span-2">
-            <img src="../../../assets/images/Rafikey-mascot.png" alt="rafikey-mascot" class="lg:w-64  w-28" />
+          <div class="lg:col-span-1  flex justify-end col-span-12">
+            <img src="../../../assets/images/rafiikey-mascot2.svg" alt="rafikey-mascot" class="lg:w-64 lg:h-48 xl:h-full   w-28" />
           </div>
         </div>
 
@@ -194,18 +194,18 @@ const closeGameButton = () => {
       </div>
 
       <div class="flex gap-2">
-        <div
-          @click.stop="startChatHandler"
-          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
-        >
-          <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">
-            <span class="material-icons-outlined dark:text-white">sms</span>
-          </div>
-          <div class="flex dark:text-white sm:gap-4  justify-between">
-            <p class="text-small">Chat with Rafikey</p>
-            <span class="material-icons-outlined text-sm">arrow_forward</span>
-          </div>
-        </div>
+<!--        <div-->
+<!--          @click.stop="startChatHandler"-->
+<!--          class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"-->
+<!--        >-->
+<!--          <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+<!--            <span class="material-icons-outlined dark:text-white">sms</span>-->
+<!--          </div>-->
+<!--          <div class="flex dark:text-white sm:gap-4  justify-between">-->
+<!--            <p class="text-small">Chat with Rafikey</p>-->
+<!--            <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+<!--          </div>-->
+<!--        </div>-->
         <div
           @click.stop="goToPlayPage"
           class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"

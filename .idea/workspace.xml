@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update isShowDialog  state">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update service worker">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafiikey-mascot2.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,31 +287,8 @@
       <workItem from="1759952584319" duration="605000" />
       <workItem from="1759989162637" duration="2754000" />
       <workItem from="1760000115644" duration="10583000" />
-      <workItem from="1760021058740" duration="8369000" />
-    </task>
-    <task id="LOCAL-00561" summary="add  isShowPlayButton flag">
-      <option name="closed" value="true" />
-      <created>1759763444350</created>
-      <option name="number" value="00561" />
-      <option name="presentableId" value="LOCAL-00561" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763444350</updated>
-    </task>
-    <task id="LOCAL-00562" summary="add imageToggleSmallDevice function">
-      <option name="closed" value="true" />
-      <created>1759763507528</created>
-      <option name="number" value="00562" />
-      <option name="presentableId" value="LOCAL-00562" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763507528</updated>
-    </task>
-    <task id="LOCAL-00563" summary="add ui styling">
-      <option name="closed" value="true" />
-      <created>1759763536426</created>
-      <option name="number" value="00563" />
-      <option name="presentableId" value="LOCAL-00563" />
-      <option name="project" value="LOCAL" />
-      <updated>1759763536426</updated>
+      <workItem from="1760021058740" duration="9146000" />
+      <workItem from="1760071452643" duration="8341000" />
     </task>
     <task id="LOCAL-00564" summary="add required to the fields">
       <option name="closed" value="true" />
@@ -683,7 +658,31 @@
       <option name="project" value="LOCAL" />
       <updated>1760008894777</updated>
     </task>
-    <option name="localTasksCounter" value="610" />
+    <task id="LOCAL-00610" summary="add tooltip">
+      <option name="closed" value="true" />
+      <created>1760030309080</created>
+      <option name="number" value="00610" />
+      <option name="presentableId" value="LOCAL-00610" />
+      <option name="project" value="LOCAL" />
+      <updated>1760030309080</updated>
+    </task>
+    <task id="LOCAL-00611" summary="add  goToPlayPage">
+      <option name="closed" value="true" />
+      <created>1760030417325</created>
+      <option name="number" value="00611" />
+      <option name="presentableId" value="LOCAL-00611" />
+      <option name="project" value="LOCAL" />
+      <updated>1760030417325</updated>
+    </task>
+    <task id="LOCAL-00612" summary="update service worker">
+      <option name="closed" value="true" />
+      <created>1760030437530</created>
+      <option name="number" value="00612" />
+      <option name="presentableId" value="LOCAL-00612" />
+      <option name="project" value="LOCAL" />
+      <updated>1760030437530</updated>
+    </task>
+    <option name="localTasksCounter" value="613" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,8 +700,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add virtual-pwa type file" />
-    <MESSAGE value="add maskable images" />
     <MESSAGE value="add screenshot images" />
     <MESSAGE value="add  images" />
     <MESSAGE value="remove images" />
@@ -715,7 +712,6 @@
     <MESSAGE value="remove SRHRGameButton" />
     <MESSAGE value="reduce padding on textarea" />
     <MESSAGE value="remove mic" />
-    <MESSAGE value="update service worker" />
     <MESSAGE value="add notification toasts" />
     <MESSAGE value="add tooltip and tadio buttons" />
     <MESSAGE value="add  isArchive flag" />
@@ -726,7 +722,10 @@
     <MESSAGE value="add styling" />
     <MESSAGE value="add styling on update dialog" />
     <MESSAGE value="update isShowDialog  state" />
-    <option name="LAST_COMMIT_MESSAGE" value="update isShowDialog  state" />
+    <MESSAGE value="add tooltip" />
+    <MESSAGE value="add  goToPlayPage" />
+    <MESSAGE value="update service worker" />
+    <option name="LAST_COMMIT_MESSAGE" value="update service worker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -768,8 +767,13 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
           <line>251</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue</url>
+          <line>160</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

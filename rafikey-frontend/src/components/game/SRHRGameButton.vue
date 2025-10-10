@@ -19,15 +19,15 @@ const goToPlayPage = () =>{
 </script>
 
 <template>
-<div class=" dark:bg-darkgray bg-white space-y-2 border-[1px]  px-4 py-2 md:py-8 pb-[20px]  rounded-[20px] dark:border-lightgrayThree">
+<div class=" dark:bg-darkgray bg-white space-y-2 border-[1px]  px-4 py-8 pb-[20px]  rounded-[20px] dark:border-lightgrayThree">
   <div class="flex justify-between">
     <div>
       <p class="dark:text-white text-small">Let's have fun</p>
     </div>
     <div class="flex justify-center" >
-      <button @click="closePLayButton" class="btn btn-sm btn-ghost bg-transparent border-none shadow-none w-[25px] h-[25px]">
-        <span class="material-icons-outlined dark:text-veryLightSeven">cancel</span>
-      </button>
+<!--      <button @click="closePLayButton" class="btn btn-sm btn-ghost bg-transparent border-none shadow-none w-[25px] h-[25px]">-->
+<!--        <span class="material-icons-outlined dark:text-veryLightSeven">cancel</span>-->
+<!--      </button>-->
     </div>
   </div>
  <div class="flex justify-center">
