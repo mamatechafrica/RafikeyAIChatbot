@@ -218,7 +218,7 @@ async def send_password_reset_email(email: str, reset_token: str):
                 <p>If you made this request, please click the button below to reset your password:</p>
                 
                 <div style="text-align: center; margin: 30px 0;">
-                    <a href="{reset__url}" 
+                    <a href="{reset_url}" 
                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
                               color: white; 
                               padding: 15px 30px; 
