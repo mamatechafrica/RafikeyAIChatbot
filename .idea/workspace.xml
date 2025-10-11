@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update service worker">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/rafiikey-mascot2.svg" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add mascot image">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,15 +288,7 @@
       <workItem from="1759989162637" duration="2754000" />
       <workItem from="1760000115644" duration="10583000" />
       <workItem from="1760021058740" duration="9146000" />
-      <workItem from="1760071452643" duration="8341000" />
-    </task>
-    <task id="LOCAL-00564" summary="add required to the fields">
-      <option name="closed" value="true" />
-      <created>1759769605403</created>
-      <option name="number" value="00564" />
-      <option name="presentableId" value="LOCAL-00564" />
-      <option name="project" value="LOCAL" />
-      <updated>1759769605404</updated>
+      <workItem from="1760071452643" duration="11883000" />
     </task>
     <task id="LOCAL-00565" summary="remove confirm buttons">
       <option name="closed" value="true" />
@@ -682,7 +674,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760030437530</updated>
     </task>
-    <option name="localTasksCounter" value="613" />
+    <task id="LOCAL-00613" summary="add mascot image">
+      <option name="closed" value="true" />
+      <created>1760113298395</created>
+      <option name="number" value="00613" />
+      <option name="presentableId" value="LOCAL-00613" />
+      <option name="project" value="LOCAL" />
+      <updated>1760113298395</updated>
+    </task>
+    <option name="localTasksCounter" value="614" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +700,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add screenshot images" />
     <MESSAGE value="add  images" />
     <MESSAGE value="remove images" />
     <MESSAGE value="remove launcher image" />
@@ -725,7 +724,8 @@
     <MESSAGE value="add tooltip" />
     <MESSAGE value="add  goToPlayPage" />
     <MESSAGE value="update service worker" />
-    <option name="LAST_COMMIT_MESSAGE" value="update service worker" />
+    <MESSAGE value="add mascot image" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mascot image" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

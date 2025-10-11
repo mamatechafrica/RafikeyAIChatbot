@@ -205,6 +205,39 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  // logout from all devices
+  async function  logOutAllDevices (){
+    try{
+      const response = await fetch(`${BASE_URL}/auth/logout_all`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token.value}`
+        }
+      })
+
+      const res = await response.json()
+      if(!response.ok) {
+        return{
+          result: 'fail',
+          message: res.message
+        }
+      } else{
+        return {
+          result: 'ok',
+          message: res.message
+        }
+      }
+    } catch(e) {
+      console.error('Error logging out from all devices')
+      return {
+        result: 'fail',
+        message: 'An error occurred, please try again later'
+      }
+    }
+
+  }
+
   // set user data on local storage
   async function setUserData(token: string){
     const {sub} = jwtDecode(token)
@@ -268,6 +301,7 @@ export const useAuthStore = defineStore('authStore', () => {
     forgotPassword,
     resetPassword,
     userIsLoggedIn,
-    logout
+    logout,
+    logOutAllDevices
   }
 })
