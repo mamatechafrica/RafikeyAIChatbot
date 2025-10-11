@@ -474,8 +474,6 @@ const otherSettings = useStorage("otherSettings", {})
     }
   }
 
-
-
   // Set active chat hitory
 
   const setActiveChatHistory = (value: string)=>{
