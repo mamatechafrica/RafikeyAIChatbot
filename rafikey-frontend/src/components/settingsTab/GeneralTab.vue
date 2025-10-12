@@ -58,7 +58,10 @@ const deleteAllChats = () => {
 
 const isArchived = ref(chatbotStore.isChatArchive)
 
-watch(isArchived, (value: boolean) => {
+const toggleArchive = (value: string) => {
+isArchive.value = value === 'archive'
+chatbotStore.isChatArchive  = isArchive.value
+}
 
   if (value) {
     notificationStore.addNotification('All chats have been archived', 'success')
