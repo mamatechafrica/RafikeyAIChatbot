@@ -7,6 +7,8 @@ import { useRouter } from 'vue-router'
 const authStore = useAuthStore()
 const notificationStore = useNotificationStore()
 const showLogoutDialogModal = ref(false)
+const showLogoutAllDevicesDialogModal = ref(false)
+const isLoadingLogoutAllDevices = ref(false)
 const router = useRouter()
 const logOut = () => {
   showLogoutDialogModal.value = true
@@ -41,6 +43,10 @@ const logoutAllDevices = () => {
       isLoadingLogoutAllDevices.value = false
       showLogoutAllDevicesDialogModal.value = false
     })
+}
+
+const logoutAllDevicesHandler = () =>{
+  showLogoutAllDevicesDialogModal.value = true
 }
 </script>
 
