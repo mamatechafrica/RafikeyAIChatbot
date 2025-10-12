@@ -76,6 +76,8 @@ const logoutAllDevicesHandler = () =>{
     </div>
     <div class="border-b-[1px] border-veryLightFour dark:border-veryLightFive"></div>
 
+<!--  log out  -->
+
     <Teleport to="body">
       <DialogModal
         :is-open="showLogoutDialogModal"
@@ -93,20 +95,57 @@ const logoutAllDevicesHandler = () =>{
           </div>
         </template>
         <template #footer>
-          <div class="flex justify-center gap-4">
+          <div class="w-full flex justify-center gap-4">
+            <button
+              @click="showLogoutDialogModal = !showLogoutDialogModal"
+              class="btn btn-sm w-1/2 bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white"
+            >
+              <span>Cancel</span>
+            </button>
             <button
               @click.stop="logoutHandler"
-              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+              class="btn btn-sm  w-1/2 border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
             >
               <span class="">Ok</span>
               <!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
             </button>
+
+          </div>
+        </template>
+      </DialogModal>
+
+<!--      logout all devices-->
+      <DialogModal
+        :is-open="showLogoutAllDevicesDialogModal"
+        @close-modal="showLogoutAllDevicesDialogModal = !showLogoutAllDevicesDialogModal"
+      >
+        <template #title>
+          <div class="flex justify-center">
+            <span class="material-icons-round dark:text-white !text-4xl">&#128546;</span>
+          </div>
+        </template>
+        <template #body>
+          <div class="flex flex-col items-center py-2">
+            <p class="dark:text-white text-lg lg:text-xl">Are you sure?</p>
+            <span class="dark:text-white text-lg lg:text-lg">Logging out of all devices</span>
+          </div>
+        </template>
+        <template #footer>
+          <div class="w-full flex justify-center gap-4">
             <button
-              @click="showLogoutDialogModal = !showLogoutDialogModal"
-              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white"
+              @click="showLogoutAllDevicesDialogModal = !showLogoutAllDevicesDialogModal"
+              class="btn btn-sm bg-transparent w-1/2 border-casablanca-300 shadow-none rounded-lg dark:text-white"
             >
               <span>Cancel</span>
             </button>
+            <button
+              @click.stop="logoutAllDevices"
+              class="btn btn-sm w-1/2 border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+            >
+              <span v-if="!isLoadingLogoutAllDevices" class="">Ok</span>
+              <span v-else class="loading loading-spinner loading-sm"></span>
+            </button>
+
           </div>
         </template>
       </DialogModal>
