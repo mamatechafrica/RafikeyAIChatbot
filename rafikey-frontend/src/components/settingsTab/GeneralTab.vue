@@ -62,14 +62,13 @@ isArchive.value = value === 'archive'
 chatbotStore.isChatArchive  = isArchive.value
 }
 
+watch(isArchive, (value: boolean) => {
   if (value) {
     notificationStore.addNotification('All chats have been archived', 'success')
   } else {
     notificationStore.addNotification('Archived chats are now visible', 'success')
   }
-  chatbotStore.setIsChatArchive(value)
 })
-
 </script>
 
 <template>
