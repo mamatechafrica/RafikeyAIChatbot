@@ -125,13 +125,14 @@ watch(isArchive, (value: boolean) => {
             type="radio"
             id="noArchive"
             value="false"
-            v-model="isArchived"
+            @change="toggleArchive('view')"
+            :checked="!isArchive"
             class="custom-radio"
           />
           <label for="noArchive" class="dark:text-white">View Archived Chats</label>
         </div>
         <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Hides chats from the side nav">
-          <input type="radio" id="archive" value="true" v-model="isArchived" class="custom-radio" />
+          <input type="radio" id="archive" value="true" :checked="isArchive" @change="toggleArchive('archive')" class="custom-radio" />
           <label for="archive" class="dark:text-white">Archive All Chats</label>
         </div>
         <div
