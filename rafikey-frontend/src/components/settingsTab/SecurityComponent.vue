@@ -17,8 +17,12 @@ const logoutHandler = () => {
   router.push({ name: 'login' })
 }
 
-const logoutAllDevicesHandler = () => {
-  authStore.logOutAllDevices().then((res) => {
+
+
+const logoutAllDevices = () => {
+  isLoadingLogoutAllDevices.value = true
+  authStore.logOutAllDevices()
+    .then((res) => {
     if (res.result === 'ok') {
       authStore.logout()
       notificationStore.addNotification('Logged out of all devices successfully', 'success')
@@ -32,6 +36,10 @@ const logoutAllDevicesHandler = () => {
     .catch((err)=>{
       console.log('Error logging out of all devices', err)
       notificationStore.addNotification('An error occurred while logging out of all devices, please try again', 'error')
+    })
+    .finally(()=>{
+      isLoadingLogoutAllDevices.value = false
+      showLogoutAllDevicesDialogModal.value = false
     })
 }
 </script>

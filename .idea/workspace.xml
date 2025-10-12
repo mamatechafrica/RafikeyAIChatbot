@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add mascot image">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logoutAllDevicesHandler  function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,23 +288,8 @@
       <workItem from="1759989162637" duration="2754000" />
       <workItem from="1760000115644" duration="10583000" />
       <workItem from="1760021058740" duration="9146000" />
-      <workItem from="1760071452643" duration="11883000" />
-    </task>
-    <task id="LOCAL-00565" summary="remove confirm buttons">
-      <option name="closed" value="true" />
-      <created>1759774110617</created>
-      <option name="number" value="00565" />
-      <option name="presentableId" value="LOCAL-00565" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774110618</updated>
-    </task>
-    <task id="LOCAL-00566" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759774135202</created>
-      <option name="number" value="00566" />
-      <option name="presentableId" value="LOCAL-00566" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774135202</updated>
+      <workItem from="1760071452643" duration="12254000" />
+      <workItem from="1760287735338" duration="5637000" />
     </task>
     <task id="LOCAL-00567" summary="add rafikey mascot">
       <option name="closed" value="true" />
@@ -682,7 +667,23 @@
       <option name="project" value="LOCAL" />
       <updated>1760113298395</updated>
     </task>
-    <option name="localTasksCounter" value="614" />
+    <task id="LOCAL-00614" summary="add logoutAllDevicesHandler function">
+      <option name="closed" value="true" />
+      <created>1760155542566</created>
+      <option name="number" value="00614" />
+      <option name="presentableId" value="LOCAL-00614" />
+      <option name="project" value="LOCAL" />
+      <updated>1760155542566</updated>
+    </task>
+    <task id="LOCAL-00615" summary="add logoutAllDevicesHandler  function">
+      <option name="closed" value="true" />
+      <created>1760155607809</created>
+      <option name="number" value="00615" />
+      <option name="presentableId" value="LOCAL-00615" />
+      <option name="project" value="LOCAL" />
+      <updated>1760155607809</updated>
+    </task>
+    <option name="localTasksCounter" value="616" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,8 +701,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add  images" />
-    <MESSAGE value="remove images" />
     <MESSAGE value="remove launcher image" />
     <MESSAGE value="add goToPlayPage" />
     <MESSAGE value="remove condition" />
@@ -725,7 +724,9 @@
     <MESSAGE value="add  goToPlayPage" />
     <MESSAGE value="update service worker" />
     <MESSAGE value="add mascot image" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mascot image" />
+    <MESSAGE value="add logoutAllDevicesHandler function" />
+    <MESSAGE value="add logoutAllDevicesHandler  function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add logoutAllDevicesHandler  function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -772,7 +773,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue</url>
           <line>160</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
