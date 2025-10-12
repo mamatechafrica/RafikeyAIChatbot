@@ -25,6 +25,10 @@ const bgColor = inject('bgColor')
 const darkBgColor = inject('darkBgColor')
 const isArchive = computed(() => chatbotStore.isChatArchive)
 
+watch(()=>chatbotStore.isChatArchive, (newVal)=>{
+console.log('isArchive changed:', newVal)
+})
+
 const components = [
   {
     id: 1,
