@@ -55,8 +55,7 @@ const deleteAllChats = () => {
     })
 }
 
-
-const isArchived = ref(chatbotStore.isChatArchive)
+const isArchive = ref(chatbotStore.isChatArchive)
 
 const toggleArchive = (value: string) => {
 isArchive.value = value === 'archive'
