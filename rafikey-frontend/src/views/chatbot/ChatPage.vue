@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef, provide } from 'vue'
+import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef, provide, reactive } from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
@@ -529,52 +529,53 @@ onMounted(() => {
 })
 
 // Destroy the listeners to prevents memory leaks and unwanted side effects
-onUnmounted(()=>{
+onUnmounted(() => {
   document.removeEventListener('click', closeProfileSection)
-// watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
-//   if(val.value){
-//     console.log('Access button request', val)
-//     nextTick(()=>{
-//       handleUserInput(val.message)
-//     })
-//
-//     // rafikeyChatbotStore.setAccessButtonRequest('')
-//   }
-//
-// })
-
+  // watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
+  //   if(val.value){
+  //     console.log('Access button request', val)
+  //     nextTick(()=>{
+  //       handleUserInput(val.message)
+  //     })
+  //
+  //     // rafikeyChatbotStore.setAccessButtonRequest('')
+  //   }
+  //
+  // })
 })
-
 
 // if someone clicks outside the profile section area when the profile section  is open it closes
 const closeProfileSection = (event: MouseEvent) => {
-  if(profileSectionElement.value && !profileSectionElement.value.contains(event.target as HTMLElement)) {
+  if (
+    profileSectionElement.value &&
+    !profileSectionElement.value.contains(event.target as HTMLElement)
+  ) {
     isShowProfile.value = false
   }
 }
 
-
 // check if the regenerate has been punched to regenerate the response
-watch(()=> rafikeyChatbotStore.regenerateResponse, (newValue) =>{
-  console.log("Regenerate response")
-  if(newValue){
-    handleUserInput(rafikeyChatbotStore.regenerateUserInput)
-  }
-})
-
+watch(
+  () => rafikeyChatbotStore.regenerateResponse,
+  (newValue) => {
+    console.log('Regenerate response')
+    if (newValue) {
+      handleUserInput(rafikeyChatbotStore.regenerateUserInput)
+    }
+  },
+)
 
 const showLogoutDialogModal = ref(false)
-const confirmLogoutHandler = () =>{
+const confirmLogoutHandler = () => {
   showLogoutDialogModal.value = true
-
 }
 
-const logoutHandler = () =>{
+const logoutHandler = () => {
   authStore.logout()
   router.push({ name: 'login' })
 }
 
-const cancelLogout = () =>{
+const cancelLogout = () => {
   showLogoutDialogModal.value = false
   isShowProfile.value = false
 }
@@ -582,15 +583,17 @@ const cancelLogout = () =>{
 const isShowInput = ref(false)
 // const isSmallDevice = useMediaQuery('(max-width: 767px)')
 
-
 // Checking for small devices and hiding the user input
-watch(()=>rafikeyChatbotStore.isNewChat, (val)=>{
-    if(val){
-      isShowInput.value = rafikeyChatbotStore.isNewChat && val;
-    } else{
+watch(
+  () => rafikeyChatbotStore.isNewChat,
+  (val) => {
+    if (val) {
+      isShowInput.value = rafikeyChatbotStore.isNewChat && val
+    } else {
       isShowInput.value = true
     }
-})
+  },
+)
 
 const modeToggleHandler = useToggle(isDark)
 const isProfile = ref(false)
@@ -608,24 +611,23 @@ const showSettingDialog = ref(false)
 const isShare = ref(false)
 
 const shareData = {
-  title:  "Rafikey Ai",
-  text: "Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️",
-  url: `${rafikeyChatbotStore. RAFIKEY_CHATBOT_FRONTEND_URL}/guest-user/${rafikeyChatbotStore.sessionId}`
+  title: 'Rafikey Ai',
+  text: 'Talk freely. Learn safely. Own your sexual health with Rafikey AI 💬✨❤️',
+  url: `${rafikeyChatbotStore.RAFIKEY_CHATBOT_FRONTEND_URL}/guest-user/${rafikeyChatbotStore.sessionId}`,
 }
 
 // share of the chat links using the webShare API
-async function  shareChat (){
-  if(navigator.share){
-    try{
+async function shareChat() {
+  if (navigator.share) {
+    try {
       await navigator.share(shareData)
-    } catch(error){
-      console.log("An errror has occurred")
+    } catch (error) {
+      console.log('An errror has occurred')
     }
   }
   // If native sharing mechanism is not supported on this device
-  else{
+  else {
     isShare.value = true
-
   }
 }
 
@@ -637,25 +639,24 @@ const generateLink = () => {
     showCopyBtn.value = true
     showSocials.value = true
   }, 2000)
-
 }
 
-
-const copyShareChatLink = ()=>{
-  if(!navigator.clipboard){
-    notificationStore.addNotification('Your browser does not support clipboard feature, please switch to a different browser', 'error')
-  } else{
-    if(typeof navigator.clipboard.writeText === 'function'){
-      try{
+const copyShareChatLink = () => {
+  if (!navigator.clipboard) {
+    notificationStore.addNotification(
+      'Your browser does not support clipboard feature, please switch to a different browser',
+      'error',
+    )
+  } else {
+    if (typeof navigator.clipboard.writeText === 'function') {
+      try {
         navigator.clipboard.writeText(linkChatInput.value as string)
         isShareChatLinkCopy.value = true
-      }
-      catch(error){
+      } catch (error) {
         console.error(error)
         notificationStore.addNotification('Failed to copy chat link, please try again', 'error')
-      }
-      finally {
-        setTimeout(()=>{
+      } finally {
+        setTimeout(() => {
           isShareChatLinkCopy.value = false
         }, 2000)
       }
@@ -663,19 +664,18 @@ const copyShareChatLink = ()=>{
   }
 }
 
-
-const shareOn = (value: string) =>{
+const shareOn = (value: string) => {
   const urlToShare = linkChatInput.value as string
   const encodeURL = encodeURIComponent(urlToShare)
   let shareUrl = ''
   const message = encodeURIComponent(shareData.text)
-  if(value === 'facebook'){
+  if (value === 'facebook') {
     shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURL}&quote=${message}`
-  }else if(value === 'twitter'){
+  } else if (value === 'twitter') {
     shareUrl = `https://twitter.com/intent/tweet?url=${encodeURL}&text=${message}`
-  }else if(value === 'whatsapp'){
+  } else if (value === 'whatsapp') {
     shareUrl = `https://api.whatsapp.com/send?text=${message}%20${encodeURL}`
-  }else if(value === 'linkedIn'){
+  } else if (value === 'linkedIn') {
     shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURL}`
   }
   window.open(shareUrl, '_blank')
@@ -686,24 +686,28 @@ const showFeedbackDialog = ref(false)
 //   isShowPlayButton.value = false
 // }
 
-const showFeedbackDialogHandler = () =>{
+const showFeedbackDialogHandler = () => {
   showFeedbackDialog.value = !showFeedbackDialog.value
 }
 
-const userString = authStore.user;
-let username = '';
+const userString = authStore.user
+let username = ''
 try {
   if (userString) {
-    username = JSON.parse(userString).username || 'ME';
+    username = JSON.parse(userString).username || 'ME'
   }
 } catch (e) {
-  username = 'ME';
+  username = 'ME'
 }
-const { darkBgColor, bgColor, setColor} = useColorGenerator(username)
+const { darkBgColor, bgColor, setColor } = useColorGenerator(username)
 
 setColor()
+const profileRoute = ref(route.name === 'profile')
 
-
+// open user profile page
+const openProfileHandler = () => {
+  router.push({ name: 'profile' })
+}
 
 provide('bgColor', bgColor)
 provide('darkBgColor', darkBgColor)
@@ -711,14 +715,14 @@ provide('darkBgColor', darkBgColor)
 </script>
 
 <template>
-  <div class="relative p-6 dark:bg-lightgray h-screen overflow-hidden w-full">
-    <div>
+  <div class="relative   p-6 dark:bg-lightgray  w-full" :class="[rafikeyChatbotStore.isNewChat?'overflow-hidden h-screen ': '']">
+    <div class="">
       <NavBar
         @fetch-history-handler="fetchHistoryHandler"
         @share-chat="shareChat"
         @profile-handler="profileHandler"
         @is-profile="isProfileHandler"
-        @show-feedback-dialog = "showFeedbackDialogHandler"
+        @show-feedback-dialog="showFeedbackDialogHandler"
       />
     </div>
     <!--    right side-->
@@ -731,7 +735,11 @@ provide('darkBgColor', darkBgColor)
       >
         <!--    top -->
         <div
-          v-if="!rafikeyChatbotStore.isNewChat"
+          v-if="
+            !rafikeyChatbotStore.isNewChat &&
+            !profileRoute &&
+            !rafikeyChatbotStore.isStreamError.hasError
+          "
           class="hidden justify-end gap-4 w-11/12 sticky top-0 cursor-pointer md:flex"
         >
           <div
@@ -806,7 +814,10 @@ provide('darkBgColor', darkBgColor)
               <span class="material-icons-round dark:text-white !text-xl">exit_to_app</span>
               <span class="dark:text-white text-gray-700">Log out</span>
             </div>
-            <div class="flex gap-4 rounded-lg px-2 py-1">
+            <div
+              @click.stop="openProfileHandler"
+              class="flex gap-4 rounded-lg px-2 py-1 hover:bg-lightBackground dark:hover:bg-stone-700"
+            >
               <span class="material-icons-round text-stone-400 dark:text-white"
                 >person_outline</span
               >
@@ -817,7 +828,7 @@ provide('darkBgColor', darkBgColor)
 
         <!--    text area-->
         <div
-          v-if="!rafikeyChatbotStore.isStreamError.hasError"
+          v-if="!rafikeyChatbotStore.isStreamError.hasError && !profileRoute"
           ref="userInputContainerHeightRef"
           :class="[
             !rafikeyChatbotStore.collapseSidebarLarge
@@ -840,8 +851,11 @@ provide('darkBgColor', darkBgColor)
         </div>
       </div>
     </div>
-    <div v-if="showFeedbackDialog" class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2  md:bottom-44 md:right-16 z-50">
-      <FeebackDialog  @close-feedback-dialog="showFeedbackDialog = false" />
+    <div
+      v-if="showFeedbackDialog"
+      class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:bottom-44 md:right-16 z-50"
+    >
+      <FeebackDialog @close-feedback-dialog="showFeedbackDialog = false" />
     </div>
 
     <Teleport to="body">
@@ -904,9 +918,7 @@ provide('darkBgColor', darkBgColor)
       <template #title>
         <div class="flex flex-row-reverse justify-between">
           <div @click="isShare = false" class="cursor-pointer">
-
-              <span class="material-icons-outlined dark:text-white">close</span>
-
+            <span class="material-icons-outlined dark:text-white">close</span>
           </div>
           <div>
             <span class="font-semibold text-lg dark:text-white">Share link chat on social</span>
@@ -915,16 +927,15 @@ provide('darkBgColor', darkBgColor)
       </template>
       <template #body>
         <div>
-          <p class="dark:text-white">Generate link to share with friends on social media platforms.</p>
+          <p class="dark:text-white">
+            Generate link to share with friends on social media platforms.
+          </p>
         </div>
       </template>
 
-
       <template #footer>
         <div class="flex flex-col">
-          <div
-            class="md:space-x-2 w-full flex items-center border-[0.5px] py-3 !rounded-2xl px-3"
-          >
+          <div class="md:space-x-2 w-full flex items-center border-[0.5px] py-3 !rounded-2xl px-3">
             <input
               type="text"
               @copy.prevent
@@ -932,7 +943,7 @@ provide('darkBgColor', darkBgColor)
               @paste.prevent
               readonly
               v-model="linkChatInput"
-              class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis  focus:outline-none focus:ring-0 focus:border-transparent  line-clamp-1  md:ps-2 ps-1  me-0.5  rounded-md"
+              class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis focus:outline-none focus:ring-0 focus:border-transparent line-clamp-1 md:ps-2 ps-1 me-0.5 rounded-md"
               placeholder="https://rafikeyaichatbot-frontend.onrender.com/..."
             />
             <div
@@ -943,13 +954,9 @@ provide('darkBgColor', darkBgColor)
               <span class="">generate link</span>
               <!--              <span v-else  class="loading loading-spinner loading-md text-white"></span>-->
             </div>
-            <div
-              v-if="isGeneratingLink && !showCopyBtn"
-              class="btn btn-sm rounded-xl"
-              disabled
-            >
+            <div v-if="isGeneratingLink && !showCopyBtn" class="btn btn-sm rounded-xl" disabled>
               <span class="">generating...</span>
-              <span class="loading loading-spinner loading-md "></span>
+              <span class="loading loading-spinner loading-md"></span>
             </div>
             <div
               v-if="showCopyBtn"
@@ -966,20 +973,20 @@ provide('darkBgColor', darkBgColor)
               <div @click.stop="shareOn('linkedIn')" class="btn btn-sm btn-ghost w-14 h-14">
                 <img src="@/assets/images/linkedin.png" alt="linkedin_logo" />
               </div>
-              <span  class="dark:text-white">LinkedIn</span>
+              <span class="dark:text-white">LinkedIn</span>
             </div>
 
             <div>
               <div @click.stop="shareOn('whatsapp')" class="btn btn-sm btn-ghost w-14 h-14">
                 <img src="@/assets/images/whatsapp.png" alt="whatsapp_logo" />
               </div>
-              <span  class="dark:text-white">Whatsapp</span>
+              <span class="dark:text-white">Whatsapp</span>
             </div>
             <div>
               <div @click.stop="shareOn('facebook')" class="btn btn-sm btn-ghost w-14 h-14">
                 <img src="@/assets/images/facebook.png" alt="facebook_logo" />
               </div>
-              <span  class="dark:text-white">Facebook</span>
+              <span class="dark:text-white">Facebook</span>
             </div>
             <div>
               <div @click.stop="shareOn('twitter')" class="btn btn-sm btn-ghost w-14 h-14">
