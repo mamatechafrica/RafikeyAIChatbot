@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add toggleArchive function">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update if condition">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/profile-image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +80,11 @@
       <recent name="$PROJECT_DIR$/rafikey-frontend/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/public/icons" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/game" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/game" />
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/error" />
-      <recent name="$PROJECT_DIR$/rafikey-frontend/src/components/tab" />
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
@@ -288,15 +295,7 @@
       <workItem from="1760287735338" duration="6226000" />
       <workItem from="1760326311883" duration="77000" />
       <workItem from="1760329700161" duration="2000" />
-      <workItem from="1760344689148" duration="343000" />
-    </task>
-    <task id="LOCAL-00576" summary="add pwa logic">
-      <option name="closed" value="true" />
-      <created>1759841329351</created>
-      <option name="number" value="00576" />
-      <option name="presentableId" value="LOCAL-00576" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841329351</updated>
+      <workItem from="1760344689148" duration="21477000" />
     </task>
     <task id="LOCAL-00577" summary="add notification for virtual-pwa module hooks">
       <option name="closed" value="true" />
@@ -682,7 +681,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760294226944</updated>
     </task>
-    <option name="localTasksCounter" value="625" />
+    <task id="LOCAL-00625" summary="update if condition">
+      <option name="closed" value="true" />
+      <created>1760345141972</created>
+      <option name="number" value="00625" />
+      <option name="presentableId" value="LOCAL-00625" />
+      <option name="project" value="LOCAL" />
+      <updated>1760345141973</updated>
+    </task>
+    <option name="localTasksCounter" value="626" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +707,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="reduce padding on textarea" />
     <MESSAGE value="remove mic" />
     <MESSAGE value="add notification toasts" />
     <MESSAGE value="add tooltip and tadio buttons" />
@@ -725,7 +731,8 @@
     <MESSAGE value="add isArchive flag" />
     <MESSAGE value="add watch on isArchive" />
     <MESSAGE value="add toggleArchive function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add toggleArchive function" />
+    <MESSAGE value="update if condition" />
+    <option name="LAST_COMMIT_MESSAGE" value="update if condition" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,6 +780,11 @@
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue</url>
           <line>160</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/stores/createAccountFormStore.ts</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
