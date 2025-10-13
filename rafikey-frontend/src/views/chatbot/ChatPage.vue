@@ -5,7 +5,12 @@ import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
 import hljs from 'highlight.js'
 import { marked, type RendererObject, type Tokens } from 'marked'
-import { useRafikeyChatbotStore, type Conversation, useAuthStore, useNotificationStore } from '@/stores'
+import {
+  useRafikeyChatbotStore,
+  type Conversation,
+  useAuthStore,
+  useNotificationStore,
+} from '@/stores'
 import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -20,7 +25,6 @@ import PersonalizationComponent from '@/components/settingsTab/PersonalizationCo
 import SecurityComponent from '@/components/settingsTab/SecurityComponent.vue'
 import FeebackDialog from '@/components/chat/FeebackDialog.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
-
 
 export interface HistoryConv {
   bot_response: string
@@ -50,7 +54,6 @@ const now = moment()
 
 // const isGeneratingResponse = ref(false)
 
-
 // Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
 // const showPlayButton = () =>{
 //   const showButtonProbs = Math.random()
@@ -63,8 +66,6 @@ const now = moment()
 //     return
 //   }
 // }
-
-
 
 const components = [
   {
@@ -384,7 +385,6 @@ const handleUserInput = (formatted: string) => {
       })
   } else {
     // pop the last message which is the chat message so that it does not show up on the page
-    console.log("Regenerating response ")
 
     rafikeyChatbotStore.isGeneratingResponse = true
 
@@ -425,7 +425,6 @@ const handleUserInput = (formatted: string) => {
   }
 }
 
-
 //date format
 const timeFormatter = (timestamp: string) => {
   const date = moment.utc(timestamp).local()
@@ -445,10 +444,9 @@ const timeFormatter = (timestamp: string) => {
 }
 
 const isShowProfile = ref(false)
-const profileHandler = () =>{
+const profileHandler = () => {
   isShowProfile.value = !isShowProfile.value
 }
-
 
 // fetching chat history
 const fetchHistoryHandler = (activeSessionId: string) => {
@@ -513,7 +511,6 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
-
   // show the button on mounted at random
   // showPlayButton()
   const activeSessionId = route.params.sessionId as string
@@ -522,8 +519,8 @@ onMounted(() => {
   // isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
 
   // We can only load chat history if the user is not on the new chat page
-  if (!rafikeyChatbotStore.isNewChat) {
-    nextTick(()=>{
+  if (!rafikeyChatbotStore.isNewChat && route.name != 'profile') {
+    nextTick(() => {
       fetchHistoryHandler(activeSessionId)
     })
   }
