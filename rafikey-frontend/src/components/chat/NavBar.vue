@@ -428,7 +428,7 @@ const shareChat = () => {
                         class="h-[calc(100vh-21rem)] overflow-y-auto"
                         v-if="!chatbotStore.collapseSidebarSmall"
                       >
-                        <div v-show="chatbotStore.chatHistoryTitles && isArchive">
+                        <div v-show="chatbotStore.chatHistoryTitles && !isArchive">
                           <div v-for="(titles, date) in groupChat()" :key="date">
                             <div
                               class="flex justify-between sticky pb-1 top-0 backdrop-blur bg-opacity-30 font-bold"

@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logoutAllDevicesHandler  function">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add toggleArchive function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,79 +285,10 @@
       <workItem from="1760000115644" duration="10583000" />
       <workItem from="1760021058740" duration="9146000" />
       <workItem from="1760071452643" duration="12254000" />
-      <workItem from="1760287735338" duration="5637000" />
-    </task>
-    <task id="LOCAL-00567" summary="add rafikey mascot">
-      <option name="closed" value="true" />
-      <created>1759774153373</created>
-      <option name="number" value="00567" />
-      <option name="presentableId" value="LOCAL-00567" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774153373</updated>
-    </task>
-    <task id="LOCAL-00568" summary="remove access buttons">
-      <option name="closed" value="true" />
-      <created>1759774308166</created>
-      <option name="number" value="00568" />
-      <option name="presentableId" value="LOCAL-00568" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774308166</updated>
-    </task>
-    <task id="LOCAL-00569" summary="add rafikey mascot">
-      <option name="closed" value="true" />
-      <created>1759774320829</created>
-      <option name="number" value="00569" />
-      <option name="presentableId" value="LOCAL-00569" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774320829</updated>
-    </task>
-    <task id="LOCAL-00570" summary="add favicon image">
-      <option name="closed" value="true" />
-      <created>1759774342606</created>
-      <option name="number" value="00570" />
-      <option name="presentableId" value="LOCAL-00570" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774342606</updated>
-    </task>
-    <task id="LOCAL-00571" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759774359047</created>
-      <option name="number" value="00571" />
-      <option name="presentableId" value="LOCAL-00571" />
-      <option name="project" value="LOCAL" />
-      <updated>1759774359047</updated>
-    </task>
-    <task id="LOCAL-00572" summary="remove images">
-      <option name="closed" value="true" />
-      <created>1759775044504</created>
-      <option name="number" value="00572" />
-      <option name="presentableId" value="LOCAL-00572" />
-      <option name="project" value="LOCAL" />
-      <updated>1759775044504</updated>
-    </task>
-    <task id="LOCAL-00573" summary="add copilot migration">
-      <option name="closed" value="true" />
-      <created>1759775291657</created>
-      <option name="number" value="00573" />
-      <option name="presentableId" value="LOCAL-00573" />
-      <option name="project" value="LOCAL" />
-      <updated>1759775291657</updated>
-    </task>
-    <task id="LOCAL-00574" summary="add copilot migration">
-      <option name="closed" value="true" />
-      <created>1759775302908</created>
-      <option name="number" value="00574" />
-      <option name="presentableId" value="LOCAL-00574" />
-      <option name="project" value="LOCAL" />
-      <updated>1759775302908</updated>
-    </task>
-    <task id="LOCAL-00575" summary="add virtual:pwa-register type">
-      <option name="closed" value="true" />
-      <created>1759841312601</created>
-      <option name="number" value="00575" />
-      <option name="presentableId" value="LOCAL-00575" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841312602</updated>
+      <workItem from="1760287735338" duration="6226000" />
+      <workItem from="1760326311883" duration="77000" />
+      <workItem from="1760329700161" duration="2000" />
+      <workItem from="1760344689148" duration="343000" />
     </task>
     <task id="LOCAL-00576" summary="add pwa logic">
       <option name="closed" value="true" />
@@ -683,7 +610,79 @@
       <option name="project" value="LOCAL" />
       <updated>1760155607809</updated>
     </task>
-    <option name="localTasksCounter" value="616" />
+    <task id="LOCAL-00616" summary="add logoutAllDevices function">
+      <option name="closed" value="true" />
+      <created>1760293730614</created>
+      <option name="number" value="00616" />
+      <option name="presentableId" value="LOCAL-00616" />
+      <option name="project" value="LOCAL" />
+      <updated>1760293730614</updated>
+    </task>
+    <task id="LOCAL-00617" summary="add showLogoutAllDevicesDialogModal and isLoadingLogoutAllDevices flags">
+      <option name="closed" value="true" />
+      <created>1760293774529</created>
+      <option name="number" value="00617" />
+      <option name="presentableId" value="LOCAL-00617" />
+      <option name="project" value="LOCAL" />
+      <updated>1760293774529</updated>
+    </task>
+    <task id="LOCAL-00618" summary="add DialogModal for logout all devices">
+      <option name="closed" value="true" />
+      <created>1760293821508</created>
+      <option name="number" value="00618" />
+      <option name="presentableId" value="LOCAL-00618" />
+      <option name="project" value="LOCAL" />
+      <updated>1760293821508</updated>
+    </task>
+    <task id="LOCAL-00619" summary="add watch on isChatArchive">
+      <option name="closed" value="true" />
+      <created>1760293971171</created>
+      <option name="number" value="00619" />
+      <option name="presentableId" value="LOCAL-00619" />
+      <option name="project" value="LOCAL" />
+      <updated>1760293971171</updated>
+    </task>
+    <task id="LOCAL-00620" summary="add toggleArchive function">
+      <option name="closed" value="true" />
+      <created>1760294002992</created>
+      <option name="number" value="00620" />
+      <option name="presentableId" value="LOCAL-00620" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294002992</updated>
+    </task>
+    <task id="LOCAL-00621" summary="add isArchive flag">
+      <option name="closed" value="true" />
+      <created>1760294030490</created>
+      <option name="number" value="00621" />
+      <option name="presentableId" value="LOCAL-00621" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294030490</updated>
+    </task>
+    <task id="LOCAL-00622" summary="add watch on isArchive">
+      <option name="closed" value="true" />
+      <created>1760294157627</created>
+      <option name="number" value="00622" />
+      <option name="presentableId" value="LOCAL-00622" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294157627</updated>
+    </task>
+    <task id="LOCAL-00623" summary="add toggleArchive function">
+      <option name="closed" value="true" />
+      <created>1760294209866</created>
+      <option name="number" value="00623" />
+      <option name="presentableId" value="LOCAL-00623" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294209866</updated>
+    </task>
+    <task id="LOCAL-00624" summary="add toggleArchive function">
+      <option name="closed" value="true" />
+      <created>1760294226944</created>
+      <option name="number" value="00624" />
+      <option name="presentableId" value="LOCAL-00624" />
+      <option name="project" value="LOCAL" />
+      <updated>1760294226944</updated>
+    </task>
+    <option name="localTasksCounter" value="625" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,13 +700,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove launcher image" />
-    <MESSAGE value="add goToPlayPage" />
-    <MESSAGE value="remove condition" />
-    <MESSAGE value="add play game div" />
-    <MESSAGE value="add notification alert" />
-    <MESSAGE value="remove isShowPlayButton" />
-    <MESSAGE value="remove SRHRGameButton" />
     <MESSAGE value="reduce padding on textarea" />
     <MESSAGE value="remove mic" />
     <MESSAGE value="add notification toasts" />
@@ -726,7 +718,14 @@
     <MESSAGE value="add mascot image" />
     <MESSAGE value="add logoutAllDevicesHandler function" />
     <MESSAGE value="add logoutAllDevicesHandler  function" />
-    <option name="LAST_COMMIT_MESSAGE" value="add logoutAllDevicesHandler  function" />
+    <MESSAGE value="add logoutAllDevices function" />
+    <MESSAGE value="add showLogoutAllDevicesDialogModal and isLoadingLogoutAllDevices flags" />
+    <MESSAGE value="add DialogModal for logout all devices" />
+    <MESSAGE value="add watch on isChatArchive" />
+    <MESSAGE value="add isArchive flag" />
+    <MESSAGE value="add watch on isArchive" />
+    <MESSAGE value="add toggleArchive function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add toggleArchive function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
