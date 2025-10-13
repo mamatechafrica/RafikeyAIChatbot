@@ -7,13 +7,13 @@ const routes = [
   {
     name: 'home',
     path: '/',
-    redirect: '/auth'
+    redirect: '/auth',
   },
   {
     name: 'trying',
     path: '/trying',
     // component: () => import('@/views/auth/welcomepages/LoadingSpnpm inner.vue')
-    component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue')
+    component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue'),
   },
 
   {
@@ -21,14 +21,18 @@ const routes = [
     path: '/auth',
     component: () => import('@/views/auth/UserPage.vue'),
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
     },
     children: [
       {
         name: 'welcome-page',
         path: '',
         component: () => import('@/views/auth/welcomepages/WelcomePage.vue'),
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        beforeEnter: (
+          to: RouteLocationNormalized,
+          _from: RouteLocationNormalized,
+          next: NavigationGuardNext,
+        ) => {
           const authStore = useAuthStore()
           // If user has ever logged in , redirect to chat page
           // if (authStore.isEverLoggedIn) {
@@ -37,7 +41,7 @@ const routes = [
           //   next()
           // }
           next()
-        }
+        },
       },
       {
         name: 'register',
@@ -47,40 +51,44 @@ const routes = [
           {
             name: 'set-profile',
             path: '',
-            component: () => import('@/views/auth/signup/SetProfile.vue')
+            component: () => import('@/views/auth/signup/SetProfile.vue'),
           },
           {
             name: 'get-to-know-you',
             path: 'get-to-know-you',
-            component: () => import('@/views/auth/signup/GetToKnowYou.vue')
+            component: () => import('@/views/auth/signup/GetToKnowYou.vue'),
           },
           {
             name: 'terms-condition-1',
             path: 'terms-condition-1',
-            component: () => import('@/views/auth/terms&conditions/TermsCondition_1.vue')
+            component: () => import('@/views/auth/terms&conditions/TermsCondition_1.vue'),
           },
           {
             name: 'privacy-policy-1',
             path: 'privacy-policy-1',
-            component: () => import('@/views/auth/terms&conditions/PrivacyPolicy_1.vue')
+            component: () => import('@/views/auth/terms&conditions/PrivacyPolicy_1.vue'),
           },
           {
             name: 'privacy-policy-2',
             path: 'privacy-policy-2',
-            component: () => import('@/views/auth/terms&conditions/PrivacyPolicy_2.vue')
+            component: () => import('@/views/auth/terms&conditions/PrivacyPolicy_2.vue'),
           },
           {
             name: 'terms-of-service',
             path: 'terms-of-service',
-            component: () => import('@/views/auth/terms&conditions/TermsCondition.vue')
-          }
-        ]
+            component: () => import('@/views/auth/terms&conditions/TermsCondition.vue'),
+          },
+        ],
       },
       {
         name: 'login',
         path: 'login',
         component: () => import('@/views/auth/UserLogin.vue'),
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        beforeEnter: (
+          to: RouteLocationNormalized,
+          _from: RouteLocationNormalized,
+          next: NavigationGuardNext,
+        ) => {
           const authStore = useAuthStore()
 
           // If user is already logged in, redirect to chat page
@@ -96,7 +104,7 @@ const routes = [
           //   next()
           // }
           next()
-        }
+        },
       },
       {
         name: 'forgot-password',
@@ -110,27 +118,30 @@ const routes = [
         props: (route: RouteLocationNormalized) => {
           const { query } = route
           return {
-            token: query.token
+            token: query.token,
           }
         },
-
-      }
-    ]
+      },
+    ],
   },
   {
     name: 'chat-page',
-    path: '/user/chat',
+    path: '/user',
     component: () => import('@/views/chatbot/ChatPage.vue'),
     children: [
       {
         name: 'newChat',
-        path: '',
+        path: 'chat',
         component: () => import('@/views/chatbot/user/NewChat.vue'),
         meta: {
           requiresAuth: true,
-          newChat: true
+          newChat: true,
         },
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        beforeEnter: (
+          to: RouteLocationNormalized,
+          _from: RouteLocationNormalized,
+          next: NavigationGuardNext,
+        ) => {
           const chatbotStore = useRafikeyChatbotStore()
           const authStore = useAuthStore()
           // Reset the chat history when entering a new chat
@@ -139,15 +150,15 @@ const routes = [
           chatbotStore.setStreamError({
             hasError: false,
             errorMessage: '',
-            isLoggedIn: true
+            isLoggedIn: true,
           })
           // If user is already logged in, redirect to chat page
           if (!authStore.isEverLoggedIn) {
             next({ name: 'welcome-page' })
-          } else{
+          } else {
             next()
           }
-        }
+        },
       },
       {
         name: 'chatWithId',
@@ -160,9 +171,13 @@ const routes = [
           }
         },
         meta: {
-          requiresAuth: true
+          requiresAuth: true,
         },
-        beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+        beforeEnter: (
+          to: RouteLocationNormalized,
+          _from: RouteLocationNormalized,
+          next: NavigationGuardNext,
+        ) => {
           const chatbotStore = useRafikeyChatbotStore()
           const authStore = useAuthStore()
           // Reset the chat history when entering a new chat
@@ -171,80 +186,90 @@ const routes = [
           // If user is already logged in, redirect to chat page
           if (!authStore.userIsLoggedIn) {
             next({ name: 'welcome-page' })
-          } else{
+          } else {
             next()
           }
-
-        }
-      }
-    ]
+        },
+      },
+      {
+        name: 'profile',
+        path: 'profile',
+        component: () => import('@/views/chatbot/user/UserProfile.vue'),
+        meta: {
+          requiresAuth: true,
+        },
+      },
+    ],
   },
   {
     name: 'guest-page',
     path: '/guest-user/:sessionId?',
     component: () => import('@/views/chatbot/guest/ChatPage.vue'),
-      props: (route: RouteLocationNormalized)=>{
-        const { params } = route
-        return {
-          sessionId: params.sessionId || '',
-        }
-      },
-    meta: {
-      requiresAuth: false
+    props: (route: RouteLocationNormalized) => {
+      const { params } = route
+      return {
+        sessionId: params.sessionId || '',
+      }
     },
-    beforeEnter: (to:RouteLocationNormalized, _from:RouteLocationNormalized, next:NavigationGuardNext) => {
+    meta: {
+      requiresAuth: false,
+    },
+    beforeEnter: (
+      to: RouteLocationNormalized,
+      _from: RouteLocationNormalized,
+      next: NavigationGuardNext,
+    ) => {
       const chatbotStore = useRafikeyChatbotStore()
       chatbotStore.sessionId = ''
       next()
-    }
+    },
   },
   {
     name: 'lets-play',
     path: '/lets-play',
-    component: ()=> import('@/views/game/GamePage.vue'),
+    component: () => import('@/views/game/GamePage.vue'),
     meta: {
-      requiresAuth: false
+      requiresAuth: false,
     },
     children: [
       {
         name: 'welcome-page-quiz',
         path: 'welcome/plain/quiz',
-        component: ()=> import('@/views/game/plain/WelcomeGame.vue'),
+        component: () => import('@/views/game/plain/WelcomeGame.vue'),
       },
       {
         name: 'game-page-quiz',
         path: 'plain/quiz/:quizCategory',
-        component: ()=> import('@/views/game/plain/QuizPage.vue'),
-        props: (route: RouteLocationNormalized)=>{
+        component: () => import('@/views/game/plain/QuizPage.vue'),
+        props: (route: RouteLocationNormalized) => {
           const { params } = route
           return {
             quizCategory: params.quizCategory,
           }
-        }
+        },
       },
       {
         name: 'game-page-quiz-result',
         path: 'game-page-quiz-result',
-        component: ()=> import('@/views/game/GameResult.vue')
+        component: () => import('@/views/game/GameResult.vue'),
       },
       {
         name: 'welcome-page-deck',
         path: 'welcome/deck/quiz',
-        component: ()=> import('@/views/game/deck/DeckWelcomePage.vue')
+        component: () => import('@/views/game/deck/DeckWelcomePage.vue'),
       },
       {
         name: 'game-page-deck',
         path: 'deck/quiz',
-        component: ()=> import('@/views/game/deck/DeckofCards.vue'),
-      }
-    ]
-
+        component: () => import('@/views/game/deck/DeckofCards.vue'),
+      },
+    ],
   },
   {
     path: '/:notFound(.*)*',
     name: 'not-found',
-    component: ()=>import('@/views/error/PageNotFound.vue')
-  }
+    component: () => import('@/views/error/PageNotFound.vue'),
+  },
 ]
 
 
