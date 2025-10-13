@@ -238,6 +238,36 @@ export const useAuthStore = defineStore('authStore', () => {
 
   }
 
+  async function getUserProfile(){
+    try {
+      const response = await fetch(`${BASE_URL}/auth/users/me`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token.value}`
+        }
+      })
+
+      const data = await response.json()
+      if(!response.ok){
+        return {
+          result: 'fail',
+          message: data.detail
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: data
+        }
+      }
+    } catch(e){
+      console.error('Error fetching user data:', e)
+      return {
+        result: 'fail',
+        message: 'An error occurred while fetching user data'
+      }
+    }
+  }
+
   // set user data on local storage
   async function setUserData(token: string){
     const {sub} = jwtDecode(token)
@@ -302,6 +332,7 @@ export const useAuthStore = defineStore('authStore', () => {
     resetPassword,
     userIsLoggedIn,
     logout,
-    logOutAllDevices
+    logOutAllDevices,
+    getUserProfile
   }
 })
