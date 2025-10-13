@@ -105,7 +105,7 @@ const startGame = () => {
         </div>
       </div>
       <div v-if="!isError && quizCategory" class="flex flex-wrap  space-y-2 justify-center w-full gap-2">
-        <p class="dark:text-white ">Select Quiz Category to Play</p>
+        <p class="dark:text-white ">Select Quiz Game to Play</p>
         <RadioGroup :radio-type="quizCategory" @change="selectedRadio" />
       </div>
       <div v-else class="flex flex-col">
