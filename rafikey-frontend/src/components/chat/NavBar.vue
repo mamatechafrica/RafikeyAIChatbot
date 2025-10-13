@@ -197,6 +197,17 @@ const shareChat = () => {
   emits('shareChat')
 }
 
+// open user profile page
+const openProfileHandler = () => {
+  chatbotStore.setCollapseSidebarSmall(true)
+  isShowProfile.value = false
+  emits('isProfile', isShowProfile.value)
+  setTimeout(()=>{
+    router.push({ name: 'profile' })
+  }, 500)
+  // router.push({ name: 'profile' })
+}
+
 </script>
 
 <template>
@@ -536,7 +547,9 @@ const shareChat = () => {
                           >
                           <span class="dark:text-white text-gray-700">Log out</span>
                         </div>
-                        <div class="flex gap-4 rounded-lg px-2 py-1">
+                        <div
+                          @click.stop="openProfileHandler"
+                          class="flex gap-4 rounded-lg px-2 py-1">
                           <span class="material-icons-round text-stone-400 dark:text-white"
                             >person_outline</span
                           >
