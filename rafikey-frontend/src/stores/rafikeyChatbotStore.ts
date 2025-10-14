@@ -586,7 +586,10 @@ const otherSettings = useStorage("otherSettings", {})
     totalQuestions,
     isShowPlayButton,
     setIsChatArchive,
-    isChatArchive
+    isChatArchive,
+    showFeedbackDialog,
+    setShowFeedbackDialog,
+    isOffline
 
   }
 })
