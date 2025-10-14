@@ -284,8 +284,11 @@ onBeforeUnmount(() => {
               experience
             </p>
           </div>
-          <div class="lg:w-3/4 w-full mx-auto flex items-center gap-2 cursor-pointer ">
-            <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+          <div class="lg:w-3/4 w-full mx-auto flex items-center gap-2 cursor-pointer">
+            <div
+              class="tooltip flex gap-2 tooltip-bottom"
+              data-tip="Use Rafikey without an account"
+            >
               <input
                 v-model="chatbotStore.isAnonymous"
                 type="checkbox"
@@ -408,7 +411,7 @@ onBeforeUnmount(() => {
                 <router-link
                   to="/auth/register/privacy-policy-1"
                   class="text-sm cursor-pointer text-button-light"
-                >Terms of Use
+                  >Terms of Use
                 </router-link>
                 <span class="text-sm dark:text-white px-1">and</span>
                 <router-link
@@ -429,14 +432,16 @@ onBeforeUnmount(() => {
                 <div>
                   <p class="dark:text-white text-sm">Please accept before proceeding</p>
                 </div>
-
               </div>
-
             </div>
           </div>
           <div v-if="SetProfileError.isError" class="w-3/4 mx-auto flex gap-2">
             <span class="material-icons-outlined text-rose-500">error</span>
-            <span class="text-rose-500">{{ SetProfileError.message }}</span>
+            <span class="text-rose-500">{{ SetProfileError.message}}</span>
+          </div>
+          <div v-if="accountExistText" class="w-3/4 mx-auto flex gap-2">
+            <span class="material-icons-outlined text-rose-500">error</span>
+            <span class="text-rose-500">{{ accountExistText }}</span>
           </div>
 
           <div class="border-b pt-4 border-gray-400 w-1/2 mx-auto"></div>
@@ -473,18 +478,18 @@ onBeforeUnmount(() => {
             experience
           </p>
         </div>
-<!--        <div class="" >-->
-<!--          <div class=" flex gap-2 tooltip  tooltip-bottom" data-tip="Remain anonymous and use the Rafikey without creating an account">-->
-<!--            <input-->
-<!--              id="checkbox"-->
-<!--              v-model="chatbotStore.isAnonymous"-->
-<!--              type="checkbox"-->
-<!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"-->
-<!--            />-->
-<!--            <p class="md:text-lg text-sm dark:text-white text-black pt-1">Remain Anonymous</p>-->
-<!--          </div>-->
-<!--        </div>-->
-        <div class=" w-full mx-auto flex items-center gap-2 cursor-pointer ">
+        <!--        <div class="" >-->
+        <!--          <div class=" flex gap-2 tooltip  tooltip-bottom" data-tip="Remain anonymous and use the Rafikey without creating an account">-->
+        <!--            <input-->
+        <!--              id="checkbox"-->
+        <!--              v-model="chatbotStore.isAnonymous"-->
+        <!--              type="checkbox"-->
+        <!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"-->
+        <!--            />-->
+        <!--            <p class="md:text-lg text-sm dark:text-white text-black pt-1">Remain Anonymous</p>-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <div class="w-full mx-auto flex items-center gap-2 cursor-pointer">
           <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
             <input
               v-model="chatbotStore.isAnonymous"
@@ -514,7 +519,6 @@ onBeforeUnmount(() => {
                 <span class="md:text-lg text-sm text-rose-500">{{ usernameErrorMessage }}</span>
               </div>
             </div>
-
 
             <div class="space-y-0.5">
               <label for="email" class="dark:text-white text-black md:text-lg text-sm"
@@ -605,7 +609,7 @@ onBeforeUnmount(() => {
                 <router-link
                   to="/auth/register/privacy-policy-1"
                   class="text-sm cursor-pointer text-button-light"
-                >Terms of Use
+                  >Terms of Use
                 </router-link>
                 <span class="text-sm dark:text-white px-1">and</span>
                 <router-link
