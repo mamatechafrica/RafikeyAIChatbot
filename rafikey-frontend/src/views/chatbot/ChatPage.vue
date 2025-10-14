@@ -828,24 +828,22 @@ provide('darkBgColor', darkBgColor)
           <!-- Share Button -->
           <div
             @click.stop="shareChat"
-            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1
-                  cursor-pointer hover:bg-button-light hover:text-white
-                  dark:hover:bg-button-light dark:hover:text-white
-                  transition-all duration-200 ease-in-out"
+            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer hover:bg-button-light hover:text-white dark:hover:bg-button-light dark:hover:text-white transition-all duration-200 ease-in-out"
           >
-            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm">share</span>
+            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
+              >share</span
+            >
             <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
 
           <!-- Feedback Button -->
           <div
             @click.stop="rafikeyChatbotStore.setShowFeedbackDialog(true)"
-            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1
-                  cursor-pointer hover:bg-button-light hover:text-white
-                  dark:hover:bg-button-light dark:hover:text-white
-                  transition-all duration-200 ease-in-out"
+            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer hover:bg-button-light hover:text-white dark:hover:bg-button-light dark:hover:text-white transition-all duration-200 ease-in-out"
           >
-            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm">feedback</span>
+            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
+              >feedback</span
+            >
             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
@@ -1119,8 +1117,8 @@ provide('darkBgColor', darkBgColor)
           </div>
         </template>
         <template #body>
-          <div class="pt-4 flex gap-5">
-            <div v-for="emotion in feedbackContent" :key="emotion.id" class="">
+          <div class="pt-4 flex w-full gap-2 sm:gap-3 md:gap-5">
+            <div v-for="emotion in feedbackContent" :key="emotion.id" class="w-full flex-col">
               <div
                 @click="emojiHandler(emotion.id)"
                 :class="[
@@ -1132,11 +1130,9 @@ provide('darkBgColor', darkBgColor)
               >
                 <span class="text-xl">{{ emotion.emoji }}</span>
               </div>
-              <div class="flex justify-center">
-                <span
-                  v-if="activeEmoji?.id === emotion.id"
-                  class="text-center text-sm text-button-light"
-                  >{{ activeEmoji.text }}</span
+              <div class="">
+                <span v-if="activeEmoji?.id === emotion.id" class="text-sm text-button-light">
+                  {{ activeEmoji.text }}</span
                 >
               </div>
             </div>
