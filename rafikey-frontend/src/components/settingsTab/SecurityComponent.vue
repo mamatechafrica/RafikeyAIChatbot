@@ -19,33 +19,35 @@ const logoutHandler = () => {
   router.push({ name: 'login' })
 }
 
-
-
 const logoutAllDevices = () => {
   isLoadingLogoutAllDevices.value = true
-  authStore.logOutAllDevices()
+  authStore
+    .logOutAllDevices()
     .then((res) => {
-    if (res.result === 'ok') {
-      authStore.logout()
-      notificationStore.addNotification('Logged out of all devices successfully', 'success')
-      setTimeout(()=>{
-        router.push({ name: 'login' })
-      }, 2000)
-    } else{
-      notificationStore.addNotification(res.message, 'error')
-    }
-  })
-    .catch((err)=>{
-      console.log('Error logging out of all devices', err)
-      notificationStore.addNotification('An error occurred while logging out of all devices, please try again', 'error')
+      if (res.result === 'ok') {
+        authStore.logout()
+        notificationStore.addNotification('Logged out of all devices successfully', 'success')
+        setTimeout(() => {
+          router.push({ name: 'login' })
+        }, 2000)
+      } else {
+        notificationStore.addNotification(res.message, 'error')
+      }
     })
-    .finally(()=>{
+    .catch((err) => {
+      console.log('Error logging out of all devices', err)
+      notificationStore.addNotification(
+        'An error occurred while logging out of all devices, please try again',
+        'error',
+      )
+    })
+    .finally(() => {
       isLoadingLogoutAllDevices.value = false
       showLogoutAllDevicesDialogModal.value = false
     })
 }
 
-const logoutAllDevicesHandler = () =>{
+const logoutAllDevicesHandler = () => {
   showLogoutAllDevicesDialogModal.value = true
 }
 </script>
@@ -76,7 +78,7 @@ const logoutAllDevicesHandler = () =>{
     </div>
     <div class="border-b-[1px] border-veryLightFour dark:border-veryLightFive"></div>
 
-<!--  log out  -->
+    <!--  log out  -->
 
     <Teleport to="body">
       <DialogModal
@@ -104,17 +106,16 @@ const logoutAllDevicesHandler = () =>{
             </button>
             <button
               @click.stop="logoutHandler"
-              class="btn btn-sm  w-1/2 border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+              class="btn btn-sm w-1/2 border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
             >
               <span class="">Ok</span>
               <!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
             </button>
-
           </div>
         </template>
       </DialogModal>
 
-<!--      logout all devices-->
+      <!--      logout all devices-->
       <DialogModal
         :is-open="showLogoutAllDevicesDialogModal"
         @close-modal="showLogoutAllDevicesDialogModal = !showLogoutAllDevicesDialogModal"
@@ -145,7 +146,6 @@ const logoutAllDevicesHandler = () =>{
               <span v-if="!isLoadingLogoutAllDevices" class="">Ok</span>
               <span v-else class="loading loading-spinner loading-sm"></span>
             </button>
-
           </div>
         </template>
       </DialogModal>

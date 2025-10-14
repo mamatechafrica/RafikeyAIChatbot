@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import {  onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
 // import {type  RadioGroup } from '@/components/chat/RadioGroup.vue'
 import RadioGroup from '@/components/chat/RadioGroup.vue'
@@ -36,9 +36,8 @@ onMounted(() => {
           })
         })
         isCategory.value = true
-        console.log("Category", quizCategory.value)
-      }
-      else{
+        console.log('Category', quizCategory.value)
+      } else {
         isError.value = true
       }
     })
@@ -71,8 +70,6 @@ const startGame = () => {
     params: { quizCategory: selectedCategory?.value },
   })
 }
-
-
 </script>
 
 <template>
@@ -96,7 +93,7 @@ const startGame = () => {
               :disabled="!selectedCategory"
               class="btn btn-sm py-4 px-10 rounded-[12px] bg-casablanca-300 shadow-none border-none"
             >
-              <span class="text-extra-small ">Start Game</span>
+              <span class="text-extra-small">Start Game</span>
             </button>
           </div>
         </div>
@@ -104,21 +101,24 @@ const startGame = () => {
           <img src="@/assets/images/video-game.png" alt="video-game-image" />
         </div>
       </div>
-      <div v-if="!isError && quizCategory" class="flex flex-wrap  space-y-2 justify-center w-full gap-2">
-        <p class="dark:text-white ">Select Quiz Game to Play</p>
+      <div
+        v-if="!isError && quizCategory"
+        class="flex flex-wrap space-y-2 justify-center w-full gap-2"
+      >
+        <p class="dark:text-white">Select Quiz Game to Play</p>
         <RadioGroup :radio-type="quizCategory" @change="selectedRadio" />
       </div>
       <div v-else class="flex flex-col">
         <div class="flex items-center gap-2">
           <span class="material-icons-outlined text-coral-red-600">error</span>
-          <p class="dark:text-white ">Unable to load please reload</p>
+          <p class="dark:text-white">Unable to load please reload</p>
         </div>
 
-<!--        <button-->
-<!--          class="btn btn-sm py-2 px-6 rounded-[12px] bg-casablanca-300 shadow-none border-none"-->
-<!--        >-->
-<!--          <span class="text-extra-small">Refresh</span>-->
-<!--        </button>-->
+        <!--        <button-->
+        <!--          class="btn btn-sm py-2 px-6 rounded-[12px] bg-casablanca-300 shadow-none border-none"-->
+        <!--        >-->
+        <!--          <span class="text-extra-small">Refresh</span>-->
+        <!--        </button>-->
       </div>
       <div class="md:w-2/5 pt-10">
         <p class="text-center dark:text-white text-small">

@@ -144,7 +144,7 @@ const sendRequest = () => {
       >
       </textarea>
     </div>
-    <div class="absolute w-full  px-4 bottom-2 flex justify-end items-center">
+    <div class="absolute w-full px-4 bottom-2 flex justify-end items-center">
       <div>
         <button
           v-if="hasText && !props.isGenerating"

@@ -27,7 +27,6 @@ const activeTrueButton = ref(false)
 const activeFalseButton = ref(false)
 const activeSkipButton = ref(false)
 
-
 const onDropLeft = (event: DragEvent) => {
   console.log('drop', event)
   cards.value.shift()
@@ -71,7 +70,6 @@ watch(
   },
 )
 
-
 const notificationStore = useNotificationStore()
 watch(
   () => activeSkipButton.value,
@@ -112,10 +110,9 @@ const stackStyle = (i: number) => {
   }
 }
 
-const totalQuiz = ref<Number>(0)
-onMounted(()=>{
-  totalQuiz.value =  cards.value.length
-
+const totalQuiz = ref<number>(0)
+onMounted(() => {
+  totalQuiz.value = cards.value.length
 })
 </script>
 
@@ -125,7 +122,9 @@ onMounted(()=>{
       <div class="space-y-8 flex flex-col items-center">
         <div class="space-y-4">
           <p class="text-center dark:text-white">Drag the cards to either the true or false side</p>
-          <p class="text-center dark:text-white">Card {{cards[0].quiz || ''}} of {{totalQuiz}}</p>
+          <p class="text-center dark:text-white">
+            Card {{ cards[0].quiz || '' }} of {{ totalQuiz }}
+          </p>
         </div>
         <div class="dark:bg-darkgray rounded-[12px] py-2 w-44 flex justify-center">
           <span class="text-greenTime text-extra-small">20.00s</span>
@@ -145,8 +144,8 @@ onMounted(()=>{
         </div>
       </div>
 
-<!--Feedback for right and wrong answers-->
-      <div class="text-coral-red-600 text-center ">
+      <!--Feedback for right and wrong answers-->
+      <div class="text-coral-red-600 text-center">
         <p>Opps! you got it wrong</p>
         <p>You can get pregnant the first time you have sex</p>
       </div>
@@ -177,11 +176,16 @@ onMounted(()=>{
       @drop="onDropSkip($event)"
       @dragover.prevent
       @dragenter.prevent
-
-      class="fixed bottom-0 left-1/2 -translate-x-1/2 mb-10">
+      class="fixed bottom-0 left-1/2 -translate-x-1/2 mb-10"
+    >
       <button
-        :class="[activeSkipButton ? 'dark:bg-button-light border-none' : 'dark:bg-darkgray border-casablanca-300 borer-[1px] ']"
-        class="btn btn-sm text-extra-small shadow-none dark:text-white py-5 rounded-[12px]  px-20  btn-ghost  ">
+        :class="[
+          activeSkipButton
+            ? 'dark:bg-button-light border-none'
+            : 'dark:bg-darkgray border-casablanca-300 borer-[1px] ',
+        ]"
+        class="btn btn-sm text-extra-small shadow-none dark:text-white py-5 rounded-[12px] px-20 btn-ghost"
+      >
         <span>Skip</span>
       </button>
     </div>

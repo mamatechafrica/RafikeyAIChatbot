@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, inject} from 'vue'
-import { useAuthStore,} from '@/stores'
+import { computed, inject } from 'vue'
+import { useAuthStore } from '@/stores'
 
 export interface UserBubbleProps {
   userName: string
@@ -19,7 +19,6 @@ const hasText = computed(() => {
   return props.userMessage.length > 0
 })
 
-
 const bgColor = inject('bgColor')
 const darkBgColor = inject('darkBgColor')
 </script>
@@ -29,11 +28,11 @@ const darkBgColor = inject('darkBgColor')
     <div class="flex flex-row-reverse gap-2">
       <div>
         <div
-          :class="[darkBgColor, bgColor ]"
+          :class="[darkBgColor, bgColor]"
           class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
         >
           <span class="dark:text-white">{{
-            JSON.parse(authStore.user).username.substring(0, 2).toUpperCase() ||  'ME'
+            JSON.parse(authStore.user).username.substring(0, 2).toUpperCase() || 'ME'
           }}</span>
           <!--          <img alt="user-avatar" src="@/assets/images/Avatar.png" />-->
         </div>

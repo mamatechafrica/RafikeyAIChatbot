@@ -31,7 +31,7 @@ export const useNotificationStore = defineStore('notificationsStore', () => {
       type,
       id,
       duration: 5000,
-      isShown: false
+      isShown: false,
     })
     // console.log('Here in notifications')
 
@@ -86,6 +86,6 @@ export const useNotificationStore = defineStore('notificationsStore', () => {
     setToastAlertIsOpen,
     getToastAlertIsOpen,
     addNotification,
-    removeNotification
+    removeNotification,
   }
 })

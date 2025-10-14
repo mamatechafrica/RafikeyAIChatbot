@@ -6,22 +6,20 @@ import { useRafikeyChatbotStore } from '@/stores'
 import { ref, watch, nextTick } from 'vue'
 import ErrorScreen from '@/components/chat/ErrorScreen.vue'
 
-
-const chatbotStore  = useRafikeyChatbotStore()
+const chatbotStore = useRafikeyChatbotStore()
 const conversationContainerRef = ref<HTMLDivElement | null>()
-
 
 const scrollToBottom = () => {
   nextTick(() => {
-    const conversationContainer = document.getElementById('userInputPlaceholder');
+    const conversationContainer = document.getElementById('userInputPlaceholder')
     if (conversationContainer) {
       conversationContainer.scrollIntoView({
         behavior: 'smooth',
         block: 'end',
         inline: 'nearest',
-      });
+      })
     }
-  });
+  })
 }
 
 // watch the conversation container and scroll to bottom
@@ -30,13 +28,10 @@ watch(chatbotStore.conversation || chatbotStore.isStreamError.hasError, () => {
 })
 
 // when mounted scroll to bottom
-setTimeout(()=>{
+setTimeout(() => {
   scrollToBottom()
 }, 1000)
-
 </script>
-
-
 
 <template>
   <!--    conversation section-->
@@ -45,26 +40,26 @@ setTimeout(()=>{
     ref="conversationContainerRef"
     class="relative md:py-12 h-[calc(100vh-10rem)] md:w-11/12 w-full mx-auto overflow-y-auto"
   >
-<!--    <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">-->
+    <!--    <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">-->
 
-<!--      <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">-->
-<!--        <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">-->
-<!--          <span class="material-icons-outlined dark:text-white">arrow_back</span>-->
-<!--          <span class="dark:text-white">Chatting With Rafikey</span>-->
-<!--        </div>-->
-<!--        <div @click="chatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">-->
-<!--          <span class="material-icons-outlined dark:text-white">more_horiz</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--      <div class="flex justify-between  bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur">-->
+    <!--        <div class="flex gap-4 cursor-pointer" @click="router.go(-1)">-->
+    <!--          <span class="material-icons-outlined dark:text-white">arrow_back</span>-->
+    <!--          <span class="dark:text-white">Chatting With Rafikey</span>-->
+    <!--        </div>-->
+    <!--        <div @click="chatbotStore.setCollapseSidebarSmall(false)" class="btn btn-sm btn-ghost shadow-none bg-transparent hover:border-none">-->
+    <!--          <span class="material-icons-outlined dark:text-white">more_horiz</span>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <ul>
       <template v-for="(conv, index) in chatbotStore.conversation" :key="index">
         <UserBubble
-          :class="[chatbotStore.collapseSidebarLarge? 'pe-0': 'pe-10']"
+          :class="[chatbotStore.collapseSidebarLarge ? 'pe-0' : 'pe-10']"
           v-if="conv && conv.isUser && conv.message.length > 0 && !conv.isTyping"
           :user-message="conv.message"
           :user-name="'You'"
-          :created-at="conv.timestamp as string || ''"
+          :created-at="(conv.timestamp as string) || ''"
           :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
@@ -75,20 +70,20 @@ setTimeout(()=>{
           :is-typing="false"
           :is-copyable="false"
           :is-error="false"
-          :created-at="conv.timestamp as string || ''"
+          :created-at="(conv.timestamp as string) || ''"
           :is-generating-response="chatbotStore.isGeneratingResponse"
           :key="conv.uniqueId"
         />
       </template>
     </ul>
     <div v-if="chatbotStore.isStreamError.hasError">
-      <ErrorScreen :error-message="chatbotStore.isStreamError.errorMessage" :is-logged-in="chatbotStore.isStreamError.isLoggedIn" />
+      <ErrorScreen
+        :error-message="chatbotStore.isStreamError.errorMessage"
+        :is-logged-in="chatbotStore.isStreamError.isLoggedIn"
+      />
     </div>
     <div id="userInputPlaceholder" class="pt-10"></div>
   </div>
-
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

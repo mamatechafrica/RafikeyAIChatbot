@@ -5,7 +5,6 @@ import DialogModal from '@/components/DialogModal.vue'
 import { useRouter } from 'vue-router'
 import { useNotificationStore } from '@/stores'
 
-
 const openClearChatDialog = ref(false)
 
 const chatbotStore = useRafikeyChatbotStore()
@@ -58,8 +57,8 @@ const deleteAllChats = () => {
 const isArchive = ref(chatbotStore.isChatArchive)
 
 const toggleArchive = (value: string) => {
-isArchive.value = value === 'archive'
-chatbotStore.isChatArchive  = isArchive.value
+  isArchive.value = value === 'archive'
+  chatbotStore.isChatArchive = isArchive.value
 }
 
 watch(isArchive, (value: boolean) => {
@@ -73,35 +72,35 @@ watch(isArchive, (value: boolean) => {
 
 <template>
   <div class="px-[16px]">
-<!--    <div class="py-4 flex items-center justify-between">-->
-<!--      <p class="dark:text-white">Notifications</p>-->
-<!--      <div class="tooltip tooltip-left" data-tip="Email notifications for chat deletions">-->
-<!--        <div class="flex gap-16">-->
-<!--          <span class="dark:text-white">Off</span>-->
-<!--          <span class="dark:text-white">On</span>-->
-<!--        </div>-->
-<!--        <label-->
-<!--          for="Toggle1"-->
-<!--          class="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-800"-->
-<!--        >-->
-<!--          <span class="relative">-->
-<!--            <input-->
-<!--              id="Toggle1"-->
-<!--              type="checkbox"-->
-<!--              class="hidden peer"-->
-<!--              v-model="isNotificationEnabled"-->
-<!--            />-->
-<!--            <div-->
-<!--              class="w-28 h-6 rounded-full shadow bg-veryLight dark:bg-veryLight peer-checked:bg-veryLight"-->
-<!--            ></div>-->
-<!--            <div-->
-<!--              class="absolute transition-all inset-y-0 left-0 w-8 h-6 m-0 rounded-full shadow peer-checked:right-0 peer-checked:bg-bg-veryLight peer-checked:left-auto bg-casablanca-300"-->
-<!--            ></div>-->
-<!--          </span>-->
-<!--        </label>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="border-b-[1px] dark:border-veryLightFive border-veryLightFour"></div>-->
+    <!--    <div class="py-4 flex items-center justify-between">-->
+    <!--      <p class="dark:text-white">Notifications</p>-->
+    <!--      <div class="tooltip tooltip-left" data-tip="Email notifications for chat deletions">-->
+    <!--        <div class="flex gap-16">-->
+    <!--          <span class="dark:text-white">Off</span>-->
+    <!--          <span class="dark:text-white">On</span>-->
+    <!--        </div>-->
+    <!--        <label-->
+    <!--          for="Toggle1"-->
+    <!--          class="inline-flex items-center space-x-4 cursor-pointer dark:text-gray-800"-->
+    <!--        >-->
+    <!--          <span class="relative">-->
+    <!--            <input-->
+    <!--              id="Toggle1"-->
+    <!--              type="checkbox"-->
+    <!--              class="hidden peer"-->
+    <!--              v-model="isNotificationEnabled"-->
+    <!--            />-->
+    <!--            <div-->
+    <!--              class="w-28 h-6 rounded-full shadow bg-veryLight dark:bg-veryLight peer-checked:bg-veryLight"-->
+    <!--            ></div>-->
+    <!--            <div-->
+    <!--              class="absolute transition-all inset-y-0 left-0 w-8 h-6 m-0 rounded-full shadow peer-checked:right-0 peer-checked:bg-bg-veryLight peer-checked:left-auto bg-casablanca-300"-->
+    <!--            ></div>-->
+    <!--          </span>-->
+    <!--        </label>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="border-b-[1px] dark:border-veryLightFive border-veryLightFour"></div>-->
     <div class="pt-4">
       <div
         class="relative border border-azure-radiance-500 bg-azure-radiance-200 rounded-2xl p-3 w-full font-semibold"
@@ -132,7 +131,14 @@ watch(isArchive, (value: boolean) => {
           <label for="noArchive" class="dark:text-white">View Archived Chats</label>
         </div>
         <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Hides chats from the side nav">
-          <input type="radio" id="archive" value="true" :checked="isArchive" @change="toggleArchive('archive')" class="custom-radio" />
+          <input
+            type="radio"
+            id="archive"
+            value="true"
+            :checked="isArchive"
+            @change="toggleArchive('archive')"
+            class="custom-radio"
+          />
           <label for="archive" class="dark:text-white">Archive All Chats</label>
         </div>
         <div

@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import router from '@/router'
 import { useRafikeyChatbotStore } from '@/stores'
-import { toggleImage } from "@/composables/imageToggle.ts";
-
+import { toggleImage } from '@/composables/imageToggle.ts'
 
 const chatbotStore = useRafikeyChatbotStore()
 </script>
 
 <template>
-  <div class=" w-full dark:bg-lightgray min-h-screen">
-    <div class="xl:w-2/5 md:w-4/5 w-10/12 pb-10 mx-auto ">
-      <div class="grid grid-cols-3 sticky top-0 z-40 bg-white  dark:bg-lightgray">
+  <div class="w-full dark:bg-lightgray min-h-screen">
+    <div class="xl:w-2/5 md:w-4/5 w-10/12 pb-10 mx-auto">
+      <div class="grid grid-cols-3 sticky top-0 z-40 bg-white dark:bg-lightgray">
         <div class="col-span-1 flex flex-col items-start md:justify-end md:pt-0 pt-12">
           <div
             @click="router.go(-1)"
@@ -29,7 +28,9 @@ const chatbotStore = useRafikeyChatbotStore()
             >
           </div>
         </div>
-        <div class="flex md:visible invisible w-full md:justify-center justify-end col-span-2 md:col-span-1">
+        <div
+          class="flex md:visible invisible w-full md:justify-center justify-end col-span-2 md:col-span-1"
+        >
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>
@@ -51,15 +52,25 @@ const chatbotStore = useRafikeyChatbotStore()
           </div>
           <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
             <div class="flex flex-col">
-              <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6 mb-2">
+              <p
+                class="md:text-large sm:text-small text-extra-small dark:text-white leading-6 mb-2"
+              >
                 Here’s a quick guide to how we keep this space safe and supportive:
               </p>
-                <ul class="list-disc md:pl-6 pl-4 space-y-1">
-                  <li class="md:text-large text-extra-small">We follow strict data protection rules (GDPR-compliant).</li>
-                  <li class="md:text-large text-extra-small">Your info is used only to improve your experience.</li>
-                  <li class="md:text-large text-extra-small">We never share your personal data without your permission.</li>
-                </ul>
-              <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
+              <ul class="list-disc md:pl-6 pl-4 space-y-1">
+                <li class="md:text-large text-extra-small">
+                  We follow strict data protection rules (GDPR-compliant).
+                </li>
+                <li class="md:text-large text-extra-small">
+                  Your info is used only to improve your experience.
+                </li>
+                <li class="md:text-large text-extra-small">
+                  We never share your personal data without your permission.
+                </li>
+              </ul>
+              <p
+                class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2"
+              >
                 Learn more about how we collect, use, and protect your data in our full policy.
               </p>
             </div>

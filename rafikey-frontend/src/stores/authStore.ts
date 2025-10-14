@@ -31,7 +31,7 @@ export interface ResetPassword {
 }
 
 export interface UserData {
-  id: number,
+  id: number
   username: string
   email: string
   age: string
@@ -43,26 +43,24 @@ export interface UserData {
 const BASE_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 
 export const useAuthStore = defineStore('authStore', () => {
-
   const user = useStorage('rafikey-user', '')
   const token = useStorage('rafikey-token', '')
   const isEverLoggedIn = useStorage('rafikey-ever-logged-in', false)
   const tokenExpiry = useStorage('rafikey-token-expiry', 0)
-  const isLoggedIn  = ref(false)
-  const userIsLoggedIn =  computed(()=>{
+  const isLoggedIn = ref(false)
+  const userIsLoggedIn = computed(() => {
     const expiry = moment.unix(Number(tokenExpiry.value)).utc()
     const now = moment().utc()
     const isValid = token.value && expiry.isAfter(now)
-    if(!isValid){
+    if (!isValid) {
       logout()
     }
-    return  isValid
-
+    return isValid
   })
   const userPayload = reactive({})
 
-//   actions
-//   account creation function
+  //   actions
+  //   account creation function
   async function createAccount() {
     const createAccountFormStore = useCreateAccountFormStore()
     const payload: CreateAccountPayload = createAccountFormStore.getProfile
@@ -71,18 +69,18 @@ export const useAuthStore = defineStore('authStore', () => {
       const response = await fetch(`${BASE_URL}/auth/register`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...payload
-        })
+          ...payload,
+        }),
       })
-      const {message, user, detail} = await response.json()
+      const { message, user, detail } = await response.json()
       if (!response.ok) {
         console.log('An error has occurred please try again later')
         return {
           result: 'error',
-          message: detail
+          message: detail,
           // message: data.message
         }
       } else {
@@ -90,14 +88,14 @@ export const useAuthStore = defineStore('authStore', () => {
 
         return {
           result: 'ok',
-          message: message
+          message: message,
         }
       }
     } catch (error) {
       console.error('Error creating account:', error)
       return {
         result: 'error',
-        message: 'An error occurred while creating account'
+        message: 'An error occurred while creating account',
       }
     }
   }
@@ -112,14 +110,14 @@ export const useAuthStore = defineStore('authStore', () => {
     try {
       const response = await fetch(`${BASE_URL}/auth/token`, {
         method: 'POST',
-        body: formData
+        body: formData,
       })
 
       const data = await response.json()
       if (!response.ok) {
         return {
           result: 'error',
-          message: data.detail
+          message: data.detail,
           // message: data.message
         }
       } else {
@@ -127,201 +125,191 @@ export const useAuthStore = defineStore('authStore', () => {
         await setUserData(data.access_token)
         return {
           result: 'ok',
-          message: 'Logged in successfully'
+          message: 'Logged in successfully',
         }
       }
-    }
-    catch(error){
+    } catch (error) {
       console.log('There is an error logging in')
       // if(!navigator.onLine){
       //   chatbotStore. isOffline = true
       // }
       // else{
-        return {
-          result: 'error',
-          message: 'An error occurred while logging in, kindly try again',
-        }
+      return {
+        result: 'error',
+        message: 'An error occurred while logging in, kindly try again',
+      }
       // }
     }
   }
 
   // forgot password function
   async function forgotPassword(email: string) {
-    try{
+    try {
       const response = await fetch(`${BASE_URL}/auth/forgot-password`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email
-        })
+          email: email,
+        }),
       })
       const data = await response.json()
       if (!response.ok) {
         return {
           result: 'error',
-          message: data.detail
+          message: data.detail,
         }
       } else {
         return {
           result: 'ok',
-          message: data.message
+          message: data.message,
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error('Error sending forgot password request:', error)
       return
     }
   }
 
   // resetPassword function
-  async function resetPassword(payload:  ResetPassword ) {
+  async function resetPassword(payload: ResetPassword) {
     console.log('Reset Password Payload:', payload)
     try {
       const response = await fetch(`${BASE_URL}/auth/reset-password`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           token: payload.token,
-          new_password: payload.newPassword
-        })
+          new_password: payload.newPassword,
+        }),
       })
 
-      const data = await  response.json()
+      const data = await response.json()
 
-      if( !response.ok ) {
+      if (!response.ok) {
         return {
           result: 'error',
-          message: data.detail
+          message: data.detail,
         }
-      } else{
+      } else {
         return {
           result: 'ok',
-          message: data.message
+          message: data.message,
         }
       }
-    }
-    catch(error){
+    } catch (error) {
       console.log('Error sending forgot password request:', error)
       return
     }
   }
 
-
-  async function checkAccountExist(payload: {username: string, email:string}){
-    try{
+  async function checkAccountExist(payload: { username: string; email: string }) {
+    try {
       const response = await fetch(`${BASE_URL}/auth/check-availability`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       })
 
       const res = await response.json()
-      if(!response.ok){
-        return{
+      if (!response.ok) {
+        return {
           result: 'fail',
-          data: null
-
+          data: null,
         }
-      } else{
+      } else {
         return {
           result: 'ok',
-          data: res
+          data: res,
         }
       }
-    } catch (err){
+    } catch (err) {
       console.error('Error checking account existence:', err)
       return {
         result: 'fail',
-        data: null
+        data: null,
       }
     }
   }
 
   // logout from all devices
-  async function  logOutAllDevices (){
-    try{
+  async function logOutAllDevices() {
+    try {
       const response = await fetch(`${BASE_URL}/auth/logout_all`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token.value}`
-        }
+          Authorization: `Bearer ${token.value}`,
+        },
       })
 
       const res = await response.json()
-      if(!response.ok) {
-        return{
-          result: 'fail',
-          message: res.message
-        }
-      } else{
-        return {
-          result: 'ok',
-          message: res.message
-        }
-      }
-    } catch(e) {
-      console.error('Error logging out from all devices')
-      return {
-        result: 'fail',
-        message: 'An error occurred, please try again later'
-      }
-    }
-
-  }
-
-  async function getUserProfile(){
-    try {
-      const response = await fetch(`${BASE_URL}/auth/users/me`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token.value}`
-        }
-      })
-
-      const data = await response.json()
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          message: data.detail
+          message: res.message,
         }
       } else {
         return {
           result: 'ok',
-          data: data
+          message: res.message,
         }
       }
-    } catch(e){
+    } catch (e) {
+      console.error('Error logging out from all devices')
+      return {
+        result: 'fail',
+        message: 'An error occurred, please try again later',
+      }
+    }
+  }
+
+  async function getUserProfile() {
+    try {
+      const response = await fetch(`${BASE_URL}/auth/users/me`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+
+      const data = await response.json()
+      if (!response.ok) {
+        return {
+          result: 'fail',
+          message: data.detail,
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: data,
+        }
+      }
+    } catch (e) {
       console.error('Error fetching user data:', e)
       return {
         result: 'fail',
-        message: 'An error occurred while fetching user data'
+        message: 'An error occurred while fetching user data',
       }
     }
   }
 
   // set user data on local storage
-  async function setUserData(token: string){
-    const {sub} = jwtDecode(token)
-
+  async function setUserData(token: string) {
+    const { sub } = jwtDecode(token)
 
     user.value = JSON.stringify({
       username: sub,
     })
     return user
-
-
-
   }
 
-  const getUserInfo = () =>{
+  const getUserInfo = () => {
     try {
       if (user.value) {
         return JSON.parse(user.value) as UserData
@@ -334,29 +322,27 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
-  function setToken(value: string){
-    const {exp} = jwtDecode(value)
-    try{
+  function setToken(value: string) {
+    const { exp } = jwtDecode(value)
+    try {
       token.value = value
       tokenExpiry.value = exp as number
       isLoggedIn.value = true
       setEverLoggedIn()
-    }
-    catch(error){
+    } catch (error) {
       console.log(error)
       return
     }
   }
 
-  const logout = () =>{
+  const logout = () => {
     isLoggedIn.value = false
     token.value = null
   }
 
-  const setEverLoggedIn = () =>{
+  const setEverLoggedIn = () => {
     isEverLoggedIn.value = true
   }
-
 
   return {
     user,
@@ -373,6 +359,6 @@ export const useAuthStore = defineStore('authStore', () => {
     logout,
     logOutAllDevices,
     getUserProfile,
-    checkAccountExist
+    checkAccountExist,
   }
 })

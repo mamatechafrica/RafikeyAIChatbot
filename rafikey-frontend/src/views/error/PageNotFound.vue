@@ -1,10 +1,8 @@
 <script setup lang="ts">
-
 import { useRouter } from 'vue-router'
 
-
 const router = useRouter()
-const goBackHome = () =>{
+const goBackHome = () => {
   router.push({
     name: 'guest-page',
   })
@@ -17,19 +15,23 @@ const goBackHome = () =>{
       <div
         class="border-[1px] rounded-[11px] w-fit px-4 py-2 dark:border-stone-300 border-darkgray flex flex-col items-center"
       >
-        <p class="md:text-small text-extra-extra-small-2 font-semibold dark:text-white ">OOPS!</p>
-        <p class="md:text-extra-extra-large-2 text-extra-large dark:text-white ">404 - ERROR</p>
+        <p class="md:text-small text-extra-extra-small-2 font-semibold dark:text-white">OOPS!</p>
+        <p class="md:text-extra-extra-large-2 text-extra-large dark:text-white">404 - ERROR</p>
       </div>
       <div class="border-[1px] rounded-[20px] px-4 py-2 dark:border-stone-300 border-darkgray">
-        <p class="md:text-[64px] text-nowrap text-extra-extra-large-1 dark:text-white font-semibold">PAGE NOT FOUND</p>
+        <p
+          class="md:text-[64px] text-nowrap text-extra-extra-large-1 dark:text-white font-semibold"
+        >
+          PAGE NOT FOUND
+        </p>
       </div>
 
       <div class="mt-4">
         <button
           @click="goBackHome"
-          class="btn rounded-[11px] shadow-none border-none  bg-casablanca-300 btn-sm md:btn-md lg:btn-lg xl:btn-xl normal-case"
+          class="btn rounded-[11px] shadow-none border-none bg-casablanca-300 btn-sm md:btn-md lg:btn-lg xl:btn-xl normal-case"
         >
-          <span class="lg:text-small text-extra-extra-small ">Go back home</span>
+          <span class="lg:text-small text-extra-extra-small">Go back home</span>
         </button>
       </div>
     </div>

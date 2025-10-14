@@ -9,7 +9,6 @@ import {
 } from '@headlessui/vue'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/vue/20/solid'
 
-
 interface ListItem {
   name: string
   id: number
@@ -25,30 +24,32 @@ const emits = defineEmits<{
   (event: 'selectedListItem', value: ListItem): void
 }>()
 
-watch(()=>
-  selectedListItem.value
-, (newValue) => {
-  emits('selectedListItem', newValue as ListItem )
-})
+watch(
+  () => selectedListItem.value,
+  (newValue) => {
+    emits('selectedListItem', newValue as ListItem)
+  },
+)
 </script>
 
 <template>
-  <div class=" border-[1px] border-gray-300 rounded-lg  w-full">
+  <div class="border-[1px] border-gray-300 rounded-lg w-full">
     <Listbox v-model="selectedListItem">
       <div class="relative mt-1">
         <ListboxButton
           class="relative w-full cursor-default rounded-lg bg-transparent py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-casablanca-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-casablanca-300 sm:text-sm"
         >
-          <span v-if="selectedListItem" class="block truncate text-gray-950 dark:text-stone-400  md:text-lg text-sm ">{{ selectedListItem.name}}</span>
-          <span v-else class="block truncate text-gray-400 md:text-lg text-sm ">{{props.placeHolder}}</span>
-
           <span
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"
+            v-if="selectedListItem"
+            class="block truncate text-gray-950 dark:text-stone-400 md:text-lg text-sm"
+            >{{ selectedListItem.name }}</span
           >
-            <ChevronUpDownIcon
-              class="h-5 w-5 text-gray-400"
-              aria-hidden="true"
-            />
+          <span v-else class="block truncate text-gray-400 md:text-lg text-sm">{{
+            props.placeHolder
+          }}</span>
+
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <ChevronUpDownIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
           </span>
         </ListboxButton>
 
@@ -69,17 +70,16 @@ watch(()=>
             >
               <li
                 :class="[
-                  active ? 'bg-amber-100 text-casablanca-900 text-lg' : 'text-gray-900 dark:text-stone-400   text-lg',
+                  active
+                    ? 'bg-amber-100 text-casablanca-900 text-lg'
+                    : 'text-gray-900 dark:text-stone-400   text-lg',
                   'relative cursor-default select-none py-2 pl-10 pr-4',
                 ]"
               >
                 <span
                   class="md:text-lg text-sm"
-                  :class="[
-                    selected ? 'font-medium' : 'font-normal',
-                    'block truncate',
-                  ]"
-                >{{ item.name }}</span
+                  :class="[selected ? 'font-medium' : 'font-normal', 'block truncate']"
+                  >{{ item.name }}</span
                 >
                 <span
                   v-if="selected"
@@ -96,8 +96,4 @@ watch(()=>
   </div>
 </template>
 
-<style scoped>
-
-</style>
-
-
+<style scoped></style>

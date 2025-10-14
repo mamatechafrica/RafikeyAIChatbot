@@ -5,12 +5,12 @@ import ImageSmallLDark from '@/assets/images/Rafikey D-mode-small_Image.png'
 import { useRafikeyChatbotStore } from '@/stores'
 const chatbotStore = useRafikeyChatbotStore()
 
-export const toggleImage = ()=>{
+export const toggleImage = () => {
   const isDark = chatbotStore.isDark
-  return isDark? ImageDark: ImageLight
+  return isDark ? ImageDark : ImageLight
 }
 
-export  const imageToggleSmallDevice = () =>{
+export const imageToggleSmallDevice = () => {
   const isDark = chatbotStore.isDark
-  return isDark? ImageSmallLDark: ImageSmallLight
+  return isDark ? ImageSmallLDark : ImageSmallLight
 }

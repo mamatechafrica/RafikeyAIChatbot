@@ -588,7 +588,7 @@ const goToPlayPage = () => {
         <!--          <button><span class="dark:text-white text-extra-extra-small">Feedback</span></button>-->
         <!--        </div>-->
         <div
-          class="w-full flex justify-between "
+          class="w-full flex justify-between"
           :class="[rafikeyChatbotStore.conversation.length > 0 ? 'pb-4' : 'pb-0']"
         >
           <div>
@@ -618,7 +618,6 @@ const goToPlayPage = () => {
               </button>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -731,26 +730,26 @@ const goToPlayPage = () => {
           <div class="w-20">
             <img :src="toggleImage()" alt="rafikey-icon" />
           </div>
-<!--          <div-->
-<!--            class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"-->
-<!--          >-->
-<!--            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>-->
-<!--          </div>-->
+          <!--          <div-->
+          <!--            class="border dark:border-stone-300 rounded-full flex h-8 w-8 justify-center items-center"-->
+          <!--          >-->
+          <!--            <span class="material-icons-outlined dark:text-stone-300 !text-lg">settings</span>-->
+          <!--          </div>-->
         </div>
         <div class="space-y-6">
           <div class="cursor-pointer flex gap-4 w-full">
-<!--            <div-->
-<!--              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"-->
-<!--              @click="startChatSmallScreen"-->
-<!--            >-->
-<!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
-<!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
-<!--              </div>-->
-<!--              <div class="flex justify-between dark:text-white gap-4">-->
-<!--&lt;!&ndash;                <p class="text-small">Chat with Rafikey</p>&ndash;&gt;-->
-<!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <!--            <div-->
+            <!--              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"-->
+            <!--              @click="startChatSmallScreen"-->
+            <!--            >-->
+            <!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
+            <!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
+            <!--              </div>-->
+            <!--              <div class="flex justify-between dark:text-white gap-4">-->
+            <!--&lt;!&ndash;                <p class="text-small">Chat with Rafikey</p>&ndash;&gt;-->
+            <!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
+            <!--              </div>-->
+            <!--            </div>-->
             <div
               @click.stop="goToPlayPage"
               class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
@@ -805,57 +804,57 @@ const goToPlayPage = () => {
       <div>
         <!--        top side-->
         <div v-if="isStartChatSmallScreen">
-        <div
-          class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"
-        >
           <div
-            class="flex gap-4 cursor-pointer"
-            @click="isStartChatSmallScreen = !isStartChatSmallScreen"
+            class="cursor-pointer flex justify-between sticky top-0 dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"
           >
-            <span class="material-icons-outlined dark:text-white">arrow_back</span>
-            <span class="dark:text-white">Chatting With Rafikey</span>
+            <div
+              class="flex gap-4 cursor-pointer"
+              @click="isStartChatSmallScreen = !isStartChatSmallScreen"
+            >
+              <span class="material-icons-outlined dark:text-white">arrow_back</span>
+              <span class="dark:text-white">Chatting With Rafikey</span>
+            </div>
+            <div>
+              <span class="material-icons-outlined dark:text-white">more_horiz</span>
+            </div>
           </div>
-          <div>
-            <span class="material-icons-outlined dark:text-white">more_horiz</span>
-          </div>
-        </div>
 
-        <!--       Down side -->
-        <!--    conversation section-->
-        <div class="py-12 h-full">
-          <ul>
-            <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
-              <UserBubbleGuest
-                v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
-                :user-message="conv.message"
-                :user-name="'You'"
-                :created-at="(conv.timestamp as string) || ''"
-                :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
-                :key="conv.uniqueId"
-                :bg-color="bgColor"
-                :dark-bg-color="darkBgColor"
+          <!--       Down side -->
+          <!--    conversation section-->
+          <div class="py-12 h-full">
+            <ul>
+              <template v-for="(conv, index) in rafikeyChatbotStore.conversation" :key="index">
+                <UserBubbleGuest
+                  v-if="conv.isUser && conv.message.length > 0 && !conv.isTyping"
+                  :user-message="conv.message"
+                  :user-name="'You'"
+                  :created-at="(conv.timestamp as string) || ''"
+                  :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
+                  :key="conv.uniqueId"
+                  :bg-color="bgColor"
+                  :dark-bg-color="darkBgColor"
+                />
+                <RafikeyBubble
+                  v-if="!conv.isUser && !isError"
+                  :chatbot-name="'Rafikey'"
+                  :rafikey-chatbot-message="(marked.parse(conv.message) as string) || ''"
+                  :is-typing="false"
+                  :is-copyable="false"
+                  :is-error="false"
+                  :created-at="conv.timestamp as string"
+                  :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
+                  :key="conv.uniqueId"
+                />
+              </template>
+            </ul>
+            <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
+              <ErrorScreen
+                :error-message="rafikeyChatbotStore.isStreamError.errorMessage"
+                :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"
               />
-              <RafikeyBubble
-                v-if="!conv.isUser && !isError"
-                :chatbot-name="'Rafikey'"
-                :rafikey-chatbot-message="(marked.parse(conv.message) as string) || ''"
-                :is-typing="false"
-                :is-copyable="false"
-                :is-error="false"
-                :created-at="conv.timestamp as string"
-                :is-generating-response="rafikeyChatbotStore.isGeneratingResponse"
-                :key="conv.uniqueId"
-              />
-            </template>
-          </ul>
-          <div v-if="rafikeyChatbotStore?.isStreamError.hasError">
-            <ErrorScreen
-              :error-message="rafikeyChatbotStore.isStreamError.errorMessage"
-              :is-logged-in="rafikeyChatbotStore.isStreamError.isLoggedIn"
-            />
+            </div>
           </div>
         </div>
-      </div>
 
         <!--    text area-->
         <!--        <div id="userInputPlaceholder-small" class="pt-10"></div>-->

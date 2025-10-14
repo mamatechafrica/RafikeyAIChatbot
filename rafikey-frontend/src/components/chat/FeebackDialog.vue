@@ -43,7 +43,7 @@ const feedbackContent = [
   },
 ] as FeedbackContent[]
 const activeEmoji = ref<FeedbackContent>()
-const emojiHandler = (id: Number) => {
+const emojiHandler = (id: number) => {
   activeEmoji.value = feedbackContent.find((em) => em.id === id)
 }
 
@@ -88,7 +88,7 @@ const sendFeedbackHandler = () => {
 <template>
   <div class="w-full flex justify-center">
     <div
-      class="z-50 max-w-lg shadow-2xl backdrop-blur-2xl  dark:bg-darkgray bg-white space-y-4 border-[1px] px-[20px] pt-[27px] pb-[20px] rounded-[20px] dark:border-lightgrayThree"
+      class="z-50 max-w-lg shadow-2xl backdrop-blur-2xl dark:bg-darkgray bg-white space-y-4 border-[1px] px-[20px] pt-[27px] pb-[20px] rounded-[20px] dark:border-lightgrayThree"
     >
       <div class="flex justify-between space-x-12">
         <div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import  {onMounted} from "vue";
+import { onMounted } from 'vue'
 
 import { useNotificationStore } from '@/stores'
 import ToastContainer from '@/components/toasts/ToastContainer.vue'
@@ -13,13 +13,11 @@ onMounted(() => {
 </script>
 
 <template>
-
-    <RouterView  #default="{ Component, route}">
-      <template v-if="Component">
-        <component :is="Component" :key="route.fullPath"/>
-      </template>
-    </RouterView>
-
+  <RouterView #default="{ Component, route }">
+    <template v-if="Component">
+      <component :is="Component" :key="route.fullPath" />
+    </template>
+  </RouterView>
 
   <teleport to="body">
     <ToastContainer v-if="notificationStore.hasNotifications">
@@ -36,6 +34,4 @@ onMounted(() => {
   </teleport>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

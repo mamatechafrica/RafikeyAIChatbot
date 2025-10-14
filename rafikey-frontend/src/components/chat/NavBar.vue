@@ -25,9 +25,12 @@ const bgColor = inject('bgColor')
 const darkBgColor = inject('darkBgColor')
 const isArchive = computed(() => chatbotStore.isChatArchive)
 
-watch(()=>chatbotStore.isChatArchive, (newVal)=>{
-console.log('isArchive changed:', newVal)
-})
+watch(
+  () => chatbotStore.isChatArchive,
+  (newVal) => {
+    console.log('isArchive changed:', newVal)
+  },
+)
 
 const components = [
   {
@@ -198,12 +201,11 @@ const openProfileHandler = () => {
   isShowProfile.value = false
   chatbotStore.isNewChat = false
   emits('isProfile', isShowProfile.value)
-  setTimeout(()=>{
+  setTimeout(() => {
     router.push({ name: 'profile' })
   }, 500)
   // router.push({ name: 'profile' })
 }
-
 </script>
 
 <template>
@@ -402,7 +404,9 @@ const openProfileHandler = () => {
                           </div>
                           <div
                             v-if="!chatbotStore.isNewChat"
-                            class="cursor-pointer" @click.stop="chatbotStore.setShowFeedbackDialog(true)">
+                            class="cursor-pointer"
+                            @click.stop="chatbotStore.setShowFeedbackDialog(true)"
+                          >
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
@@ -547,7 +551,8 @@ const openProfileHandler = () => {
                         </div>
                         <div
                           @click.stop="openProfileHandler"
-                          class="flex gap-4 rounded-lg px-2 py-1">
+                          class="flex gap-4 rounded-lg px-2 py-1"
+                        >
                           <span class="material-icons-round text-stone-400 dark:text-white"
                             >person_outline</span
                           >

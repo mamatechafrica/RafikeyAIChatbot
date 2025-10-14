@@ -1,13 +1,11 @@
-
 <script setup lang="ts">
-
 import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
-const startGame = () =>{
+const startGame = () => {
   router.push({
-    name: 'game-page-deck'
+    name: 'game-page-deck',
   })
 }
 </script>
@@ -39,7 +37,7 @@ const startGame = () =>{
             </div>
           </div>
           <div class="absolute -top-14 -left-10">
-            <img src="../../../assets/images/video-game.png" alt="video-game-image"/>
+            <img src="../../../assets/images/video-game.png" alt="video-game-image" />
           </div>
         </div>
 
@@ -49,7 +47,9 @@ const startGame = () =>{
           >
             <div class="flex flex-col space-y-5 items-center">
               <p class="dark:text-white text-[20px]">Flash Card Speed Match</p>
-              <p class="dark:text-white text-[20px] text-center ">Match terms with definitions before time run out! </p>
+              <p class="dark:text-white text-[20px] text-center">
+                Match terms with definitions before time run out!
+              </p>
             </div>
             <div class="w-full flex justify-center">
               <button
@@ -61,17 +61,18 @@ const startGame = () =>{
             </div>
           </div>
           <div class="absolute -top-14 -left-10">
-            <img src="../../../assets/images/flash-card.png" alt="video-game-image"/>
+            <img src="../../../assets/images/flash-card.png" alt="video-game-image" />
           </div>
         </div>
       </div>
       <div class="w-2/5 pt-10">
-        <p class="text-center dark:text-white text-small">Explore fun and interactive games that test your knowledge, challenge your skills and help you learn in exciting new ways.</p>
+        <p class="text-center dark:text-white text-small">
+          Explore fun and interactive games that test your knowledge, challenge your skills and help
+          you learn in exciting new ways.
+        </p>
       </div>
     </div>
   </div>
-
 </template>
 
 <style scoped></style>
-

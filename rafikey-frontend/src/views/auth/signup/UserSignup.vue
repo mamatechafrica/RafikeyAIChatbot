@@ -1,16 +1,11 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-
-  <RouterView  #default="{ Component, route}">
+  <RouterView #default="{ Component, route }">
     <template v-if="Component">
-      <component :is="Component" :key="route.fullPath"/>
+      <component :is="Component" :key="route.fullPath" />
     </template>
   </RouterView>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

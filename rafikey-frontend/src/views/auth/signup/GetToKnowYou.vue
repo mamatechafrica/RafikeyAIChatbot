@@ -100,9 +100,7 @@ const selectedRadio = (value: Buttons) => {
 
 // all the get-to-know-you-data is okay
 const everyThingOk = computed(() => {
-  return (
-    getToKnowYouData.age && getToKnowYouData.gender && getToKnowYouData.relationship_status
-  )
+  return getToKnowYouData.age && getToKnowYouData.gender && getToKnowYouData.relationship_status
 })
 
 watch(everyThingOk, (value) => {
@@ -127,20 +125,22 @@ const createAccountHandler = () => {
       .then((response) => {
         if (response.result === 'ok') {
           notificationStore.addNotification('Account created successfully', 'success')
-        setTimeout(()=>{
-          router.push({
-            name: 'login',
-          })
-          createAccountFormStore.clearProfile()
-        }, 2000)
+          setTimeout(() => {
+            router.push({
+              name: 'login',
+            })
+            createAccountFormStore.clearProfile()
+          }, 2000)
         } else {
           notificationStore.addNotification(response.message, 'error')
         }
       })
       .catch((error) => {
         console.error('Error creating account:', error)
-        notificationStore.addNotification('An error occurred while creating your account, please try again later', 'error')
-
+        notificationStore.addNotification(
+          'An error occurred while creating your account, please try again later',
+          'error',
+        )
       })
       .finally(() => {
         isLoading.value = false
@@ -160,7 +160,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="min-h-screen  hidden dark:bg-lightgray w-full py-6 md:flex">
+  <div class="min-h-screen hidden dark:bg-lightgray w-full py-6 md:flex">
     <div
       class="relative bg-lightBackground dark:bg-darkgray flex flex-col w-10/12 mx-auto rounded-[34px] pb-10"
     >
@@ -211,13 +211,13 @@ onBeforeMount(() => {
                 <RadioGroup :radio-type="relationshipStatus" @change="selectedRadio" />
               </div>
             </div>
-                        <div
-                          v-if="signupError.isError"
-                          class="flex gap-2 justify-start w-full lg:w-3/4 xl:w-1/2 mx-auto"
-                        >
-                          <span class="material-icons-outlined text-rose-500">error</span>
-                          <span class="text-rose-500">{{ signupError.message }}</span>
-                        </div>
+            <div
+              v-if="signupError.isError"
+              class="flex gap-2 justify-start w-full lg:w-3/4 xl:w-1/2 mx-auto"
+            >
+              <span class="material-icons-outlined text-rose-500">error</span>
+              <span class="text-rose-500">{{ signupError.message }}</span>
+            </div>
           </div>
           <div class="border-b border-gray-400 w-1/3 mx-auto"></div>
           <div class="flex justify-center">
@@ -281,10 +281,10 @@ onBeforeMount(() => {
         />
         <p class="text-gray-400 text-extra-extra-small">To proceed fill all the fields</p>
       </div>
-            <div v-if="signupError.isError" class="flex gap-2">
-              <span class="material-icons-outlined text-rose-500">error</span>
-              <span class="text-rose-500 md:text-lg text-sm">{{ signupError.message }}</span>
-            </div>
+      <div v-if="signupError.isError" class="flex gap-2">
+        <span class="material-icons-outlined text-rose-500">error</span>
+        <span class="text-rose-500 md:text-lg text-sm">{{ signupError.message }}</span>
+      </div>
       <div class="border-b-[1px] border-stone-400 mx-auto"></div>
       <div class="w-3/4 mx-auto flex justify-between items-center">
         <button

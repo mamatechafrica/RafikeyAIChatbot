@@ -3,7 +3,6 @@ import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { onMounted, ref } from 'vue'
 import moment from 'moment'
 
-
 interface UserProfile {
   id: number
   username: string
@@ -18,10 +17,11 @@ interface UserProfile {
 const authStore = useAuthStore()
 const isError = ref('')
 const isAppLoading = ref(false)
-const userProfile= ref< UserProfile | null>(null)
+const userProfile = ref<UserProfile | null>(null)
 onMounted(() => {
   isAppLoading.value = true
-  authStore.getUserProfile()
+  authStore
+    .getUserProfile()
     .then((resp) => {
       if (resp.result === 'ok') {
         isAppLoading.value = false
@@ -39,11 +39,11 @@ onMounted(() => {
 
 const chatbotStore = useRafikeyChatbotStore()
 
-const relationshipStatus = () =>{
-  if(userProfile.value){
-    if(userProfile.value.relationship_status === 'No'){
+const relationshipStatus = () => {
+  if (userProfile.value) {
+    if (userProfile.value.relationship_status === 'No') {
       return 'Single'
-    } else if(userProfile.value.relationship_status === 'Yes'){
+    } else if (userProfile.value.relationship_status === 'Yes') {
       return 'In a relationship'
     } else {
       return 'Prefer not to say'
@@ -55,8 +55,9 @@ const relationshipStatus = () =>{
 <template>
   <div
     class="lg:pt-8"
-    :class="[chatbotStore.collapseSidebarLarge ? 'mx-auto xl:w-3/4 w-full ' : 'w-full']">
-    <div  class="space-y-16 dark:bg-darkgray lg:p-16 p-10 rounded-[29px] bg-link-water-50">
+    :class="[chatbotStore.collapseSidebarLarge ? 'mx-auto xl:w-3/4 w-full ' : 'w-full']"
+  >
+    <div class="space-y-16 dark:bg-darkgray lg:p-16 p-10 rounded-[29px] bg-link-water-50">
       <div class="border-b pb-4 border-dashed border-veryLightFour dark:border-slate-600">
         <p class="dark:text-white text-extra-large">Profile</p>
         <span class="text-stone-400">View all your profile data here</span>
@@ -76,11 +77,11 @@ const relationshipStatus = () =>{
             </div>
             <div class="flex flex-col items-center">
               <p class="dark:text-white lg:text-extra-extra-large-1 text-extra-large text-center">
-                {{userProfile.username}}
+                {{ userProfile.username }}
               </p>
-              <span class="text-stone-400 text-extra-small text-center"
-                >{{userProfile.email}}</span
-              >
+              <span class="text-stone-400 text-extra-small text-center">{{
+                userProfile.email
+              }}</span>
             </div>
             <div class="lg:flex hidden">
               <img src="@/assets/images/profile-image.png" alt="profile-image" />
@@ -113,22 +114,24 @@ const relationshipStatus = () =>{
               </div>
               <div>
                 <p class="text-stone-400">Account creation date</p>
-                <span class="dark:text-white">{{moment(userProfile.created_at).format('DD-MMMM-YYYY')}}</span>
+                <span class="dark:text-white">{{
+                  moment(userProfile.created_at).format('DD-MMMM-YYYY')
+                }}</span>
               </div>
             </div>
             <!--              right side-->
             <div class="lg:space-y-6 space-y-2 lg:col-span-1 col-span-2">
               <div>
                 <p class="text-stone-400">Age group</p>
-                <span class="dark:text-white">{{userProfile.age}}</span>
+                <span class="dark:text-white">{{ userProfile.age }}</span>
               </div>
               <div>
                 <p class="text-stone-400">Gender</p>
-                <span class="dark:text-white">{{userProfile.gender}}</span>
+                <span class="dark:text-white">{{ userProfile.gender }}</span>
               </div>
               <div>
                 <p class="text-stone-400">Relationship status</p>
-                <span class="dark:text-white">{{relationshipStatus()}}</span>
+                <span class="dark:text-white">{{ relationshipStatus() }}</span>
               </div>
             </div>
           </div>
@@ -137,9 +140,9 @@ const relationshipStatus = () =>{
       <div v-if="isAppLoading">
         <p class="dark:text-white text-center">Loading...</p>
       </div>
-      <div v-if="isError" class=" flex space-y-2 justify-center  items-center flex-col">
+      <div v-if="isError" class="flex space-y-2 justify-center items-center flex-col">
         <img src="@/assets/images/no-data.svg" alt="no-image" class="md:w-28 w-20" />
-        <p class="dark:text-white  text-center">{{isError}}</p>
+        <p class="dark:text-white text-center">{{ isError }}</p>
       </div>
     </div>
   </div>

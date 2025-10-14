@@ -1,11 +1,10 @@
 import { defineStore } from 'pinia'
 import { computed, ref, watch, reactive } from 'vue'
 import { useDark, useStorage } from '@vueuse/core'
-import { get } from 'lodash';
+import { get } from 'lodash'
 import { useAuthStore } from '@/stores/authStore.ts'
 import type { Answer } from '@/components/game/QuestionItem.vue'
 import type { Feedback } from '@/components/chat/FeebackDialog.vue'
-
 
 interface ChatbotConversationPayload {
   message: string
@@ -13,10 +12,9 @@ interface ChatbotConversationPayload {
 }
 
 export interface ChatHistoryTitle {
-  thread_id: string,
+  thread_id: string
   title: string
   last_message_at: string
-
 }
 export interface Conversation {
   message: string
@@ -28,7 +26,7 @@ export interface Conversation {
 }
 
 export interface Setting {
-  key: string,
+  key: string
   value: boolean
 }
 
@@ -44,27 +42,26 @@ interface CorrectAnswer {
   correctAnswerId?: string
 }
 
-
-
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
 
-export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
+export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
   const authStore = useAuthStore()
-  const sessionId = useStorage("sessionId", '');
+  const sessionId = useStorage('sessionId', '')
   const isGeneratingResponse = ref(false)
-  const isDarkMode = useStorage("isDarkMode", false)
-  const previousRoute =  useStorage("previousRoute", '')
-  const isNewChat = useStorage("isNewChat", true)
+  const isDarkMode = useStorage('isDarkMode', false)
+  const previousRoute = useStorage('previousRoute', '')
+  const isNewChat = useStorage('isNewChat', true)
   const isAnonymous = ref<boolean>(false)
   const isMoveNext = ref(false)
   const correctAnswer = ref<CorrectAnswer>()
   const isSelected = ref(false)
-  const totalQuestions =useStorage("totalQuestions", 0)
+  const totalQuestions = useStorage('totalQuestions', 0)
   const score = useStorage('score', 0)
   const isShowPlayButton = ref(false)
-  const isChatArchive = useStorage("isChatArchive", false)
+  const isChatArchive = useStorage('isChatArchive', false)
   const isOffline = ref(false)
+  const isShowTermsButton = ref(false)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
@@ -75,25 +72,23 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isOpen: false,
   })
 
-  const quizzes = useStorage('quizzes',<Quiz[]>([]))
-  const getSessionId = computed(()=> sessionId.value)
+  const quizzes = useStorage('quizzes', <Quiz[]>[])
+  const getSessionId = computed(() => sessionId.value)
   const buffer = ref<string>('')
   const regenerateResponse = ref(false)
-  const regenerateUserInput = useStorage("regenerateUserInput", '')
+  const regenerateUserInput = useStorage('regenerateUserInput', '')
   const isDark = useDark({
-    onChanged(dark: boolean){
+    onChanged(dark: boolean) {
       isDarkMode.value = dark
-    }
+    },
   })
   const accessButtonRequest = reactive({
     value: false,
-    message: ''
+    message: '',
   })
-const otherSettings = useStorage("otherSettings", {})
+  const otherSettings = useStorage('otherSettings', {})
 
-
-
-  const chatHistoryTitles = ref<ChatHistoryTitle []>([])
+  const chatHistoryTitles = ref<ChatHistoryTitle[]>([])
   const conversation = ref<Conversation[]>([])
   const setSessionId = (value: string) => {
     sessionId.value = value
@@ -125,7 +120,7 @@ const otherSettings = useStorage("otherSettings", {})
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`,
         },
         body: JSON.stringify({
           message: payload.message,
@@ -133,48 +128,44 @@ const otherSettings = useStorage("otherSettings", {})
         }),
       })
       // initial HTTP response level check
-      if(!response.ok){
-        if(response.status === 401){
+      if (!response.ok) {
+        if (response.status === 401) {
           console.log('Unauthorized access - please login')
           return {
             result: 'fail',
             data: 'Your session has expired, please login to continue',
-            isLoggedIn: false
+            isLoggedIn: false,
           }
-        } else{
+        } else {
           console.log('Failed to send message to RafikeyChatbot')
           return {
             result: 'fail',
             data: 'An error occurred, please try again later',
-            isLoggedIn: true
+            isLoggedIn: true,
           }
         }
-      }
-      else{
+      } else {
         const reader = response.body?.getReader()
         const decoder = new TextDecoder()
 
-          while (true){
-            const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
-            if (done) break
-            buffer.value += decoder.decode(value, { stream: true })
-          }
-          // console.log('Rafikey response:', buffer.value)
-          return {
-            result: 'ok',
-            data: buffer.value
-          }
+        while (true) {
+          const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
+          if (done) break
+          buffer.value += decoder.decode(value, { stream: true })
+        }
+        // console.log('Rafikey response:', buffer.value)
+        return {
+          result: 'ok',
+          data: buffer.value,
+        }
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Error sending message to RafikeyChatbot', error)
       return
-    }
-    // clear the variable
-    finally {
+    } finally {
+      // clear the variable
       buffer.value = ''
     }
-
   }
 
   // anonymous user send message to RafikeyChatbot
@@ -191,251 +182,243 @@ const otherSettings = useStorage("otherSettings", {})
           session_id: payload.sessionId,
         }),
       })
-      if(!response.ok){
+      if (!response.ok) {
         console.log(response.status)
         return {
           result: 'fail',
           data: 'An error occurred, please try again later',
         }
-      }
-      else{
+      } else {
         const reader = response.body?.getReader()
         const decoder = new TextDecoder()
-          // return response.json()
+        // return response.json()
         while (true) {
-          const { done, value } = await reader?.read() as ReadableStreamReadResult<Uint8Array>
+          const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
           if (done) break
-           buffer.value += decoder.decode(value, { stream: true })
+          buffer.value += decoder.decode(value, { stream: true })
         }
         return {
           result: 'ok',
-          data: buffer.value
+          data: buffer.value,
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.log('Error sending message to RafikeyChatbot', error)
       return
-    }
+    } finally {
       // clear the variable
-    finally {
       buffer.value = ''
     }
   }
-
 
   // Get chat histories
   async function getChatHistoryTitles() {
     // console.log('Here in the chat history')
     const authStore = useAuthStore()
-    try{
+    try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/my-conversations/threads`, {
         method: 'GET',
-        headers : {
+        headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`,
         },
         // body: JSON.stringify({
         //   username: authStore.getUserInfo()?.username
         // })
       })
-      const {threads, total_threads} = await response.json()
-       console.log('titles----', threads)
-      if(!response.ok){
+      const { threads, total_threads } = await response.json()
+      console.log('titles----', threads)
+      if (!response.ok) {
         return {
           result: 'fail',
-          data: null
+          data: null,
         }
-      }
-      else {
+      } else {
         return {
           result: 'ok',
-          data: threads
+          data: threads,
         }
       }
-
-    }
-    catch(e){
+    } catch (e) {
       console.error('Error fetching chat history titles:', e)
     }
   }
 
   async function getChatHistory(value: string) {
     const authStore = useAuthStore()
-    try{
+    try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations/${value}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`,
         },
       })
       const chatHistory = await response.json()
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          data: null
+          data: null,
         }
-      }
-      else {
+      } else {
         return {
           result: 'ok',
-          data: chatHistory
+          data: chatHistory,
         }
       }
-
-    }
-    catch(e){
+    } catch (e) {
       console.error('Error fetching chat history:', e)
     }
   }
 
-
   async function deleteAllChats() {
     const authStore = useAuthStore()
-    try{
-      const  response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations`, {
+    try {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/chatbot/conversations`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`,
         },
       })
 
       const res = await response.json()
       console.log('Delete all chats response:', res)
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          data: res.detail
+          data: res.detail,
         }
       } else {
         return {
           result: 'ok',
-          data: 'All chat history deleted successfully'
+          data: 'All chat history deleted successfully',
         }
       }
-    } catch(e){
+    } catch (e) {
       console.error('Error deleting chat history:', e)
       return {
         result: 'fail',
-        data: 'An error occurred while deleting chat history'
+        data: 'An error occurred while deleting chat history',
       }
     }
   }
 
-  async function getQuizCategory () {
-    try{
+  async function getQuizCategory() {
+    try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/quizzes`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${authStore.token}`
-        }
+        },
       })
 
       const res = await response.json()
 
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          data: null
+          data: null,
         }
       } else {
         return {
           result: 'ok',
-          data: res
+          data: res,
         }
       }
-    } catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
 
-
-  async function getQuizzes(quizId: Number){
-    try{
-      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/quizzes/${quizId}/questions`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${authStore.token}`
-        }
-      })
+  async function getQuizzes(quizId: number) {
+    try {
+      const response = await fetch(
+        `${RAFIKEY_CHATBOT_URL}/gamification/quizzes/${quizId}/questions`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${authStore.token}`
+          },
+        },
+      )
       const res = await response.json()
-      if(!response.ok){
-        return{
+      if (!response.ok) {
+        return {
           result: 'fail',
-          data: null
+          data: null,
         }
-      }else{
+      } else {
         return {
           result: 'ok',
-          data: res
+          data: res,
         }
       }
-    }  catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
 
-  async function getQuestion(questionId: Number){
-    try{
+  async function getQuestion(questionId: number) {
+    try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/gamification/questions/${questionId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           // 'Authorization': `Bearer ${authStore.token}`
-        }
+        },
       })
       const res = await response.json()
-      if(!response.ok){
-        return{
+      if (!response.ok) {
+        return {
           result: 'fail',
-          data: null
+          data: null,
         }
-      }else{
+      } else {
         return {
           result: 'ok',
-          data: res
+          data: res,
         }
         // return{
         //   result: 'fail',
         //   data: null
         // }
       }
-    }  catch(e){
+    } catch (e) {
       console.log(e)
     }
   }
 
-
-  async function answerQuestion (payload: Answer){
-    const formData = new FormData();
+  async function answerQuestion(payload: Answer) {
+    const formData = new FormData()
     // formData.append('question_id', payload.questionId.toString())
     formData.append('selected_option_id', payload.optionId.toString())
-    try{
-      const response = await  fetch(`${RAFIKEY_CHATBOT_URL}/gamification/questions/${payload.questionId}/answer/?selected_option_id=${payload.optionId}`, {
-        method: 'POST',
-        headers: {
-          // 'Authorization': `Bearer ${authStore.token}`
+    try {
+      const response = await fetch(
+        `${RAFIKEY_CHATBOT_URL}/gamification/questions/${payload.questionId}/answer/?selected_option_id=${payload.optionId}`,
+        {
+          method: 'POST',
+          headers: {
+            // 'Authorization': `Bearer ${authStore.token}`
+          },
+          // body: formData
         },
-        // body: formData
-      })
+      )
       const res = await response.json()
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          data: null
+          data: null,
         }
       } else {
         return {
           result: 'ok',
-          data: res
+          data: res,
         }
       }
-    }
-    catch(e){
+    } catch (e) {
       console.error(e)
     }
   }
@@ -446,53 +429,57 @@ const otherSettings = useStorage("otherSettings", {})
   //   }
   // }
 
-  async function ratingFeedback(payload: Feedback){
-    const authStore =  useAuthStore()
-    try{
-      const response  = await fetch(`${RAFIKEY_CHATBOT_URL}/metrics/rating`, {
+  async function ratingFeedback(payload: Feedback) {
+    const authStore = useAuthStore()
+    try {
+      const response = await fetch(`${RAFIKEY_CHATBOT_URL}/metrics/rating`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authStore.token}`
+          Authorization: `Bearer ${authStore.token}`,
         },
         body: JSON.stringify({
           emoji: payload.emoji,
-          option:payload.comment
-        })
+          option: payload.comment,
+        }),
       })
 
       const res = await response.json()
-      if(!response.ok){
+      if (!response.ok) {
         return {
           result: 'fail',
-          message: 'An error occurred, please try again later'
+          message: 'An error occurred, please try again later',
         }
       } else {
-        return{
+        return {
           result: 'ok',
-          message: 'Thank you for your feedback'
+          message: 'Thank you for your feedback',
         }
       }
-    } catch(e){
+    } catch (e) {
       console.error(e)
     }
   }
 
   // Set active chat hitory
 
-  const setActiveChatHistory = (value: string)=>{
+  const setActiveChatHistory = (value: string) => {
     sessionId.value = value
   }
 
   // set streamError
-  const setStreamError = (value: {hasError: boolean, errorMessage: string, isLoggedIn: boolean}) => {
+  const setStreamError = (value: {
+    hasError: boolean
+    errorMessage: string
+    isLoggedIn: boolean
+  }) => {
     isStreamError.hasError = value.hasError
     isStreamError.errorMessage = value.errorMessage
     isStreamError.isLoggedIn = value.isLoggedIn
   }
 
   // set regenerate res
-  const setRegenerateResponse = (value:boolean) => {
+  const setRegenerateResponse = (value: boolean) => {
     regenerateResponse.value = value
   }
 
@@ -500,21 +487,21 @@ const otherSettings = useStorage("otherSettings", {})
   //   regenerateUserInput = value
   // }
 
-  const setAccessButtonRequest = (message: string) =>{
+  const setAccessButtonRequest = (message: string) => {
     accessButtonRequest.value = true
     accessButtonRequest.message = message
   }
-  const setOtherSettings = (setting: Setting) =>{
-  // update local storage with the new setting
+  const setOtherSettings = (setting: Setting) => {
+    // update local storage with the new setting
     otherSettings.value = {
       ...otherSettings.value,
-      [setting.key]: setting.value
+      [setting.key]: setting.value,
     }
   }
 
-  const getOtherSettings = computed(()=>{
+  const getOtherSettings = computed(() => {
     const setting = localStorage.getItem('otherSettings')
-    if(setting){
+    if (setting) {
       return JSON.parse(setting)
     } else {
       return null
@@ -589,7 +576,7 @@ const otherSettings = useStorage("otherSettings", {})
     isChatArchive,
     showFeedbackDialog,
     setShowFeedbackDialog,
-    isOffline
-
+    isOffline,
+    isShowTermsButton,
   }
 })

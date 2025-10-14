@@ -33,7 +33,7 @@ const isError = ref(false)
 const isLoading = ref(true)
 
 const isCorrectAnswer = ref<boolean | null>(null)
-const correctAnswers = ref<number []>([])
+const correctAnswers = ref<number[]>([])
 watch(
   () => props.isLoadingAnswer,
   (newVal) => {
@@ -79,14 +79,12 @@ onMounted(() => {
   getQuestionAndChoices(chatbotStore.quizzes[0].id)
 })
 
-
 const selectedOptionId = ref<number | null>(null)
 const answerHandler = (optionId: number) => {
   selectedOptionId.value = optionId
-chatbotStore.isSelected = true
+  chatbotStore.isSelected = true
   emits('selectedAnswer', { questionId: chatbotStore.quizzes[0].id, optionId: optionId })
 }
-
 
 watch(
   () => chatbotStore.quizzes.length,
@@ -110,12 +108,17 @@ watch(
         :key="option.id"
         :style="chatbotStore.isSelected ? 'pointer-events: none;' : ''"
         :class="[
-          chatbotStore.correctAnswer?.correct && selectedOptionId === option.id ? 'bg-greenButtonGame' : '',
-          !chatbotStore.correctAnswer?.correct && correctAnswers.includes(option.id) ? 'bg-greenButtonGame' : '',
-           !chatbotStore.correctAnswer?.correct && selectedOptionId === option.id ? 'bg-coral-red-700' : '',
-          chatbotStore.isSelected ? ' cursor-not-allowed' : ''
-
-           ]"
+          chatbotStore.correctAnswer?.correct && selectedOptionId === option.id
+            ? 'bg-greenButtonGame'
+            : '',
+          !chatbotStore.correctAnswer?.correct && correctAnswers.includes(option.id)
+            ? 'bg-greenButtonGame'
+            : '',
+          !chatbotStore.correctAnswer?.correct && selectedOptionId === option.id
+            ? 'bg-coral-red-700'
+            : '',
+          chatbotStore.isSelected ? ' cursor-not-allowed' : '',
+        ]"
         class="cursor-pointer border-lightgrayThree flex justify-center p-3 border-[1px] rounded-[12px]"
       >
         <p class="text-extra-small dark:text-white">{{ option.text }}</p>

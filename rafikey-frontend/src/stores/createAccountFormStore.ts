@@ -1,18 +1,18 @@
-import { defineStore} from "pinia";
-import type {CreateAccountPayload} from "@/stores/authStore.ts";
+import { defineStore } from 'pinia'
+import type { CreateAccountPayload } from '@/stores/authStore.ts'
 
-export const useCreateAccountFormStore = defineStore("createAccountFormStore", {
+export const useCreateAccountFormStore = defineStore('createAccountFormStore', {
   // id: 'createAccountFormStore',
-  state: () =>({
+  state: () => ({
     profile: {
       username: '',
       email: '',
       password: '',
       age: '',
       gender: '',
-      relationship_status:'',
-      terms_accepted: false
-    }
+      relationship_status: '',
+      terms_accepted: false,
+    },
   }),
 
   getters: {
@@ -20,14 +20,14 @@ export const useCreateAccountFormStore = defineStore("createAccountFormStore", {
   },
 
   actions: {
-    setProfile(value: Partial<CreateAccountPayload>){
+    setProfile(value: Partial<CreateAccountPayload>) {
       this.profile = {
         ...this.profile,
-        ...value
+        ...value,
       }
     },
-    clearProfile(){
+    clearProfile() {
       this.$reset()
-    }
-  }
+    },
+  },
 })

@@ -92,7 +92,7 @@ const feedbackContent = [
   },
 ] as FeedbackContent[]
 const activeEmoji = ref<FeedbackContent>()
-const emojiHandler = (id: Number) => {
+const emojiHandler = (id: number) => {
   activeEmoji.value = feedbackContent.find((em) => em.id === id)
 }
 
@@ -109,20 +109,19 @@ const sendFeedbackHandler = () => {
     .then((res) => {
       if (res?.result === 'ok') {
         rafikeyChatbotStore.setShowFeedbackDialog(false)
-        setTimeout(()=> {
+        setTimeout(() => {
           notificationStore.addNotification('Feedback sent successfully', 'success')
         }, 500)
       } else {
         rafikeyChatbotStore.setShowFeedbackDialog(false)
-        setTimeout(()=>{
+        setTimeout(() => {
           notificationStore.addNotification('Failed to send feedback, please retry', 'error')
         }, 500)
-
       }
     })
     .catch((err) => {
       rafikeyChatbotStore.setShowFeedbackDialog(false)
-      setTimeout(()=>{
+      setTimeout(() => {
         notificationStore.addNotification('Error sending feedback, please retry', 'error')
       }, 500)
       console.error('Error sending feedback: ', err)
@@ -1108,28 +1107,28 @@ provide('darkBgColor', darkBgColor)
           </div>
         </template>
         <template #body>
-            <div class="pt-4 flex gap-5">
-              <div v-for="emotion in feedbackContent" :key="emotion.id" class="">
-                <div
-                  @click="emojiHandler(emotion.id)"
-                  :class="[
-                    activeEmoji?.id === emotion.id
-                      ? 'bg-button-light dark:opacity-50'
-                      : 'bg-gray-100 dark:bg-veryLightNine ',
-                  ]"
-                  class="cursor-pointer rounded-full w-12 h-12 flex justify-center items-center"
+          <div class="pt-4 flex gap-5">
+            <div v-for="emotion in feedbackContent" :key="emotion.id" class="">
+              <div
+                @click="emojiHandler(emotion.id)"
+                :class="[
+                  activeEmoji?.id === emotion.id
+                    ? 'bg-button-light dark:opacity-50'
+                    : 'bg-gray-100 dark:bg-veryLightNine ',
+                ]"
+                class="cursor-pointer rounded-full w-12 h-12 flex justify-center items-center"
+              >
+                <span class="text-xl">{{ emotion.emoji }}</span>
+              </div>
+              <div class="flex justify-center">
+                <span
+                  v-if="activeEmoji?.id === emotion.id"
+                  class="text-center text-sm text-button-light"
+                  >{{ activeEmoji.text }}</span
                 >
-                  <span class="text-xl">{{ emotion.emoji }}</span>
-                </div>
-                <div class="flex justify-center">
-                  <span
-                    v-if="activeEmoji?.id === emotion.id"
-                    class="text-center text-sm text-button-light"
-                    >{{ activeEmoji.text }}</span
-                  >
-                </div>
               </div>
             </div>
+          </div>
         </template>
         <template #footer>
           <div class="space-y-4">

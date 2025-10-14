@@ -179,8 +179,11 @@ onBeforeUnmount(() => {
           <div class="">
             <img :src="toggleImage()" alt="rafikey-icon" class="w-60" />
           </div>
-          <div class="w-full mx-auto flex items-center gap-2 cursor-pointer ">
-            <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
+          <div class="w-full mx-auto flex items-center gap-2 cursor-pointer">
+            <div
+              class="tooltip flex gap-2 tooltip-bottom"
+              data-tip="Use Rafikey without an account"
+            >
               <input
                 v-model="chatbotStore.isAnonymous"
                 type="checkbox"
@@ -265,14 +268,14 @@ onBeforeUnmount(() => {
                   <span class="text-rose-500">{{ loginError.message }}</span>
                 </div>
                 <div class="flex justify-end">
-<!--                  <div class="flex gap-2">-->
-<!--                    <input-->
-<!--                      v-model="chatbotStore.isAnonymous"-->
-<!--                      type="checkbox"-->
-<!--                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800"-->
-<!--                    />-->
-<!--                    <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
-<!--                  </div>-->
+                  <!--                  <div class="flex gap-2">-->
+                  <!--                    <input-->
+                  <!--                      v-model="chatbotStore.isAnonymous"-->
+                  <!--                      type="checkbox"-->
+                  <!--                      class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-white border-slate-800"-->
+                  <!--                    />-->
+                  <!--                    <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
+                  <!--                  </div>-->
                   <div>
                     <router-link
                       to="/auth/forgot-password"
@@ -324,7 +327,7 @@ onBeforeUnmount(() => {
             Welcome back to Rafikey
           </p>
         </div>
-        <div class="w-full ps-2 mx-auto flex items-center gap-2 cursor-pointer ">
+        <div class="w-full ps-2 mx-auto flex items-center gap-2 cursor-pointer">
           <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
             <input
               v-model="chatbotStore.isAnonymous"
@@ -349,14 +352,14 @@ onBeforeUnmount(() => {
               placeholder="Choose a username"
             />
           </div>
-<!--          <div class="flex gap-2">-->
-<!--            <input-->
-<!--              v-model="chatbotStore.isAnonymous"-->
-<!--              type="checkbox"-->
-<!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white"-->
-<!--            />-->
-<!--            <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
-<!--          </div>-->
+          <!--          <div class="flex gap-2">-->
+          <!--            <input-->
+          <!--              v-model="chatbotStore.isAnonymous"-->
+          <!--              type="checkbox"-->
+          <!--              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light border-slate-800 dark:border-white"-->
+          <!--            />-->
+          <!--            <span class="text-extra-small dark:text-white">Remain Anonymous</span>-->
+          <!--          </div>-->
           <div class="relative space-y-3">
             <label class="dark:text-white text-black text-extra-small" for="password">
               Password
@@ -436,9 +439,9 @@ onBeforeUnmount(() => {
         </template>
         <template #body>
           <div class="flex flex-col items-center py-2">
-            <p class=" md:text-large text-small dark:text-white">Are you sure?</p>
+            <p class="md:text-large text-small dark:text-white">Are you sure?</p>
             <span class="md:text-small dark:text-white text-center text-extra-small"
-            >If you login anonymously, your chats won't be saved for future reference.</span
+              >If you login anonymously, your chats won't be saved for future reference.</span
             >
           </div>
         </template>

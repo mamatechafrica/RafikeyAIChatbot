@@ -31,8 +31,6 @@ const errorQuestion = (value: boolean) => {
 //     })
 // })
 
-
-
 const moveNextQuestion = ref(false)
 
 const isLoading = ref(false)
@@ -45,7 +43,7 @@ const selectedAnswer = (value: Answer) => {
       isLoading.value = true
       chatbotStore.totalQuestions += 1
       if (res?.result === 'ok') {
-        if(res.data?.correct){
+        if (res.data?.correct) {
           chatbotStore.score += 1
         }
         chatbotStore.setCorrectAnswer(res.data)
@@ -150,17 +148,16 @@ watch(
         <span>Next</span>
       </button>
     </div>
-    <div  v-if="chatbotStore.quizzes.length === 0" class="h-[calc(100vh-10rem)] flex items-center justify-center">
-      <div
-
-        class="flex flex-col md:space-y-8 space-y-6 md:py-8 py-4 items-center    mx-auto"
-      >
-        <img src="@/assets/images/no-data.svg" alt="no-question-image" class="w-1/3 " />
+    <div
+      v-if="chatbotStore.quizzes.length === 0"
+      class="h-[calc(100vh-10rem)] flex items-center justify-center"
+    >
+      <div class="flex flex-col md:space-y-8 space-y-6 md:py-8 py-4 items-center mx-auto">
+        <img src="@/assets/images/no-data.svg" alt="no-question-image" class="w-1/3" />
         <div class="flex flex-col items-center">
-          <span class=" dark:text-white text-center text-extra-large">You are done!</span>
+          <span class="dark:text-white text-center text-extra-large">You are done!</span>
           <span class="dark:text-white text-small">No more questions</span>
         </div>
-
       </div>
       <div>
         <button></button>

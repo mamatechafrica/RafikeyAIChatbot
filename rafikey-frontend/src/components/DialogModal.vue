@@ -7,21 +7,18 @@ interface DialogModalProps {
   maxWidth?: string
 }
 
-const chatbotStore =  useRafikeyChatbotStore()
+const chatbotStore = useRafikeyChatbotStore()
 
 // const props = defineProps<DialogModalProps>();
 
 const props = withDefaults(defineProps<DialogModalProps>(), {
   isOpen: false,
-  maxWidth: 'max-w-md'
+  maxWidth: 'max-w-md',
 })
 
 const emits = defineEmits<{
   (event: 'closeModal'): void
 }>()
-
-
-
 
 const closeModal = () => {
   console.log('close modal')
@@ -33,7 +30,7 @@ const closeModal = () => {
 
 <template>
   <TransitionRoot :show="props.isOpen" appear as="template">
-    <Dialog as="div" class="relative z-50 " @close="closeModal">
+    <Dialog as="div" class="relative z-50" @close="closeModal">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -43,7 +40,7 @@ const closeModal = () => {
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-black bg-opacity-20  backdrop-blur-[4px]" />
+        <div class="fixed inset-0 bg-black bg-opacity-20 backdrop-blur-[4px]" />
       </TransitionChild>
 
       <div class="fixed inset-0 overflow-y-auto">
@@ -59,10 +56,10 @@ const closeModal = () => {
           >
             <DialogPanel
               class="w-full transform overflow-hidden rounded-2xl bg-white dark:bg-lightgray p-6 text-left align-middle shadow-xl transition-all"
-              :class="[props.maxWidth,]"
+              :class="[props.maxWidth]"
             >
               <DialogTitle as="h3">
-                <slot name="title">  </slot>
+                <slot name="title"> </slot>
               </DialogTitle>
               <div class="mt-2">
                 <slot name="body">

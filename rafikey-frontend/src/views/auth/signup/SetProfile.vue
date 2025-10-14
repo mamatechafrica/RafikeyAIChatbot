@@ -220,23 +220,24 @@ const goToKnowYou = () => {
     })
     chatbotStore.isAnonymous = false
     isLoading.value = true
-    authStore.checkAccountExist({
-      username: setProfileData.username,
-      email: setProfileData.email,
-    })
-      .then((response)=>{
-        if(response.result === 'ok'){
-          if(response.data){
-            if(response.data.username_taken){
+    authStore
+      .checkAccountExist({
+        username: setProfileData.username,
+        email: setProfileData.email,
+      })
+      .then((response) => {
+        if (response.result === 'ok') {
+          if (response.data) {
+            if (response.data.username_taken) {
               accountExistText.value = 'Username already taken'
             }
-            if(response.data.email_taken){
+            if (response.data.email_taken) {
               accountExistText.value = 'Email already taken'
             }
-             if(response.data.username_taken &&  response.data.email_taken) {
+            if (response.data.username_taken && response.data.email_taken) {
               accountExistText.value = 'Username and Email already taken'
             }
-             if(!response.data.username_taken && !response.data.email_taken){
+            if (!response.data.username_taken && !response.data.email_taken) {
               router.push({
                 name: 'get-to-know-you',
               })
@@ -246,14 +247,14 @@ const goToKnowYou = () => {
         } else {
           isLoading.value = false
           SetProfileError.isError = true
-          SetProfileError.message ='Something went wrong, please try again later'
+          SetProfileError.message = 'Something went wrong, please try again later'
         }
       })
-      .catch((er)=>{
+      .catch((er) => {
         console.error('Error checking account existence: ', er)
         isLoading.value = false
         SetProfileError.isError = true
-        SetProfileError.message ='Something went wrong, please try again later'
+        SetProfileError.message = 'Something went wrong, please try again later'
       })
   } else {
     SetProfileError.isError = true
@@ -392,13 +393,13 @@ onBeforeUnmount(() => {
                     <span
                       v-if="isConfirmPasswordVisible"
                       @click="isConfirmPasswordVisible = false"
-                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isConfirmPasswordVisible = true"
-                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
                       >visibility</span
                     >
                   </div>
@@ -437,7 +438,7 @@ onBeforeUnmount(() => {
           </div>
           <div v-if="SetProfileError.isError" class="w-3/4 mx-auto flex gap-2">
             <span class="material-icons-outlined text-rose-500">error</span>
-            <span class="text-rose-500">{{ SetProfileError.message}}</span>
+            <span class="text-rose-500">{{ SetProfileError.message }}</span>
           </div>
           <div v-if="accountExistText" class="w-3/4 mx-auto flex gap-2">
             <span class="material-icons-outlined text-rose-500">error</span>
@@ -551,18 +552,16 @@ onBeforeUnmount(() => {
                 placeholder="Enter password"
               />
               <!-- unified toggle button -->
-                <button
-                  type="button"
-                  @click="isPasswordVisible = !isPasswordVisible"
-                  class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
-                >
-                  <span class="material-icons-outlined text-xl">
-                    {{ isPasswordVisible ? 'visibility_off' : 'visibility' }}
-                  </span>
-                </button>
-                <span
-                  v-if="passwordMeta.validated && !passwordMeta.valid"
-                  class="text-rose-500"
+              <button
+                type="button"
+                @click="isPasswordVisible = !isPasswordVisible"
+                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+              >
+                <span class="material-icons-outlined text-xl">
+                  {{ isPasswordVisible ? 'visibility_off' : 'visibility' }}
+                </span>
+              </button>
+              <span v-if="passwordMeta.validated && !passwordMeta.valid" class="text-rose-500"
                 >{{ passwordErrorMessage }}
               </span>
             </div>
@@ -584,8 +583,7 @@ onBeforeUnmount(() => {
               <button
                 type="button"
                 @click="isConfirmPasswordVisible = !isConfirmPasswordVisible"
-                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2
-                      text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
               >
                 <span class="material-icons-outlined text-xl leading-none">
                   {{ isConfirmPasswordVisible ? 'visibility_off' : 'visibility' }}
@@ -598,8 +596,7 @@ onBeforeUnmount(() => {
               >
                 {{ confirmPasswordErrorMessage }}
               </span>
-          </div>
-
+            </div>
           </form>
 
           <div class="flex gap-2">

@@ -27,30 +27,27 @@ const hasText = computed(() => {
 </script>
 
 <template>
-  <div class="chat chat-start ">
+  <div class="chat chat-start">
     <div class="flex gap-2">
       <div>
         <div class="w-12">
-          <img
-            class="w-full"
-            alt="Rafikey chatbot image"
-           :src="imageToggleSmallDevice()"
-          />
+          <img class="w-full" alt="Rafikey chatbot image" :src="imageToggleSmallDevice()" />
         </div>
       </div>
       <div class="flex flex-col">
-        <div
-          class="chat-header flex dark:text-white justify-start items-end text-small"
-        >
+        <div class="chat-header flex dark:text-white justify-start items-end text-small">
           <time class="text-extra-small opacity-50">{{ props.createdAt }}</time>
         </div>
         <div class="py-4 rounded-2xl">
           <div
-            v-if="hasText "
+            v-if="hasText"
             v-html="props.rafikeyChatbotMessage || props.originalMessage"
             class="dark:text-white"
           ></div>
-          <span v-if="!hasText && !chatbotStore.isStreamError.hasError" class="loading loading-dots md:loading-lg loading-sm dark:text-white"></span>
+          <span
+            v-if="!hasText && !chatbotStore.isStreamError.hasError"
+            class="loading loading-dots md:loading-lg loading-sm dark:text-white"
+          ></span>
         </div>
       </div>
     </div>
