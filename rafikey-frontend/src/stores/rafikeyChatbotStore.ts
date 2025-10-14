@@ -64,7 +64,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
   const score = useStorage('score', 0)
   const isShowPlayButton = ref(false)
   const isChatArchive = useStorage("isChatArchive", false)
-
+  const isOffline = ref(false)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
