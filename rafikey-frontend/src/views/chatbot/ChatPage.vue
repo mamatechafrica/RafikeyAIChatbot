@@ -63,6 +63,75 @@ const isShareChatLinkCopy = ref(false)
 // const isShowPlayButton = ref(false)
 const now = moment()
 
+const feedback = ref<string>('')
+const feedbackContent = [
+  {
+    id: 1,
+    emoji: '😡',
+    text: 'Awful',
+  },
+  {
+    id: 2,
+    emoji: '😤',
+    text: 'Sucks',
+  },
+  {
+    id: 3,
+    emoji: '🙂',
+    text: 'Okay',
+  },
+  {
+    id: 4,
+    emoji: '😍',
+    text: 'I like it',
+  },
+  {
+    id: 5,
+    emoji: '😍',
+    text: 'Love it',
+  },
+] as FeedbackContent[]
+const activeEmoji = ref<FeedbackContent>()
+const emojiHandler = (id: Number) => {
+  activeEmoji.value = feedbackContent.find((em) => em.id === id)
+}
+
+const isFeedbackLoading = ref(false)
+
+const sendFeedbackHandler = () => {
+  const payload = {
+    emoji: activeEmoji.value?.emoji as string,
+    comment: feedback.value,
+  }
+  isFeedbackLoading.value = true
+  rafikeyChatbotStore
+    .ratingFeedback(payload)
+    .then((res) => {
+      if (res?.result === 'ok') {
+        rafikeyChatbotStore.setShowFeedbackDialog(false)
+        setTimeout(()=> {
+          notificationStore.addNotification('Feedback sent successfully', 'success')
+        }, 500)
+      } else {
+        rafikeyChatbotStore.setShowFeedbackDialog(false)
+        setTimeout(()=>{
+          notificationStore.addNotification('Failed to send feedback, please retry', 'error')
+        }, 500)
+
+      }
+    })
+    .catch((err) => {
+      rafikeyChatbotStore.setShowFeedbackDialog(false)
+      setTimeout(()=>{
+        notificationStore.addNotification('Error sending feedback, please retry', 'error')
+      }, 500)
+      console.error('Error sending feedback: ', err)
+    })
+    .finally(() => {
+      isFeedbackLoading.value = false
+    })
+}
+
 // const isGeneratingResponse = ref(false)
 
 // Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
