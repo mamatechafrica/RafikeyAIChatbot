@@ -71,6 +71,10 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', ()=>{
     isLoggedIn: true,
   })
 
+  const showFeedbackDialog = ref({
+    isOpen: false,
+  })
+
   const quizzes = useStorage('quizzes',<Quiz[]>([]))
   const getSessionId = computed(()=> sessionId.value)
   const buffer = ref<string>('')
