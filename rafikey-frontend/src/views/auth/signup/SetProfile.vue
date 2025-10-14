@@ -293,8 +293,11 @@ onBeforeUnmount(() => {
               <input
                 v-model="chatbotStore.isAnonymous"
                 type="checkbox"
-                class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
-              />
+                class="checkbox h-5 w-5 mt-1
+                  border-2 border-gray-400 dark:border-gray-500
+                  checked:bg-button-light checked:border-button-light
+                  focus:ring-2 focus:ring-button-light/50
+                  transition-all duration-150"              />
               <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
             </div>
           </div>
@@ -497,8 +500,11 @@ onBeforeUnmount(() => {
             <input
               v-model="chatbotStore.isAnonymous"
               type="checkbox"
-              class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-slate-300 border-slate-800"
-            />
+              class="checkbox h-5 w-5 mt-1
+              border-2 border-gray-400 dark:border-gray-500
+              checked:bg-button-light checked:border-button-light
+              focus:ring-2 focus:ring-button-light/50
+              transition-all duration-150"            />
             <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
           </div>
         </div>
@@ -623,8 +629,11 @@ onBeforeUnmount(() => {
                   <input
                     type="checkbox"
                     v-model="setProfileData.isTermsCondition"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-stone-300 border-slate-800"
-                  />
+                    class="checkbox h-5 w-5 mt-1
+                    border-2 border-gray-400 dark:border-gray-500
+                    checked:bg-button-light checked:border-button-light
+                    focus:ring-2 focus:ring-button-light/50
+                    transition-all duration-150"                  />
                 </div>
                 <div>
                   <p class="text-gray-900 dark:text-gray-50 text-sm font-medium">Please accept before proceeding</p>
