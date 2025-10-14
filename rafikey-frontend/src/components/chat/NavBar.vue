@@ -65,10 +65,6 @@ onMounted(() => {
     })
 })
 
-const showFeedbackDialog = () => {
-  chatbotStore.setCollapseSidebarSmall(true)
-  emits('showFeedbackDialog')
-}
 // reduce the chat titles according to the dates
 const groupChat = () => {
   const now = moment()
@@ -106,7 +102,6 @@ const emits = defineEmits<{
   (event: 'profileHandler'): void
   (event: 'isProfile', value: boolean): void
   (event: 'shareChat'): void
-  (event: 'showFeedbackDialog'): void
 }>()
 
 // fetch clicked chat History title
@@ -201,6 +196,7 @@ const shareChat = () => {
 const openProfileHandler = () => {
   chatbotStore.setCollapseSidebarSmall(true)
   isShowProfile.value = false
+  chatbotStore.isNewChat = false
   emits('isProfile', isShowProfile.value)
   setTimeout(()=>{
     router.push({ name: 'profile' })
