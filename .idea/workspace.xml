@@ -4,16 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="update if condition">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/profile-image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="Add openProfileHandler function">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/offline-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/offline.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/router/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,63 +299,7 @@
       <workItem from="1760287735338" duration="6226000" />
       <workItem from="1760326311883" duration="77000" />
       <workItem from="1760329700161" duration="2000" />
-      <workItem from="1760344689148" duration="21477000" />
-    </task>
-    <task id="LOCAL-00577" summary="add notification for virtual-pwa module hooks">
-      <option name="closed" value="true" />
-      <created>1759841384912</created>
-      <option name="number" value="00577" />
-      <option name="presentableId" value="LOCAL-00577" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841384912</updated>
-    </task>
-    <task id="LOCAL-00578" summary="add DialogModal for onNeedRefresh hook">
-      <option name="closed" value="true" />
-      <created>1759841413492</created>
-      <option name="number" value="00578" />
-      <option name="presentableId" value="LOCAL-00578" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841413492</updated>
-    </task>
-    <task id="LOCAL-00579" summary="add usePWA composable">
-      <option name="closed" value="true" />
-      <created>1759841428776</created>
-      <option name="number" value="00579" />
-      <option name="presentableId" value="LOCAL-00579" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841428776</updated>
-    </task>
-    <task id="LOCAL-00580" summary="add virtual-pwa type file">
-      <option name="closed" value="true" />
-      <created>1759841445300</created>
-      <option name="number" value="00580" />
-      <option name="presentableId" value="LOCAL-00580" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841445300</updated>
-    </task>
-    <task id="LOCAL-00581" summary="add maskable images">
-      <option name="closed" value="true" />
-      <created>1759841471774</created>
-      <option name="number" value="00581" />
-      <option name="presentableId" value="LOCAL-00581" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841471774</updated>
-    </task>
-    <task id="LOCAL-00582" summary="add screenshot images">
-      <option name="closed" value="true" />
-      <created>1759841490874</created>
-      <option name="number" value="00582" />
-      <option name="presentableId" value="LOCAL-00582" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841490874</updated>
-    </task>
-    <task id="LOCAL-00583" summary="add  images">
-      <option name="closed" value="true" />
-      <created>1759841503979</created>
-      <option name="number" value="00583" />
-      <option name="presentableId" value="LOCAL-00583" />
-      <option name="project" value="LOCAL" />
-      <updated>1759841503979</updated>
+      <workItem from="1760344689148" duration="38889000" />
     </task>
     <task id="LOCAL-00584" summary="remove images">
       <option name="closed" value="true" />
@@ -689,7 +637,63 @@
       <option name="project" value="LOCAL" />
       <updated>1760345141973</updated>
     </task>
-    <option name="localTasksCounter" value="626" />
+    <task id="LOCAL-00626" summary="add UserProfile">
+      <option name="closed" value="true" />
+      <created>1760388995770</created>
+      <option name="number" value="00626" />
+      <option name="presentableId" value="LOCAL-00626" />
+      <option name="project" value="LOCAL" />
+      <updated>1760388995770</updated>
+    </task>
+    <task id="LOCAL-00627" summary="add image">
+      <option name="closed" value="true" />
+      <created>1760389056871</created>
+      <option name="number" value="00627" />
+      <option name="presentableId" value="LOCAL-00627" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389056871</updated>
+    </task>
+    <task id="LOCAL-00628" summary="add openProfileHandler function">
+      <option name="closed" value="true" />
+      <created>1760389088264</created>
+      <option name="number" value="00628" />
+      <option name="presentableId" value="LOCAL-00628" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389088264</updated>
+    </task>
+    <task id="LOCAL-00629" summary="Add profile route">
+      <option name="closed" value="true" />
+      <created>1760389399076</created>
+      <option name="number" value="00629" />
+      <option name="presentableId" value="LOCAL-00629" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389399076</updated>
+    </task>
+    <task id="LOCAL-00630" summary="Add getUserProfile function">
+      <option name="closed" value="true" />
+      <created>1760389498693</created>
+      <option name="number" value="00630" />
+      <option name="presentableId" value="LOCAL-00630" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389498693</updated>
+    </task>
+    <task id="LOCAL-00631" summary="Add on if condition">
+      <option name="closed" value="true" />
+      <created>1760389578551</created>
+      <option name="number" value="00631" />
+      <option name="presentableId" value="LOCAL-00631" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389578551</updated>
+    </task>
+    <task id="LOCAL-00632" summary="Add openProfileHandler function">
+      <option name="closed" value="true" />
+      <created>1760389677385</created>
+      <option name="number" value="00632" />
+      <option name="presentableId" value="LOCAL-00632" />
+      <option name="project" value="LOCAL" />
+      <updated>1760389677385</updated>
+    </task>
+    <option name="localTasksCounter" value="633" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -707,13 +711,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove mic" />
-    <MESSAGE value="add notification toasts" />
-    <MESSAGE value="add tooltip and tadio buttons" />
-    <MESSAGE value="add  isArchive flag" />
-    <MESSAGE value="add isChatArchive" />
-    <MESSAGE value="add  setIsChatArchive function" />
-    <MESSAGE value="rename Tab folder" />
     <MESSAGE value="remove bubble names" />
     <MESSAGE value="add styling" />
     <MESSAGE value="add styling on update dialog" />
@@ -732,7 +729,14 @@
     <MESSAGE value="add watch on isArchive" />
     <MESSAGE value="add toggleArchive function" />
     <MESSAGE value="update if condition" />
-    <option name="LAST_COMMIT_MESSAGE" value="update if condition" />
+    <MESSAGE value="add UserProfile" />
+    <MESSAGE value="add image" />
+    <MESSAGE value="add openProfileHandler function" />
+    <MESSAGE value="Add profile route" />
+    <MESSAGE value="Add getUserProfile function" />
+    <MESSAGE value="Add on if condition" />
+    <MESSAGE value="Add openProfileHandler function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add openProfileHandler function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -773,7 +777,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue</url>
-          <line>251</line>
+          <line>287</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

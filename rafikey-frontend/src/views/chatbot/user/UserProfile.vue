@@ -16,9 +16,9 @@ interface UserProfile {
   created_at: string
 }
 const authStore = useAuthStore()
-const isError = ref(false)
+const isError = ref('')
 const isAppLoading = ref(false)
-const userProfile: UserProfile = ref()
+const userProfile= ref< UserProfile | null>(null)
 onMounted(() => {
   isAppLoading.value = true
   authStore.getUserProfile()
@@ -40,13 +40,14 @@ onMounted(() => {
 const chatbotStore = useRafikeyChatbotStore()
 
 const relationshipStatus = () =>{
-  // if(userProfile.value){}
-  if(userProfile.value.relationship_status === 'No'){
-    return 'Single'
-  } else if(userProfile.value.relationship_status === 'Yes'){
-    return 'In a relationship'
-  } else {
-    return 'Prefer not to say'
+  if(userProfile.value){
+    if(userProfile.value.relationship_status === 'No'){
+      return 'Single'
+    } else if(userProfile.value.relationship_status === 'Yes'){
+      return 'In a relationship'
+    } else {
+      return 'Prefer not to say'
+    }
   }
 }
 </script>
@@ -58,7 +59,7 @@ const relationshipStatus = () =>{
     <div  class="space-y-16 dark:bg-darkgray lg:p-16 p-10 rounded-[29px] bg-link-water-50">
       <div class="border-b pb-4 border-dashed border-veryLightFour dark:border-slate-600">
         <p class="dark:text-white text-extra-large">Profile</p>
-        <span class="dark:text-stone-400">View all your profile data here</span>
+        <span class="text-stone-400">View all your profile data here</span>
       </div>
       <div v-if="userProfile" class="grid grid-cols-3 lg:gap-8 gap-6">
         <div
