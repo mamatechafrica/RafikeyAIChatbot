@@ -24,6 +24,7 @@ const isTermsConditionHandler = (value: boolean) => {
     })
   }
 }
+
 const goBack = () => {
   if (chatbotStore.isShowTermsButton) {
     router.push({ name: 'get-to-know-you' })
@@ -59,6 +60,7 @@ const goBack = () => {
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>
+
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
         <div>
           <div class="flex justify-end">
@@ -90,7 +92,7 @@ const goBack = () => {
         </div>
 
         <div class="flex flex-col lg:text-xl text-lg dark:text-white space-y-4 lg:px-6 px-1">
-          <div class="">
+          <div>
             <p class="md:text-large text-extra-small">
               Welcome to Rafikey! Rafikey is a digital platform designed to support young people
               with trusted information, interactive learning, and access to services. Whether you're
@@ -103,134 +105,120 @@ const goBack = () => {
               how we protect your experience.
             </p>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               1. Purpose of Rafikey
             </h2>
             <p class="md:text-large text-extra-small">Rafikey is a digital platform designed to:</p>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                Provide age-appropriate information on health, relationships, and rights
-              </li>
-              <li class="md:text-large text-extra-small">
-                Offer interactive games that build knowledge and confidence
-              </li>
-              <li class="md:text-large text-extra-small">
-                Connect users to trusted services and support networks
-              </li>
+              <li>Provide age-appropriate information on health, relationships, and rights</li>
+              <li>Offer interactive games that build knowledge and confidence</li>
+              <li>Connect users to trusted services and support networks</li>
             </ul>
             <p class="md:text-large text-extra-small">
               Rafikey is not a substitute for professional medical or legal advice.
             </p>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               2. Who Can Use Rafikey
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                Rafikey is designed for young people aged 18 and above.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>Rafikey is designed for young people aged 18 and above.</li>
+              <li>
                 If you’re under 18, we recommend using Rafikey with a parent, caregiver, or trusted
                 adult.
               </li>
-              <li class="md:text-large text-extra-small">
-                By using Rafikey, you confirm that you understand and accept these terms.
-              </li>
+              <li>By using Rafikey, you confirm that you understand and accept these terms.</li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               3. Chat and Game Use
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                You are welcome to ask questions, play games, and explore the content freely.
-              </li>
-              <li class="md:text-large text-extra-small">
-                Please use respectful language when engaging
-              </li>
-              <li class="md:text-large text-extra-small">
-                Bullying, hate speech, or inappropriate content is not allowed.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>You are welcome to ask questions, play games, and explore the content freely.</li>
+              <li>Please use respectful language when engaging.</li>
+              <li>Bullying, hate speech, or inappropriate content is not allowed.</li>
+              <li>
                 Rafikey may guide you to services or resources based on your inputs, but you’re
                 always in control of what you choose to access.
               </li>
             </ul>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               4. Service Referrals
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                Rafikey may suggest health clinics, helplines, or support services.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>Rafikey may suggest health clinics, helplines, or support services.</li>
+              <li>
                 These referrals are based on general location and topic relevance, not personal
                 data.
               </li>
-              <li class="md:text-large text-extra-small">
-                Rafikey does not guarantee the quality or availability of third-party services.
-              </li>
+              <li>Rafikey does not guarantee the quality or availability of third-party services.</li>
             </ul>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               5. Privacy and Safety
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
+              <li>
                 Rafikey protects your privacy. We do not collect personal data unless you choose to
-                share it for a more personalized experience
+                share it for a more personalized experience.
               </li>
-              <li class="md:text-large text-extra-small">
-                For more details, see our [Privacy Policy].
+              <li>
+                Rafikey automatically deletes all chat histories after one (1) month to protect your
+                privacy. You will receive a reminder before this happens and can choose to delete
+                your chats earlier if you wish.
               </li>
-              <li class="md:text-large text-extra-small">
+              <li>
+                For more details, see our
+                <router-link
+                  to="/auth/register/privacy-policy-2"
+                  class="text-casablanca-300 underline"
+                  >Privacy Policy</router-link
+                >.
+              </li>
+              <li>
                 If you feel unsafe or experience abuse, Rafikey can help you find support, but we
                 encourage you to speak to a trusted adult immediately.
               </li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               6. What You Shouldn’t Do
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                Use Rafikey to harm, harass, or mislead others
-              </li>
-              <li class="md:text-large text-extra-small">Share false or dangerous information</li>
-              <li class="md:text-large text-extra-small">
-                Try to access or misuse the platform’s systems or data
-              </li>
+              <li>Use Rafikey to harm, harass, or mislead others</li>
+              <li>Share false or dangerous information</li>
+              <li>Try to access or misuse the platform’s systems or data</li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               7. Changes and Updates
             </h2>
             <ul class="list-disc md:pl-6 pl-4 space-y-1">
-              <li class="md:text-large text-extra-small">
-                Rafikey may update these terms or their features at any time.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>Rafikey may update these terms or their features at any time.</li>
+              <li>
                 We’ll let you know if major changes happen. Continued use means you accept the
                 updates.
               </li>
             </ul>
           </div>
-          <div class="">
-            <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold">
-              8. Contact Us
-            </h2>
+
+          <div>
+            <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold">8. Contact Us</h2>
             <p class="md:text-large text-extra-small">
               If you have questions or concerns, reach out to:
               <a href="mailto:rafikey@afrimedia.org" class="text-blue-500">rafikey@afrimedia.org</a>

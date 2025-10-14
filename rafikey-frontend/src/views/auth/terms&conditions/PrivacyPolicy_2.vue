@@ -33,6 +33,7 @@ const chatbotStore = useRafikeyChatbotStore()
           <img :src="toggleImage()" alt="rafikey-icon" class="md:w-60 w-40" />
         </div>
       </div>
+
       <div class="bg-gray-100 dark:bg-darkgray mx-auto p-10 rounded-2xl space-y-5">
         <div>
           <div class="flex justify-end">
@@ -66,7 +67,7 @@ const chatbotStore = useRafikeyChatbotStore()
         </div>
 
         <div class="flex flex-col lg:text-xl text-lg space-y-4 lg:px-6 px-1 dark:text-white">
-          <div class="">
+          <div>
             <p class="md:text-large text-extra-small">
               At Rafikey, your privacy and safety come first. We are committed to creating a space
               where you can explore, learn, and connect without fear of judgment or misuse of your
@@ -80,7 +81,8 @@ const chatbotStore = useRafikeyChatbotStore()
               We keep things simple, transparent, and secure—because your trust matters.
             </p>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               Who We Are
             </h2>
@@ -90,7 +92,8 @@ const chatbotStore = useRafikeyChatbotStore()
               your safety, privacy, and trust.
             </p>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               What Information We Collect
             </h2>
@@ -99,25 +102,19 @@ const chatbotStore = useRafikeyChatbotStore()
             </p>
             <p class="md:text-large text-extra-small font-semibold">1. Basic Usage Data</p>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">
-                Chat interactions (questions, responses, choices)
-              </li>
-              <li class="md:text-large text-extra-small">Game progress and scores</li>
-              <li class="md:text-large text-extra-small">Referral clicks or service selections</li>
-              <li class="md:text-large text-extra-small">Session duration and bounce rates</li>
-              <li class="md:text-large text-extra-small">User journey</li>
+              <li>Chat interactions (questions, responses, choices)</li>
+              <li>Game progress and scores</li>
+              <li>Referral clicks or service selections</li>
+              <li>Session duration and bounce rates</li>
+              <li>User journey</li>
             </ul>
-            <p class="md:text-large text-extra-small font-semibold">
-              2. Optional Personal Information
-            </p>
+            <p class="md:text-large text-extra-small font-semibold">2. Optional Personal Information</p>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">Name (could be a pseudonym)</li>
-              <li class="md:text-large text-extra-small">
-                Email address or phone for reminders, offers,
-              </li>
-              <li class="md:text-large text-extra-small">Age range or gender (if shared)</li>
-              <li class="md:text-large text-extra-small">Location (general, not exact)</li>
-              <li class="md:text-large text-extra-small">Feedback or survey responses</li>
+              <li>Name (could be a pseudonym)</li>
+              <li>Email address or phone for reminders, offers</li>
+              <li>Age range or gender (if shared)</li>
+              <li>Location (general, not exact)</li>
+              <li>Feedback or survey responses</li>
             </ul>
             <p class="md:text-large text-extra-small">
               We do not ask for names, phone numbers, or exact addresses unless explicitly needed
@@ -125,64 +122,69 @@ const chatbotStore = useRafikeyChatbotStore()
             </p>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               Why We Collect It
             </h2>
             <p class="md:text-large text-extra-small font-semibold">We use this information to:</p>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">
-                Improve chatbot responses and game experiences
-              </li>
-              <li class="md:text-large text-extra-small">
-                Tailor content to your age, preferences, and needs
-              </li>
-              <li class="md:text-large text-extra-small">
-                Connect you to relevant services (e.g., health clinics, helplines)
-              </li>
-              <li class="md:text-large text-extra-small">
-                Monitor platform safety and performance
-              </li>
+              <li>Improve chatbot responses and game experiences</li>
+              <li>Tailor content to your age, preferences, and needs</li>
+              <li>Connect you to relevant services (e.g., health clinics, helplines)</li>
+              <li>Monitor platform safety and performance</li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               How We Protect Your Data
             </h2>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">
-                All data is stored securely and encrypted.
-              </li>
-              <li class="md:text-large text-extra-small">
-                We do not sell or share your data with advertisers.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>All data is stored securely and encrypted.</li>
+              <li>We do not sell or share your data with advertisers.</li>
+              <li>
                 Only authorized Rafikey team members or partners can access data, and only for
                 support or improvement purposes.
               </li>
             </ul>
           </div>
 
-          <div class="">
+          <!-- 🟣 New Section: Data Retention and Deletion -->
+          <div>
+            <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
+              Data Retention and Deletion
+            </h2>
+            <p class="md:text-large text-extra-small">
+              To protect your privacy, Rafikey automatically deletes all chat history and
+              interaction data after one (1) month. Before deletion occurs, users receive a
+              notification reminding them that their chat history will be cleared.
+            </p>
+            <p class="md:text-large text-extra-small">
+              This ensures your data is not stored longer than necessary. If you prefer to delete
+              your chats or account earlier, you can do so through your settings or by contacting us
+              at
+              <a href="mailto:rafikey@afrimedia.org" class="text-casablanca-600"
+                >rafikey@afrimedia.org</a
+              >.
+            </p>
+          </div>
+          <!-- End new section -->
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               What We Don’t Do
             </h2>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">
-                Track you across other apps or websites.
-              </li>
-              <li class="md:text-large text-extra-small">
-                We don’t collect sensitive personal data without clear consent.
-              </li>
-              <li class="md:text-large text-extra-small">
+              <li>Track you across other apps or websites.</li>
+              <li>We don’t collect sensitive personal data without clear consent.</li>
+              <li>
                 We don’t allow bullying, harassment, or unsafe content, and we take action if it
                 occurs.
               </li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               Third-Party Services
             </h2>
@@ -192,7 +194,7 @@ const chatbotStore = useRafikeyChatbotStore()
             </p>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               Children’s Privacy
             </h2>
@@ -200,30 +202,22 @@ const chatbotStore = useRafikeyChatbotStore()
               Rafikey is designed with youth safety in mind. For users under 18:
             </p>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">
-                We encourage caregivers to guide younger users.
-              </li>
-              <li class="md:text-large text-extra-small">
-                We limit data collection to what’s needed for safe use.
-              </li>
-              <li class="md:text-large text-extra-small">
-                We adhere to child protection laws and digital safety standards.
-              </li>
+              <li>We encourage caregivers to guide younger users.</li>
+              <li>We limit data collection to what’s needed for safe use.</li>
+              <li>We adhere to child protection laws and digital safety standards.</li>
             </ul>
           </div>
 
-          <div class="">
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">
               Your Rights
             </h2>
             <p class="md:text-large text-extra-small">You can:</p>
             <ul class="list-disc pl-10">
-              <li class="md:text-large text-extra-small">Ask what data we’ve collected</li>
-              <li class="md:text-large text-extra-small">Request the deletion of your data</li>
-              <li class="md:text-large text-extra-small">Withdraw consent at any time</li>
-              <li class="md:text-large text-extra-small">
-                Join as a guest (terms and conditions apply)
-              </li>
+              <li>Ask what data we’ve collected</li>
+              <li>Request the deletion of your data</li>
+              <li>Withdraw consent at any time</li>
+              <li>Join as a guest (terms and conditions apply)</li>
             </ul>
             <p class="md:text-large text-extra-small">
               To do so, contact:
@@ -232,7 +226,8 @@ const chatbotStore = useRafikeyChatbotStore()
               >
             </p>
           </div>
-          <div class="">
+
+          <div>
             <h2 class="md:text-extra-extra-large-1 text-extra-small font-semibold mb-2">Consent</h2>
             <p class="md:text-large text-extra-small">
               By using Rafikey, you agree to this privacy policy. We’ll notify you if major changes
