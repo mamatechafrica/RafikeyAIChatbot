@@ -392,13 +392,13 @@ onBeforeUnmount(() => {
                     <span
                       v-if="isConfirmPasswordVisible"
                       @click="isConfirmPasswordVisible = false"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility_off</span
                     >
                     <span
                       v-else
                       @click="isConfirmPasswordVisible = true"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9 "
                       >visibility</span
                     >
                   </div>
@@ -538,68 +538,68 @@ onBeforeUnmount(() => {
                 >{{ emailErrorMessage }}</span
               >
             </div>
-
-            <div class="relative space-y-0.5">
-              <label class="dark:text-white text-black md:text-lg text-sm" for="password">
+            <div class="relative space-y-1">
+              <label class="text-gray-950 dark:text-white text-sm" for="password">
                 Password (Required)
               </label>
               <input
                 v-model="setProfileData.password"
-                id="password"
+                id="password-lg"
                 :type="togglePasswordVisibility"
-                class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
+                class="w-full dark:bg-darkgray dark:text-white border border-gray-300 rounded-lg p-2 lg:text-lg text-sm pr-10"
                 required
                 placeholder="Enter password"
               />
-              <span
-                v-if="passwordMeta.validated && !passwordMeta.valid"
-                class="md:text-lg text-sm text-rose-500"
-                >{{ passwordErrorMessage }}</span
-              >
-              <span
-                v-if="isPasswordVisible"
-                @click="isPasswordVisible = false"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility_off</span
-              >
-              <span
-                v-else
-                @click="isPasswordVisible = true"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility</span
-              >
+              <!-- unified toggle button -->
+                <button
+                  type="button"
+                  @click="isPasswordVisible = !isPasswordVisible"
+                  class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+                >
+                  <span class="material-icons-outlined text-xl">
+                    {{ isPasswordVisible ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+                <span
+                  v-if="passwordMeta.validated && !passwordMeta.valid"
+                  class="text-rose-500"
+                >{{ passwordErrorMessage }}
+              </span>
             </div>
 
-            <div class="relative space-y-0.5">
-              <label class="dark:text-white text-black md:text-lg text-sm" for="password">
+            <div class="relative space-y-1">
+              <label class="text-gray-950 dark:text-white text-sm" for="confirmPassword">
                 Confirm Password (Required)
               </label>
               <input
                 v-model="setProfileData.confirmPassword"
-                id="ConfirmPassword"
+                id="confirmPassword-lg"
                 :type="toggleConfirmPasswordVisibility"
-                class="w-full dark:text-white dark:bg-darkgray border-[1px] border-gray-300 rounded-lg p-2 md:text-lg text-sm"
+                class="w-full dark:bg-darkgray dark:text-white border border-gray-300 rounded-lg p-2 lg:text-lg text-sm pr-10"
                 required
-                placeholder="Enter password"
+                placeholder="Confirm password"
               />
+
+              <!-- unified toggle button -->
+              <button
+                type="button"
+                @click="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2
+                      text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+              >
+                <span class="material-icons-outlined text-xl leading-none">
+                  {{ isConfirmPasswordVisible ? 'visibility_off' : 'visibility' }}
+                </span>
+              </button>
+
               <span
                 v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"
-                class="text-rose-500 md:text-lg text-sm"
-                >{{ confirmPasswordErrorMessage }}</span
+                class="text-rose-500"
               >
-              <span
-                v-if="isConfirmPasswordVisible"
-                @click="isConfirmPasswordVisible = false"
-                class="material-icons-outlined absolute dark:text-white !text-xl cursor-pointer right-3 top-8"
-                >visibility_off</span
-              >
-              <span
-                v-else
-                @click="isConfirmPasswordVisible = true"
-                class="material-icons-outlined dark:text-white absolute !text-xl cursor-pointer right-3 top-8"
-                >visibility</span
-              >
-            </div>
+                {{ confirmPasswordErrorMessage }}
+              </span>
+          </div>
+
           </form>
 
           <div class="flex gap-2">
