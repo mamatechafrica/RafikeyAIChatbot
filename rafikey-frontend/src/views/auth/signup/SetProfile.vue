@@ -423,16 +423,18 @@ onBeforeUnmount(() => {
                 </router-link>
               </div>
               <div class="flex items-center gap-2">
-                <div class="flex gap-1 xl:gap-1 justify-center">
-                  <input
-                    type="checkbox"
-                    v-model="setProfileData.isTermsCondition"
-                    class="checked:bg-button-light mt-1 checked:border-none checkbox h-4 w-4 text-button-light dark:border-stone-300 border-slate-800"
-                  />
-                </div>
-                <div>
-                  <p class="dark:text-white text-sm">Please accept before proceeding</p>
-                </div>
+                <input
+                  type="checkbox"
+                  v-model="setProfileData.isTermsCondition"
+                  class="checkbox h-5 w-5 mt-1
+                        border-2 border-gray-400 dark:border-gray-500
+                        checked:bg-button-light checked:border-button-light
+                        focus:ring-2 focus:ring-button-light/50
+                        transition-all duration-150"
+                />
+                <p class="text-gray-800 dark:text-gray-100 text-sm font-semibold">
+                  Please accept before proceeding
+                </p>
               </div>
             </div>
           </div>
@@ -625,7 +627,7 @@ onBeforeUnmount(() => {
                   />
                 </div>
                 <div>
-                  <p class="dark:text-white text-sm">Please accept before proceeding</p>
+                  <p class="text-gray-900 dark:text-gray-50 text-sm font-medium">Please accept before proceeding</p>
                 </div>
               </div>
             </div>
