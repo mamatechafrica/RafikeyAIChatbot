@@ -287,18 +287,21 @@ onBeforeUnmount(() => {
           </div>
           <div class="lg:w-3/4 w-full mx-auto flex items-center gap-2 cursor-pointer">
             <div
-              class="tooltip flex gap-2 tooltip-bottom"
+              class="tooltip tooltip-bottom flex items-center gap-2 cursor-pointer"
               data-tip="Use Rafikey without an account"
             >
-              <input
-                v-model="chatbotStore.isAnonymous"
-                type="checkbox"
-                class="checkbox h-5 w-5 mt-1
-                  border-2 border-gray-400 dark:border-gray-500
-                  checked:bg-button-light checked:border-button-light
-                  focus:ring-2 focus:ring-button-light/50
-                  transition-all duration-150"              />
-              <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input
+                  v-model="chatbotStore.isAnonymous"
+                  type="checkbox"
+                  class="checkbox h-5 w-5 mt-1
+                        border-2 border-gray-400 dark:border-gray-500
+                        checked:bg-button-light checked:border-button-light
+                        focus:ring-2 focus:ring-button-light/50
+                        transition-all duration-150"
+                />
+                <span class="text-sm text-gray-900 dark:text-gray-100 pt-1">Remain Anonymous</span>
+              </label>
             </div>
           </div>
 
@@ -496,18 +499,25 @@ onBeforeUnmount(() => {
         <!--          </div>-->
         <!--        </div>-->
         <div class="w-full mx-auto flex items-center gap-2 cursor-pointer">
-          <div class="tooltip flex gap-2 tooltip-bottom" data-tip="Use Rafikey without an account">
-            <input
-              v-model="chatbotStore.isAnonymous"
-              type="checkbox"
-              class="checkbox h-5 w-5 mt-1
-              border-2 border-gray-400 dark:border-gray-500
-              checked:bg-button-light checked:border-button-light
-              focus:ring-2 focus:ring-button-light/50
-              transition-all duration-150"            />
-            <p class="text-sm dark:text-white pt-1">Remain Anonymous</p>
+          <div
+            class="tooltip tooltip-bottom flex items-center gap-2 cursor-pointer"
+            data-tip="Use Rafikey without an account"
+          >
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input
+                v-model="chatbotStore.isAnonymous"
+                type="checkbox"
+                class="checkbox h-5 w-5 mt-1
+                      border-2 border-gray-400 dark:border-gray-500
+                      checked:bg-button-light checked:border-button-light
+                      focus:ring-2 focus:ring-button-light/50
+                      transition-all duration-150"
+              />
+              <span class="text-sm text-gray-900 dark:text-gray-100 pt-1">Remain Anonymous</span>
+            </label>
           </div>
         </div>
+
 
         <div class="border-b border-stone-400 w-full"></div>
         <div class="space-y-2">
