@@ -7,6 +7,14 @@ export default {
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}"
   ],
+
+  safelist: [
+    'tooltip',
+    'tooltip-top',
+    'tooltip-bottom',
+    'tooltip-left',
+    'tooltip-right'
+  ],
   // darkMode: false,
   theme: {
     extend: {
