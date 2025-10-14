@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import router from '@/router'
+import { useRafikeyChatbotStore } from '@/stores'
+import { toggleImage } from "@/composables/imageToggle.ts";
 
-import { toggleImage } from '@/composables/imageToggle.ts'
 
+const chatbotStore = useRafikeyChatbotStore()
 </script>
 
 <template>
@@ -17,13 +19,13 @@ import { toggleImage } from '@/composables/imageToggle.ts'
             <span class="material-icons-outlined dark:text-white md:text-lg text-sm"
               >chevron_left</span
             >
-<!--            <span-->
-<!--              v-if="chatbotStore.isShowTermsButton"-->
-<!--              class="text-extra-extra-small font-light dark:text-white"-->
-<!--              >Back to Sign Up</span-->
-<!--            >-->
-            <span class="!text-extra-extra-small font-light dark:text-white"
-              >Go Back</span
+            <span
+              v-if="chatbotStore.isShowTermsButton"
+              class="text-extra-extra-small font-light dark:text-white"
+              >Back to Sign Up</span
+            >
+            <span v-else class="!text-extra-extra-small font-light dark:text-white"
+              >Back to Chats</span
             >
           </div>
         </div>
@@ -44,29 +46,24 @@ import { toggleImage } from '@/composables/imageToggle.ts'
         <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
           <div class="text-center w-10/12">
             <p class="md:text-large sm:text-small text-extra-small text-black dark:text-white">
-              We follow strict data protection rules (GDPR-compliant)
+              At Rafikey, your privacy is our priority.
             </p>
           </div>
-          <div class="flex flex-col items-center text-center">
-            <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6">
-              To male sure your details stay safe and confidential.
-            </p>
-            <p
-              class="text-center md:text-large sm:text-small text-extra-small dark:text-white leading-6"
-            >
-              At Rafikey, your privacy is a top priority. Any information you share is only used to
-              improve your experience and provide the support you need. Wee never share your
-              personal data with anyone without your permission.
-            </p>
+          <div class="flex flex-col items-center text-xl md:space-y-10 space-y-4">
+            <div class="flex flex-col">
+              <p class="md:text-large sm:text-small text-extra-small dark:text-white leading-6 mb-2">
+                Here’s a quick guide to how we keep this space safe and supportive:
+              </p>
+                <ul class="list-disc md:pl-6 pl-4 space-y-1">
+                  <li class="md:text-large text-extra-small">We follow strict data protection rules (GDPR-compliant).</li>
+                  <li class="md:text-large text-extra-small">Your info is used only to improve your experience.</li>
+                  <li class="md:text-large text-extra-small">We never share your personal data without your permission.</li>
+                </ul>
+              <p class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6 mt-2">
+                Learn more about how we collect, use, and protect your data in our full policy.
+              </p>
+            </div>
           </div>
-        </div>
-
-        <div class="w-3/4 mx-auto pt-3 md:pt-5 text-center">
-          <p
-            class="text-center md:text-large sm:text-small text-extra-small text-black dark:text-white leading-6"
-          >
-            You can learn more about how we collect, use and protect your data by reading our policy
-          </p>
         </div>
         <div class="flex flex-col items-center py-4 md:py-10">
           <router-link
