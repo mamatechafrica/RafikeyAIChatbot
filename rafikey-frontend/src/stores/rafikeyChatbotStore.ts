@@ -532,6 +532,10 @@ const otherSettings = useStorage("otherSettings", {})
   const setCorrectAnswer = (value: CorrectAnswer) => {
     correctAnswer.value = value
   }
+
+  const setShowFeedbackDialog = (value: boolean) => {
+    showFeedbackDialog.value.isOpen = value
+  }
   return {
     sendMessageToRafikeyChatbot,
     setCorrectAnswer,
