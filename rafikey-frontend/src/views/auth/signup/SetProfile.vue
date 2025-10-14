@@ -220,12 +220,41 @@ const goToKnowYou = () => {
     })
     chatbotStore.isAnonymous = false
     isLoading.value = true
-    setTimeout(() => {
-      isLoading.value = false
-      router.push({
-        name: 'get-to-know-you',
+    authStore.checkAccountExist({
+      username: setProfileData.username,
+      email: setProfileData.email,
+    })
+      .then((response)=>{
+        if(response.result === 'ok'){
+          if(response.data){
+            if(response.data.username_taken){
+              accountExistText.value = 'Username already taken'
+            }
+            if(response.data.email_taken){
+              accountExistText.value = 'Email already taken'
+            }
+             if(response.data.username_taken &&  response.data.email_taken) {
+              accountExistText.value = 'Username and Email already taken'
+            }
+             if(!response.data.username_taken && !response.data.email_taken){
+              router.push({
+                name: 'get-to-know-you',
+              })
+            }
+          }
+          isLoading.value = false
+        } else {
+          isLoading.value = false
+          SetProfileError.isError = true
+          SetProfileError.message ='Something went wrong, please try again later'
+        }
       })
-    }, 3000)
+      .catch((er)=>{
+        console.error('Error checking account existence: ', er)
+        isLoading.value = false
+        SetProfileError.isError = true
+        SetProfileError.message ='Something went wrong, please try again later'
+      })
   } else {
     SetProfileError.isError = true
     SetProfileError.message = 'Please fill all fields correctly before proceeding'
