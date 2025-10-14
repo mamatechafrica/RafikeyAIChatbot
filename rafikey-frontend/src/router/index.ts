@@ -1,7 +1,11 @@
-import { createRouter, createWebHistory,type  NavigationGuardNext, type  RouteLocationNormalized } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  type NavigationGuardNext,
+  type RouteLocationNormalized,
+} from 'vue-router'
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { ref } from 'vue'
-
 
 const routes = [
   {
@@ -9,13 +13,6 @@ const routes = [
     path: '/',
     redirect: '/auth',
   },
-  {
-    name: 'trying',
-    path: '/trying',
-    // component: () => import('@/views/auth/welcomepages/LoadingSpnpm inner.vue')
-    component: () => import('@/views/auth/welcomepages/LoadingPage_1.vue'),
-  },
-
   {
     name: 'auth',
     path: '/auth',
@@ -272,29 +269,26 @@ const routes = [
   },
 ]
 
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: routes
+  routes: routes,
 })
 
 router.beforeEach((to, from, next) => {
-
   const authStore = useAuthStore()
   const chatbotStore = useRafikeyChatbotStore()
-  const  isRequiresAuth =  to.meta.requiresAuth as boolean
+  const isRequiresAuth = to.meta.requiresAuth as boolean
   chatbotStore.previousRoute = from.fullPath
   //   check if  routes requires authentication
   // check if user has ever logged in if so direct them to login page no welcome pages
   // If user is not logged in redirect them to login page
-  if(!isRequiresAuth){
+  if (!isRequiresAuth) {
     next()
-  }
-  else {
+  } else {
     if (!authStore.userIsLoggedIn && to.name != 'login') {
       console.log('Auth needed but no token')
       next({
-        name: 'login'
+        name: 'login',
       })
     } else {
       next()
@@ -302,6 +296,5 @@ router.beforeEach((to, from, next) => {
   }
   // next()
 })
-
 
 export default router
