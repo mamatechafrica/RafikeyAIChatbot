@@ -761,14 +761,15 @@ const shareOn = (value: string) => {
   window.open(shareUrl, '_blank')
 }
 
-const showFeedbackDialog = ref(false)
+// const showFeedbackDialog = ref(false)
 // const closeGameButton = ()=>{
 //   isShowPlayButton.value = false
 // }
 
-const showFeedbackDialogHandler = () => {
-  showFeedbackDialog.value = !showFeedbackDialog.value
-}
+// const showFeedbackDialogHandler = () => {
+//   showFeedbackDialog.value = !showFeedbackDialog.value
+//   console.log("Feedack dialog", showFeedbackDialog.value)
+// }
 
 const userString = authStore.user
 let username = ''
@@ -786,6 +787,7 @@ const profileRoute = ref(route.name === 'profile')
 
 // open user profile page
 const openProfileHandler = () => {
+  rafikeyChatbotStore.isNewChat = false
   router.push({ name: 'profile' })
 }
 
