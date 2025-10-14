@@ -410,7 +410,7 @@ onBeforeUnmount(() => {
               <div>
                 <span class="pe-1 text-sm dark:text-white">Read our full</span>
                 <router-link
-                  to="/auth/register/privacy-policy-1"
+                  to="/auth/register/terms-condition-1"
                   class="text-sm cursor-pointer text-button-light"
                   >Terms of Use
                 </router-link>
@@ -604,7 +604,7 @@ onBeforeUnmount(() => {
               <div class="text-nowrap">
                 <span class="pe-1 text-sm dark:text-white">Read our full</span>
                 <router-link
-                  to="/auth/register/privacy-policy-1"
+                  to="/auth/register/terms-condition-1"
                   class="text-sm cursor-pointer text-button-light"
                   >Terms of Use
                 </router-link>
