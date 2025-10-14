@@ -49,11 +49,12 @@ const regenerateResponse = ()=>{
             <span class="material-icons-outlined text-rose-400">info</span>
           </div>
           <div>
-            <span class="text-extra-small">Opps!</span>
+            <span class="text-extra-small ">Opps!</span>
           </div>
         </div>
         <div class="flex justify-between">
-          <p class="text-small">{{props.errorMessage}}</p>
+          <p class="text-small">{{props.errorMessage }}</p>
+          <p v-if="!props.isLoggedIn">Looks like your session is expired. Kindly login. </p>
           <button
             @click="refreshChat"
             v-if="props.isLoggedIn" class="btn btn-sm bg-black shadow-none  rounded-xl p-6 " v-on:click="refreshPage">
