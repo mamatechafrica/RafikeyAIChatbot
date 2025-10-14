@@ -36,6 +36,17 @@ export interface HistoryConv {
   user_message: string
 }
 
+interface FeedbackContent {
+  id: number
+  emoji: string
+  text: string
+}
+
+export interface Feedback {
+  emoji: string
+  comment: string | ''
+}
+
 const rafikeyChatbotStore = useRafikeyChatbotStore()
 const notificationStore = useNotificationStore()
 const authStore = useAuthStore()
