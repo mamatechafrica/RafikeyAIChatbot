@@ -2,13 +2,14 @@
 import { useField } from 'vee-validate'
 import { reactive, watch, ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
-import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
+import { useAuthStore, useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 import DialogModal from '@/components/DialogModal.vue'
 import { toggleImage, imageToggleSmallDevice } from '@/composables/imageToggle.ts'
 
 const router = useRouter()
 const chatbotStore = useRafikeyChatbotStore()
 const createAccountFormStore = useCreateAccountFormStore()
+const authStore = useAuthStore()
 
 const isPasswordVisible = ref<boolean>(false)
 const isUserGuest = ref<boolean>(false)
@@ -207,7 +208,7 @@ watch(everyThingOk, (value) => {
     SetProfileError.message = ''
   }
 })
-
+const accountExistText = ref('')
 // persist the profile data to the createAccountFormStore if no errors on the form
 const goToKnowYou = () => {
   if (everyThingOk.value) {

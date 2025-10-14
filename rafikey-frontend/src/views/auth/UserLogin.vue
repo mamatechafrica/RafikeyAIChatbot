@@ -105,12 +105,12 @@ const loginHandler = () => {
     authStore
       .login(loginData)
       .then((response) => {
-        if (response.result === 'ok') {
+        if (response?.result === 'ok') {
           router.push({
             name: 'newChat',
           })
         } else {
-          loginError.message = response.message
+          loginError.message = response?.message
           loginError.isError = true
         }
       })
