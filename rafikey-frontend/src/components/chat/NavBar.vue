@@ -400,7 +400,9 @@ const openProfileHandler = () => {
                             </span>
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
-                          <div class="cursor-pointer" @click.stop="showFeedbackDialog">
+                          <div
+                            v-if="!chatbotStore.isNewChat"
+                            class="cursor-pointer" @click.stop="chatbotStore.setShowFeedbackDialog(true)">
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
