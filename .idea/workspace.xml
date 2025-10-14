@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove profile navigation guard">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add gap small device on feedback DialogModal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,14 +288,6 @@
       <workItem from="1760326311883" duration="77000" />
       <workItem from="1760329700161" duration="2000" />
       <workItem from="1760344689148" duration="41050000" />
-    </task>
-    <task id="LOCAL-00601" summary="add  setIsChatArchive function">
-      <option name="closed" value="true" />
-      <created>1759929795233</created>
-      <option name="number" value="00601" />
-      <option name="presentableId" value="LOCAL-00601" />
-      <option name="project" value="LOCAL" />
-      <updated>1759929795233</updated>
     </task>
     <task id="LOCAL-00602" summary="rename Tab folder">
       <option name="closed" value="true" />
@@ -682,7 +673,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760409936415</updated>
     </task>
-    <option name="localTasksCounter" value="650" />
+    <task id="LOCAL-00650" summary="add gap small device on feedback DialogModal">
+      <option name="closed" value="true" />
+      <created>1760460623563</created>
+      <option name="number" value="00650" />
+      <option name="presentableId" value="LOCAL-00650" />
+      <option name="project" value="LOCAL" />
+      <updated>1760460623563</updated>
+    </task>
+    <option name="localTasksCounter" value="651" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -700,7 +699,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add watch on isArchive" />
     <MESSAGE value="add toggleArchive function" />
     <MESSAGE value="update if condition" />
     <MESSAGE value="add UserProfile" />
@@ -725,7 +723,8 @@
     <MESSAGE value="update isNewChat" />
     <MESSAGE value="add DialogModal for feedback" />
     <MESSAGE value="remove profile navigation guard" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove profile navigation guard" />
+    <MESSAGE value="add gap small device on feedback DialogModal" />
+    <option name="LAST_COMMIT_MESSAGE" value="add gap small device on feedback DialogModal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
