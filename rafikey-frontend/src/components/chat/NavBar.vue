@@ -390,23 +390,30 @@ const openProfileHandler = () => {
                       :class="[isShowProfile || isShowSettings ? 'blur-[4px] bg-black/5' : '']"
                     >
                       <div class="flex justify-between px-4">
-                        <div class="flex gap-4 items-center">
+                        <div class="flex gap-3 items-center">
+                          <!-- Share Button -->
                           <div
-                            @click.stop="shareChat"
                             v-if="!chatbotStore.isNewChat"
-                            class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
+                            @click.stop="shareChat"
+                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer
+                                  hover:bg-button-light hover:text-white
+                                  dark:hover:bg-button-light dark:hover:text-white
+                                  transition-all duration-200 ease-in-out"
                           >
-                            <span
-                              class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
-                              >share
-                            </span>
+                            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white">share</span>
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
+
+                          <!-- Feedback Button -->
                           <div
                             v-if="!chatbotStore.isNewChat"
-                            class="cursor-pointer"
                             @click.stop="chatbotStore.setShowFeedbackDialog(true)"
+                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer
+                                  hover:bg-button-light hover:text-white
+                                  dark:hover:bg-button-light dark:hover:text-white
+                                  transition-all duration-200 ease-in-out"
                           >
+                            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white">feedback</span>
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>

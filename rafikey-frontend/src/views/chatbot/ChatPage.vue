@@ -823,21 +823,33 @@ provide('darkBgColor', darkBgColor)
             !profileRoute &&
             !rafikeyChatbotStore.isStreamError.hasError
           "
-          class="hidden justify-end gap-4 w-11/12 sticky top-0 cursor-pointer md:flex"
+          class="hidden justify-end gap-3 w-11/12 sticky top-0 cursor-pointer md:flex"
         >
+          <!-- Share Button -->
           <div
             @click.stop="shareChat"
-            class="flex gap-1 justify-between border dark:border-white border-stone-300 rounded-lg px-2 py-1"
+            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1
+                  cursor-pointer hover:bg-button-light hover:text-white
+                  dark:hover:bg-button-light dark:hover:text-white
+                  transition-all duration-200 ease-in-out"
           >
-            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm"
-              >share</span
-            >
+            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm">share</span>
             <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
-          <div @click="rafikeyChatbotStore.setShowFeedbackDialog(true)">
+
+          <!-- Feedback Button -->
+          <div
+            @click.stop="rafikeyChatbotStore.setShowFeedbackDialog(true)"
+            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1
+                  cursor-pointer hover:bg-button-light hover:text-white
+                  dark:hover:bg-button-light dark:hover:text-white
+                  transition-all duration-200 ease-in-out"
+          >
+            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm">feedback</span>
             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
+
         <div class="md:hidden block sticky top-0 backdrop-blur-2xl dark:bg-black z-10 bg-white">
           <div
             class="flex justify-between bg-link-water dark:bg-lightgray bg-white z-10 p-4 backdrop-blur"

@@ -67,7 +67,7 @@ if (!self.define) {
     });
   };
 }
-define(['./workbox-32b51435'], (function (workbox) { 'use strict';
+define(['./workbox-99d8380f'], (function (workbox) { 'use strict';
 
   self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
@@ -82,48 +82,11 @@ define(['./workbox-32b51435'], (function (workbox) { 'use strict';
    */
   workbox.precacheAndRoute([{
     "url": "index.html",
-    "revision": "0.jak7c0f949"
+    "revision": "0.lip1ka7lnqo"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html"), {
     allowlist: [/^\/$/]
   }));
-  workbox.registerRoute(({
-    request
-  }) => request.destination === "document", new workbox.NetworkFirst({
-    "cacheName": "html-cache",
-    plugins: []
-  }), 'GET');
-  workbox.registerRoute(({
-    request
-  }) => request.destination === "style", new workbox.StaleWhileRevalidate({
-    "cacheName": "css-cache",
-    plugins: []
-  }), 'GET');
-  workbox.registerRoute(({
-    request
-  }) => request.destination === "script", new workbox.CacheFirst({
-    "cacheName": "js-cache",
-    plugins: []
-  }), 'GET');
-  workbox.registerRoute(({
-    request
-  }) => request.destination === "image", new workbox.CacheFirst({
-    "cacheName": "image-cache",
-    plugins: []
-  }), 'GET');
-  workbox.registerRoute(({
-    request
-  }) => request.destination === "font", new workbox.CacheFirst({
-    "cacheName": "font-cache",
-    plugins: []
-  }), 'GET');
-  workbox.registerRoute(({
-    url
-  }) => url.pathname.includes("/api/"), new workbox.NetworkFirst({
-    "cacheName": "api-cache",
-    "networkTimeoutSeconds": 10,
-    plugins: []
-  }), 'GET');
 
 }));
