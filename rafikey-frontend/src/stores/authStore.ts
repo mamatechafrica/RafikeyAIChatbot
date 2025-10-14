@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 import { computed, reactive, ref } from 'vue'
-import { useCreateAccountFormStore } from '@/stores'
+import { useCreateAccountFormStore, useRafikeyChatbotStore } from '@/stores'
 import moment from 'moment'
 import { jwtDecode } from 'jwt-decode'
 
@@ -107,6 +107,7 @@ export const useAuthStore = defineStore('authStore', () => {
     const formData = new FormData()
     formData.append('username', payload.username)
     formData.append('password', payload.password)
+    const chatbotStore = useRafikeyChatbotStore()
 
     try {
       const response = await fetch(`${BASE_URL}/auth/token`, {
@@ -132,10 +133,15 @@ export const useAuthStore = defineStore('authStore', () => {
     }
     catch(error){
       console.log('There is an error logging in')
-      return {
-        result: 'error',
-        message: 'An error occurred while logging in, kindly try again'
-      }
+      // if(!navigator.onLine){
+      //   chatbotStore. isOffline = true
+      // }
+      // else{
+        return {
+          result: 'error',
+          message: 'An error occurred while logging in, kindly try again',
+        }
+      // }
     }
   }
 
@@ -202,6 +208,39 @@ export const useAuthStore = defineStore('authStore', () => {
     catch(error){
       console.log('Error sending forgot password request:', error)
       return
+    }
+  }
+
+
+  async function checkAccountExist(payload: {username: string, email:string}){
+    try{
+      const response = await fetch(`${BASE_URL}/auth/check-availability`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      })
+
+      const res = await response.json()
+      if(!response.ok){
+        return{
+          result: 'fail',
+          data: null
+
+        }
+      } else{
+        return {
+          result: 'ok',
+          data: res
+        }
+      }
+    } catch (err){
+      console.error('Error checking account existence:', err)
+      return {
+        result: 'fail',
+        data: null
+      }
     }
   }
 
