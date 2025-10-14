@@ -797,14 +797,16 @@ provide('darkBgColor', darkBgColor)
 </script>
 
 <template>
-  <div class="relative   p-6 dark:bg-lightgray  w-full" :class="[rafikeyChatbotStore.isNewChat?'overflow-hidden h-screen ': '']">
+  <div
+    class="relative p-6 dark:bg-lightgray w-full"
+    :class="[rafikeyChatbotStore.isNewChat ? 'overflow-hidden  h-screen' : 'min-h-screen']"
+  >
     <div class="">
       <NavBar
         @fetch-history-handler="fetchHistoryHandler"
         @share-chat="shareChat"
         @profile-handler="profileHandler"
         @is-profile="isProfileHandler"
-        @show-feedback-dialog="showFeedbackDialogHandler"
       />
     </div>
     <!--    right side-->
@@ -833,7 +835,7 @@ provide('darkBgColor', darkBgColor)
             >
             <span class="dark:text-white md:text-lg text-sm">Share</span>
           </div>
-          <div @click="showFeedbackDialogHandler">
+          <div @click="rafikeyChatbotStore.setShowFeedbackDialog(true)">
             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
           </div>
         </div>
@@ -933,14 +935,13 @@ provide('darkBgColor', darkBgColor)
         </div>
       </div>
     </div>
-    <div
-      v-if="showFeedbackDialog"
-      class="fixed top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 md:bottom-44 md:right-16 z-50"
-    >
-      <FeebackDialog @close-feedback-dialog="showFeedbackDialog = false" />
-    </div>
+    <!--    <div-->
+    <!--      v-if="showFeedbackDialog"-->
+    <!--    >-->
+    <!--      <FeebackDialog @close-feedback-dialog="showFeedbackDialog = false" />-->
+    <!--    </div>-->
 
-    <Teleport to="body">
+    <teleport to="body">
       <DialogModal
         :is-open="showLogoutDialogModal"
         @close-modal="showLogoutDialogModal = !showLogoutDialogModal"
@@ -974,112 +975,188 @@ provide('darkBgColor', darkBgColor)
           </div>
         </template>
       </DialogModal>
-    </Teleport>
 
-    <!--    setting dialog-->
+      <!--    setting dialog-->
 
-    <DialogModal
-      :max-width="dialogWidth"
-      :is-open="showSettingDialog"
-      @close-modal="showSettingDialog = !showSettingDialog"
-    >
-      <template #title>
-        <TabComponent @tab-change="tabHandler" />
-      </template>
-      <template #body>
-        <div>
-          <component :is="activeComponent.component" />
-        </div>
-      </template>
-      <template #footer> </template>
-    </DialogModal>
-    <DialogModal
-      :is-open="isShare && !rafikeyChatbotStore.isGeneratingResponse"
-      @close-modal="isShare = false"
-    >
-      <template #title>
-        <div class="flex flex-row-reverse justify-between">
-          <div @click="isShare = false" class="cursor-pointer">
-            <span class="material-icons-outlined dark:text-white">close</span>
-          </div>
+      <DialogModal
+        :max-width="dialogWidth"
+        :is-open="showSettingDialog"
+        @close-modal="showSettingDialog = !showSettingDialog"
+      >
+        <template #title>
+          <TabComponent @tab-change="tabHandler" />
+        </template>
+        <template #body>
           <div>
-            <span class="font-semibold text-lg dark:text-white">Share link chat on social</span>
+            <component :is="activeComponent.component" />
           </div>
-        </div>
-      </template>
-      <template #body>
-        <div>
-          <p class="dark:text-white">
-            Generate link to share with friends on social media platforms.
-          </p>
-        </div>
-      </template>
+        </template>
+        <template #footer> </template>
+      </DialogModal>
+      <DialogModal
+        :is-open="isShare && !rafikeyChatbotStore.isGeneratingResponse"
+        @close-modal="isShare = false"
+      >
+        <template #title>
+          <div class="flex flex-row-reverse justify-between">
+            <div @click="isShare = false" class="cursor-pointer">
+              <span class="material-icons-outlined dark:text-white">close</span>
+            </div>
+            <div>
+              <span class="font-semibold text-lg dark:text-white">Share link chat on social</span>
+            </div>
+          </div>
+        </template>
+        <template #body>
+          <div>
+            <p class="dark:text-white">
+              Generate link to share with friends on social media platforms.
+            </p>
+          </div>
+        </template>
 
-      <template #footer>
-        <div class="flex flex-col">
-          <div class="md:space-x-2 w-full flex items-center border-[0.5px] py-3 !rounded-2xl px-3">
-            <input
-              type="text"
-              @copy.prevent
-              @cut.prevent
-              @paste.prevent
-              readonly
-              v-model="linkChatInput"
-              class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis focus:outline-none focus:ring-0 focus:border-transparent line-clamp-1 md:ps-2 ps-1 me-0.5 rounded-md"
-              placeholder="https://rafikeyaichatbot-frontend.onrender.com/..."
-            />
+        <template #footer>
+          <div class="flex flex-col">
             <div
-              @click="generateLink"
-              v-if="!isGeneratingLink && !showCopyBtn"
-              class="dark:text-white rounded-2xl bg-transparent border-gray-300 btn btn-sm"
+              class="md:space-x-2 w-full flex items-center border-[0.5px] py-3 !rounded-2xl px-3"
             >
-              <span class="">generate link</span>
-              <!--              <span v-else  class="loading loading-spinner loading-md text-white"></span>-->
-            </div>
-            <div v-if="isGeneratingLink && !showCopyBtn" class="btn btn-sm rounded-xl" disabled>
-              <span class="">generating...</span>
-              <span class="loading loading-spinner loading-md"></span>
-            </div>
-            <div
-              v-if="showCopyBtn"
-              @click="copyShareChatLink"
-              class="btn btn-sm btn-ghost border-gray-300 rounded-2xl bg-transparent dark:text-white"
-            >
-              <Copy />
-              <span v-if="!isShareChatLinkCopy">Copy link</span>
-              <span v-else>Copied</span>
-            </div>
-          </div>
-          <div v-if="showSocials" class="flex flex-row justify-center py-4 w-full mx-auto">
-            <div>
-              <div @click.stop="shareOn('linkedIn')" class="btn btn-sm btn-ghost w-14 h-14">
-                <img src="@/assets/images/linkedin.png" alt="linkedin_logo" />
+              <input
+                type="text"
+                @copy.prevent
+                @cut.prevent
+                @paste.prevent
+                readonly
+                v-model="linkChatInput"
+                class="select-none dark:bg-lightgray dark:text-white h-10 w-9/12 overflow-ellipsis focus:outline-none focus:ring-0 focus:border-transparent line-clamp-1 md:ps-2 ps-1 me-0.5 rounded-md"
+                placeholder="https://rafikeyaichatbot-frontend.onrender.com/..."
+              />
+              <div
+                @click="generateLink"
+                v-if="!isGeneratingLink && !showCopyBtn"
+                class="dark:text-white rounded-2xl bg-transparent border-gray-300 btn btn-sm"
+              >
+                <span class="">generate link</span>
+                <!--              <span v-else  class="loading loading-spinner loading-md text-white"></span>-->
               </div>
-              <span class="dark:text-white">LinkedIn</span>
+              <div v-if="isGeneratingLink && !showCopyBtn" class="btn btn-sm rounded-xl" disabled>
+                <span class="">generating...</span>
+                <span class="loading loading-spinner loading-md"></span>
+              </div>
+              <div
+                v-if="showCopyBtn"
+                @click="copyShareChatLink"
+                class="btn btn-sm btn-ghost border-gray-300 rounded-2xl bg-transparent dark:text-white"
+              >
+                <Copy />
+                <span v-if="!isShareChatLinkCopy">Copy link</span>
+                <span v-else>Copied</span>
+              </div>
             </div>
+            <div v-if="showSocials" class="flex flex-row justify-center py-4 w-full mx-auto">
+              <div>
+                <div @click.stop="shareOn('linkedIn')" class="btn btn-sm btn-ghost w-14 h-14">
+                  <img src="@/assets/images/linkedin.png" alt="linkedin_logo" />
+                </div>
+                <span class="dark:text-white">LinkedIn</span>
+              </div>
 
-            <div>
-              <div @click.stop="shareOn('whatsapp')" class="btn btn-sm btn-ghost w-14 h-14">
-                <img src="@/assets/images/whatsapp.png" alt="whatsapp_logo" />
+              <div>
+                <div @click.stop="shareOn('whatsapp')" class="btn btn-sm btn-ghost w-14 h-14">
+                  <img src="@/assets/images/whatsapp.png" alt="whatsapp_logo" />
+                </div>
+                <span class="dark:text-white">Whatsapp</span>
               </div>
-              <span class="dark:text-white">Whatsapp</span>
-            </div>
-            <div>
-              <div @click.stop="shareOn('facebook')" class="btn btn-sm btn-ghost w-14 h-14">
-                <img src="@/assets/images/facebook.png" alt="facebook_logo" />
+              <div>
+                <div @click.stop="shareOn('facebook')" class="btn btn-sm btn-ghost w-14 h-14">
+                  <img src="@/assets/images/facebook.png" alt="facebook_logo" />
+                </div>
+                <span class="dark:text-white">Facebook</span>
               </div>
-              <span class="dark:text-white">Facebook</span>
-            </div>
-            <div>
-              <div @click.stop="shareOn('twitter')" class="btn btn-sm btn-ghost w-14 h-14">
-                <img src="@/assets/images/twitter.png" alt="twitter_logo" />
+              <div>
+                <div @click.stop="shareOn('twitter')" class="btn btn-sm btn-ghost w-14 h-14">
+                  <img src="@/assets/images/twitter.png" alt="twitter_logo" />
+                </div>
+                <span class="dark:text-white">Twitter</span>
               </div>
-              <span class="dark:text-white">Twitter</span>
             </div>
           </div>
-        </div>
-      </template>
-    </DialogModal>
+        </template>
+      </DialogModal>
+      <!--   Feeback dialog-->
+      <DialogModal
+        :is-open="rafikeyChatbotStore.showFeedbackDialog.isOpen"
+        @close-modal="rafikeyChatbotStore.setShowFeedbackDialog(false)"
+      >
+        <template #title>
+          <div class="space-y-2">
+            <div class="flex justify-between space-x-12">
+              <div>
+                <p class="dark:text-white text-small">Share Your Thoughts</p>
+              </div>
+              <div class="flex justify-center">
+                <button
+                  @click="rafikeyChatbotStore.setShowFeedbackDialog(false)"
+                  class="btn btn-sm btn-ghost bg-transparent border-none shadow-none w-[25px] h-[25px]"
+                >
+                  <span class="material-icons-outlined dark:text-veryLightSeven">cancel</span>
+                </button>
+              </div>
+            </div>
+            <div>
+              <p class="dark:text-white">Rate your experience</p>
+            </div>
+          </div>
+        </template>
+        <template #body>
+            <div class="pt-4 flex gap-5">
+              <div v-for="emotion in feedbackContent" :key="emotion.id" class="">
+                <div
+                  @click="emojiHandler(emotion.id)"
+                  :class="[
+                    activeEmoji?.id === emotion.id
+                      ? 'bg-button-light dark:opacity-50'
+                      : 'bg-gray-100 dark:bg-veryLightNine ',
+                  ]"
+                  class="cursor-pointer rounded-full w-12 h-12 flex justify-center items-center"
+                >
+                  <span class="text-xl">{{ emotion.emoji }}</span>
+                </div>
+                <div class="flex justify-center">
+                  <span
+                    v-if="activeEmoji?.id === emotion.id"
+                    class="text-center text-sm text-button-light"
+                    >{{ activeEmoji.text }}</span
+                  >
+                </div>
+              </div>
+            </div>
+        </template>
+        <template #footer>
+          <div class="space-y-4">
+            <div>
+              <label class="dark:text-white text-small">Comment (Optional)</label>
+              <textarea
+                v-model="feedback"
+                id="message"
+                rows="4"
+                class="block p-2.5 w-full text-sm resize-none text-gray-900 bg-gray-50 rounded-[12px] border-[0.5px] border-lightgrayThree dark:bg-lightgrayThree dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Leave a comment..."
+              ></textarea>
+            </div>
+            <div class="w-full">
+              <button
+                :style="!activeEmoji ? 'opacity:0.4; pointer-events:none;' : ''"
+                @click="sendFeedbackHandler"
+                class="w-full bg-button-light rounded-[12px] p-2"
+              >
+                <span v-if="!isFeedbackLoading" class="text-extra-small">Share Feedback</span>
+                <span v-else class="loading loading-spinner loading-sm"></span>
+              </button>
+            </div>
+          </div>
+        </template>
+      </DialogModal>
+    </teleport>
   </div>
 </template>
 
