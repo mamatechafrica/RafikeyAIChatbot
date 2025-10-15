@@ -337,10 +337,16 @@ async def send_password_reset_email(email: str, reset_token: str):
         message.attach(html_part)
         
         # Send email
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()  # Enable TLS encryption
-            server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-            server.send_message(message)
+        # Use SMTP_SSL for port 465, SMTP + starttls for 587
+        if SMTP_PORT == 465:
+            with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT) as server:
+                server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+                server.send_message(message)
+        else:
+            with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+                server.starttls()
+                server.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+                server.send_message(message)
         
         print(f"Password reset email sent successfully to {email}")
         
@@ -501,7 +507,7 @@ async def forgot_password(
         
         # Always return success message for security reasons
         # (don't reveal if email exists in system)
-        success_message = "If an account with that email exists, you will receive a password reset link."
+        success_message = "If an account with that email exists, you will receive a password reset link. Please check your inbox and spam folder."
         
         if user and not user.disabled:
             # Generate reset token
