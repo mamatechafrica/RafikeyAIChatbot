@@ -414,11 +414,7 @@ onBeforeUnmount(() => {
                 <input
                   type="checkbox"
                   v-model="setProfileData.isTermsCondition"
-                  class="checkbox h-5 w-5 mt-1
-                        border-2 border-gray-400 dark:border-gray-500
-                        checked:bg-button-light checked:border-button-light
-                        focus:ring-2 focus:ring-button-light/50
-                        transition-all duration-150"
+                  class="checkbox h-5 w-5 mt-1 border-2 border-gray-400 dark:border-gray-500 checked:bg-button-light checked:border-button-light focus:ring-2 focus:ring-button-light/50 transition-all duration-150"
                 />
                 <p class="text-gray-800 dark:text-gray-100 text-sm font-semibold">
                   Please accept before proceeding
@@ -489,17 +485,12 @@ onBeforeUnmount(() => {
               <input
                 v-model="chatbotStore.isAnonymous"
                 type="checkbox"
-                class="checkbox h-5 w-5 mt-1
-                      border-2 border-gray-400 dark:border-gray-500
-                      checked:bg-button-light checked:border-button-light
-                      focus:ring-2 focus:ring-button-light/50
-                      transition-all duration-150"
+                class="checkbox h-5 w-5 mt-1 border-2 border-gray-400 dark:border-gray-500 checked:bg-button-light checked:border-button-light focus:ring-2 focus:ring-button-light/50 transition-all duration-150"
               />
               <span class="text-sm text-gray-900 dark:text-gray-100 pt-1">Remain Anonymous</span>
             </label>
           </div>
         </div>
-
 
         <div class="border-b border-stone-400 w-full"></div>
         <div class="space-y-2">
@@ -552,15 +543,11 @@ onBeforeUnmount(() => {
                 placeholder="Enter password"
               />
               <!-- unified toggle button -->
-              <button
-                type="button"
+              <span
                 @click="isPasswordVisible = !isPasswordVisible"
-                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+                class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-8"
+              >{{ isPasswordVisible?  'visibility_off' : 'visibility'}}</span
               >
-                <span class="material-icons-outlined text-xl">
-                  {{ isPasswordVisible ? 'visibility_off' : 'visibility' }}
-                </span>
-              </button>
               <span v-if="passwordMeta.validated && !passwordMeta.valid" class="text-rose-500"
                 >{{ passwordErrorMessage }}
               </span>
@@ -580,15 +567,11 @@ onBeforeUnmount(() => {
               />
 
               <!-- unified toggle button -->
-              <button
-                type="button"
+              <span
                 @click="isConfirmPasswordVisible = !isConfirmPasswordVisible"
-                class="absolute right-3 top-1/2 transform -translate-y-[55%] sm:-translate-y-1/2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white"
+                class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-8"
+              >{{ isConfirmPasswordVisible?  'visibility_off' : 'visibility'}}</span
               >
-                <span class="material-icons-outlined text-xl leading-none">
-                  {{ isConfirmPasswordVisible ? 'visibility_off' : 'visibility' }}
-                </span>
-              </button>
 
               <span
                 v-if="confirmPasswordMeta.validated && !confirmPasswordMeta.valid"
@@ -621,14 +604,13 @@ onBeforeUnmount(() => {
                   <input
                     type="checkbox"
                     v-model="setProfileData.isTermsCondition"
-                    class="checkbox h-5 w-5 mt-1
-                    border-2 border-gray-400 dark:border-gray-500
-                    checked:bg-button-light checked:border-button-light
-                    focus:ring-2 focus:ring-button-light/50
-                    transition-all duration-150"                  />
+                    class="checkbox h-5 w-5 mt-1 border-2 border-gray-400 dark:border-gray-500 checked:bg-button-light checked:border-button-light focus:ring-2 focus:ring-button-light/50 transition-all duration-150"
+                  />
                 </div>
                 <div>
-                  <p class="text-gray-900 dark:text-gray-50 text-sm font-medium">Please accept before proceeding</p>
+                  <p class="text-gray-900 dark:text-gray-50 text-sm font-medium">
+                    Please accept before proceeding
+                  </p>
                 </div>
               </div>
             </div>
