@@ -967,17 +967,17 @@ provide('darkBgColor', darkBgColor)
           </div>
         </template>
         <template #footer>
-          <div class="flex justify-center gap-4">
+          <div class="w-1/2 mx-auto flex gap-4">
             <button
               @click.stop="logoutHandler"
-              class="btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
+              class="w-1/2 btn btn-sm border-none outline-none bg-casablanca-300 shadow-none px-4 rounded-lg"
             >
-              <span class="">Ok</span>
+              <span class="">Log out</span>
               <!--              <span v-else class="loading loading-spinner loading-sm"></span>-->
             </button>
             <button
               @click="cancelLogout"
-              class="btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white"
+              class="w-1/2 btn btn-sm bg-transparent border-casablanca-300 shadow-none rounded-lg dark:text-white"
             >
               <span>Cancel</span>
             </button>
