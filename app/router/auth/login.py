@@ -202,61 +202,105 @@ async def send_password_reset_email(email: str, reset_token: str):
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Password Reset</title>
+            <title>Password Reset - Rafikey</title>
         </head>
-        <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-                <h1 style="color: white; margin: 0; font-size: 28px;">Rafikey</h1>
-                <p style="color: white; margin: 10px 0 0 0; opacity: 0.9;">Password Reset Request</p>
-            </div>
-            
-            <div style="background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; border: 1px solid #ddd;">
-                <h2 style="color: #333; margin-top: 0;">Reset Your Password</h2>
-                
-                <p>Hello,</p>
-                
-                <p>We received a request to reset the password for your Rafikey account associated with this email address.</p>
-                
-                <p>If you made this request, please click the button below to reset your password:</p>
-                
-                <div style="text-align: center; margin: 30px 0;">
-                    <a href="{reset_url}" 
-                       style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                              color: white; 
-                              padding: 15px 30px; 
-                              text-decoration: none; 
-                              border-radius: 5px; 
-                              font-weight: bold; 
-                              display: inline-block;
-                              box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        Reset Password
-                    </a>
-                </div>
-                
-                <p style="color: #666; font-size: 14px; border-left: 4px solid #667eea; padding-left: 15px; margin: 20px 0;">
-                    <strong>Security Note:</strong> This link will expire in 15 minutes for your security.
-                </p>
-                
-                <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-                
-                <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
-                
-                <p style="color: #666; font-size: 14px;">
-                    If you didn't request a password reset, you can safely ignore this email. Your password will not be changed.
-                </p>
-                
-                <p style="color: #666; font-size: 14px;">
-                    For security questions or support, contact us at info@Rafikey.co.ke
-                </p>
-                
-                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center;">
-                    <p style="color: #999; font-size: 12px; margin: 0;">
-                        © 2025 Rafikey. All rights reserved.
-                    </p>
-                </div>
-            </div>
+        <body style="margin: 0; padding: 0; background: linear-gradient(135deg, #1e5a8e 0%, #4a9fd8 100%); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="min-height: 100vh; padding: 40px 20px;">
+                <tr>
+                    <td align="center" valign="middle">
+                        <table width="500" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.2);">
+                            
+                            <!-- Header -->
+                            <tr>
+                                <td style="background: linear-gradient(135deg, #2ca2b4 0%, #1e5a8e 100%); padding: 30px; text-align: center;">
+                                    <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 600; letter-spacing: 0.5px;">
+                                        <span style="display: inline-flex; align-items: center; gap: 8px;">
+                                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                                                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
+                                                <path d="M12 6V12L16 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                            </svg>
+                                            Rafikey
+                                        </span>
+                                    </h1>
+                                </td>
+                            </tr>
+                            
+                            <!-- Content -->
+                            <tr>
+                                <td style="background-color: #f5f7fa; padding: 50px 40px; text-align: center;">
+                                    
+                                    <!-- Icon -->
+                                    <div style="margin-bottom: 30px;">
+                                        <svg width="80" height="80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Document -->
+                                            <rect x="25" y="15" width="45" height="60" rx="3" fill="#e8f4f8" stroke="#2ca2b4" stroke-width="2"/>
+                                            <line x1="33" y1="28" x2="55" y2="28" stroke="#2ca2b4" stroke-width="2" stroke-linecap="round"/>
+                                            <line x1="33" y1="38" x2="62" y2="38" stroke="#2ca2b4" stroke-width="2" stroke-linecap="round"/>
+                                            <line x1="33" y1="48" x2="58" y2="48" stroke="#2ca2b4" stroke-width="2" stroke-linecap="round"/>
+                                            
+                                            <!-- Lock -->
+                                            <rect x="40" y="55" width="28" height="30" rx="3" fill="#1e5a8e"/>
+                                            <path d="M 46 55 V 48 C 46 43 49 40 54 40 C 59 40 62 43 62 48 V 55" stroke="#1e5a8e" stroke-width="3" fill="none"/>
+                                            <circle cx="54" cy="68" r="3" fill="white"/>
+                                            <line x1="54" y1="71" x2="54" y2="76" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                            
+                                            <!-- Sparkles -->
+                                            <circle cx="22" cy="25" r="2" fill="#2ca2b4" opacity="0.6"/>
+                                            <circle cx="75" cy="30" r="2" fill="#2ca2b4" opacity="0.6"/>
+                                            <circle cx="20" cy="60" r="2" fill="#2ca2b4" opacity="0.6"/>
+                                            <circle cx="78" cy="55" r="2" fill="#2ca2b4" opacity="0.6"/>
+                                        </svg>
+                                    </div>
+                                    
+                                    <h2 style="color: #1a1a1a; margin: 0 0 16px 0; font-size: 26px; font-weight: 600;">Reset Password</h2>
+                                    
+                                    <p style="color: #6b7280; font-size: 15px; line-height: 1.6; margin: 0 0 10px 0;">Hello,</p>
+                                    
+                                    <p style="color: #6b7280; font-size: 15px; line-height: 1.6; margin: 0 0 30px 0;">
+                                        Please Click the Button Below to Reset Your Password
+                                    </p>
+                                    
+                                    <!-- CTA Button -->
+                                    <div style="margin-bottom: 25px;">
+                                        <a href="{reset_url}" style="background: linear-gradient(135deg, #1e5a8e 0%, #2ca2b4 100%); color: #ffffff; padding: 14px 50px; text-decoration: none; border-radius: 6px; font-weight: 600; font-size: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(30, 90, 142, 0.3);">
+                                            Reset
+                                        </a>
+                                    </div>
+                                    
+                                    <!-- Security Notice -->
+                                    <div style="background-color: #e0f2fe; border-left: 4px solid #2ca2b4; padding: 12px 16px; margin: 0 0 20px 0; border-radius: 4px; text-align: left;">
+                                        <p style="color: #1e5a8e; font-size: 13px; font-weight: 600; margin: 0 0 4px 0;">⏱️ Security Notice</p>
+                                        <p style="color: #4b5563; font-size: 13px; line-height: 1.5; margin: 0;">
+                                            This link will expire in <strong>15 minutes</strong> for your security.
+                                        </p>
+                                    </div>
+                                    
+                                    <!-- Alternative Link -->
+                                    <p style="color: #6b7280; font-size: 13px; line-height: 1.5; margin: 0 0 8px 0; text-align: left;">
+                                        If the button doesn't work, copy and paste this link:
+                                    </p>
+                                    <p style="color: #2ca2b4; font-size: 12px; word-break: break-all; background-color: #ffffff; padding: 10px; border-radius: 4px; margin: 0 0 20px 0; border: 1px solid #e5e7eb; text-align: left;">
+                                        {reset_url}
+                                    </p>
+                                    
+                                    <!-- Ignore Notice -->
+                                    <p style="color: #9ca3af; font-size: 13px; line-height: 1.5; margin: 0 0 12px 0;">
+                                        If you didn't request a password reset, please ignore this email. Your password will remain unchanged.
+                                    </p>
+                                    
+                                 
+                                </td>
+                            </tr>
+                            
+                            <!-- Footer -->
+                            
+                        </table>
+                    </td>
+                </tr>
+            </table>
         </body>
         </html>
+    
         """
         
         # Plain text version (fallback)

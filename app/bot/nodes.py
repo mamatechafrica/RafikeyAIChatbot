@@ -15,7 +15,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 
 
-model = ChatOpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
+model = ChatOpenAI(model="gpt-4.1-mini", api_key=OPENAI_API_KEY)
 
 
 
