@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="change in service worker">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="fix logout DialogModal buttons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,39 +291,7 @@
       <workItem from="1760344689148" duration="41050000" />
       <workItem from="1760464653703" duration="642000" />
       <workItem from="1760500439671" duration="38000" />
-      <workItem from="1760523942585" duration="5987000" />
-    </task>
-    <task id="LOCAL-00603" summary="add styling">
-      <option name="closed" value="true" />
-      <created>1759933841891</created>
-      <option name="number" value="00603" />
-      <option name="presentableId" value="LOCAL-00603" />
-      <option name="project" value="LOCAL" />
-      <updated>1759933841891</updated>
-    </task>
-    <task id="LOCAL-00604" summary="remove bubble names">
-      <option name="closed" value="true" />
-      <created>1760008275069</created>
-      <option name="number" value="00604" />
-      <option name="presentableId" value="LOCAL-00604" />
-      <option name="project" value="LOCAL" />
-      <updated>1760008275069</updated>
-    </task>
-    <task id="LOCAL-00605" summary="remove bubble names">
-      <option name="closed" value="true" />
-      <created>1760008280817</created>
-      <option name="number" value="00605" />
-      <option name="presentableId" value="LOCAL-00605" />
-      <option name="project" value="LOCAL" />
-      <updated>1760008280817</updated>
-    </task>
-    <task id="LOCAL-00606" summary="remove bubble names">
-      <option name="closed" value="true" />
-      <created>1760008308133</created>
-      <option name="number" value="00606" />
-      <option name="presentableId" value="LOCAL-00606" />
-      <option name="project" value="LOCAL" />
-      <updated>1760008308133</updated>
+      <workItem from="1760523942585" duration="6487000" />
     </task>
     <task id="LOCAL-00607" summary="add styling">
       <option name="closed" value="true" />
@@ -688,7 +653,39 @@
       <option name="project" value="LOCAL" />
       <updated>1760524266063</updated>
     </task>
-    <option name="localTasksCounter" value="652" />
+    <task id="LOCAL-00652" summary="fix toggle password visibility">
+      <option name="closed" value="true" />
+      <created>1760533176262</created>
+      <option name="number" value="00652" />
+      <option name="presentableId" value="LOCAL-00652" />
+      <option name="project" value="LOCAL" />
+      <updated>1760533176262</updated>
+    </task>
+    <task id="LOCAL-00653" summary="fix toggle password visibility">
+      <option name="closed" value="true" />
+      <created>1760533195258</created>
+      <option name="number" value="00653" />
+      <option name="presentableId" value="LOCAL-00653" />
+      <option name="project" value="LOCAL" />
+      <updated>1760533195258</updated>
+    </task>
+    <task id="LOCAL-00654" summary="fix logout DialogModal">
+      <option name="closed" value="true" />
+      <created>1760533221820</created>
+      <option name="number" value="00654" />
+      <option name="presentableId" value="LOCAL-00654" />
+      <option name="project" value="LOCAL" />
+      <updated>1760533221820</updated>
+    </task>
+    <task id="LOCAL-00655" summary="fix logout DialogModal buttons">
+      <option name="closed" value="true" />
+      <created>1760533249176</created>
+      <option name="number" value="00655" />
+      <option name="presentableId" value="LOCAL-00655" />
+      <option name="project" value="LOCAL" />
+      <updated>1760533249176</updated>
+    </task>
+    <option name="localTasksCounter" value="656" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -706,9 +703,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update if condition" />
-    <MESSAGE value="add UserProfile" />
-    <MESSAGE value="add image" />
     <MESSAGE value="add openProfileHandler function" />
     <MESSAGE value="Add profile route" />
     <MESSAGE value="Add getUserProfile function" />
@@ -731,7 +725,10 @@
     <MESSAGE value="remove profile navigation guard" />
     <MESSAGE value="add gap small device on feedback DialogModal" />
     <MESSAGE value="change in service worker" />
-    <option name="LAST_COMMIT_MESSAGE" value="change in service worker" />
+    <MESSAGE value="fix toggle password visibility" />
+    <MESSAGE value="fix logout DialogModal" />
+    <MESSAGE value="fix logout DialogModal buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix logout DialogModal buttons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

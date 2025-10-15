@@ -281,8 +281,7 @@ onBeforeUnmount(() => {
           <div class="flex flex-col pt-8 items-center space-y-1">
             <h2 class="text-4xl font-semibold dark:text-white">Set up your profile</h2>
             <p class="text-lg text-stone-700 text-center dark:text-stone-300">
-              Let's get you set up so you can access your personal account for a more personalized
-              experience
+              Let's get you set up for your personal account.
             </p>
           </div>
           <div class="lg:w-3/4 w-full mx-auto flex items-center gap-2 cursor-pointer">
@@ -454,16 +453,14 @@ onBeforeUnmount(() => {
 
     <!--    Small screens-->
     <div class="md:hidden block dark:bg-darkgray min-h-screen w-full">
-      <div class="w-44 h-24 mx-auto flex justify-center items-center">
+      <div class="w-30 h-24 mx-auto flex justify-center items-center">
         <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
       </div>
       <div class="flex flex-col md:px-20 px-10 space-y-3">
         <div class="flex flex-col items-center space-y-2">
           <h2 class="text-2xl font-semibold dark:text-white">Set up your profile</h2>
           <p class="text-sm text-gray-700 dark:text-stone-300 text-center">
-            Let's get you set up so you can access your personal account for a more personalized
-            experience
-          </p>
+            Let's get you set up for your personal account.</p>
         </div>
         <!--        <div class="" >-->
         <!--          <div class=" flex gap-2 tooltip  tooltip-bottom" data-tip="Remain anonymous and use the Rafikey without creating an account">-->
