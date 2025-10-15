@@ -294,11 +294,7 @@ onBeforeUnmount(() => {
                 <input
                   v-model="chatbotStore.isAnonymous"
                   type="checkbox"
-                  class="checkbox h-5 w-5 mt-1
-                        border-2 border-gray-400 dark:border-gray-500
-                        checked:bg-button-light checked:border-button-light
-                        focus:ring-2 focus:ring-button-light/50
-                        transition-all duration-150"
+                  class="checkbox h-5 w-5 mt-1 border-2 border-gray-400 dark:border-gray-500 checked:bg-button-light checked:border-button-light focus:ring-2 focus:ring-button-light/50 transition-all duration-150"
                 />
                 <span class="text-sm text-gray-900 dark:text-gray-100 pt-1">Remain Anonymous</span>
               </label>
@@ -361,16 +357,9 @@ onBeforeUnmount(() => {
                       placeholder="Enter password"
                     />
                     <span
-                      v-if="isPasswordVisible"
-                      @click="isPasswordVisible = false"
+                      @click="isPasswordVisible = !isPasswordVisible"
                       class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
-                      >visibility_off</span
-                    >
-                    <span
-                      v-else
-                      @click="isPasswordVisible = true"
-                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
-                      >visibility</span
+                      >{{ isPasswordVisible?  'visibility_off' : 'visibility'}}</span
                     >
                     <span
                       v-if="passwordMeta.validated && !passwordMeta.valid"
@@ -397,16 +386,9 @@ onBeforeUnmount(() => {
                     >
 
                     <span
-                      v-if="isConfirmPasswordVisible"
-                      @click="isConfirmPasswordVisible = false"
-                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
-                      >visibility_off</span
-                    >
-                    <span
-                      v-else
-                      @click="isConfirmPasswordVisible = true"
-                      class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
-                      >visibility</span
+                      @click="isConfirmPasswordVisible = !isConfirmPasswordVisible"
+                      class="dark:text-white material-icons-outlined absolute cursor-pointer right-3 top-9"
+                      >{{ isConfirmPasswordVisible ?  'visibility_off' : 'visibility'}}</span
                     >
                   </div>
                 </div>

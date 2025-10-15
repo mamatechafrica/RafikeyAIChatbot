@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add gap small device on feedback DialogModal">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="change in service worker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -292,15 +294,7 @@
       <workItem from="1760344689148" duration="41050000" />
       <workItem from="1760464653703" duration="642000" />
       <workItem from="1760500439671" duration="38000" />
-      <workItem from="1760523942585" duration="258000" />
-    </task>
-    <task id="LOCAL-00602" summary="rename Tab folder">
-      <option name="closed" value="true" />
-      <created>1759929882433</created>
-      <option name="number" value="00602" />
-      <option name="presentableId" value="LOCAL-00602" />
-      <option name="project" value="LOCAL" />
-      <updated>1759929882433</updated>
+      <workItem from="1760523942585" duration="5987000" />
     </task>
     <task id="LOCAL-00603" summary="add styling">
       <option name="closed" value="true" />
@@ -686,7 +680,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760460623563</updated>
     </task>
-    <option name="localTasksCounter" value="651" />
+    <task id="LOCAL-00651" summary="change in service worker">
+      <option name="closed" value="true" />
+      <created>1760524266062</created>
+      <option name="number" value="00651" />
+      <option name="presentableId" value="LOCAL-00651" />
+      <option name="project" value="LOCAL" />
+      <updated>1760524266063</updated>
+    </task>
+    <option name="localTasksCounter" value="652" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +706,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add toggleArchive function" />
     <MESSAGE value="update if condition" />
     <MESSAGE value="add UserProfile" />
     <MESSAGE value="add image" />
@@ -729,7 +730,8 @@
     <MESSAGE value="add DialogModal for feedback" />
     <MESSAGE value="remove profile navigation guard" />
     <MESSAGE value="add gap small device on feedback DialogModal" />
-    <option name="LAST_COMMIT_MESSAGE" value="add gap small device on feedback DialogModal" />
+    <MESSAGE value="change in service worker" />
+    <option name="LAST_COMMIT_MESSAGE" value="change in service worker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
