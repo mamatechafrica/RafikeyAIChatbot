@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add gap small device on feedback DialogModal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,6 +290,9 @@
       <workItem from="1760326311883" duration="77000" />
       <workItem from="1760329700161" duration="2000" />
       <workItem from="1760344689148" duration="41050000" />
+      <workItem from="1760464653703" duration="642000" />
+      <workItem from="1760500439671" duration="38000" />
+      <workItem from="1760523942585" duration="258000" />
     </task>
     <task id="LOCAL-00602" summary="rename Tab folder">
       <option name="closed" value="true" />
