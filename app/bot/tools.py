@@ -4,18 +4,33 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from dotenv import load_dotenv
 import os 
 from langchain_core.tools import tool
-from pydantic import BaseModel, Field 
-from sqlalchemy import create_engine, text
-from typing import Annotated, List, Dict, Any, Optional
-import pandas as pd
 from langchain_core.tools import tool
-import requests
-from bs4 import BeautifulSoup
+from langchain_community.utilities import SQLDatabase
+from langchain_community.agent_toolkits import SQLDatabaseToolkit
+from langchain_openai import ChatOpenAI
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut, GeocoderServiceError
+
+load_dotenv()
 
 # Database connection
 DATABASE_URL = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6?sslmode=require"
 
-load_dotenv()
+# LLM Config 
+llm = ChatOpenAI(
+    model="gpt-4o-mini",
+    temperature=0
+)
+
+
+# SQL TOOL
+db = SQLDatabase.from_uri(DATABASE_URL)
+
+toolkit = SQLDatabaseToolkit(db=db, llm=llm)
+
+sql_tools = toolkit.get_tools()
+
+
 
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
@@ -38,375 +53,161 @@ retriever_tool = create_retriever_tool(
 )
 
 #============= Tool for Hospital Referrals =============
-def get_db_engine():
-    """Get the database engine."""
-    return create_engine(DATABASE_URL)
 
+# Initialize geocoder
+geolocator = Nominatim(user_agent="clinic_finder_kenya_app")
+
+
+# GEOCODING TOOL
 @tool
-def search_hospital_referrals(
-    location: Annotated[Optional[str], "Location to search - can be county, constituency, sub_county, or ward name"] = None,
-    county: Annotated[Optional[str], "County name to search for"] = None,
-    sub_county: Annotated[Optional[str], "Sub county name to search for"] = None,
-    constituency: Annotated[Optional[str], "Constituency name to search for"] = None,
-    ward: Annotated[Optional[str], "Ward name to search for"] = None,
-    facility_name: Annotated[Optional[str], "Hospital/facility name to search for"] = None,
-    facility_type: Annotated[Optional[str], "Type of healthcare facility (e.g., hospital, clinic, dispensary)"] = None,
-    keph_level: Annotated[Optional[str], "KEPH level (1-6) for facility classification"] = None,
-    owner: Annotated[Optional[str], "Facility owner (e.g., government, private, NGO)"] = None,
-    limit: Annotated[int, "Maximum number of results to return"] = 10
-) -> str:
+def geocode_user_location(location_name: str) -> str:
     """
-    Search for healthcare facilities in Kenya from the hospital referrals directory.
+    Convert a location name in Kenya to latitude and longitude coordinates.
     
-    This tool searches based on:
-    - Location: County, Constituency, Sub County, or Ward (now supports explicit narrowing by each level)
-    - Facility Name: Hospital or clinic name
-    - Facility Type: Type of healthcare facility
-    - KEPH Level: Kenya Essential Package for Health level (1-6)
-    - Owner: Public, private, or NGO facilities
-
-    You can specify any combination of county, sub_county, constituency, and ward for precise location-based filtering. If multiple are provided, the search will be narrowed to the most specific level.
-
-    Args:
-        location: (Optional) General location name (for backward compatibility)
-        county: (Optional) County name
-        sub_county: (Optional) Sub county name
-        constituency: (Optional) Constituency name
-        ward: (Optional) Ward name
-        facility_name: Name of the healthcare facility
-        facility_type: Type of facility (hospital, clinic, dispensary, etc.)
-        keph_level: KEPH level classification (1-6)
-        owner: Facility ownership type
-        limit: Maximum number of results (default 10)
-
-    Returns:
-        Formatted list of healthcare facilities with details
-    """
-    try:
-        engine = get_db_engine()
-        
-        with engine.connect() as conn:
-            # Build dynamic query
-            query_parts = ["SELECT * FROM hospital_referrals WHERE 1=1"]
-            params = {}
-            
-            # Location search (county, constituency, sub_county, ward)
-            # Hierarchical narrowing: if ward is provided, use it; else constituency, sub_county, county; else fallback to generic location
-            if ward:
-                query_parts.append('AND LOWER(COALESCE("Ward", \'\')) LIKE LOWER(:ward)')
-                params['ward'] = f'%{ward}%'
-            elif constituency:
-                query_parts.append('AND LOWER(COALESCE("Constituency", \'\')) LIKE LOWER(:constituency)')
-                params['constituency'] = f'%{constituency}%'
-            elif sub_county:
-                query_parts.append('AND LOWER(COALESCE("Sub county", \'\')) LIKE LOWER(:sub_county)')
-                params['sub_county'] = f'%{sub_county}%'
-            elif county:
-                query_parts.append('AND LOWER(COALESCE("County", \'\')) LIKE LOWER(:county)')
-                params['county'] = f'%{county}%'
-            elif location:
-                query_parts.append("""
-                    AND (LOWER(COALESCE("County", '')) LIKE LOWER(:location)
-                    OR LOWER(COALESCE("Constituency", '')) LIKE LOWER(:location)
-                    OR LOWER(COALESCE("Sub county", '')) LIKE LOWER(:location)
-                    OR LOWER(COALESCE("Ward", '')) LIKE LOWER(:location))
-                """)
-                params['location'] = f'%{location}%'
-            
-            # Facility name search
-            if facility_name:
-                query_parts.append("""
-                    AND LOWER(COALESCE("Name", '')) LIKE LOWER(:facility_name)
-                """)
-                params['facility_name'] = f'%{facility_name}%'
-            
-            # Facility type search
-            if facility_type:
-                query_parts.append("""
-                    AND LOWER(COALESCE("Facility type", '')) LIKE LOWER(:facility_type)
-                """)
-                params['facility_type'] = f'%{facility_type}%'
-            
-            # KEPH level search
-            if keph_level:
-                query_parts.append("""
-                    AND LOWER(COALESCE("Keph level", '')) LIKE LOWER(:keph_level)
-                """)
-                params['keph_level'] = f'%{keph_level}%'
-            
-            # Owner search
-            if owner:
-                query_parts.append("""
-                    AND LOWER(COALESCE("Owner", '')) LIKE LOWER(:owner)
-                """)
-                params['owner'] = f'%{owner}%'
-            
-            query_parts.append(f"LIMIT {limit}")
-            
-            final_query = " ".join(query_parts)
-            
-            result = conn.execute(text(final_query), params)
-            df = pd.DataFrame(result.fetchall(), columns=result.keys())
-            
-            if df.empty:
-                return "No healthcare facilities found matching your criteria. Try broadening your search terms or check spelling."
-            
-            # Format results
-            formatted_results = []
-            for idx, row in df.iterrows():
-                facility_info = []
-                
-                # Facility name
-                if pd.notna(row.get('Name')) and str(row.get('Name')).strip():
-                    facility_info.append(f"🏥 **{row['Name']}**")
-                else:
-                    facility_info.append(f"🏥 **Healthcare Facility #{idx + 1}**")
-                
-                # Code
-                if pd.notna(row.get('Code')) and str(row.get('Code')).strip():
-                    facility_info.append(f"🆔 Code: {row['Code']}")
-                
-                # Location hierarchy
-                location_parts = []
-                for loc_field in ['County', 'Constituency', 'Sub county', 'Ward']:
-                    if pd.notna(row.get(loc_field)) and str(row.get(loc_field)).strip():
-                        location_parts.append(f"{loc_field}: {row[loc_field]}")
-                
-                if location_parts:
-                    facility_info.append(f"📍 Location: {' | '.join(location_parts)}")
-                
-                # Facility details
-                if pd.notna(row.get('Facility type')) and str(row.get('Facility type')).strip():
-                    facility_info.append(f"🏢 Type: {row['Facility type']}")
-                
-                if pd.notna(row.get('Keph level')) and str(row.get('Keph level')).strip():
-                    facility_info.append(f"📊 KEPH Level: {row['Keph level']}")
-                
-                if pd.notna(row.get('Owner')) and str(row.get('Owner')).strip():
-                    facility_info.append(f"👤 Owner: {row['Owner']}")
-                
-                # Capacity
-                capacity_info = []
-                if pd.notna(row.get('Beds')) and str(row.get('Beds')).strip() and str(row.get('Beds')) != '0':
-                    capacity_info.append(f"Beds: {row['Beds']}")
-                if pd.notna(row.get('Cots')) and str(row.get('Cots')).strip() and str(row.get('Cots')) != '0':
-                    capacity_info.append(f"Cots: {row['Cots']}")
-                
-                if capacity_info:
-                    facility_info.append(f"🛏️ Capacity: {' | '.join(capacity_info)}")
-                
-                # Operation status
-                if pd.notna(row.get('Operation status')) and str(row.get('Operation status')).strip():
-                    status_emoji = "✅" if "operational" in str(row.get('Operation status')).lower() else "⚠️"
-                    facility_info.append(f"{status_emoji} Status: {row['Operation status']}")
-                
-                formatted_results.append("\n".join(facility_info))
-            
-            result_header = f"Found {len(df)} healthcare facility/facilities:\n\n"
-            return result_header + "\n\n" + "="*50 + "\n\n".join([""] + formatted_results)
-            
-    except Exception as e:
-        return f"Error searching hospital database: {str(e)}. Please try again or contact support if the issue persists."
-
-@tool
-def get_healthcare_statistics() -> str:
-    """
-    Get statistics about healthcare facilities in the database.
-    
-    Returns:
-        Statistics including facility counts by county, type, ownership, and KEPH levels
-    """
-    try:
-        engine = get_db_engine()
-        
-        with engine.connect() as conn:
-            # Total facilities
-            total_result = conn.execute(text('SELECT COUNT(*) as total FROM hospital_referrals'))
-            total_facilities = total_result.fetchone()[0]
-            
-            # By county (top 10)
-            county_result = conn.execute(text('''
-                SELECT "County", COUNT(*) as count 
-                FROM hospital_referrals 
-                WHERE "County" IS NOT NULL AND "County" != ''
-                GROUP BY "County" 
-                ORDER BY count DESC 
-                LIMIT 10
-            '''))
-            county_df = pd.DataFrame(county_result.fetchall(), columns=['county', 'count'])
-            
-            # By facility type
-            type_result = conn.execute(text('''
-                SELECT "Facility type", COUNT(*) as count 
-                FROM hospital_referrals 
-                WHERE "Facility type" IS NOT NULL AND "Facility type" != ''
-                GROUP BY "Facility type" 
-                ORDER BY count DESC
-            '''))
-            type_df = pd.DataFrame(type_result.fetchall(), columns=['type', 'count'])
-            
-            # By owner
-            owner_result = conn.execute(text('''
-                SELECT "Owner", COUNT(*) as count 
-                FROM hospital_referrals 
-                WHERE "Owner" IS NOT NULL AND "Owner" != ''
-                GROUP BY "Owner" 
-                ORDER BY count DESC
-            '''))
-            owner_df = pd.DataFrame(owner_result.fetchall(), columns=['owner', 'count'])
-            
-            # By KEPH level
-            keph_result = conn.execute(text('''
-                SELECT "Keph level", COUNT(*) as count 
-                FROM hospital_referrals 
-                WHERE "Keph level" IS NOT NULL AND "Keph level" != ''
-                GROUP BY "Keph level" 
-                ORDER BY "Keph level"
-            '''))
-            keph_df = pd.DataFrame(keph_result.fetchall(), columns=['keph_level', 'count'])
-            
-            # Format response
-            stats = [
-                f"📊 **Healthcare Facilities Database Statistics**",
-                f"",
-                f"🏥 Total Healthcare Facilities: {total_facilities}",
-                f"",
-                f"🌍 **Top 10 Counties by Facility Count:**"
-            ]
-            
-            for _, row in county_df.iterrows():
-                stats.append(f"   • {row['county']}: {row['count']} facilities")
-            
-            stats.extend([
-                f"",
-                f"🏢 **Facility Types:**"
-            ])
-            
-            for _, row in type_df.iterrows():
-                stats.append(f"   • {row['type']}: {row['count']} facilities")
-            
-            stats.extend([
-                f"",
-                f"👤 **Ownership:**"
-            ])
-            
-            for _, row in owner_df.iterrows():
-                stats.append(f"   • {row['owner']}: {row['count']} facilities")
-            
-            stats.extend([
-                f"",
-                f"📊 **KEPH Levels:**"
-            ])
-            
-            for _, row in keph_df.iterrows():
-                stats.append(f"   • Level {row['keph_level']}: {row['count']} facilities")
-            
-            return "\n".join(stats)
-            
-    except Exception as e:
-        return f"Error getting healthcare statistics: {str(e)}"
-
-@tool
-def search_facilities_by_county(
-    county: Annotated[str, "County name to search for facilities"],
-    limit: Annotated[int, "Maximum number of results to return"] = 20
-) -> str:
-    """
-    Get all healthcare facilities in a specific county.
+    Use this tool FIRST when a user asks to find clinics near a location.
+    This will give you the coordinates needed to search the database.
     
     Args:
-        county: Name of the county
-        limit: Maximum number of results
-    
+        location_name: Name of the location (e.g., "Westlands", "Karen", "Nairobi", "Mombasa")
+        
     Returns:
-        List of all healthcare facilities in the specified county
+        String containing latitude and longitude, or error message if geocoding fails
     """
-    return search_hospital_referrals.invoke({
-        "county": county,
-        "limit": limit
-    })
+    try:
+        # Ensure Kenya is included in the search
+        search_location = location_name
+        if "kenya" not in location_name.lower():
+            search_location = f"{location_name}, Kenya"
+        
+        # Geocode the location
+        location = geolocator.geocode(search_location, timeout=10)
+        
+        if location:
+            result = f"Location found: {location.address}\n"
+            result += f"Latitude: {location.latitude}\n"
+            result += f"Longitude: {location.longitude}\n"
+            result += f"\nUse these coordinates to search for nearby clinics in the database."
+            return result
+        else:
+            return f"Could not find coordinates for '{location_name}'. Please try a different location name or be more specific (e.g., 'Westlands, Nairobi' instead of just 'Westlands')."
+            
+    except (GeocoderTimedOut, GeocoderServiceError) as e:
+        return f"Geocoding service temporarily unavailable: {str(e)}. Please try again."
+    except Exception as e:
+        return f"Error while geocoding location: {str(e)}"
+
+# CLINIC SEARCH TOOL
+@tool
+def find_clinics_near_coordinates(latitude: float, longitude: float, max_distance_km: int = 20) -> str:
+    """
+    Find clinics within a specified distance from given coordinates.
+    
+    Use this tool AFTER geocoding a location to find nearby healthcare facilities.
+    Returns up to 5 closest clinics with all their details.
+    
+    Args:
+        latitude: Latitude coordinate (e.g., -1.2921)
+        longitude: Longitude coordinate (e.g., 36.8219)
+        max_distance_km: Maximum search radius in kilometers (default: 20, max: 50)
+        
+    Returns:
+        Formatted list of clinics with details including distance, or message if none found
+    """
+    try:
+        # Validate inputs
+        if not (-90 <= latitude <= 90):
+            return "Invalid latitude. Must be between -90 and 90."
+        if not (-180 <= longitude <= 180):
+            return "Invalid longitude. Must be between -180 and 180."
+        if max_distance_km > 50:
+            max_distance_km = 50
+        if max_distance_km < 1:
+            max_distance_km = 1
+        
+        # SQL query using Haversine formula
+        query = f"""
+            SELECT 
+                clinic_name,
+                services,
+                category,
+                location,
+                contacts,
+                website,
+                latitude,
+                longitude,
+                ROUND(
+                    CAST(
+                        6371 * acos(
+                            cos(radians({latitude})) * 
+                            cos(radians(latitude)) * 
+                            cos(radians(longitude) - radians({longitude})) + 
+                            sin(radians({latitude})) * 
+                            sin(radians(latitude))
+                        ) AS NUMERIC
+                    ), 2
+                ) AS distance_km
+            FROM clinics
+            WHERE (
+                6371 * acos(
+                    cos(radians({latitude})) * 
+                    cos(radians(latitude)) * 
+                    cos(radians(longitude) - radians({longitude})) + 
+                    sin(radians({latitude})) * 
+                    sin(radians(latitude))
+                )
+            ) <= {max_distance_km}
+            ORDER BY distance_km ASC
+            LIMIT 5;
+        """
+        
+        # Execute query using the db object
+        result = db.run(query)
+        
+        # Check if we got results
+        if not result or result == "[]" or "Error" in str(result):
+            return f"No clinics found within {max_distance_km}km of coordinates ({latitude}, {longitude}). Try increasing the search radius or checking a different location."
+        
+        # Parse and format the results
+        import json
+        try:
+            # Try to parse as JSON if it's in that format
+            clinics = json.loads(result) if isinstance(result, str) else result
+        except:
+            # If not JSON, return the raw result
+            return f"Found clinics near ({latitude}, {longitude}):\n\n{result}"
+        
+        # Format results nicely
+        output = f"Found {len(clinics)} clinic(s) within {max_distance_km}km:\n\n"
+        
+        for idx, clinic in enumerate(clinics, 1):
+            output += f"{'='*80}\n"
+            output += f"{idx}. {clinic.get('clinic_name', 'N/A')}\n"
+            output += f"   📍 Location: {clinic.get('location', 'N/A')}\n"
+            output += f"   📏 Distance: {clinic.get('distance_km', 'N/A')} km away\n"
+            output += f"   🏥 Category: {clinic.get('category', 'N/A')}\n"
+            output += f"   🩺 Services: {clinic.get('services', 'N/A')}\n"
+            output += f"   📞 Contact: {clinic.get('contacts', 'N/A')}\n"
+            output += f"   🌐 Website: {clinic.get('website', 'N/A')}\n"
+            output += f"   🗺️  Coordinates: {clinic.get('latitude', 'N/A')}, {clinic.get('longitude', 'N/A')}\n\n"
+        
+        return output
+        
+    except Exception as e:
+        return f"Error searching for clinics: {str(e)}"
+
+# Combine all tools
+all_tools = sql_tools + [geocode_user_location, find_clinics_near_coordinates]
+
+
 
 # List of all tools
 tools = [
     retriever_tool,
-    search_hospital_referrals,
-    get_healthcare_statistics,
-    search_facilities_by_county
-]
+    geocode_user_location,
+    find_clinics_near_coordinates
+] + sql_tools
 
-
-BASE_URL = "https://lovemattersafrica.com/wp-json/wp/v2/clinics"
-
-
-@tool("get_clinics_by_location", return_direct=True)
-def get_clinics_by_location(location: str) -> str:
-    """
-    Get clinics or hospitals based on a given location name.
-    Returns a simple text summary of clinics in that area and their services.
-    """
-    try:
-        # Search clinics using the WordPress API
-        response = requests.get(BASE_URL, params={"search": location})
-        response.raise_for_status()
-        data = response.json()
-
-        if not data:
-            return f"No clinics found in {location}."
-
-        results = []
-        for clinic in data:
-            name = clinic["title"]["rendered"]
-            link = clinic["link"]
-            services = clinic.get("clinic_services", [])
-            results.append(f"🏥 {name}\n🔗 {link}\n🩺 Services IDs: {services}\n")
-
-        return "\n".join(results[:5])  # Limit to first 5 results
-    except Exception as e:
-        return f"Error fetching clinics: {e}"
-
-
-
-
-def test_tools():
-    print("Testing LangGraph Hospital Tools...")
-    
-    # Test 1: Get statistics
-    print("\n" + "="*50)
-    print("1. Getting healthcare statistics:")
-    print("="*50)
-    result = get_healthcare_statistics.invoke({})
-    print(result)
-    
-    # Test 2: Search by location (Kiambu)
-    print("\n" + "="*50)
-    print("2. Searching by location (Kiambu):")
-    print("="*50)
-    result = search_hospital_referrals.invoke({
-        "location": "Kiambu",
-        "limit": 5
-    })
-    print(result)
-    
-    # Test 3: Search by facility type
-    print("\n" + "="*50)
-    print("3. Searching by facility type (Hospital):")
-    print("="*50)
-    result = search_hospital_referrals.invoke({
-        "facility_type": "Hospital",
-        "limit": 5
-    })
-    print(result)
-    
-    # Test 4: Search by county
-    print("\n" + "="*50)
-    print("4. Searching facilities in Nairobi County:")
-    print("="*50)
-    result = search_facilities_by_county.invoke({
-        "county": "Nairobi",
-        "limit": 5
-    })
-    print(result)
 
 if __name__ == "__main__":
-    # Use it directly
-  print(get_clinics_by_location("Nairobi"))   
+    for tool in sql_tools:
+        print(f"{tool.name}: {tool.description}\n")

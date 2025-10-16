@@ -16,7 +16,7 @@ from langchain_core.messages import AnyMessage
 from langgraph.runtime import get_runtime
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import InMemorySaver
-from app.bot.tools import retriever_tool, search_hospital_referrals, search_facilities_by_county
+from app.bot.tools import retriever_tool, tools
 from app.models import Conversations, User as UserModel
 from app.core.database import SessionDep    
 from sqlmodel import select
@@ -72,7 +72,7 @@ memory = InMemorySaver()
 
 agent = create_react_agent(
     model=model,
-    tools=[retriever_tool, search_facilities_by_county, search_hospital_referrals],
+    tools=[retriever_tool] + tools,
     prompt=prompt,
     checkpointer=memory
 )

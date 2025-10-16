@@ -2,12 +2,12 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 # Step 1: Load Excel data
-excel_path = "D:/RafikeyAIChatbot/app/bot/Hospitals Referral_Directory.xlsx"
+excel_path = "D:/RafikeyAIChatbot/app/bot/kenya_clinics.xlsx"
 
 # Step 2: Connect to PostgreSQL using the full database URL
 # Note: SQLAlchemy requires 'postgresql+psycopg2://' instead of 'postgresql://'
 database_url = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6"
-table_name = 'hospital_referrals'
+table_name = 'clinics'
 
 try:
     # Create engine with SSL requirement (important for Render.com)
