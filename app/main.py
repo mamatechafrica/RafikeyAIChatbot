@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from sqlmodel import select, Session
 from app.router import chatbot_analysis, bot_router_v2, chroma_db, metrics_analysis, gamification
 from app.router.auth import login, admin
+from app.router.clinics_router import router
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
@@ -62,3 +63,4 @@ app.include_router(chatbot_analysis.router)
 app.include_router(chroma_db.router)
 app.include_router(metrics_analysis.router)
 app.include_router(gamification.router)
+app.include_router(router)

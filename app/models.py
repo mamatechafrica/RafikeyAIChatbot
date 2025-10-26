@@ -107,4 +107,22 @@ class Rating(SQLModel, table=True):
 
     user: "User" = Relationship(back_populates="ratings")
 
+
+
+# Clinics 
+# SQLModel for Clinic
+class Clinic(SQLModel, table=True):
+    __tablename__ = "clinics"
     
+    id: Optional[int] = Field(default=None, primary_key=True)
+    clinic_name: Optional[str] = Field(default=None, index=True)
+    services: Optional[str] = Field(default=None)
+    location: Optional[str] = Field(default=None)
+    phone: Optional[str] = Field(default=None)
+    website: Optional[str] = Field(default=None)
+    latitude: Optional[float] = Field(default=None)
+    longitude: Optional[float] = Field(default=None)
+    google_link: Optional[str] = Field(default=None)
+    source_country: Optional[str] = Field(default=None)
+    phone_combined: Optional[str] = Field(default=None)
+    email_combined: Optional[str] = Field(default=None)
