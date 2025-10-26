@@ -82,46 +82,50 @@ def geocode_location(location: str) -> dict:
 def find_nearby_clinics(latitude: float, longitude: float, radius_km: float = 20.0) -> str:
     """
     Find clinics near the given coordinates within a specified radius.
-    Uses the map_coordinates column which contains latitude,longitude pairs.
-    
+    Uses the latitude and longitude columns in the clinics table.
+
     Args:
         latitude: Latitude coordinate
         longitude: Longitude coordinate
         radius_km: Search radius in kilometers (default: 20km)
-    
+
     Returns:
         String with results of nearby clinics
     """
-    # Parse coordinates and calculate distance using Haversine formula
+    # Calculate distance using Haversine formula on latitude/longitude columns
     query = f"""
-    SELECT 
-        "Clinic Name",
-        "Services",
-        "Category",
-        "Location",
-        "Contacts",
-        "Website",
-        "Map Coordinates (Latitude and Longitude)",
+    SELECT
+        clinic_name,
+        services,
+        location,
+        phone,
+        website,
+        latitude,
+        longitude,
+        google_link,
+        source_country,
+        phone_combined,
+        email_combined,
         (6371 * acos(
-            cos(radians({latitude})) * 
-            cos(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 1) AS FLOAT))) * 
-            cos(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 2) AS FLOAT)) - radians({longitude})) + 
-            sin(radians({latitude})) * 
-            sin(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 1) AS FLOAT)))
+            cos(radians({latitude})) *
+            cos(radians(latitude)) *
+            cos(radians(longitude) - radians({longitude})) +
+            sin(radians({latitude})) *
+            sin(radians(latitude))
         )) AS distance_km
     FROM clinics
-    WHERE "Map Coordinates (Latitude and Longitude)" IS NOT NULL
+    WHERE latitude IS NOT NULL AND longitude IS NOT NULL
     AND (6371 * acos(
-            cos(radians({latitude})) * 
-            cos(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 1) AS FLOAT))) * 
-            cos(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 2) AS FLOAT)) - radians({longitude})) + 
-            sin(radians({latitude})) * 
-            sin(radians(CAST(split_part("Map Coordinates (Latitude and Longitude)", ',', 1) AS FLOAT)))
+            cos(radians({latitude})) *
+            cos(radians(latitude)) *
+            cos(radians(longitude) - radians({longitude})) +
+            sin(radians({latitude})) *
+            sin(radians(latitude))
         )) <= {radius_km}
     ORDER BY distance_km
     LIMIT 10;
     """
-    
+
     try:
         result = db.run(query)
         return result if result else "No clinics found in the specified radius."

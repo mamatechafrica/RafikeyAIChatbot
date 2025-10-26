@@ -9,6 +9,36 @@ excel_path = "D:/RafikeyAIChatbot/app/bot/clinics_full_scraped.xlsx"
 database_url = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6"
 table_name = 'clinics'
 
+# Mapping from Excel columns to DB/model columns
+COLUMN_MAP = {
+    "Clinic Name": "clinic_name",
+    "Services": "services",
+    "Location": "location",
+    "Phone": "phone",
+    "Website": "website",
+    "Latitude": "latitude",
+    "Longitude": "longitude",
+    "Google Link": "google_link",
+    "source_co": "source_country",  # Excel column may be truncated, adjust as needed
+    "Phone_Combined": "phone_combined",
+    "Email_Combined": "email_combined"
+}
+
+# List of columns to keep in the correct order for the DB
+DB_COLUMNS = [
+    "clinic_name",
+    "services",
+    "location",
+    "phone",
+    "website",
+    "latitude",
+    "longitude",
+    "google_link",
+    "source_country",
+    "phone_combined",
+    "email_combined"
+]
+
 try:
     # Create engine with SSL requirement
     engine = create_engine(database_url + "?sslmode=require")
@@ -22,44 +52,33 @@ try:
     
     # Combine all sheets into one DataFrame
     combined_df = pd.DataFrame()
-    
     for sheet in xls.sheet_names:
         df = xls.parse(sheet)
-        df['source_country'] = sheet 
+        df['source_country'] = sheet  # Use full sheet name for country
         combined_df = pd.concat([combined_df, df], ignore_index=True)
     
     print(f"📊 Loaded {len(combined_df)} records from {len(xls.sheet_names)} sheets")
     
-    # Step 3: Clean the data
+    # Clean the data
     print("\n🧹 Cleaning data...")
-    
-    # Replace "#REF!" errors with None
     combined_df = combined_df.replace('#REF!', None)
     combined_df = combined_df.replace('#REF!', np.nan)
-    
-    # Handle "0" values in Website column (assuming "0" means no website)
     if 'Website' in combined_df.columns:
         combined_df['Website'] = combined_df['Website'].replace('0', None)
         combined_df['Website'] = combined_df['Website'].replace(0, None)
-    
-    # Convert numeric columns properly
     numeric_columns = ['Latitude', 'Longitude']
     for col in numeric_columns:
         if col in combined_df.columns:
-            # Replace "0" strings with NaN for lat/long if they seem invalid
             combined_df[col] = pd.to_numeric(combined_df[col], errors='coerce')
-    
-    # Clean phone numbers - combine multiple phone columns if they exist
+    # Combine phone columns
     phone_columns = [col for col in combined_df.columns if 'Phone' in col or 'phone' in col]
     if phone_columns:
-        # Combine all phone numbers into one column, separated by comma
         combined_df['Phone_Combined'] = combined_df[phone_columns].apply(
             lambda row: ', '.join([str(val) for val in row if pd.notna(val) and str(val) != '0']),
             axis=1
         )
         combined_df['Phone_Combined'] = combined_df['Phone_Combined'].replace('', None)
-    
-    # Clean email/website - handle multiple columns
+    # Combine email columns
     email_columns = [col for col in combined_df.columns if 'email' in col.lower() or 'Email' in col]
     if email_columns:
         combined_df['Email_Combined'] = combined_df[email_columns].apply(
@@ -67,37 +86,29 @@ try:
             axis=1
         )
         combined_df['Email_Combined'] = combined_df['Email_Combined'].replace('', None)
-    
     # Strip whitespace from all string columns
     for col in combined_df.select_dtypes(include=['object']).columns:
         combined_df[col] = combined_df[col].apply(lambda x: x.strip() if isinstance(x, str) else x)
-    
-    # Display sample of cleaned data
-    print("\n📋 Sample of cleaned data:")
-    print(combined_df.head())
-    print("\n📊 Column names:")
-    print(combined_df.columns.tolist())
+
+    # Rename columns to match DB schema
+    combined_df = combined_df.rename(columns=COLUMN_MAP)
+    # Only keep columns that exist in the DB schema
+    final_df = combined_df.reindex(columns=DB_COLUMNS)
+    print("\n📋 Sample of cleaned and mapped data:")
+    print(final_df.head())
+    print("\n📊 Column names for DB insert:")
+    print(final_df.columns.tolist())
     print(f"\n📈 Data types:")
-    print(combined_df.dtypes)
-    
-    # Step 4: Insert Data into PostgreSQL
-    print(f"\n💾 Inserting {len(combined_df)} records into database...")
-    combined_df.to_sql(table_name, engine, if_exists='replace', index=False)
-    
-    print(f"✅ Successfully inserted {len(combined_df)} records into '{table_name}' table.")
-    
-    # Show some statistics
-    print(f"\n📊 Summary Statistics:")
-    print(f"   Total records: {len(combined_df)}")
-    print(f"   Sheets processed: {len(xls.sheet_names)}")
-    if 'Latitude' in combined_df.columns:
-        valid_coords = combined_df[['Latitude', 'Longitude']].notna().all(axis=1).sum()
-        print(f"   Records with valid coordinates: {valid_coords}")
-    
+    print(final_df.dtypes)
+
+    # Step 4: Insert Data into PostgreSQL (append, do not replace table)
+    print(f"\n💾 Inserting {len(final_df)} records into database...")
+    final_df.to_sql(table_name, engine, if_exists='append', index=False)
+    print(f"✅ Successfully inserted {len(final_df)} records into '{table_name}' table.")
+
 except FileNotFoundError:
     print(f"❌ Error: Excel file not found at '{excel_path}'")
     print("Please check the file path and try again.")
-    
 except Exception as e:
     print(f"❌ Error: {e}")
     print("\n🔍 Troubleshooting tips:")
