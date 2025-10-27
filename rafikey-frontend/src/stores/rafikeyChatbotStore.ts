@@ -464,6 +464,74 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     }
   }
 
+  // save push subscription to the backend
+  async function savePushNotificationSubscription(payload: Subscription) {
+    console.log('Web push subscription payload', payload)
+    const authStore = useAuthStore()
+    try {
+      const response = await fetch(`${PUSH_NOTIFICATION_API}/subscriptions`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: authStore.getUserInfo()?.username,
+          endpoint: payload.endpoint,
+          keys: {
+            p256dh: payload.keys.p256dh,
+            auth: payload.keys.auth,
+          },
+        }),
+      })
+      const res = await response.json()
+      console.log('Push subscription response:', res)
+      if (!response.ok) {
+        return {
+          result: 'fail',
+          data: null,
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: res,
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  // Clear subscriptions
+  async function clearSubscription (payload: string) {
+    try {
+      const response = await fetch(`${PUSH_NOTIFICATION_API}/unsubscribe`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          endpoint: payload,
+        }),
+      })
+      const res = await response.json()
+      if(response.ok) {
+        console.log('Subscription cleared successfully')
+        return {
+          result: 'ok',
+          message: res.message,
+        }
+      } else{
+        return {
+          result: 'fail',
+          message: res.message,
+        }
+      }
+    } catch (err) {
+      console.log('Error clearing subscription:', err)
+      return
+    }
+  }
+
   // Set active chat hitory
 
   const setActiveChatHistory = (value: string) => {
