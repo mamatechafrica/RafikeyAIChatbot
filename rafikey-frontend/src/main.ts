@@ -11,6 +11,16 @@ import { useDark } from '@vueuse/core'
 
 useDark()
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', async () => {
+    try {
+      const registration = await navigator.serviceWorker.register('/custom-sw.js')
+    } catch (err) {
+      console.log('Service worker registration failed: ', err)
+    }
+  })
+}
+
 const app = createApp(App)
 
 app.use(createPinia())

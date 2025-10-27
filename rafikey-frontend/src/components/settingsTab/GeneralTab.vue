@@ -101,19 +101,19 @@ watch(isArchive, (value: boolean) => {
     <!--      </div>-->
     <!--    </div>-->
     <!--    <div class="border-b-[1px] dark:border-veryLightFive border-veryLightFour"></div>-->
-    <div class="pt-4">
-      <div
-        class="relative border border-azure-radiance-500 bg-azure-radiance-200 rounded-2xl p-3 w-full font-semibold"
-      >
-        <div
-          class="absolute inset-0 left-0 right-0 border-l-4 rounded-xl border-azure-radiance-500"
-        ></div>
-        <div class="flex items-center gap-2">
-          <span class="material-icons-outlined">info</span>
-          <p class="">Chats are saved automatically, but deleted after every 30days</p>
-        </div>
-      </div>
-    </div>
+<!--    <div class="pt-4">-->
+<!--      <div-->
+<!--        class="relative border border-azure-radiance-500 bg-azure-radiance-200 rounded-2xl p-3 w-full font-semibold"-->
+<!--      >-->
+<!--        <div-->
+<!--          class="absolute inset-0 left-0 right-0 border-l-4 rounded-xl border-azure-radiance-500"-->
+<!--        ></div>-->
+<!--        <div class="flex items-center gap-2">-->
+<!--          <span class="material-icons-outlined">info</span>-->
+<!--          <p class="">Chats are saved automatically, but deleted after every 30days</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="py-6 pe-2 flex justify-between" v-if="chatbotStore.chatHistoryTitles.length > 0">
       <div>
         <p class="dark:text-white">Chat History</p>
