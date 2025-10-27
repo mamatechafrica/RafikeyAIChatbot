@@ -43,6 +43,7 @@ interface CorrectAnswer {
   correctAnswerId?: string
 }
 
+const PUSH_NOTIFICATION_API = import.meta.env.VITE_APP_PUSH_NOTIFICATION_API as string
 const RAFIKEY_CHATBOT_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT as string
 const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FRONTEND as string
 
