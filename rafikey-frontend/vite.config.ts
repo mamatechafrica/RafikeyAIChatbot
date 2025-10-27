@@ -103,11 +103,92 @@ const pwaOptions: Partial<VitePWAOptions> = {
         purpose: 'any'
       },
       {
-        src: 'pwa/icons/maskable_icon_x512.png',
-        sizes: '512x512',
+        src: 'pwa/icons/maskable_icon_x192.png',
+        sizes: '192x192',
         type: 'image/png',
-        purpose: 'any maskable',
+        purpose: 'maskable'
       },
+      {
+        src: 'pwa/icons/maskable_icon_x128.png',
+        sizes: '128x128',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x128.png',
+        sizes: '128x128',
+        type: 'image/png',
+        purpose: 'maskable'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x96.png',
+        sizes: '96x96',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x96.png',
+        sizes: '96x96',
+        type: 'image/png',
+        purpose: 'maskable'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x72.png',
+        sizes: '72x72',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x72.png',
+        sizes: '72x72',
+        type: 'image/png',
+        purpose: 'maskable'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x48.png',
+        sizes: '48x48',
+        type: 'image/png',
+        purpose: 'any'
+      },
+      {
+        src: 'pwa/icons/maskable_icon_x48.png',
+        sizes: '48x48',
+        type: 'image/png',
+        purpose: 'maskable'
+      },
+
+    ],
+    screenshots: [
+      {
+        src: 'pwa/screenshots/localhost_4433_(iPhone 14 Pro Max).png',
+        sizes: '1290x2796',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa/screenshots/localhost_4433_(Nest Hub).png',
+        sizes: '2048x1724',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa/screenshots/localhost_4433_(Nest Hub Max).png',
+        sizes: '2560x1708',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa/screenshots/localhost_4433_(Samsung Galaxy A51_71).png',
+        sizes: '1082x2400',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa/screenshots/localhost_4433_(Samsung Galaxy S20 Ultra).png',
+        sizes: '1442x3202',
+        type: 'image/png'
+      },
+      {
+        src: 'pwa/screenshots/localhost_4433_(Surface Pro 7).png',
+        sizes: '1824x2736',
+        type: 'image/png'
+      }
     ],
   },
 }
