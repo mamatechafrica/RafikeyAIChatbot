@@ -4,34 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="fix setup account text">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/tools.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/custom-sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/registerSW.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/sw.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/workbox-1f9f2814.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/workbox-32b51435.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/dev-dist/workbox-99d8380f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/icons/Rafikey Logo (Light Mode).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/icons/favicon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/icons/favicon.pngg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub Max).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub Max).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Nest Hub).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy A51_71).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy A51_71).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy S20 Ultra).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Samsung Galaxy S20 Ultra).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Surface Pro 7).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(Surface Pro 7).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(iPhone 14 Pro Max).png" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/public/pwa/screenshots/localhost_4433_(iPhone 14 Pro Max).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/GeneralTab.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/types/pwa.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/types/pwa.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/SetProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" afterDir="false" />
-    </list>
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logic for push notification subscription and subscription removal" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -333,135 +306,7 @@
       <workItem from="1761284007929" duration="524000" />
       <workItem from="1761298539572" duration="3803000" />
       <workItem from="1761311829115" duration="5037000" />
-      <workItem from="1761544558246" duration="5228000" />
-    </task>
-    <task id="LOCAL-00608" summary="add styling on update dialog">
-      <option name="closed" value="true" />
-      <created>1760008647469</created>
-      <option name="number" value="00608" />
-      <option name="presentableId" value="LOCAL-00608" />
-      <option name="project" value="LOCAL" />
-      <updated>1760008647469</updated>
-    </task>
-    <task id="LOCAL-00609" summary="update isShowDialog  state">
-      <option name="closed" value="true" />
-      <created>1760008894777</created>
-      <option name="number" value="00609" />
-      <option name="presentableId" value="LOCAL-00609" />
-      <option name="project" value="LOCAL" />
-      <updated>1760008894777</updated>
-    </task>
-    <task id="LOCAL-00610" summary="add tooltip">
-      <option name="closed" value="true" />
-      <created>1760030309080</created>
-      <option name="number" value="00610" />
-      <option name="presentableId" value="LOCAL-00610" />
-      <option name="project" value="LOCAL" />
-      <updated>1760030309080</updated>
-    </task>
-    <task id="LOCAL-00611" summary="add  goToPlayPage">
-      <option name="closed" value="true" />
-      <created>1760030417325</created>
-      <option name="number" value="00611" />
-      <option name="presentableId" value="LOCAL-00611" />
-      <option name="project" value="LOCAL" />
-      <updated>1760030417325</updated>
-    </task>
-    <task id="LOCAL-00612" summary="update service worker">
-      <option name="closed" value="true" />
-      <created>1760030437530</created>
-      <option name="number" value="00612" />
-      <option name="presentableId" value="LOCAL-00612" />
-      <option name="project" value="LOCAL" />
-      <updated>1760030437530</updated>
-    </task>
-    <task id="LOCAL-00613" summary="add mascot image">
-      <option name="closed" value="true" />
-      <created>1760113298395</created>
-      <option name="number" value="00613" />
-      <option name="presentableId" value="LOCAL-00613" />
-      <option name="project" value="LOCAL" />
-      <updated>1760113298395</updated>
-    </task>
-    <task id="LOCAL-00614" summary="add logoutAllDevicesHandler function">
-      <option name="closed" value="true" />
-      <created>1760155542566</created>
-      <option name="number" value="00614" />
-      <option name="presentableId" value="LOCAL-00614" />
-      <option name="project" value="LOCAL" />
-      <updated>1760155542566</updated>
-    </task>
-    <task id="LOCAL-00615" summary="add logoutAllDevicesHandler  function">
-      <option name="closed" value="true" />
-      <created>1760155607809</created>
-      <option name="number" value="00615" />
-      <option name="presentableId" value="LOCAL-00615" />
-      <option name="project" value="LOCAL" />
-      <updated>1760155607809</updated>
-    </task>
-    <task id="LOCAL-00616" summary="add logoutAllDevices function">
-      <option name="closed" value="true" />
-      <created>1760293730614</created>
-      <option name="number" value="00616" />
-      <option name="presentableId" value="LOCAL-00616" />
-      <option name="project" value="LOCAL" />
-      <updated>1760293730614</updated>
-    </task>
-    <task id="LOCAL-00617" summary="add showLogoutAllDevicesDialogModal and isLoadingLogoutAllDevices flags">
-      <option name="closed" value="true" />
-      <created>1760293774529</created>
-      <option name="number" value="00617" />
-      <option name="presentableId" value="LOCAL-00617" />
-      <option name="project" value="LOCAL" />
-      <updated>1760293774529</updated>
-    </task>
-    <task id="LOCAL-00618" summary="add DialogModal for logout all devices">
-      <option name="closed" value="true" />
-      <created>1760293821508</created>
-      <option name="number" value="00618" />
-      <option name="presentableId" value="LOCAL-00618" />
-      <option name="project" value="LOCAL" />
-      <updated>1760293821508</updated>
-    </task>
-    <task id="LOCAL-00619" summary="add watch on isChatArchive">
-      <option name="closed" value="true" />
-      <created>1760293971171</created>
-      <option name="number" value="00619" />
-      <option name="presentableId" value="LOCAL-00619" />
-      <option name="project" value="LOCAL" />
-      <updated>1760293971171</updated>
-    </task>
-    <task id="LOCAL-00620" summary="add toggleArchive function">
-      <option name="closed" value="true" />
-      <created>1760294002992</created>
-      <option name="number" value="00620" />
-      <option name="presentableId" value="LOCAL-00620" />
-      <option name="project" value="LOCAL" />
-      <updated>1760294002992</updated>
-    </task>
-    <task id="LOCAL-00621" summary="add isArchive flag">
-      <option name="closed" value="true" />
-      <created>1760294030490</created>
-      <option name="number" value="00621" />
-      <option name="presentableId" value="LOCAL-00621" />
-      <option name="project" value="LOCAL" />
-      <updated>1760294030490</updated>
-    </task>
-    <task id="LOCAL-00622" summary="add watch on isArchive">
-      <option name="closed" value="true" />
-      <created>1760294157627</created>
-      <option name="number" value="00622" />
-      <option name="presentableId" value="LOCAL-00622" />
-      <option name="project" value="LOCAL" />
-      <updated>1760294157627</updated>
-    </task>
-    <task id="LOCAL-00623" summary="add toggleArchive function">
-      <option name="closed" value="true" />
-      <created>1760294209866</created>
-      <option name="number" value="00623" />
-      <option name="presentableId" value="LOCAL-00623" />
-      <option name="project" value="LOCAL" />
-      <updated>1760294209866</updated>
+      <workItem from="1761544558246" duration="6509000" />
     </task>
     <task id="LOCAL-00624" summary="add toggleArchive function">
       <option name="closed" value="true" />
@@ -727,7 +572,135 @@
       <option name="project" value="LOCAL" />
       <updated>1760533605896</updated>
     </task>
-    <option name="localTasksCounter" value="657" />
+    <task id="LOCAL-00657" summary="service worker updates">
+      <option name="closed" value="true" />
+      <created>1761581271629</created>
+      <option name="number" value="00657" />
+      <option name="presentableId" value="LOCAL-00657" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581271630</updated>
+    </task>
+    <task id="LOCAL-00658" summary="add config for own service worker file">
+      <option name="closed" value="true" />
+      <created>1761581320733</created>
+      <option name="number" value="00658" />
+      <option name="presentableId" value="LOCAL-00658" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581320733</updated>
+    </task>
+    <task id="LOCAL-00659" summary="update screenshots to reflect new branding">
+      <option name="closed" value="true" />
+      <created>1761581355693</created>
+      <option name="number" value="00659" />
+      <option name="presentableId" value="LOCAL-00659" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581355694</updated>
+    </task>
+    <task id="LOCAL-00660" summary="update screenshots to reflect new branding">
+      <option name="closed" value="true" />
+      <created>1761581373451</created>
+      <option name="number" value="00660" />
+      <option name="presentableId" value="LOCAL-00660" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581373451</updated>
+    </task>
+    <task id="LOCAL-00661" summary="update input ids">
+      <option name="closed" value="true" />
+      <created>1761581429675</created>
+      <option name="number" value="00661" />
+      <option name="presentableId" value="LOCAL-00661" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581429675</updated>
+    </task>
+    <task id="LOCAL-00662" summary="import Subscription interface">
+      <option name="closed" value="true" />
+      <created>1761581471400</created>
+      <option name="number" value="00662" />
+      <option name="presentableId" value="LOCAL-00662" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581471400</updated>
+    </task>
+    <task id="LOCAL-00663" summary="add PUSH_NOTIFICATION_API endpoint">
+      <option name="closed" value="true" />
+      <created>1761581522204</created>
+      <option name="number" value="00663" />
+      <option name="presentableId" value="LOCAL-00663" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581522204</updated>
+    </task>
+    <task id="LOCAL-00664" summary="add isAcceptNotification flag">
+      <option name="closed" value="true" />
+      <created>1761581575612</created>
+      <option name="number" value="00664" />
+      <option name="presentableId" value="LOCAL-00664" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581575612</updated>
+    </task>
+    <task id="LOCAL-00665" summary="add savePushNotificationSubscription function">
+      <option name="closed" value="true" />
+      <created>1761581595299</created>
+      <option name="number" value="00665" />
+      <option name="presentableId" value="LOCAL-00665" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581595299</updated>
+    </task>
+    <task id="LOCAL-00666" summary="add ServiceWorkerRegistration type">
+      <option name="closed" value="true" />
+      <created>1761581740257</created>
+      <option name="number" value="00666" />
+      <option name="presentableId" value="LOCAL-00666" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581740257</updated>
+    </task>
+    <task id="LOCAL-00667" summary="remove unused image">
+      <option name="closed" value="true" />
+      <created>1761581758187</created>
+      <option name="number" value="00667" />
+      <option name="presentableId" value="LOCAL-00667" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581758187</updated>
+    </task>
+    <task id="LOCAL-00668" summary="add screenshots with updated branding">
+      <option name="closed" value="true" />
+      <created>1761581789861</created>
+      <option name="number" value="00668" />
+      <option name="presentableId" value="LOCAL-00668" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581789861</updated>
+    </task>
+    <task id="LOCAL-00669" summary="add workbox-precaching strategies package">
+      <option name="closed" value="true" />
+      <created>1761581843161</created>
+      <option name="number" value="00669" />
+      <option name="presentableId" value="LOCAL-00669" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581843161</updated>
+    </task>
+    <task id="LOCAL-00670" summary="add custom service worker file for listen push even from backend">
+      <option name="closed" value="true" />
+      <created>1761581879733</created>
+      <option name="number" value="00670" />
+      <option name="presentableId" value="LOCAL-00670" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581879733</updated>
+    </task>
+    <task id="LOCAL-00671" summary="add service worker registration">
+      <option name="closed" value="true" />
+      <created>1761581989543</created>
+      <option name="number" value="00671" />
+      <option name="presentableId" value="LOCAL-00671" />
+      <option name="project" value="LOCAL" />
+      <updated>1761581989543</updated>
+    </task>
+    <task id="LOCAL-00672" summary="add logic for push notification subscription and subscription removal">
+      <option name="closed" value="true" />
+      <created>1761582051175</created>
+      <option name="number" value="00672" />
+      <option name="presentableId" value="LOCAL-00672" />
+      <option name="project" value="LOCAL" />
+      <updated>1761582051175</updated>
+    </task>
+    <option name="localTasksCounter" value="673" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,21 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add profile route" />
-    <MESSAGE value="Add getUserProfile function" />
-    <MESSAGE value="Add on if condition" />
-    <MESSAGE value="Add openProfileHandler function" />
-    <MESSAGE value="add userProfile check" />
-    <MESSAGE value="add accountExistText variable" />
-    <MESSAGE value="add accountExistText on the ui" />
-    <MESSAGE value="add showFeedbackDialog variable" />
-    <MESSAGE value="add isOffline variable" />
-    <MESSAGE value="add setShowFeedbackDialog  function" />
-    <MESSAGE value="return setShowFeedbackDialog" />
-    <MESSAGE value="hide Feedback for isNewChat" />
-    <MESSAGE value="add checkAccountExist function" />
-    <MESSAGE value="return  checkAccountExist" />
-    <MESSAGE value="add FeedbackContent  interface" />
     <MESSAGE value="add feedbackContent array" />
     <MESSAGE value="update isNewChat" />
     <MESSAGE value="add DialogModal for feedback" />
@@ -770,7 +728,22 @@
     <MESSAGE value="fix logout DialogModal" />
     <MESSAGE value="fix logout DialogModal buttons" />
     <MESSAGE value="fix setup account text" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix setup account text" />
+    <MESSAGE value="service worker updates" />
+    <MESSAGE value="add config for own service worker file" />
+    <MESSAGE value="update screenshots to reflect new branding" />
+    <MESSAGE value="update input ids" />
+    <MESSAGE value="import Subscription interface" />
+    <MESSAGE value="add PUSH_NOTIFICATION_API endpoint" />
+    <MESSAGE value="add isAcceptNotification flag" />
+    <MESSAGE value="add savePushNotificationSubscription function" />
+    <MESSAGE value="add ServiceWorkerRegistration type" />
+    <MESSAGE value="remove unused image" />
+    <MESSAGE value="add screenshots with updated branding" />
+    <MESSAGE value="add workbox-precaching strategies package" />
+    <MESSAGE value="add custom service worker file for listen push even from backend" />
+    <MESSAGE value="add service worker registration" />
+    <MESSAGE value="add logic for push notification subscription and subscription removal" />
+    <option name="LAST_COMMIT_MESSAGE" value="add logic for push notification subscription and subscription removal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
