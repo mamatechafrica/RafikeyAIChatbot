@@ -64,6 +64,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
   const isChatArchive = useStorage('isChatArchive', false)
   const isOffline = ref(false)
   const isShowTermsButton = ref(false)
+  const isAcceptNotification = useStorage('isAcceptNotification', false)
   const isStreamError = reactive({
     hasError: false,
     errorMessage: '',
@@ -580,5 +581,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     setShowFeedbackDialog,
     isOffline,
     isShowTermsButton,
+    isAcceptNotification,
+    savePushNotificationSubscription,
+    clearSubscription
   }
 })
