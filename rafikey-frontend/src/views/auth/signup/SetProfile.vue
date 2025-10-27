@@ -533,7 +533,7 @@ onBeforeUnmount(() => {
               </label>
               <input
                 v-model="setProfileData.password"
-                id="password-lg"
+                id="password-sm"
                 :type="togglePasswordVisibility"
                 class="w-full dark:bg-darkgray dark:text-white border border-gray-300 rounded-lg p-2 lg:text-lg text-sm pr-10"
                 required
@@ -556,7 +556,7 @@ onBeforeUnmount(() => {
               </label>
               <input
                 v-model="setProfileData.confirmPassword"
-                id="confirmPassword-lg"
+                id="confirmPassword-sm"
                 :type="toggleConfirmPasswordVisibility"
                 class="w-full dark:bg-darkgray dark:text-white border border-gray-300 rounded-lg p-2 lg:text-lg text-sm pr-10"
                 required
