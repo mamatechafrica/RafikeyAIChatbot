@@ -5,6 +5,7 @@ import { get } from 'lodash'
 import { useAuthStore } from '@/stores/authStore.ts'
 import type { Answer } from '@/components/game/QuestionItem.vue'
 import type { Feedback } from '@/components/chat/FeebackDialog.vue'
+import type { Subscription } from '@/components/settingsTab/PersonalizationComponent.vue'
 
 interface ChatbotConversationPayload {
   message: string
