@@ -14,6 +14,14 @@ const pwaOptions: Partial<VitePWAOptions> = {
   devOptions: {
     enabled: isDev, // ✅ only enable PWA emulation in dev
   },
+  strategies: 'injectManifest',  // Telling the plugin to use your own service worker file
+  srcDir: 'src',  //Directory containing service worker file
+  filename: 'custom-sw.js',
+  injectManifest: {
+    swSrc: 'src/custom-sw.js',   // 👈 your actual SW source file
+    swDest: 'dist/custom-sw.js', // 👈 the name of the generated SW file in dist folder
+    // injectionPoint: 'self.__WB__MANIFEST'
+  },
   workbox: isDev
     ? undefined // ✅ disables precache scanning & removes warning
     : {
