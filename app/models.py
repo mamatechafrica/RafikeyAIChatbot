@@ -126,3 +126,16 @@ class Clinic(SQLModel, table=True):
     source_country: Optional[str] = Field(default=None)
     phone_combined: Optional[str] = Field(default=None)
     email_combined: Optional[str] = Field(default=None)
+
+
+
+# Subscription 
+class Subscription(SQLModel, table=True):
+    __tablename__ = "subscriptions"
+
+    id: Optional[int] = Field(default=None, primary_key=True)
+    username: str = Field(index=True, max_length=255)
+    endpoint: str = Field(index=True, max_length=2048)
+    p256dh: str = Field(index=True, max_length=512)
+    auth: str = Field(index=True)
+
