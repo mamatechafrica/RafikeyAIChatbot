@@ -124,10 +124,3 @@ Thumbs.db
 *.swp
 *.tmp
 
-# Project-specific
-app/bot/clinics_full_scraped.xlsx
-app/bot/rafike_db/
-app/bot/rafike_db_V2/
-app/bot/rafikey_chroma_db/
-rafike_db_V2/
-rafikey_chroma_db/
