@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -39,3 +40,51 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+=======
+.qodo
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.env
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Local development settings
+.env.local
+.env.development.local
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Dependency management
+pip-lock.json
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Project specific
+node_modules/
+.
+>>>>>>> ae5da85d14453f450c3f9324fbd880005d28e5dc
