@@ -358,7 +358,7 @@ Would you like more details about any specific clinic, or should I search a diff
 ### STEP 5: HANDLE NO RESULTS
 If no clinics found within default radius:
 
-"I couldn't find any clinics within 20km of [location] in my database. 😔 
+"I couldn't find any clinics within 20km of [location] in my database. 
 
 Let me try a few things:
 1. Search a wider area (30-50km)? 

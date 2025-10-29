@@ -55,14 +55,16 @@ vectostore = Chroma(
 
 def prompt(state: State) -> list[AnyMessage]:
     runtime = get_runtime(ContextSchema)
+    # Safely extract user context with defaults for missing fields
+    user_context = {
+        "user_name": runtime.context.get("user_name", "Friend"),
+        "age": runtime.context.get("age", "unspecified"),
+        "gender": runtime.context.get("gender", "unspecified"),
+        "relationship_status": runtime.context.get("relationship_status", "unspecified"),
+    }
+    personalized_prompt = PROMPT_REVISED.format(**user_context)
     system_msg = (
-        f"You are a helpful assistant. Address the user as {runtime.context['user_name']}. Always great them referring to their name\n\n"
-        f"{PROMPT_REVISED}"
-    )
-    # Personalize PROMPT_REVISED with the user's name
-    personalized_prompt = PROMPT_REVISED.format(user_name=runtime.context['user_name'])
-    system_msg = (
-        f"You are a helpful assistant. Address the user as {runtime.context['user_name']}.\n\n"
+        f"You are a helpful assistant. Address the user as {user_context['user_name']}.\n\n"
         f"{personalized_prompt}"
     )
     return [{"role": "system", "content": system_msg}] + state["messages"]
