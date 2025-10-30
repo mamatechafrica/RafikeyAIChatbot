@@ -13,7 +13,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 load_dotenv()
 
 # Database connection
-DATABASE_URL = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6?sslmode=require"
+DATABASE_URL = "postgresql://rafikey_db_user:ZCDE9o3TJQTcw8NMSbBa6EJ1uTltWObl@dpg-d41h4djipnbc73fcobt0-a.oregon-postgres.render.com/rafikey_db"
 
 # LLM Config 
 llm = ChatOpenAI(
