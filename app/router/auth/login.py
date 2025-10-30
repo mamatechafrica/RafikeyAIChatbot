@@ -604,3 +604,43 @@ async def change_password(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="An error occurred while changing password"
         )
+    
+
+@router.put("/users/me", response_model=UserResponse)
+async def update_user_info(
+    current_user: Annotated[UserModel, Depends(get_current_active_user)],
+    session: SessionDep,
+    age: str | None = None,
+    gender: str | None = None,
+    relationship_status: str | None = None
+):
+    """
+    Update current user's information (age, gender, relationship status)
+    """
+    updated = False
+    if age is not None:
+        current_user.age = age
+        updated = True
+    if gender is not None:
+        current_user.gender = gender
+        updated = True
+    if relationship_status is not None:
+        current_user.relationship_status = relationship_status
+        updated = True
+
+    if updated:
+        session.add(current_user)
+        session.commit()
+        session.refresh(current_user)
+
+    return UserResponse(
+        id=current_user.id,
+        username=current_user.username,
+        email=current_user.email,
+        age=current_user.age,
+        gender=current_user.gender,
+        relationship_status=current_user.relationship_status,
+        terms_accepted=current_user.terms_accepted,
+        disabled=current_user.disabled,
+        created_at=current_user.created_at
+    )

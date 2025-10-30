@@ -6,7 +6,7 @@ import numpy as np
 excel_path = "D:/RafikeyAIChatbot/app/bot/clinics_full_scraped.xlsx"
 
 # Step 2: Connect to PostgreSQL
-database_url = "postgresql+psycopg2://rafkey_db_3cj6_user:mi16PTKmSt9afoQILMSNfFIBPl27Kvtk@dpg-d0ec7uodl3ps73bjivm0-a.oregon-postgres.render.com/rafkey_db_3cj6"
+database_url = "postgresql://rafikey_db_user:ZCDE9o3TJQTcw8NMSbBa6EJ1uTltWObl@dpg-d41h4djipnbc73fcobt0-a.oregon-postgres.render.com/rafikey_db"
 table_name = 'clinics'
 
 # Mapping from Excel columns to DB/model columns
