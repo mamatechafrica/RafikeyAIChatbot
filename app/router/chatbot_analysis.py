@@ -257,19 +257,38 @@ async def get_my_thread_list(
     db: SessionDep,
     current_user: Annotated[UserModel, Depends(get_current_active_user)]
 ):
-    """Get all thread IDs with their titles for the authenticated user only"""
+    """Get all thread IDs with their latest title for the authenticated user only"""
     try:
-        from sqlmodel import func
-        
-        statement = (
-            select(Conversations.thread_id, Conversations.title, func.max(Conversations.timestamp).label('last_message_at'))
+        from sqlmodel import func, select
+
+        # Subquery: for each thread_id, get the latest timestamp
+        subq = (
+            select(
+                Conversations.thread_id,
+                func.max(Conversations.timestamp).label("last_message_at")
+            )
             .where(Conversations.user_id == current_user.id)
-            .group_by(Conversations.thread_id, Conversations.title)
-            .order_by(func.max(Conversations.timestamp).desc())
+            .group_by(Conversations.thread_id)
+            .subquery()
         )
-        
+
+        # Join subquery to Conversations to get the latest title for each thread
+        statement = (
+            select(
+                Conversations.thread_id,
+                Conversations.title,
+                subq.c.last_message_at
+            )
+            .join(
+                subq,
+                (Conversations.thread_id == subq.c.thread_id) &
+                (Conversations.timestamp == subq.c.last_message_at)
+            )
+            .order_by(subq.c.last_message_at.desc())
+        )
+
         results = db.exec(statement).all()
-        
+
         threads = [
             {
                 "thread_id": result.thread_id,
@@ -278,14 +297,14 @@ async def get_my_thread_list(
             }
             for result in results
         ]
-        
+
         return {
             "user_id": current_user.id,
             "username": current_user.username,
             "total_threads": len(threads),
             "threads": threads
         }
-        
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
