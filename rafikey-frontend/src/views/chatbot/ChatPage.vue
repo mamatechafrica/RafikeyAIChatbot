@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { ref, nextTick, onMounted, watch, onUnmounted, shallowRef, provide, reactive } from 'vue'
+import {
+  ref,
+  nextTick,
+  onMounted,
+  watch,
+  onUnmounted,
+  shallowRef,
+  provide,
+  reactive,
+  onBeforeUnmount,
+} from 'vue'
 
 import UserInput from '@/components/chat/UserInput.vue'
 import _ from 'lodash'
@@ -15,7 +25,7 @@ import { v4 as uuidV4 } from 'uuid'
 import NavBar from '@/components/chat/NavBar.vue'
 import { useRoute, useRouter } from 'vue-router'
 import moment from 'moment/moment'
-import { useDark, useToggle } from '@vueuse/core'
+import { useDark } from '@vueuse/core'
 import DialogModal from '@/components/DialogModal.vue'
 import { Copy } from 'lucide-vue-next'
 
@@ -25,6 +35,8 @@ import PersonalizationComponent from '@/components/settingsTab/PersonalizationCo
 import SecurityComponent from '@/components/settingsTab/SecurityComponent.vue'
 import FeebackDialog from '@/components/chat/FeebackDialog.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
+import { useInactivity } from '@/composables/useInactivity.ts'
+import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
 
 export interface HistoryConv {
   bot_response: string
@@ -130,21 +142,6 @@ const sendFeedbackHandler = () => {
       isFeedbackLoading.value = false
     })
 }
-
-// const isGeneratingResponse = ref(false)
-
-// Showing the play button is at 30% chance and if that happens there is a delay of some second that is  between 0 and 10
-// const showPlayButton = () =>{
-//   const showButtonProbs = Math.random()
-//   if(showButtonProbs < 0.3){
-//     const delay = Math.random() * 10000
-//     setTimeout(()=>{
-//       isShowPlayButton.value = true
-//     }, delay)
-//   } else {
-//     return
-//   }
-// }
 
 const components = [
   {
@@ -407,6 +404,7 @@ const handleUserInput = (formatted: string) => {
 
   // don't re-create the user bubble if the user is regenerating the response
   if (!rafikeyChatbotStore.regenerateResponse) {
+    console.log('Going to rafikey')
     userMessage.value = {
       message: formatted,
       isUser: true,
@@ -466,7 +464,6 @@ const handleUserInput = (formatted: string) => {
     // pop the last message which is the chat message so that it does not show up on the page
 
     rafikeyChatbotStore.isGeneratingResponse = true
-
     rafikeyChatbotStore
       .sendMessageToRafikeyChatbot({
         message: formatted,
@@ -588,11 +585,20 @@ const fetchHistoryHandler = (activeSessionId: string) => {
     })
 }
 
+const { startTracking, stopTracking, isActive } = useInactivity()
+
+onBeforeUnmount(() => {
+  stopTracking()
+})
+
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
   // show the button on mounted at random
   // showPlayButton()
   const activeSessionId = route.params.sessionId as string
+
+    startTracking()
+ //start tracking after 5 minutes
 
   // Set initial value for isShowInput
   // isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
@@ -674,7 +680,6 @@ watch(
   },
 )
 
-const modeToggleHandler = useToggle(isDark)
 const isProfile = ref(false)
 
 const isProfileHandler = (val: boolean) => {
@@ -792,7 +797,58 @@ const openProfileHandler = () => {
 
 provide('bgColor', bgColor)
 provide('darkBgColor', darkBgColor)
-// provide('showPlayButton', isShowPlayButton)
+
+const openInactiveDialog = ref(false)
+const logOutInactiveUser = () => {
+  authStore.logout()
+  router.push({ name: 'login' })
+}
+const closeInactiveDialogHandler = () => {
+  openInactiveDialog.value = false
+  logOutInactiveUser()
+}
+
+const isLogUserOut = ref(false)
+// watch(
+//   () => isActive.value,
+//   (newValue) => {
+//     if (!newValue && openInactiveDialog.value && !isLogUserOut.value) {
+//       setTimeout(() => {
+//         closeInactiveDialogHandler()
+//
+//       }, 1000)
+//     }
+//   },
+// )
+
+// watch(
+//   () => isActive.value,
+//   (newValue) => {
+//     if (newValue) {
+//       window.alert("Hello")
+//       console.log("Chat is active")
+//     }
+//   },
+// )
+
+watch(
+  () => openInactiveDialog.value,
+  (newValue) => {
+    if (!newValue) logOutInactiveUser()
+  },
+)
+
+const logMeOut = () => {
+  isLogUserOut.value = true
+  logOutInactiveUser()
+  isActive.value = false
+}
+
+const donotLogMeOut = () => {
+  isActive.value = true
+  openInactiveDialog.value = false
+  // startTracking()
+}
 </script>
 
 <template>
@@ -886,19 +942,7 @@ provide('darkBgColor', darkBgColor)
               <span class="material-icons-outlined dark:text-white !text-xl">settings</span>
               <span class="dark:text-white text-gray-700">Settings</span>
             </div>
-            <div
-              @click.stop="modeToggleHandler()"
-              class="flex gap-4 hover:bg-lightBackground dark:hover:bg-stone-700 rounded-lg px-2 py-1"
-            >
-              <span v-if="!isDark" class="material-icons-outlined dark:text-white !text-xl"
-                >dark_mode</span
-              >
-              <span v-else class="material-icons-outlined dark:text-white">light_mode</span>
-              <span v-if="!isDark" class="dark:text-white text-gray-700">Dark Mode</span>
-              <span v-else class="dark:text-white text-gray-700">Light Mode</span>
-            </div>
           </div>
-          <!--          <div class="divide-y divide-solid  "></div>-->
           <div class="space-y-1 pt-2">
             <div
               @click.stop="confirmLogoutHandler"
@@ -1160,6 +1204,36 @@ provide('darkBgColor', darkBgColor)
                 <span v-else class="loading loading-spinner loading-sm"></span>
               </button>
             </div>
+          </div>
+        </template>
+      </DialogModal>
+      <DialogModal :is-open="!isActive" @closeModal="closeInactiveDialogHandler">
+        <template #title>
+          <div class="flex justify-center">
+            <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
+
+            <!--            <span class="material-icons-round dark:text-white !text-4xl">&#128546;</span>-->
+          </div>
+        </template>
+        <template #body>
+          <div class="flex justify-center">
+            <span class="dark:text-white">As you still active?</span>
+          </div>
+        </template>
+        <template #footer>
+          <div class="w-full flex gap-4 justify-center">
+            <button
+              class="shadow-none  border-none w-1/4 rounded-lg btn btn-sm bg-casablanca-300"
+              @click.stop="donotLogMeOut"
+            >
+              <span>Yes</span>
+            </button>
+            <button
+              class="shadow-none w-1/4 rounded-lg btn btn-sm border border-casablanca-300"
+              @click="logMeOut"
+            >
+              <span class="dark:text-white">No</span>
+            </button>
           </div>
         </template>
       </DialogModal>
