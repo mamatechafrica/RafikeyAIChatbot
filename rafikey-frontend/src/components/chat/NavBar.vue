@@ -206,6 +206,9 @@ const openProfileHandler = () => {
   }, 500)
   // router.push({ name: 'profile' })
 }
+
+const hoverNewChat = ref(false)
+const hoverMode = ref(false)
 </script>
 
 <template>
@@ -214,66 +217,89 @@ const openProfileHandler = () => {
     :class="[chatbotStore.collapseSidebarLarge ? 'w-24 duration-300 ' : 'w-80 duration-300 ']"
     class="fixed md:block hidden bg-link-water-50 dark:bg-darkgray top-6 left-6 h-[calc(100vh-3rem)] rounded-[30px] z-50"
   >
-    <div
-      class="flex justify-between items-center"
-      :class="[!chatbotStore.collapseSidebarLarge ? 'pe-8' : '']"
-    >
-      <div
-        class="w-24 flex justify-center"
-        @click="expandSideNavHandler"
-        :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']"
-      >
-        <img :src="imageToggleSmallDevice()" alt="rafikey-icon" class="w-14 pt-4" />
+    <div class="space-y-8" :class="[!chatbotStore.collapseSidebarLarge ? 'pe-8' : '']">
+      <div class="flex justify-between items-center">
+        <div
+          class="w-24 flex justify-center"
+          @click="expandSideNavHandler"
+          :class="[!chatbotStore.collapseSidebarLarge ? '' : 'cursor-pointer']"
+        >
+          <img
+            v-if="!chatbotStore.collapseSidebarLarge"
+            :src="imageToggleSmallDevice()"
+            alt="rafikey-icon"
+            class="w-14 pt-4"
+          />
+          <span v-else class="pt-8 material-icons-outlined !text-3xl dark:text-white">menu</span>
+        </div>
+        <div
+          v-if="!chatbotStore.collapseSidebarLarge"
+          @click="collapseSideNavHandler"
+          class="btn btn-sm btn-circle flex justify-center items-center h-10 w-10 dark:bg-darkgray hover:bg-transparent shadow-none"
+        >
+          <span class="material-icons-outlined dark:text-white">arrow_back_ios</span>
+        </div>
       </div>
       <div
-        v-if="!chatbotStore.collapseSidebarLarge"
-        @click="collapseSideNavHandler"
-        class="btn btn-sm btn-circle flex justify-center items-center h-10 w-10 dark:bg-darkgray hover:bg-transparent shadow-none"
+        class="flex items-center"
+        :class="[chatbotStore.collapseSidebarLarge ? 'ps-8 gap-10' : 'ps-8 gap-4']"
       >
-        <span class="material-icons-outlined dark:text-white">arrow_back_ios</span>
+        <div class="flex flex-col gap-4">
+          <div @mouseover="hoverNewChat = true" @mouseleave="hoverNewChat = false" class="relative">
+            <div class="flex gap-4 items-end">
+              <div
+                @click="newChatHandler"
+                class="bg-darkgray cursor-pointer dark:bg-stone-700 rounded-lg h-8 w-8 flex items-center justify-center"
+              >
+                <span class="material-icons-outlined text-white">add</span>
+
+              </div>
+              <div v-if="!chatbotStore.collapseSidebarLarge">
+                <span class="dark:text-white text-nowrap"> New chat </span>
+              </div>
+            </div>
+
+            <div
+              v-if="chatbotStore.collapseSidebarLarge && hoverNewChat"
+              class="tooltip dark:text-white dark:bg-bubbleDark bg-link-water-50"
+              role="tooltip"
+            >
+              New chat
+            </div>
+<!--            <div v-if="!chatbotStore.collapseSidebarLarge">-->
+<!--              <span class="dark:text-white text-nowrap"> New chat </span>-->
+<!--            </div>-->
+          </div>
+
+        </div>
       </div>
     </div>
 
-    <div class="flex gap-6" :class="[!chatbotStore.collapseSidebarLarge ? ' ps-10' : '']">
+    <div class="flex space-y-8" :class="[!chatbotStore.collapseSidebarLarge ? ' ps-8' : '']">
       <!--    top side-->
       <div>
-        <div class="space-y-16 pt-16" :class="[chatbotStore.collapseSidebarLarge ? 'ps-8' : '']">
-          <div class="flex flex-col gap-4">
-            <div
-              @click="newChatHandler"
-              class="bg-darkgray cursor-pointer dark:bg-stone-700 rounded-lg h-8 w-8 flex items-center justify-center"
-            >
-              <span class="material-icons-outlined text-white">add</span>
-            </div>
-            <!--            <div>-->
-            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">home</span>-->
-            <!--            </div>-->
-            <!--            <div>-->
-            <!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
-            <!--                >history</span-->
-            <!--              >-->
-            <!--            </div>-->
-            <!--            <div>-->
-            <!--              <span class="material-icons-outlined text-slate-300 !text-3xl dark:text-stone-300"-->
-            <!--                >explore</span-->
-            <!--              >-->
-            <!--            </div>-->
-          </div>
-        </div>
-
         <!--    bottom side-->
         <div
           class="absolute bottom-4 w-full"
           :class="[!chatbotStore.collapseSidebarLarge ? 'flex left-4' : '']"
         >
           <div class="flex flex-col items-center gap-4">
-            <!--            <div>-->
-            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">more_horiz</span>-->
-            <!--            </div>-->
-            <!--            <div>-->
-            <!--              <span class="material-icons-outlined !text-3xl dark:text-stone-300">settings</span>-->
-            <!--            </div>-->
-            <div @click.stop="profileHandler" class="cursor-pointer">
+            <div
+              @click.stop="modeToggleHandler()"
+              class="w-full justify-center flex cursor-pointer gap-10"
+            >
+              <div class="flex justify-center w-full items-center gap-4">
+                <span v-if="!isDark" class="material-icons-outlined dark:text-white !text-2xl"
+                  >dark_mode</span
+                >
+                <span v-else class="material-icons-outlined dark:text-white">light_mode</span>
+              </div>
+            </div>
+            <div
+              :class="[chatbotStore.collapseSidebarLarge ? 'justify-center' : 'justify-start ']"
+              @click.stop="profileHandler"
+              class="w-full flex cursor-pointer"
+            >
               <div
                 :class="[darkBgColor, bgColor]"
                 class="rounded-full h-10 w-10 flex items-center justify-center font-bold"
@@ -295,11 +321,11 @@ const openProfileHandler = () => {
         >
           <div v-for="(titles, date) in groupChat()" :key="date">
             <div
-              class="flex justify-between sticky ps-4 pb-1 top-0 backdrop-blur font-bold bg-transparent dark:bg-darkgray"
+              class="flex justify-between sticky pb-1 top-0 backdrop-blur font-bold bg-transparent dark:bg-darkgray"
             >
               <h1 class="dark:text-white text-large">{{ date }}</h1>
-              <div class="flex flex-row-reverse">
-                <span class="material-icons-outlined dark:text-white">expand_less</span>
+              <div class="pe-4">
+                <!--                <span class="material-icons-outlined dark:text-white">expand_less</span>-->
                 <span class="dark:text-stone-300 text-small text-nowrap">
                   {{ titles.length }} total</span
                 >
@@ -395,12 +421,12 @@ const openProfileHandler = () => {
                           <div
                             v-if="!chatbotStore.isNewChat"
                             @click.stop="shareChat"
-                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer
-                                  hover:bg-button-light hover:text-white
-                                  dark:hover:bg-button-light dark:hover:text-white
-                                  transition-all duration-200 ease-in-out"
+                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer hover:bg-button-light hover:text-white dark:hover:bg-button-light dark:hover:text-white transition-all duration-200 ease-in-out"
                           >
-                            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white">share</span>
+                            <span
+                              class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white"
+                              >share</span
+                            >
                             <span class="dark:text-white md:text-lg text-sm">Share</span>
                           </div>
 
@@ -408,12 +434,12 @@ const openProfileHandler = () => {
                           <div
                             v-if="!chatbotStore.isNewChat"
                             @click.stop="chatbotStore.setShowFeedbackDialog(true)"
-                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer
-                                  hover:bg-button-light hover:text-white
-                                  dark:hover:bg-button-light dark:hover:text-white
-                                  transition-all duration-200 ease-in-out"
+                            class="flex items-center gap-1 border dark:border-white border-stone-300 rounded-lg px-2 py-1 cursor-pointer hover:bg-button-light hover:text-white dark:hover:bg-button-light dark:hover:text-white transition-all duration-200 ease-in-out"
                           >
-                            <span class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white">feedback</span>
+                            <span
+                              class="material-icons-outlined dark:text-stone-300 md:!text-lg !text-sm group-hover:text-white"
+                              >feedback</span
+                            >
                             <span class="dark:text-white md:text-lg text-sm">Feedback</span>
                           </div>
                         </div>
@@ -485,30 +511,6 @@ const openProfileHandler = () => {
                             >
                           </div>
                         </div>
-
-                        <!--                        <div class="absolute bottom-0 w-full bg-transparent backdrop-blur">-->
-                        <!--                          <div class="flex px-10 justify-between w-full">-->
-                        <!--                            <div-->
-                        <!--                              class="col-span-1 sidebar-button-yellow shadow-[0_0_32px_3px] shadow-yellow-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-                        <!--                            >-->
-                        <!--                              <img-->
-                        <!--                                src="@/assets/images/talk-about-it.png"-->
-                        <!--                                alt="talk-to-someone-image"-->
-                        <!--                                class=""-->
-                        <!--                              />-->
-                        <!--                            </div>-->
-                        <!--                            <div-->
-                        <!--                              class="sidebar-button-pink shadow-[0_0_32px_3px] shadow-pink-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-                        <!--                            >-->
-                        <!--                              <img src="@/assets/images/clinic.png" alt="clinic-image" />-->
-                        <!--                            </div>-->
-                        <!--                            <div-->
-                        <!--                              class="sidebar-button-blue shadow-[0_0_32px_3px] shadow-blue-500/85 h-10 w-10 rounded-full flex items-center justify-center"-->
-                        <!--                            >-->
-                        <!--                              <img src="@/assets/images/learn.png" alt="lear-image" />-->
-                        <!--                            </div>-->
-                        <!--                          </div>-->
-                        <!--                        </div>-->
                       </div>
                     </div>
                     <!--        profile section-->
@@ -636,15 +638,29 @@ const openProfileHandler = () => {
 </template>
 
 <style scoped>
-.sidebar-button-blue {
-  background-color: #2b42d1;
+.tooltip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(0.5rem); /* dark background */
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  z-index: 50;
+  white-space: nowrap;
+  pointer-events: none; /* avoid blocking pointer */
 }
 
-.sidebar-button-pink {
-  background-color: #d56d9c;
-}
-
-.sidebar-button-yellow {
-  background-color: #fae44b;
+/* small arrow pointing to the button */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid rgba(31, 41, 55, 0.95);
 }
 </style>
