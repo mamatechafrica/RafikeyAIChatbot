@@ -14,10 +14,15 @@ export interface CreateAccountPayload {
   username: string
   email: string
   password: string
-  age: string
-  gender: string
+  gender?: string
   relationship_status: string
   terms_accepted: boolean
+}
+
+export interface UpdateProfilePayload {
+  gender?: string
+  relationship_status?: string
+  age?: string
 }
 
 export interface LoginPayload {
@@ -299,6 +304,38 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  async function updateProfile(payload: UpdateProfilePayload ) {
+    const authStore = useAuthStore()
+    const formData = new FormData()
+    console.log('Update Profile Payload:', payload)
+    formData.append('age', payload.age || '')
+    formData.append('gender', payload.gender || '')
+    formData.append('relationship_status', payload.relationship_status || '')
+    try {
+      const response = await fetch(`${BASE_URL}/auth/users/me`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${authStore.token}`,
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const res = await response.json()
+      console.log('Update profile response:', res)
+      if (!response.ok) {
+        return {
+          result: 'fail',
+        }
+      } else {
+        return {
+          result: 'ok',
+        }
+      }
+    } catch (e) {
+      return
+    }
+  }
+
   // set user data on local storage
   async function setUserData(token: string) {
     const { sub } = jwtDecode(token)
@@ -360,5 +397,6 @@ export const useAuthStore = defineStore('authStore', () => {
     logOutAllDevices,
     getUserProfile,
     checkAccountExist,
+    updateProfile
   }
 })
