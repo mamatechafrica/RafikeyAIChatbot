@@ -128,6 +128,11 @@ class Clinic(SQLModel, table=True):
     email_combined: Optional[str] = Field(default=None)
 
 
+# User login history model
+class UserLoginHistory(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id", index=True)
+    login_time: datetime = Field(default_factory=datetime.utcnow, index=True)
 
 # Subscription 
 class Subscription(SQLModel, table=True):

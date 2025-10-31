@@ -16,7 +16,8 @@ from sqlmodel import Session, select
 from ...models import User as UserModel
 from ...core.database import SessionDep
 from fastapi import Body
-
+from sqlmodel import select
+from ...models import UserLoginHistory
 
 load_dotenv()
 
@@ -467,6 +468,12 @@ async def login_for_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
     
+    # Record login event
+    from ...models import UserLoginHistory
+    login_event = UserLoginHistory(user_id=user.id)
+    session.add(login_event)
+    session.commit()
+
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
@@ -644,3 +651,20 @@ async def update_user_info(
         disabled=current_user.disabled,
         created_at=current_user.created_at
     )
+# Endpoint to get the number of times the current user has logged in
+@router.get("/users/me/login-count")
+async def get_login_count(
+    current_user: Annotated[UserModel, Depends(get_current_active_user)],
+    session: SessionDep
+):
+    """
+    Get the number of times the current user has logged in.
+    """
+    from sqlmodel import select
+    from ...models import UserLoginHistory
+
+    result = session.exec(
+        select(UserLoginHistory).where(UserLoginHistory.user_id == current_user.id)
+    )
+    login_count = len(list(result))
+    return {"user_id": current_user.id, "username": current_user.username, "login_count": login_count}
