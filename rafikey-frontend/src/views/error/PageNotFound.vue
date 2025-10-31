@@ -29,7 +29,7 @@ const goBackHome = () => {
       <div class="mt-4">
         <button
           @click="goBackHome"
-          class="btn rounded-[11px] shadow-none border-none bg-casablanca-300 btn-sm md:btn-md lg:btn-lg xl:btn-xl normal-case"
+          class="btn rounded-[11px] p-2 shadow-none border-none bg-casablanca-300 btn-sm md:btn-md lg:btn-lg xl:btn-xl normal-case"
         >
           <span class="lg:text-small text-extra-extra-small">Go back home</span>
         </button>

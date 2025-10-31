@@ -8,6 +8,7 @@ import { useRouter } from 'vue-router'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
 import SRHRGameButton from '@/components/game/SRHRGameButton.vue'
 import { toggleImage } from '@/composables/imageToggle.ts'
+import FindAService from '@/components/chat/FindAService.vue'
 
 export interface AccessQuestion {
   id: number
@@ -151,12 +152,15 @@ const goToPlayPage = () => {
       </div>
 
       <div class="w-full flex justify-between" v-if="accessButtonDisplay">
-        <div class="grid lg:grid-cols-3 grid-cols-2 lg:gap-16 gap-6">
-          <div
-            class="lg:col-span-1 col-span-4 cursor-pointer"
-            @click="accessButtonQuestionHandler(accessButtonsArray[0].content)"
-          >
-            <img :src="toggleAccessButton" alt="access-buttons" class="" />
+        <div class="flex flex-wrap gap-4 " :class="[!chatbotStore.collapseSidebarLarge? 'gap-2 md:gap-1': 'md:gap-10']">
+<!--          <div-->
+<!--            class="lg:col-span-1 col-span-4 cursor-pointer"-->
+<!--            @click="accessButtonQuestionHandler(accessButtonsArray[0].content)"-->
+<!--          >-->
+<!--            <img :src="toggleAccessButton" alt="access-buttons" class="" />-->
+<!--          </div>-->
+          <div class="lg:col-span-1 col-span-4">
+            <FindAService :bgColor=" darkBgColor" @close-game-button="closeGameButton" />
           </div>
           <div class="lg:col-span-1 col-span-4">
             <SRHRGameButton @close-game-button="closeGameButton" />
