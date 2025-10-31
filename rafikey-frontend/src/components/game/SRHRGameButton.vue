@@ -33,7 +33,7 @@ const goToPlayPage = () => {
     </div>
     <div class="flex justify-center">
       <div
-        class="dark:bg-lightgray bg-gray-100 rounded-full h-[44px] w-[44px] flex justify-center items-center"
+        class="bg-casablanca-300 rounded-full  flex justify-center items-center"
       >
         <img src="@/assets/images/game.png" alt="game-image" />
       </div>
