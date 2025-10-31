@@ -50,6 +50,101 @@ const relationshipStatus = () => {
     }
   }
 }
+
+const openEditDialog = ref(false)
+const editProfileDetail = ref()
+const editAge = () => {
+  editProfileDetail.value = 'Age'
+  openEditDialog.value = true
+}
+
+const editGender = () => {
+  editProfileDetail.value = 'Gender'
+  openEditDialog.value = true
+}
+
+const editRelationshipStatus = () => {
+  editProfileDetail.value = 'Relationship Status'
+  openEditDialog.value = true
+}
+
+const ageRange = [
+  {
+    name: '10-14',
+    id: 1,
+  },
+  {
+    name: '15-19',
+    id: 2,
+  },
+  {
+    name: '20-24',
+    id: 3,
+  },
+  {
+    name: '25-29',
+    id: 4,
+  },
+] as Buttons[]
+
+const getToKnowYouData = reactive({
+  age: '',
+  gender: '',
+  relationship_status: '',
+})
+
+const selectedRadio = (value: Buttons) => {
+  if (range(1, 5).includes(value.id)) {
+    getToKnowYouData.age = value.name
+  } else {
+    if (range(5, 9).includes(value.id)) {
+      getToKnowYouData.gender = value.name
+    } else {
+      getToKnowYouData.relationship_status = value.name
+    }
+  }
+}
+
+const loadingProfileUpdate = ref(false)
+const notificationStore = useNotificationStore()
+const updateProfileHandler = () => {
+  console.log('Edit---', editProfileDetail.value)
+  loadingProfileUpdate.value = true
+  authStore
+    .updateProfile(getToKnowYouData)
+    .then((resp) => {
+      if (resp?.result === 'ok') {
+        loadingProfileUpdate.value = false
+        openEditDialog.value = false
+        notificationStore.addNotification(
+          `${editProfileDetail.value} successfully updated`,
+          'success',
+        )
+        setTimeout(()=>{
+          fetchUserData()
+        }, 2000)
+
+
+        // refresh user profile data
+
+      } else {
+        loadingProfileUpdate.value = false
+        loadingProfileUpdate.value = false
+        notificationStore.addNotification(
+          `Failed to update ${editProfileDetail.value} please try again`,
+          'error',
+        )
+      }
+    })
+    .catch((err) => {
+      loadingProfileUpdate.value = false
+      notificationStore.addNotification(`An error occurred, please try again later`, 'error')
+    })
+}
+
+const everyThingOk = computed(() => {
+  return getToKnowYouData.age || getToKnowYouData.gender || getToKnowYouData.relationship_status
+})
 </script>
 
 <template>
