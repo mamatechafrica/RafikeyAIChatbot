@@ -18,6 +18,8 @@ class ClinicCreate(BaseModel):
     source_country: Optional[str] = None
     phone_combined: Optional[str] = None
     email_combined: Optional[str] = None
+    opening_hours: Optional[str] = None
+    cost: Optional[str] = None
 
 
 class ClinicUpdate(BaseModel):
@@ -32,6 +34,8 @@ class ClinicUpdate(BaseModel):
     source_country: Optional[str] = None
     phone_combined: Optional[str] = None
     email_combined: Optional[str] = None
+    opening_hours: Optional[str] = None
+    cost: Optional[str] = None
 
 
 class ClinicResponse(BaseModel):
@@ -47,6 +51,8 @@ class ClinicResponse(BaseModel):
     source_country: Optional[str]
     phone_combined: Optional[str]
     email_combined: Optional[str]
+    opening_hours: Optional[str] = None
+    cost: Optional[str] = None
 
 
 router = APIRouter(

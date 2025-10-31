@@ -126,6 +126,8 @@ class Clinic(SQLModel, table=True):
     source_country: Optional[str] = Field(default=None)
     phone_combined: Optional[str] = Field(default=None)
     email_combined: Optional[str] = Field(default=None)
+    opening_hours: Optional[str] = Field(default=None)  # New field for clinic opening hours
+    cost: Optional[str] = Field(default=None)           # New field for clinic cost
 
 
 # User login history model
