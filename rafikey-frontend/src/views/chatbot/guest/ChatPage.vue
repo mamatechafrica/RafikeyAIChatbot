@@ -317,7 +317,7 @@ const handleUserInput = (formatted: string) => {
 
     rafikeyChatbotStore.isGeneratingResponse = true
     rafikeyChatbotStore
-      .sendMessageToRafikeyChatbot({
+      .sendMessageToRafikeyChatbotAnonymous({
         message: formatted,
         sessionId: rafikeyChatbotStore.getSessionId,
       })
@@ -396,19 +396,8 @@ const fetchHistoryHandler = (activeSessionId: string) => {
     .then((res) => {
       if (res?.result != 'ok') {
         return
-        // rafikeyChatbotStore.setStreamError({
-        //   hasError: true,
-        //   errorMessage: res?.data as string,
-        //   isLoggedIn: res?.isLoggedIn as boolean,
-        // })
       } else {
-        // router.replace({
-        //   name: 'chatWithId',
-        //   params: {
-        //     sessionId: activeSessionId,
-        //   },
-        // })
-        const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
+          const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
           return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
         })
 
@@ -434,11 +423,6 @@ const fetchHistoryHandler = (activeSessionId: string) => {
       }
     })
     .catch((err) => {
-      // rafikeyChatbotStore.setStreamError({
-      //   hasError: true,
-      //   errorMessage: "An error occurred while generating the response. Please try again later.",
-      //   isLoggedIn: true,
-      // })
       console.error('Error fetching chat history', err)
     })
     .finally(() => {
@@ -457,7 +441,6 @@ onMounted(() => {
   setTimeout(() => {
     isShowDisclaimer.value = true
   }, 3000)
-  // const isSessionId = route.params.sessionId as string
   if (props.sessionId) {
     isStartChatSmallScreen.value = true
     fetchHistoryHandler(props.sessionId as string)
@@ -573,6 +556,10 @@ const goToPlayPage = () => {
   router.push({
     name: 'welcome-page-quiz',
   })
+}
+
+const goToServiceFInder = () =>{
+  window.location.href= 'https://askrafikey.com/service-finder'
 }
 </script>
 
@@ -738,18 +725,6 @@ const goToPlayPage = () => {
         </div>
         <div class="space-y-6">
           <div class="cursor-pointer flex gap-4 w-full">
-            <!--            <div-->
-            <!--              class="w-full bg-link-water-50 flex flex-col dark:bg-darkgray rounded-xl sm:p-4 p-2 space-y-2"-->
-            <!--              @click="startChatSmallScreen"-->
-            <!--            >-->
-            <!--              <div class="bg-purple-500 rounded-full h-10 w-10 flex justify-center items-center">-->
-            <!--                <span class="material-icons-outlined dark:text-white">sms</span>-->
-            <!--              </div>-->
-            <!--              <div class="flex justify-between dark:text-white gap-4">-->
-            <!--&lt;!&ndash;                <p class="text-small">Chat with Rafikey</p>&ndash;&gt;-->
-            <!--                <span class="material-icons-outlined text-sm">arrow_forward</span>-->
-            <!--              </div>-->
-            <!--            </div>-->
             <div
               @click.stop="goToPlayPage"
               class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
@@ -762,6 +737,18 @@ const goToPlayPage = () => {
               </div>
               <div class="flex dark:text-white gap-4 justify-between">
                 <p class="text-small">Play games</p>
+                <span class="material-icons-outlined text-sm">arrow_forward</span>
+              </div>
+            </div>
+            <div
+              @click.stop="goToServiceFInder"
+              class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
+            >
+              <div class="bg-cyan-300 rounded-full h-10 w-10 flex justify-center items-center">
+                <span class="material-icons-outlined">health_and_safety</span>
+              </div>
+              <div class="flex dark:text-white justify-between gap-4">
+                <p class="text-small text-nowrap">Find a service</p>
                 <span class="material-icons-outlined text-sm">arrow_forward</span>
               </div>
             </div>
@@ -784,21 +771,21 @@ const goToPlayPage = () => {
             </div>
           </div>
 
-          <div class="space-y-2 p-5">
-            <div class="flex justify-between sm:p-4">
-              <p class="dark:text-white text-extra-large">Ask Rafikey</p>
-              <!--                <span class="text-purple-400 text-small">See all</span>-->
-            </div>
-            <div v-for="qn in accessQuestions" :key="qn.id">
-              <div
-                @click="accessButtonQuestionHandler(qn.question)"
-                class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"
-              >
-                <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>
-                <p class="dark:text-white text-small">{{ qn.question }}</p>
-              </div>
-            </div>
-          </div>
+<!--          <div class="space-y-2 p-5">-->
+<!--            <div class="flex justify-between sm:p-4">-->
+<!--              <p class="dark:text-white text-extra-large">Ask Rafikey</p>-->
+<!--              &lt;!&ndash;                <span class="text-purple-400 text-small">See all</span>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div v-for="qn in accessQuestions" :key="qn.id">-->
+<!--              <div-->
+<!--                @click="accessButtonQuestionHandler(qn.question)"-->
+<!--                class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"-->
+<!--              >-->
+<!--                <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>-->
+<!--                <p class="dark:text-white text-small">{{ qn.question }}</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
         </div>
       </div>
       <div>
