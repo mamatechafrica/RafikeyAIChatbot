@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
-import { onMounted, ref } from 'vue'
+import { useAuthStore, useNotificationStore, useRafikeyChatbotStore } from '@/stores'
+import { computed, onMounted, reactive, ref } from 'vue'
 import moment from 'moment'
 import DialogModal from '@/components/DialogModal.vue'
 import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
@@ -60,7 +60,8 @@ const authStore = useAuthStore()
 const isError = ref('')
 const isAppLoading = ref(false)
 const userProfile = ref<UserProfile | null>(null)
-onMounted(() => {
+
+const fetchUserData = () =>{
   isAppLoading.value = true
   authStore
     .getUserProfile()
@@ -109,7 +110,7 @@ const editGender = () => {
   openEditDialog.value = true
 }
 
-const editRelationshipStatus = () => {
+const editRelationshiedit profile logicpStatus = () => {
   editProfileDetail.value = 'Relationship Status'
   openEditDialog.value = true
 }
@@ -263,15 +264,35 @@ const everyThingOk = computed(() => {
             <!--              right side-->
             <div class="lg:space-y-6 space-y-2 lg:col-span-1 col-span-2">
               <div>
-                <p class="text-stone-400">Age group</p>
-                <span class="dark:text-white">{{ userProfile.age }}</span>
+                <div class="flex gap-2">
+                  <p class="text-stone-400">Age group</p>
+                  <span @click.stop="editAge" class="material-icons-outlined cursor-pointer"
+                    >edit</span
+                  >
+                </div>
+
+                <span class="dark:text-white">{{
+                  userProfile.age ? userProfile.age : 'Not available'
+                }}</span>
               </div>
               <div>
-                <p class="text-stone-400">Gender</p>
+                <div class="flex gap-2">
+                  <p class="text-stone-400">Gender</p>
+                  <span @click.stop="editGender" class="material-icons-outlined cursor-pointer"
+                    >edit</span
+                  >
+                </div>
                 <span class="dark:text-white">{{ userProfile.gender }}</span>
               </div>
               <div>
-                <p class="text-stone-400">Relationship status</p>
+                <div class="flex gap-2">
+                  <p class="text-stone-400">Relationship status</p>
+                  <span
+                    @click.stop="editRelationshipStatus"
+                    class="material-icons-outlined cursor-pointer"
+                    >edit</span
+                  >
+                </div>
                 <span class="dark:text-white">{{ relationshipStatus() }}</span>
               </div>
             </div>
