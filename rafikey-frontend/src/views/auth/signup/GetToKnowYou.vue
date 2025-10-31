@@ -17,12 +17,11 @@ const authStore = useAuthStore()
 const notificationStore = useNotificationStore()
 const router = useRouter()
 const isLoading = ref(false)
-const ageRangePlaceholder = 'Choose your age range'
+// const ageRangePlaceholder = 'Choose your age range'
 const genderPlaceholder = 'Choose your gender'
 const relationshipPlaceholder = 'Pick an option'
 
 const getToKnowYouData = reactive({
-  age: '',
   gender: '',
   relationship_status: '',
 })
@@ -31,25 +30,6 @@ const signupError = reactive({
   isError: false,
   message: '',
 })
-
-const ageRange = [
-  {
-    name: '10-14',
-    id: 1,
-  },
-  {
-    name: '15-19',
-    id: 2,
-  },
-  {
-    name: '20-24',
-    id: 3,
-  },
-  {
-    name: '25-29',
-    id: 4,
-  },
-] as Buttons[]
 
 const genderSet = [
   {
@@ -89,9 +69,7 @@ onMounted(() => {})
 
 // selected get-to-know-you data
 const selectedRadio = (value: Buttons) => {
-  if (range(1, 5).includes(value.id)) {
-    getToKnowYouData.age = value.name
-  } else if (range(5, 9).includes(value.id)) {
+  if (range(5, 9).includes(value.id)) {
     getToKnowYouData.gender = value.name
   } else {
     getToKnowYouData.relationship_status = value.name
@@ -100,7 +78,7 @@ const selectedRadio = (value: Buttons) => {
 
 // all the get-to-know-you-data is okay
 const everyThingOk = computed(() => {
-  return getToKnowYouData.age && getToKnowYouData.gender && getToKnowYouData.relationship_status
+  return getToKnowYouData.gender && getToKnowYouData.relationship_status
 })
 
 watch(everyThingOk, (value) => {
@@ -115,7 +93,6 @@ const createAccountHandler = () => {
   if (everyThingOk.value) {
     // save the get-to-know-you data to the store
     createAccountFormStore.setProfile({
-      age: getToKnowYouData.age,
       gender: getToKnowYouData.gender,
       relationship_status: getToKnowYouData.relationship_status,
     })
@@ -179,17 +156,17 @@ onBeforeMount(() => {
 
           <div class="border-b border-gray-400 w-1/3 mx-auto"></div>
           <div class="space-y-6">
-            <div class="space-y-4">
-              <div class="flex flex-col items-center">
-                <p class="text-small dark:text-white">How old are you (Required)</p>
-                <span class="text-small text-gray-700 dark:text-stone-300"
-                  >So we can tailor content and support</span
-                >
-              </div>
-              <div class="">
-                <RadioGroup :radio-type="ageRange" @change="selectedRadio" />
-              </div>
-            </div>
+<!--            <div class="space-y-4">-->
+<!--              <div class="flex flex-col items-center">-->
+<!--                <p class="text-small dark:text-white">How old are you (Required)</p>-->
+<!--                <span class="text-small text-gray-700 dark:text-stone-300"-->
+<!--                  >So we can tailor content and support</span-->
+<!--                >-->
+<!--              </div>-->
+<!--              <div class="">-->
+<!--&lt;!&ndash;                <RadioGroup :radio-type="ageRange" @change="selectedRadio" />&ndash;&gt;-->
+<!--              </div>-->
+<!--            </div>-->
 
             <div class="space-y-4">
               <div class="flex justify-center">
@@ -248,17 +225,17 @@ onBeforeMount(() => {
       </div>
       <div class="border-b-[1px] border-stone-400 smx-auto"></div>
 
-      <div class="space-y-2">
-        <p class="text-gray-950 dark:text-white text-extra-small">Age Range (Required)</p>
-        <LisxBox
-          :list-items="ageRange"
-          :place-holder="ageRangePlaceholder"
-          @selected-list-item="selectedRadio"
-        />
-        <p class="text-gray-400 dark:text-stone-300 text-extra-extra-small">
-          This helps us give you the right kind of support and info for your age
-        </p>
-      </div>
+<!--      <div class="space-y-2">-->
+<!--        <p class="text-gray-950 dark:text-white text-extra-small">Age Range (Required)</p>-->
+<!--        <LisxBox-->
+<!--          :list-items="ageRange"-->
+<!--          :place-holder="ageRangePlaceholder"-->
+<!--          @selected-list-item="selectedRadio"-->
+<!--        />-->
+<!--        <p class="text-gray-400 dark:text-stone-300 text-extra-extra-small">-->
+<!--          This helps us give you the right kind of support and info for your age-->
+<!--        </p>-->
+<!--      </div>-->
       <div class="space-y-2">
         <p class="text-gray-950 text-extra-small dark:text-white">Gender (Required)</p>
         <LisxBox
