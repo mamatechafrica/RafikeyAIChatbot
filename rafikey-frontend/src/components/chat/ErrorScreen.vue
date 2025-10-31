@@ -49,25 +49,27 @@ const regenerateResponse = () => {
             <span class="text-extra-small">Opps!</span>
           </div>
         </div>
-        <div class="flex justify-between">
+        <div class="md:flex md:justify-between md:items-center space-y-4 md:space-y-0">
           <p class="text-small">{{ props.errorMessage }}</p>
-          <p v-if="!props.isLoggedIn">Looks like your session is expired. Kindly login.</p>
-          <button
-            @click="refreshChat"
-            v-if="props.isLoggedIn"
-            class="btn btn-sm bg-black shadow-none rounded-xl p-6"
-            v-on:click="refreshPage"
-          >
-            <span class="text-white text-extra-small">Refresh chat</span>
-          </button>
-          <button
-            @click="loginHandler"
-            v-else
-            class="btn btn-sm bg-black shadow-none rounded-xl md:p-6 p-4"
-            v-on:click="refreshPage"
-          >
-            <span class="text-white lg:text-lg text-sm">Login</span>
-          </button>
+          <div class="flex justify-end">
+            <button
+              @click="refreshChat"
+              v-if="props.isLoggedIn"
+              class="btn btn-sm bg-black shadow-none rounded-xl p-6"
+              v-on:click="refreshPage"
+            >
+              <span class="text-white text-extra-small">Refresh chat</span>
+            </button>
+            <button
+              @click="loginHandler"
+              v-else
+              class="btn btn-sm bg-black shadow-none rounded-xl md:p-6 p-4"
+              v-on:click="refreshPage"
+            >
+              <span class="text-white lg:text-lg text-sm">Login</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

@@ -8,7 +8,6 @@ export const useCreateAccountFormStore = defineStore('createAccountFormStore', {
       username: '',
       email: '',
       password: '',
-      age: '',
       gender: '',
       relationship_status: '',
       terms_accepted: false,
