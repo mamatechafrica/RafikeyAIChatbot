@@ -117,6 +117,19 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
 
   //   send message to Rafikeychatbot
   async function sendMessageToRafikeyChatbot(payload: ChatbotConversationPayload) {
+    buffer.value = ''
+    const aborted = ref(false)
+    const controller = new AbortController()
+    let reader: ReadableStreamDefaultReader<Uint8Array> | undefined
+    const timeoutId = setTimeout(() => {
+      console.log('Aborting request after 5s....')
+      controller.abort()
+    }, 5000)
+
+    controller.signal.addEventListener('abort', () => {
+      reader?.cancel('Timeout')
+      aborted.value = true
+    })
     const authStore = useAuthStore()
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/chat`, {
@@ -125,6 +138,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${authStore.token}`,
         },
+        signal: controller.signal,
         body: JSON.stringify({
           message: payload.message,
           session_id: payload.sessionId,
@@ -132,85 +146,119 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
       })
       // initial HTTP response level check
       if (!response.ok) {
-        if (response.status === 401) {
-          console.log('Unauthorized access - please login')
-          return {
-            result: 'fail',
-            data: 'Your session has expired, please login to continue',
-            isLoggedIn: false,
-          }
-        } else {
-          console.log('Failed to send message to RafikeyChatbot')
-          return {
-            result: 'fail',
-            data: 'An error occurred, please try again later',
-            isLoggedIn: true,
-          }
-        }
-      } else {
-        const reader = response.body?.getReader()
-        const decoder = new TextDecoder()
-
-        while (true) {
-          const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
-          if (done) break
-          buffer.value += decoder.decode(value, { stream: true })
-        }
-        // console.log('Rafikey response:', buffer.value)
         return {
-          result: 'ok',
-          data: buffer.value,
+          result: 'fail',
+          data:
+            response.status === 401
+              ? 'Your session has expired, please login to continue'
+              : 'An error occurred, please try again later',
+          isLoggedIn: response.status !== 401,
         }
       }
+
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      while (true) {
+        if (aborted.value) break
+        const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
+        if (done) break
+        buffer.value += decoder.decode(value, { stream: true })
+        clearTimeout(timeoutId)
+      }
+      if (!buffer.value.trim()) {
+        return {
+          result: 'fail',
+          data: 'An expected error occurred, please try again later.',
+          isLoggedIn: true,
+        }
+      }
+      return { result: 'ok', data: buffer.value }
     } catch (error) {
-      console.log('Error sending message to RafikeyChatbot', error)
-      return
-    } finally {
-      // clear the variable
-      buffer.value = ''
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        console.log('Stream aborted due to timeout')
+        return {
+          result: 'fail',
+          data: 'An expected error occurred, please try again later.',
+          isLoggedIn: true,
+        }
+      }
+      console.error('Error during streaming:', error)
+      return {
+        result: 'fail',
+        data: 'An expected error occurred, please try again later.',
+        isLoggedIn: true,
+      }
     }
   }
 
   // anonymous user send message to RafikeyChatbot
   async function sendMessageToRafikeyChatbotAnonymous(payload: ChatbotConversationPayload) {
-    const authStore = useAuthStore()
+    console.log('Here is the payload---', payload)
+    buffer.value = ''
+    const aborted = ref(false)
+    const controller = new AbortController()
+    let reader: ReadableStreamDefaultReader<Uint8Array> | undefined
+    const timeoutId = setTimeout(() => {
+      console.log('Aborting request after 5s....')
+      controller.abort()
+    }, 5000)
+
+    controller.signal.addEventListener('abort', () => {
+      reader?.cancel('Timeout')
+      aborted.value = true
+    })
     try {
       const response = await fetch(`${RAFIKEY_CHATBOT_URL}/bot/anonymous_chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        signal: controller.signal,
         body: JSON.stringify({
           message: payload.message,
           session_id: payload.sessionId,
         }),
       })
+
       if (!response.ok) {
         console.log(response.status)
         return {
           result: 'fail',
-          data: 'An error occurred, please try again later',
-        }
-      } else {
-        const reader = response.body?.getReader()
-        const decoder = new TextDecoder()
-        // return response.json()
-        while (true) {
-          const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
-          if (done) break
-          buffer.value += decoder.decode(value, { stream: true })
-        }
-        return {
-          result: 'ok',
-          data: buffer.value,
+          data: 'An expected error occurred, please try again later.',
         }
       }
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      // return response.json()
+      while (true) {
+        const { done, value } = (await reader?.read()) as ReadableStreamReadResult<Uint8Array>
+        if (done) break
+        buffer.value += decoder.decode(value, { stream: true })
+        clearTimeout(timeoutId)
+      }
+      if (!buffer.value.trim()) {
+        return {
+          result: 'fail',
+          data: 'An expected error occurred, please try again later.',
+          isLoggedIn: true,
+        }
+      }
+      return { result: 'ok', data: buffer.value }
     } catch (error) {
-      console.log('Error sending message to RafikeyChatbot', error)
-      return
-    } finally {
-      // clear the variable
-      buffer.value = ''
+      if (error instanceof DOMException && error.name === 'AbortError') {
+        console.log('Stream aborted due to timeout')
+        return {
+          result: 'fail',
+          data: 'An expected error occurred, please try again later.',
+          isLoggedIn: true,
+        }
+      }
+      console.error('Error during streaming:', error)
+      return {
+        result: 'fail',
+        data: 'An expected error occurred, please try again later.',
+        isLoggedIn: true,
+      }
     }
   }
 
@@ -502,7 +550,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
   }
 
   // Clear subscriptions
-  async function clearSubscription (payload: string) {
+  async function clearSubscription(payload: string) {
     try {
       const response = await fetch(`${PUSH_NOTIFICATION_API}/unsubscribe`, {
         method: 'DELETE',
@@ -514,13 +562,13 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
         }),
       })
       const res = await response.json()
-      if(response.ok) {
+      if (response.ok) {
         console.log('Subscription cleared successfully')
         return {
           result: 'ok',
           message: res.message,
         }
-      } else{
+      } else {
         return {
           result: 'fail',
           message: res.message,
@@ -531,6 +579,8 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
       return
     }
   }
+
+
 
   // Set active chat hitory
 
@@ -651,6 +701,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     isShowTermsButton,
     isAcceptNotification,
     savePushNotificationSubscription,
-    clearSubscription
+    clearSubscription,
   }
 })

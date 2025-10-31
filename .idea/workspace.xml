@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logic for push notification subscription and subscription removal" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logic for push notification subscription and subscription removal">
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FindAService.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/useInactivity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/createAccountFormStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/createAccountFormStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +29,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="TypeScript File" />
         <option value="Vue Composition API Component" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -307,6 +323,15 @@
       <workItem from="1761298539572" duration="3803000" />
       <workItem from="1761311829115" duration="5037000" />
       <workItem from="1761544558246" duration="6509000" />
+      <workItem from="1761632409493" duration="1513000" />
+      <workItem from="1761643383203" duration="5760000" />
+      <workItem from="1761705079747" duration="2042000" />
+      <workItem from="1761723933888" duration="771000" />
+      <workItem from="1761731431474" duration="1886000" />
+      <workItem from="1761812846691" duration="1044000" />
+      <workItem from="1761877301667" duration="6488000" />
+      <workItem from="1761887689592" duration="12679000" />
+      <workItem from="1761901034640" duration="33665000" />
     </task>
     <task id="LOCAL-00624" summary="add toggleArchive function">
       <option name="closed" value="true" />
@@ -789,7 +814,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue</url>
-          <line>162</line>
+          <line>170</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
