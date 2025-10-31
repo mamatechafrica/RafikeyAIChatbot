@@ -133,6 +133,10 @@ const goToPlayPage = () => {
     name: 'welcome-page-quiz',
   })
 }
+
+const goToServiceFInder = () =>{
+  window.location.href= 'https://askrafikey.com/service-finder'
+}
 </script>
 
 <template>
