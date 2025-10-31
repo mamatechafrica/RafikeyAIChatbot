@@ -77,6 +77,10 @@ onMounted(() => {
       isError.value = 'Something went wrong, please try again later.'
       isAppLoading.value = false
     })
+}
+onMounted(() => {
+  fetchUserData()
+
 })
 
 const chatbotStore = useRafikeyChatbotStore()
@@ -282,6 +286,49 @@ const everyThingOk = computed(() => {
         <p class="dark:text-white text-center">{{ isError }}</p>
       </div>
     </div>
+
+    <Teleport to="body">
+      <DialogModal :is-open="openEditDialog" @close="openEditDialog = false" class="">
+        <template #title>
+          <div class="flex justify-center">
+            <img :src="imageToggleSmallDevice()" alt="rafikey-logo" />
+          </div>
+        </template>
+        <template #body>
+          <div class="space-y-4" v-if="editProfileDetail === 'Age'">
+            <p class="text-center text-lg dark:text-white">Select approriate age</p>
+            <RadioGroup :radio-type="ageRange" @change="selectedRadio" />
+          </div>
+          <div class="space-y-4" v-if="editProfileDetail === 'Gender'">
+            <p class="text-center text-lg dark:text-white">Select approriate gender</p>
+            <RadioGroup :radio-type="genderSet" @change="selectedRadio" />
+          </div>
+          <div class="space-y-4" v-if="editProfileDetail === 'Relationship Status'">
+            <p class="text-center text-lg dark:text-white">Select approriate relationship</p>
+            <RadioGroup :radio-type="relationshipStatusArray" @change="selectedRadio" />
+          </div>
+        </template>
+        <template #footer>
+          <div class="w-full gap-4 justify-center flex">
+            <button
+              :class="[!everyThingOk ? 'bg-casablanca-100' : 'bg-casablanca-300 ']"
+              @click="updateProfileHandler"
+              :disabled="!everyThingOk || loadingProfileUpdate"
+              class="w-1/4 btn-sm btn-ghost rounded-lg p-2"
+            >
+              <span v-if="!loadingProfileUpdate">Update</span>
+              <span v-else class="loading loading-spinner loading-sm"></span>
+            </button>
+            <button
+              @click="openEditDialog = false"
+              class="w-1/4 btn-sm btn-ghost border border-casablanca-300 rounded-lg p-2"
+            >
+              Cancel
+            </button>
+          </div>
+        </template>
+      </DialogModal>
+    </Teleport>
   </div>
 </template>
 
