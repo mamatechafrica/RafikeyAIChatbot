@@ -2,7 +2,49 @@
 import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 import { onMounted, ref } from 'vue'
 import moment from 'moment'
+import DialogModal from '@/components/DialogModal.vue'
+import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
+import RadioGroup from '@/components/chat/RadioGroup.vue'
+import { range } from 'lodash'
 
+interface Buttons {
+  name: string
+  id: number
+}
+
+const genderSet = [
+  {
+    name: 'Male',
+    id: 5,
+  },
+  {
+    name: 'Female',
+    id: 6,
+  },
+  {
+    name: 'Non-Binary',
+    id: 7,
+  },
+  {
+    name: 'Rather Not Say',
+    id: 8,
+  },
+] as Buttons[]
+
+const relationshipStatusArray = [
+  {
+    name: 'Yes',
+    id: 9,
+  },
+  {
+    name: 'No',
+    id: 10,
+  },
+  {
+    name: 'Rather Not Say',
+    id: 11,
+  },
+] as Buttons[]
 interface UserProfile {
   id: number
   username: string
