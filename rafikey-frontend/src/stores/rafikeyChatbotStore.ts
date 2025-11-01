@@ -124,7 +124,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     const timeoutId = setTimeout(() => {
       console.log('Aborting request after 5s....')
       controller.abort()
-    }, 5000)
+    }, 5000 * 3)
 
     controller.signal.addEventListener('abort', () => {
       reader?.cancel('Timeout')
@@ -201,7 +201,7 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     const timeoutId = setTimeout(() => {
       console.log('Aborting request after 5s....')
       controller.abort()
-    }, 5000)
+    }, 5000 * 3) //
 
     controller.signal.addEventListener('abort', () => {
       reader?.cancel('Timeout')

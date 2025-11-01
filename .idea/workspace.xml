@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="hide div elements for iframes">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add  loginCount function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/composables/useInactivity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/useInactivity.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
     </list>
@@ -322,47 +321,7 @@
       <workItem from="1761877301667" duration="6488000" />
       <workItem from="1761887689592" duration="12679000" />
       <workItem from="1761901034640" duration="37461000" />
-      <workItem from="1761972327530" duration="12336000" />
-    </task>
-    <task id="LOCAL-00645" summary="add FeedbackContent  interface">
-      <option name="closed" value="true" />
-      <created>1760409548536</created>
-      <option name="number" value="00645" />
-      <option name="presentableId" value="LOCAL-00645" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409548536</updated>
-    </task>
-    <task id="LOCAL-00646" summary="add feedbackContent array">
-      <option name="closed" value="true" />
-      <created>1760409579801</created>
-      <option name="number" value="00646" />
-      <option name="presentableId" value="LOCAL-00646" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409579801</updated>
-    </task>
-    <task id="LOCAL-00647" summary="update isNewChat">
-      <option name="closed" value="true" />
-      <created>1760409619671</created>
-      <option name="number" value="00647" />
-      <option name="presentableId" value="LOCAL-00647" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409619671</updated>
-    </task>
-    <task id="LOCAL-00648" summary="add DialogModal for feedback">
-      <option name="closed" value="true" />
-      <created>1760409852746</created>
-      <option name="number" value="00648" />
-      <option name="presentableId" value="LOCAL-00648" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409852746</updated>
-    </task>
-    <task id="LOCAL-00649" summary="remove profile navigation guard">
-      <option name="closed" value="true" />
-      <created>1760409936415</created>
-      <option name="number" value="00649" />
-      <option name="presentableId" value="LOCAL-00649" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409936415</updated>
+      <workItem from="1761972327530" duration="14940000" />
     </task>
     <task id="LOCAL-00650" summary="add gap small device on feedback DialogModal">
       <option name="closed" value="true" />
@@ -716,7 +675,47 @@
       <option name="project" value="LOCAL" />
       <updated>1761976555688</updated>
     </task>
-    <option name="localTasksCounter" value="694" />
+    <task id="LOCAL-00694" summary="add styling for edit button on dark mode">
+      <option name="closed" value="true" />
+      <created>1761998027379</created>
+      <option name="number" value="00694" />
+      <option name="presentableId" value="LOCAL-00694" />
+      <option name="project" value="LOCAL" />
+      <updated>1761998027379</updated>
+    </task>
+    <task id="LOCAL-00695" summary="update the timer to 17 minutes">
+      <option name="closed" value="true" />
+      <created>1761998064554</created>
+      <option name="number" value="00695" />
+      <option name="presentableId" value="LOCAL-00695" />
+      <option name="project" value="LOCAL" />
+      <updated>1761998064554</updated>
+    </task>
+    <task id="LOCAL-00696" summary="log out user if inactive if no response">
+      <option name="closed" value="true" />
+      <created>1761998152727</created>
+      <option name="number" value="00696" />
+      <option name="presentableId" value="LOCAL-00696" />
+      <option name="project" value="LOCAL" />
+      <updated>1761998152727</updated>
+    </task>
+    <task id="LOCAL-00697" summary="add  loginCount function">
+      <option name="closed" value="true" />
+      <created>1761998174185</created>
+      <option name="number" value="00697" />
+      <option name="presentableId" value="LOCAL-00697" />
+      <option name="project" value="LOCAL" />
+      <updated>1761998174185</updated>
+    </task>
+    <task id="LOCAL-00698" summary="add  loginCount function">
+      <option name="closed" value="true" />
+      <created>1761998180154</created>
+      <option name="number" value="00698" />
+      <option name="presentableId" value="LOCAL-00698" />
+      <option name="project" value="LOCAL" />
+      <updated>1761998180154</updated>
+    </task>
+    <option name="localTasksCounter" value="699" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,10 +733,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add ServiceWorkerRegistration type" />
-    <MESSAGE value="remove unused image" />
-    <MESSAGE value="add screenshots with updated branding" />
-    <MESSAGE value="add workbox-precaching strategies package" />
     <MESSAGE value="add custom service worker file for listen push even from backend" />
     <MESSAGE value="add service worker registration" />
     <MESSAGE value="add logic for push notification subscription and subscription removal" />
@@ -759,7 +754,11 @@
     <MESSAGE value="add URLSearchParams as a global object" />
     <MESSAGE value="add logic to check query params in the embed iframe link" />
     <MESSAGE value="hide div elements for iframes" />
-    <option name="LAST_COMMIT_MESSAGE" value="hide div elements for iframes" />
+    <MESSAGE value="add styling for edit button on dark mode" />
+    <MESSAGE value="update the timer to 17 minutes" />
+    <MESSAGE value="log out user if inactive if no response" />
+    <MESSAGE value="add  loginCount function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add  loginCount function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
