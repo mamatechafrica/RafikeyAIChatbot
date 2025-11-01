@@ -571,11 +571,6 @@ const fetchHistoryHandler = (activeSessionId: string) => {
       }
     })
     .catch((err) => {
-      // rafikeyChatbotStore.setStreamError({
-      //   hasError: true,
-      //   errorMessage: "An error occurred while generating the response. Please try again later.",
-      //   isLoggedIn: true,
-      // })
       console.error('Error fetching chat history', err)
     })
     .finally(() => {
@@ -586,47 +581,56 @@ const fetchHistoryHandler = (activeSessionId: string) => {
 }
 
 const { startTracking, stopTracking, isActive } = useInactivity()
-
 onBeforeUnmount(() => {
   stopTracking()
 })
 
+// If user has not been active and has not explicitly clicked "Stay Logged In", log them out after 2 minutes
+watch(
+  () => isActive.value,
+  (newVal) => {
+    if (!newVal) {
+      setTimeout(
+        () => {
+          logMeOut()
+        },
+        2 * 60 * 1000,
+      ) // 2 minutes
+    }
+  },
+)
+
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
-  // show the button on mounted at random
-  // showPlayButton()
   const activeSessionId = route.params.sessionId as string
-
-    startTracking()
- //start tracking after 5 minutes
-
-  // Set initial value for isShowInput
-  // isShowInput.value = !(rafikeyChatbotStore.isNewChat && isSmallDevice.value);
-
+  startTracking()
   // We can only load chat history if the user is not on the new chat page
   if (!rafikeyChatbotStore.isNewChat && route.name != 'profile') {
     nextTick(() => {
       fetchHistoryHandler(activeSessionId)
     })
   }
+  // Destroy the listeners to prevents memory leaks and unwanted side effects
+  document.removeEventListener('click', closeProfileSection)
   // create listeners once the component is mounted
   document.addEventListener('click', closeProfileSection)
-})
-
-// Destroy the listeners to prevents memory leaks and unwanted side effects
-onUnmounted(() => {
-  document.removeEventListener('click', closeProfileSection)
-  // watch(rafikeyChatbotStore.accessButtonRequest, (val)=>{
-  //   if(val.value){
-  //     console.log('Access button request', val)
-  //     nextTick(()=>{
-  //       handleUserInput(val.message)
-  //     })
-  //
-  //     // rafikeyChatbotStore.setAccessButtonRequest('')
-  //   }
-  //
-  // })
+  //   check if user has ever login more than 3 times
+  authStore
+    .loginCount()
+    .then((resp) => {
+      if (resp.result === 'ok') {
+        const count = resp.data
+        if (count % 5 === 0 && count !== 0) {
+          // Show feedback diagonal every 5 logins
+          rafikeyChatbotStore.setShowFeedbackDialog(true)
+        }
+      } else {
+        return
+      }
+    })
+    .catch((err) => {
+      console.error('Error fetching login count', err)
+    })
 })
 
 // if someone clicks outside the profile section area when the profile section  is open it closes
@@ -1223,7 +1227,7 @@ const donotLogMeOut = () => {
         <template #footer>
           <div class="w-full flex gap-4 justify-center">
             <button
-              class="shadow-none  border-none w-1/4 rounded-lg btn btn-sm bg-casablanca-300"
+              class="shadow-none border-none w-1/4 rounded-lg btn btn-sm bg-casablanca-300"
               @click.stop="donotLogMeOut"
             >
               <span>Yes</span>
