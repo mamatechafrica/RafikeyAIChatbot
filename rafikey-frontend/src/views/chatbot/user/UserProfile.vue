@@ -344,7 +344,8 @@ const everyThingOk = computed(() => {
               @click="openEditDialog = false"
               class="w-1/4 btn-sm btn-ghost border border-casablanca-300 rounded-lg p-2"
             >
-              Cancel
+              <span class=" dark:text-casablanca-300">Cancel</span>
+
             </button>
           </div>
         </template>
