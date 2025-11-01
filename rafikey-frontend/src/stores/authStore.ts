@@ -427,6 +427,7 @@ export const useAuthStore = defineStore('authStore', () => {
     logOutAllDevices,
     getUserProfile,
     checkAccountExist,
-    updateProfile
+    updateProfile,
+    loginCount,
   }
 })
