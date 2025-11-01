@@ -46,7 +46,7 @@ export const useInactivity = () => {
   }
 
   watch(count, (newValue) => {
-    if (newValue === 17) {
+    if (newValue === 3) {
       isActive.value = activityContainer.value.includes(1)
       activityContainer.value = []
       count.value = 0
