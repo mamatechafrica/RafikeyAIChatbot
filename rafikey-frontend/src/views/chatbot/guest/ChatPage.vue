@@ -399,7 +399,7 @@ const fetchHistoryHandler = (activeSessionId: string) => {
       if (res?.result != 'ok') {
         return
       } else {
-          const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
+        const sortedHistory = res.data.sort((a: HistoryConv, b: HistoryConv) => {
           return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
         })
 
@@ -438,8 +438,16 @@ const isShowDisclaimer = ref(false)
 const props = defineProps<{
   sessionId: string | null
 }>()
+
+let isEmbedded = false
+const hideForIframes = ref(false)
 onMounted(() => {
   rafikeyChatbotStore.conversation = []
+  // Check if the page is embedded in an iframe to hide somethings
+  const urlParams = new URLSearchParams(window.location.search)
+  isEmbedded = urlParams.get('embed') === 'true'
+  if (isEmbedded) hideForIframes.value = true
+
   setTimeout(() => {
     isShowDisclaimer.value = true
   }, 3000)
