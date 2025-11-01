@@ -620,9 +620,13 @@ onMounted(() => {
     .then((resp) => {
       if (resp.result === 'ok') {
         const count = resp.data
+        // console.log("we are at login count---", count)
         if (count % 5 === 0 && count !== 0) {
-          // Show feedback diagonal every 5 logins
-          rafikeyChatbotStore.setShowFeedbackDialog(true)
+          if (rafikeyChatbotStore.fiveTimesCountLogin <= 0) {
+            rafikeyChatbotStore.setShowFeedbackDialog(true)
+          }
+          rafikeyChatbotStore.fiveTimesCountLogin += 1
+
         }
       } else {
         return
