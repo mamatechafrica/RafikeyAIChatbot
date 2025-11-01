@@ -50,6 +50,7 @@ const RAFIKEY_CHATBOT_FRONTEND_URL = import.meta.env.VITE_APP_RAFIKEY_CHATBOT_FR
 export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
   const authStore = useAuthStore()
   const sessionId = useStorage('sessionId', '')
+  const fiveTimesCountLogin = useStorage('fiveTimesCountLogin', 0)
   const isGeneratingResponse = ref(false)
   const isDarkMode = useStorage('isDarkMode', false)
   const previousRoute = useStorage('previousRoute', '')
@@ -702,5 +703,6 @@ export const useRafikeyChatbotStore = defineStore('rafikeyChatbotStore', () => {
     isAcceptNotification,
     savePushNotificationSubscription,
     clearSubscription,
+    fiveTimesCountLogin
   }
 })
