@@ -781,21 +781,21 @@ const goToServiceFInder = () => {
             </div>
           </div>
 
-<!--          <div class="space-y-2 p-5">-->
-<!--            <div class="flex justify-between sm:p-4">-->
-<!--              <p class="dark:text-white text-extra-large">Ask Rafikey</p>-->
-<!--              &lt;!&ndash;                <span class="text-purple-400 text-small">See all</span>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div v-for="qn in accessQuestions" :key="qn.id">-->
-<!--              <div-->
-<!--                @click="accessButtonQuestionHandler(qn.question)"-->
-<!--                class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"-->
-<!--              >-->
-<!--                <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>-->
-<!--                <p class="dark:text-white text-small">{{ qn.question }}</p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <!--          <div class="space-y-2 p-5">-->
+          <!--            <div class="flex justify-between sm:p-4">-->
+          <!--              <p class="dark:text-white text-extra-large">Ask Rafikey</p>-->
+          <!--              &lt;!&ndash;                <span class="text-purple-400 text-small">See all</span>&ndash;&gt;-->
+          <!--            </div>-->
+          <!--            <div v-for="qn in accessQuestions" :key="qn.id">-->
+          <!--              <div-->
+          <!--                @click="accessButtonQuestionHandler(qn.question)"-->
+          <!--                class="cursor-pointer flex dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 gap-4"-->
+          <!--              >-->
+          <!--                <span class="material-icons-outlined dark:text-white">{{ qn.icon }}</span>-->
+          <!--                <p class="dark:text-white text-small">{{ qn.question }}</p>-->
+          <!--              </div>-->
+          <!--            </div>-->
+          <!--          </div>-->
         </div>
       </div>
       <div>
