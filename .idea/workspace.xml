@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add logic for push notification subscription and subscription removal">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/FindAService.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/useInactivity.ts" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add  updateProfile function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/ErrorScreen.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/game/SRHRGameButton.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/authStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/createAccountFormStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/createAccountFormStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/signup/GetToKnowYou.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/chat/UserInput.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/NewChat.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/user/UserProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/error/PageNotFound.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,143 +320,8 @@
       <workItem from="1761812846691" duration="1044000" />
       <workItem from="1761877301667" duration="6488000" />
       <workItem from="1761887689592" duration="12679000" />
-      <workItem from="1761901034640" duration="33665000" />
-    </task>
-    <task id="LOCAL-00624" summary="add toggleArchive function">
-      <option name="closed" value="true" />
-      <created>1760294226944</created>
-      <option name="number" value="00624" />
-      <option name="presentableId" value="LOCAL-00624" />
-      <option name="project" value="LOCAL" />
-      <updated>1760294226944</updated>
-    </task>
-    <task id="LOCAL-00625" summary="update if condition">
-      <option name="closed" value="true" />
-      <created>1760345141972</created>
-      <option name="number" value="00625" />
-      <option name="presentableId" value="LOCAL-00625" />
-      <option name="project" value="LOCAL" />
-      <updated>1760345141973</updated>
-    </task>
-    <task id="LOCAL-00626" summary="add UserProfile">
-      <option name="closed" value="true" />
-      <created>1760388995770</created>
-      <option name="number" value="00626" />
-      <option name="presentableId" value="LOCAL-00626" />
-      <option name="project" value="LOCAL" />
-      <updated>1760388995770</updated>
-    </task>
-    <task id="LOCAL-00627" summary="add image">
-      <option name="closed" value="true" />
-      <created>1760389056871</created>
-      <option name="number" value="00627" />
-      <option name="presentableId" value="LOCAL-00627" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389056871</updated>
-    </task>
-    <task id="LOCAL-00628" summary="add openProfileHandler function">
-      <option name="closed" value="true" />
-      <created>1760389088264</created>
-      <option name="number" value="00628" />
-      <option name="presentableId" value="LOCAL-00628" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389088264</updated>
-    </task>
-    <task id="LOCAL-00629" summary="Add profile route">
-      <option name="closed" value="true" />
-      <created>1760389399076</created>
-      <option name="number" value="00629" />
-      <option name="presentableId" value="LOCAL-00629" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389399076</updated>
-    </task>
-    <task id="LOCAL-00630" summary="Add getUserProfile function">
-      <option name="closed" value="true" />
-      <created>1760389498693</created>
-      <option name="number" value="00630" />
-      <option name="presentableId" value="LOCAL-00630" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389498693</updated>
-    </task>
-    <task id="LOCAL-00631" summary="Add on if condition">
-      <option name="closed" value="true" />
-      <created>1760389578551</created>
-      <option name="number" value="00631" />
-      <option name="presentableId" value="LOCAL-00631" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389578551</updated>
-    </task>
-    <task id="LOCAL-00632" summary="Add openProfileHandler function">
-      <option name="closed" value="true" />
-      <created>1760389677385</created>
-      <option name="number" value="00632" />
-      <option name="presentableId" value="LOCAL-00632" />
-      <option name="project" value="LOCAL" />
-      <updated>1760389677385</updated>
-    </task>
-    <task id="LOCAL-00633" summary="add userProfile check">
-      <option name="closed" value="true" />
-      <created>1760408981568</created>
-      <option name="number" value="00633" />
-      <option name="presentableId" value="LOCAL-00633" />
-      <option name="project" value="LOCAL" />
-      <updated>1760408981569</updated>
-    </task>
-    <task id="LOCAL-00634" summary="add accountExistText variable">
-      <option name="closed" value="true" />
-      <created>1760409040590</created>
-      <option name="number" value="00634" />
-      <option name="presentableId" value="LOCAL-00634" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409040590</updated>
-    </task>
-    <task id="LOCAL-00635" summary="add checkAccountExist function">
-      <option name="closed" value="true" />
-      <created>1760409138557</created>
-      <option name="number" value="00635" />
-      <option name="presentableId" value="LOCAL-00635" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409138557</updated>
-    </task>
-    <task id="LOCAL-00636" summary="add accountExistText on the ui">
-      <option name="closed" value="true" />
-      <created>1760409217107</created>
-      <option name="number" value="00636" />
-      <option name="presentableId" value="LOCAL-00636" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409217107</updated>
-    </task>
-    <task id="LOCAL-00637" summary="add showFeedbackDialog variable">
-      <option name="closed" value="true" />
-      <created>1760409250053</created>
-      <option name="number" value="00637" />
-      <option name="presentableId" value="LOCAL-00637" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409250054</updated>
-    </task>
-    <task id="LOCAL-00638" summary="add isOffline variable">
-      <option name="closed" value="true" />
-      <created>1760409284110</created>
-      <option name="number" value="00638" />
-      <option name="presentableId" value="LOCAL-00638" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409284110</updated>
-    </task>
-    <task id="LOCAL-00639" summary="add setShowFeedbackDialog  function">
-      <option name="closed" value="true" />
-      <created>1760409310617</created>
-      <option name="number" value="00639" />
-      <option name="presentableId" value="LOCAL-00639" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409310617</updated>
-    </task>
-    <task id="LOCAL-00640" summary="return setShowFeedbackDialog">
-      <option name="closed" value="true" />
-      <created>1760409330682</created>
-      <option name="number" value="00640" />
-      <option name="presentableId" value="LOCAL-00640" />
-      <option name="project" value="LOCAL" />
-      <updated>1760409330682</updated>
+      <workItem from="1761901034640" duration="37461000" />
+      <workItem from="1761972327530" duration="2716000" />
     </task>
     <task id="LOCAL-00641" summary="update isNewChat">
       <option name="closed" value="true" />
@@ -725,7 +579,143 @@
       <option name="project" value="LOCAL" />
       <updated>1761582051175</updated>
     </task>
-    <option name="localTasksCounter" value="673" />
+    <task id="LOCAL-00673" summary="add FindAService component">
+      <option name="closed" value="true" />
+      <created>1761940641663</created>
+      <option name="number" value="00673" />
+      <option name="presentableId" value="LOCAL-00673" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940641663</updated>
+    </task>
+    <task id="LOCAL-00674" summary="update styling and content">
+      <option name="closed" value="true" />
+      <created>1761940663896</created>
+      <option name="number" value="00674" />
+      <option name="presentableId" value="LOCAL-00674" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940663896</updated>
+    </task>
+    <task id="LOCAL-00675" summary="add useInactive composable">
+      <option name="closed" value="true" />
+      <created>1761940678089</created>
+      <option name="number" value="00675" />
+      <option name="presentableId" value="LOCAL-00675" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940678090</updated>
+    </task>
+    <task id="LOCAL-00676" summary="add edit profile logic">
+      <option name="closed" value="true" />
+      <created>1761940712227</created>
+      <option name="number" value="00676" />
+      <option name="presentableId" value="LOCAL-00676" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940712228</updated>
+    </task>
+    <task id="LOCAL-00677" summary="add the profile arrays of data">
+      <option name="closed" value="true" />
+      <created>1761940753083</created>
+      <option name="number" value="00677" />
+      <option name="presentableId" value="LOCAL-00677" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940753083</updated>
+    </task>
+    <task id="LOCAL-00678" summary="add Dialog for profile update">
+      <option name="closed" value="true" />
+      <created>1761940789441</created>
+      <option name="number" value="00678" />
+      <option name="presentableId" value="LOCAL-00678" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940789441</updated>
+    </task>
+    <task id="LOCAL-00679" summary="add Dialog for profile update">
+      <option name="closed" value="true" />
+      <created>1761940793780</created>
+      <option name="number" value="00679" />
+      <option name="presentableId" value="LOCAL-00679" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940793780</updated>
+    </task>
+    <task id="LOCAL-00680" summary="add abort logic for the fetch API">
+      <option name="closed" value="true" />
+      <created>1761940831363</created>
+      <option name="number" value="00680" />
+      <option name="presentableId" value="LOCAL-00680" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940831363</updated>
+    </task>
+    <task id="LOCAL-00681" summary="add  FindAService component">
+      <option name="closed" value="true" />
+      <created>1761940865109</created>
+      <option name="number" value="00681" />
+      <option name="presentableId" value="LOCAL-00681" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940865109</updated>
+    </task>
+    <task id="LOCAL-00682" summary="add goToServiceFInder function">
+      <option name="closed" value="true" />
+      <created>1761940882250</created>
+      <option name="number" value="00682" />
+      <option name="presentableId" value="LOCAL-00682" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940882250</updated>
+    </task>
+    <task id="LOCAL-00683" summary="remove the quick access buttons">
+      <option name="closed" value="true" />
+      <created>1761940920823</created>
+      <option name="number" value="00683" />
+      <option name="presentableId" value="LOCAL-00683" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940920824</updated>
+    </task>
+    <task id="LOCAL-00684" summary="add tooltip and the hamburger menu icon">
+      <option name="closed" value="true" />
+      <created>1761940954362</created>
+      <option name="number" value="00684" />
+      <option name="presentableId" value="LOCAL-00684" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940954362</updated>
+    </task>
+    <task id="LOCAL-00685" summary="remove the age profile data">
+      <option name="closed" value="true" />
+      <created>1761940990874</created>
+      <option name="number" value="00685" />
+      <option name="presentableId" value="LOCAL-00685" />
+      <option name="project" value="LOCAL" />
+      <updated>1761940990874</updated>
+    </task>
+    <task id="LOCAL-00686" summary="remove the age profile data">
+      <option name="closed" value="true" />
+      <created>1761941021147</created>
+      <option name="number" value="00686" />
+      <option name="presentableId" value="LOCAL-00686" />
+      <option name="project" value="LOCAL" />
+      <updated>1761941021148</updated>
+    </task>
+    <task id="LOCAL-00687" summary="add inactivity tracking">
+      <option name="closed" value="true" />
+      <created>1761941086218</created>
+      <option name="number" value="00687" />
+      <option name="presentableId" value="LOCAL-00687" />
+      <option name="project" value="LOCAL" />
+      <updated>1761941086218</updated>
+    </task>
+    <task id="LOCAL-00688" summary="add  goToServiceFInder function">
+      <option name="closed" value="true" />
+      <created>1761941111913</created>
+      <option name="number" value="00688" />
+      <option name="presentableId" value="LOCAL-00688" />
+      <option name="project" value="LOCAL" />
+      <updated>1761941111913</updated>
+    </task>
+    <task id="LOCAL-00689" summary="add  updateProfile function">
+      <option name="closed" value="true" />
+      <created>1761941129880</created>
+      <option name="number" value="00689" />
+      <option name="presentableId" value="LOCAL-00689" />
+      <option name="project" value="LOCAL" />
+      <updated>1761941129880</updated>
+    </task>
+    <option name="localTasksCounter" value="690" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -743,21 +733,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add feedbackContent array" />
-    <MESSAGE value="update isNewChat" />
-    <MESSAGE value="add DialogModal for feedback" />
-    <MESSAGE value="remove profile navigation guard" />
-    <MESSAGE value="add gap small device on feedback DialogModal" />
-    <MESSAGE value="change in service worker" />
-    <MESSAGE value="fix toggle password visibility" />
-    <MESSAGE value="fix logout DialogModal" />
-    <MESSAGE value="fix logout DialogModal buttons" />
-    <MESSAGE value="fix setup account text" />
-    <MESSAGE value="service worker updates" />
-    <MESSAGE value="add config for own service worker file" />
-    <MESSAGE value="update screenshots to reflect new branding" />
-    <MESSAGE value="update input ids" />
-    <MESSAGE value="import Subscription interface" />
     <MESSAGE value="add PUSH_NOTIFICATION_API endpoint" />
     <MESSAGE value="add isAcceptNotification flag" />
     <MESSAGE value="add savePushNotificationSubscription function" />
@@ -768,7 +743,22 @@
     <MESSAGE value="add custom service worker file for listen push even from backend" />
     <MESSAGE value="add service worker registration" />
     <MESSAGE value="add logic for push notification subscription and subscription removal" />
-    <option name="LAST_COMMIT_MESSAGE" value="add logic for push notification subscription and subscription removal" />
+    <MESSAGE value="add FindAService component" />
+    <MESSAGE value="update styling and content" />
+    <MESSAGE value="add useInactive composable" />
+    <MESSAGE value="add edit profile logic" />
+    <MESSAGE value="add the profile arrays of data" />
+    <MESSAGE value="add Dialog for profile update" />
+    <MESSAGE value="add abort logic for the fetch API" />
+    <MESSAGE value="add  FindAService component" />
+    <MESSAGE value="add goToServiceFInder function" />
+    <MESSAGE value="remove the quick access buttons" />
+    <MESSAGE value="add tooltip and the hamburger menu icon" />
+    <MESSAGE value="remove the age profile data" />
+    <MESSAGE value="add inactivity tracking" />
+    <MESSAGE value="add  goToServiceFInder function" />
+    <MESSAGE value="add  updateProfile function" />
+    <option name="LAST_COMMIT_MESSAGE" value="add  updateProfile function" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -829,6 +819,11 @@
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/App.vue</url>
           <line>1</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue</url>
+          <line>3</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

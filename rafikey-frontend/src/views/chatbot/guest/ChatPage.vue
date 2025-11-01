@@ -1,4 +1,6 @@
 <script setup lang="ts">
+/* global URLSearchParams */
+
 import { onMounted, ref, watch, nextTick } from 'vue'
 import _ from 'lodash'
 
