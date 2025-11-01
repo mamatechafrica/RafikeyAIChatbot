@@ -304,7 +304,7 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
-  async function updateProfile(payload: UpdateProfilePayload ) {
+  async function updateProfile(payload: UpdateProfilePayload) {
     const authStore = useAuthStore()
     const formData = new FormData()
     console.log('Update Profile Payload:', payload)
@@ -333,6 +333,36 @@ export const useAuthStore = defineStore('authStore', () => {
       }
     } catch (e) {
       return
+    }
+  }
+
+  // Count login sessions
+  async function loginCount() {
+    try {
+      const response = await fetch(`${BASE_URL}/auth/users/me/login-count`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      const res = await response.json()
+      if (!response.ok) {
+        return {
+          result: 'fail',
+          data: null
+        }
+      } else {
+        return {
+          result: 'ok',
+          data: res.login_count
+        }
+      }
+    } catch (err) {
+      return {
+        result: 'fail',
+        data: null
+      }
     }
   }
 
