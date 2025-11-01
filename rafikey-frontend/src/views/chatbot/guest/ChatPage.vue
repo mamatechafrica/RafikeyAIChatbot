@@ -568,8 +568,8 @@ const goToPlayPage = () => {
   })
 }
 
-const goToServiceFInder = () =>{
-  window.location.href= 'https://askrafikey.com/service-finder'
+const goToServiceFInder = () => {
+  window.location.href = 'https://askrafikey.com/service-finder'
 }
 </script>
 
@@ -734,7 +734,7 @@ const goToServiceFInder = () =>{
           <!--          </div>-->
         </div>
         <div class="space-y-6">
-          <div class="cursor-pointer flex gap-4 w-full">
+          <div v-if="!hideForIframes" class="cursor-pointer flex gap-4 w-full">
             <div
               @click.stop="goToPlayPage"
               class="cursor-pointer w-full dark:bg-darkgray bg-link-water-50 rounded-xl sm:p-5 p-3 sm:space-y-4 space-y-2"
