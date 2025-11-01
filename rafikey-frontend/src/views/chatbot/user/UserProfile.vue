@@ -110,7 +110,7 @@ const editGender = () => {
   openEditDialog.value = true
 }
 
-const editRelationshiedit profile logicpStatus = () => {
+const editRelationshipEdit = () => {
   editProfileDetail.value = 'Relationship Status'
   openEditDialog.value = true
 }
@@ -266,7 +266,7 @@ const everyThingOk = computed(() => {
               <div>
                 <div class="flex gap-2">
                   <p class="text-stone-400">Age group</p>
-                  <span @click.stop="editAge" class="material-icons-outlined cursor-pointer"
+                  <span @click.stop="editAge" class="dark:text-white material-icons-outlined cursor-pointer"
                     >edit</span
                   >
                 </div>
@@ -278,7 +278,7 @@ const everyThingOk = computed(() => {
               <div>
                 <div class="flex gap-2">
                   <p class="text-stone-400">Gender</p>
-                  <span @click.stop="editGender" class="material-icons-outlined cursor-pointer"
+                  <span @click.stop="editGender" class="dark:text-white material-icons-outlined cursor-pointer"
                     >edit</span
                   >
                 </div>
@@ -288,8 +288,8 @@ const everyThingOk = computed(() => {
                 <div class="flex gap-2">
                   <p class="text-stone-400">Relationship status</p>
                   <span
-                    @click.stop="editRelationshipStatus"
-                    class="material-icons-outlined cursor-pointer"
+                    @click.stop="editRelationshipEdit"
+                    class="dark:text-white material-icons-outlined cursor-pointer"
                     >edit</span
                   >
                 </div>
@@ -317,15 +317,15 @@ const everyThingOk = computed(() => {
         </template>
         <template #body>
           <div class="space-y-4" v-if="editProfileDetail === 'Age'">
-            <p class="text-center text-lg dark:text-white">Select approriate age</p>
+            <p class="text-center text-lg dark:text-white">Select appropriate age</p>
             <RadioGroup :radio-type="ageRange" @change="selectedRadio" />
           </div>
           <div class="space-y-4" v-if="editProfileDetail === 'Gender'">
-            <p class="text-center text-lg dark:text-white">Select approriate gender</p>
+            <p class="text-center text-lg dark:text-white">Select appropriate gender</p>
             <RadioGroup :radio-type="genderSet" @change="selectedRadio" />
           </div>
           <div class="space-y-4" v-if="editProfileDetail === 'Relationship Status'">
-            <p class="text-center text-lg dark:text-white">Select approriate relationship</p>
+            <p class="text-center text-lg dark:text-white">Select appropriate relationship</p>
             <RadioGroup :radio-type="relationshipStatusArray" @change="selectedRadio" />
           </div>
         </template>
