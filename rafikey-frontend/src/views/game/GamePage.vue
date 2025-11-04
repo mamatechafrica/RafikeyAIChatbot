@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
+import { ref } from 'vue'
+import { useAuthStore, useRafikeyChatbotStore } from '@/stores'
 
 const route = useRoute()
 const router = useRouter()
@@ -9,6 +11,18 @@ const router = useRouter()
 //     name: 'newChat',
 //   })
 // }
+const currentRoute = ref(route.name)
+const leavePage = () => {
+  if (currentRoute.value === 'game-page-quiz-result') {
+    router.push({
+      name: 'welcome-page-quiz',
+    })
+  } else {
+    router.push({
+      name: 'newChat',
+    })
+    }
+}
 </script>
 
 <template>
@@ -19,10 +33,12 @@ const router = useRouter()
     <div class="w-10/12 mx-auto">
       <div class="sticky py-4 top-0 bg-white dark:bg-lightgray">
         <button
-          @click="router.go(-1)"
+          @click="leavePage"
           class="btn btn-sm bg-transparent shadow-none border-[1px] dark:border-['#CBD5E1'] rounded-[10px] px-[8px] py-[6px]"
         >
-          <span class="dark:text-white text-small">Go back</span>
+          <span class="dark:text-white text-small">{{
+            currentRoute === 'welcome-page-quiz' ? 'Go home' : 'Begin game'
+          }}</span>
         </button>
       </div>
       <RouterView #default="{ Component, route }">
