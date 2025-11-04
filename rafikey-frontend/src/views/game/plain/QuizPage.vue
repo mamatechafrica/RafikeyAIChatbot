@@ -15,21 +15,9 @@ const errorQuestion = (value: boolean) => {
   isErrorQuestion.value = value
 }
 
-// onMounted(() => {
-//   chatbotStore
-//     .getQuizzes(Number(props.quizCategory))
-//     .then((data) => {
-//       if (data?.result === 'ok') {
-//         chatbotStore.setQuiz(data.data)
-//       } else {
-//         return
-//       }
-//     })
-//     .catch((error) => {
-//       isError.value = true
-//       console.error('Error fetching quizzes: ', error)
-//     })
-// })
+onMounted(()=>{
+  chatbotStore.gamesConfettiCount = 0
+})
 
 const moveNextQuestion = ref(false)
 
