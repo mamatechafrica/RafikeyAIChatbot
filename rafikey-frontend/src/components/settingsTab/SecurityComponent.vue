@@ -65,17 +65,17 @@ const logoutAllDevicesHandler = () => {
         <span class="dark:text-white">Log Out</span>
       </div>
     </div>
-    <div class="flex justify-between">
-      <div>
-        <span class="dark:text-white">Log out of all devices</span>
-      </div>
-      <div
-        @click.stop="logoutAllDevicesHandler"
-        class="border border-red-700 rounded-full py-[6px] px-[12px]"
-      >
-        <span class="text-red-700"> Log Out of All </span>
-      </div>
-    </div>
+<!--    <div class="flex justify-between">-->
+<!--      <div>-->
+<!--        <span class="dark:text-white">Log out of all devices</span>-->
+<!--      </div>-->
+<!--      <div-->
+<!--        @click.stop="logoutAllDevicesHandler"-->
+<!--        class="border border-red-700 rounded-full py-[6px] px-[12px]"-->
+<!--      >-->
+<!--        <span class="text-red-700"> Log Out of All </span>-->
+<!--      </div>-->
+<!--    </div>-->
     <div class="border-b-[1px] border-veryLightFour dark:border-veryLightFive"></div>
 
     <!--  log out  -->
