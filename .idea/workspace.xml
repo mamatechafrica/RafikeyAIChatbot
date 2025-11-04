@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/custom-sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/custom-sw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add the pwa update logic to reflect whole application">
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,47 +319,7 @@
       <workItem from="1762146704526" duration="1837000" />
       <workItem from="1762178177196" duration="2651000" />
       <workItem from="1762194371414" duration="30660000" />
-      <workItem from="1762247064232" duration="11138000" />
-    </task>
-    <task id="LOCAL-00673" summary="add FindAService component">
-      <option name="closed" value="true" />
-      <created>1761940641663</created>
-      <option name="number" value="00673" />
-      <option name="presentableId" value="LOCAL-00673" />
-      <option name="project" value="LOCAL" />
-      <updated>1761940641663</updated>
-    </task>
-    <task id="LOCAL-00674" summary="update styling and content">
-      <option name="closed" value="true" />
-      <created>1761940663896</created>
-      <option name="number" value="00674" />
-      <option name="presentableId" value="LOCAL-00674" />
-      <option name="project" value="LOCAL" />
-      <updated>1761940663896</updated>
-    </task>
-    <task id="LOCAL-00675" summary="add useInactive composable">
-      <option name="closed" value="true" />
-      <created>1761940678089</created>
-      <option name="number" value="00675" />
-      <option name="presentableId" value="LOCAL-00675" />
-      <option name="project" value="LOCAL" />
-      <updated>1761940678090</updated>
-    </task>
-    <task id="LOCAL-00676" summary="add edit profile logic">
-      <option name="closed" value="true" />
-      <created>1761940712227</created>
-      <option name="number" value="00676" />
-      <option name="presentableId" value="LOCAL-00676" />
-      <option name="project" value="LOCAL" />
-      <updated>1761940712228</updated>
-    </task>
-    <task id="LOCAL-00677" summary="add the profile arrays of data">
-      <option name="closed" value="true" />
-      <created>1761940753083</created>
-      <option name="number" value="00677" />
-      <option name="presentableId" value="LOCAL-00677" />
-      <option name="project" value="LOCAL" />
-      <updated>1761940753083</updated>
+      <workItem from="1762247064232" duration="12609000" />
     </task>
     <task id="LOCAL-00678" summary="add Dialog for profile update">
       <option name="closed" value="true" />
@@ -717,7 +673,47 @@
       <option name="project" value="LOCAL" />
       <updated>1762249080725</updated>
     </task>
-    <option name="localTasksCounter" value="722" />
+    <task id="LOCAL-00722" summary="remove injectManifest to prevent injecting manifest more than once">
+      <option name="closed" value="true" />
+      <created>1762258272227</created>
+      <option name="number" value="00722" />
+      <option name="presentableId" value="LOCAL-00722" />
+      <option name="project" value="LOCAL" />
+      <updated>1762258272227</updated>
+    </task>
+    <task id="LOCAL-00723" summary="remove creation of service worker manually">
+      <option name="closed" value="true" />
+      <created>1762258325687</created>
+      <option name="number" value="00723" />
+      <option name="presentableId" value="LOCAL-00723" />
+      <option name="project" value="LOCAL" />
+      <updated>1762258325687</updated>
+    </task>
+    <task id="LOCAL-00724" summary="remove creation of service worker manually">
+      <option name="closed" value="true" />
+      <created>1762258341211</created>
+      <option name="number" value="00724" />
+      <option name="presentableId" value="LOCAL-00724" />
+      <option name="project" value="LOCAL" />
+      <updated>1762258341211</updated>
+    </task>
+    <task id="LOCAL-00725" summary="add eventListener skipWaiting">
+      <option name="closed" value="true" />
+      <created>1762258374610</created>
+      <option name="number" value="00725" />
+      <option name="presentableId" value="LOCAL-00725" />
+      <option name="project" value="LOCAL" />
+      <updated>1762258374610</updated>
+    </task>
+    <task id="LOCAL-00726" summary="add the pwa update logic to reflect whole application">
+      <option name="closed" value="true" />
+      <created>1762258405393</created>
+      <option name="number" value="00726" />
+      <option name="presentableId" value="LOCAL-00726" />
+      <option name="project" value="LOCAL" />
+      <updated>1762258405393</updated>
+    </task>
+    <option name="localTasksCounter" value="727" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -735,10 +731,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add logic to check query params in the embed iframe link" />
-    <MESSAGE value="hide div elements for iframes" />
-    <MESSAGE value="add styling for edit button on dark mode" />
-    <MESSAGE value="update the timer to 17 minutes" />
     <MESSAGE value="log out user if inactive if no response" />
     <MESSAGE value="add  loginCount function" />
     <MESSAGE value="add abort timeout time" />
@@ -760,7 +752,11 @@
     <MESSAGE value="add fallingConfetti for welcome message" />
     <MESSAGE value="hide some ui on iframes" />
     <MESSAGE value="add styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="add styling" />
+    <MESSAGE value="remove injectManifest to prevent injecting manifest more than once" />
+    <MESSAGE value="remove creation of service worker manually" />
+    <MESSAGE value="add eventListener skipWaiting" />
+    <MESSAGE value="add the pwa update logic to reflect whole application" />
+    <option name="LAST_COMMIT_MESSAGE" value="add the pwa update logic to reflect whole application" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
