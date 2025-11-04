@@ -38,5 +38,20 @@ self.addEventListener('push', (event)=> {
     self.registration.showNotification(title, options)
   )
 })
+// eslint-disable-next-line no-undef
+self.addEventListener('message', (event) => {
+  console.log("SW message received:", event.data)
+
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting()
+  }
+})
+// eslint-disable-next-line no-undef
+self.addEventListener('activate', (event) => {
+  event.waitUntil(clients.claim())
+})
+
+
+
 
 
