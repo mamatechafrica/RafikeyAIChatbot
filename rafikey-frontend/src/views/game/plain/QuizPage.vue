@@ -1,14 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRafikeyChatbotStore } from '@/stores'
 import QuestionItem, { type Answer } from '@/components/game/QuestionItem.vue'
 import { useRouter } from 'vue-router'
 
 const chatbotStore = useRafikeyChatbotStore()
-// const props = defineProps<{
-//   quizCategory: string
-// }>()
-
 const isError = ref(false)
 const isErrorQuestion = ref(false)
 const errorQuestion = (value: boolean) => {
@@ -136,21 +132,21 @@ watch(
         <span>Next</span>
       </button>
     </div>
-    <div
-      v-if="chatbotStore.quizzes.length === 0"
-      class="h-[calc(100vh-10rem)] flex items-center justify-center"
-    >
-      <div class="flex flex-col md:space-y-8 space-y-6 md:py-8 py-4 items-center mx-auto">
-        <img src="@/assets/images/no-data.svg" alt="no-question-image" class="w-1/3" />
-        <div class="flex flex-col items-center">
-          <span class="dark:text-white text-center text-extra-large">You are done!</span>
-          <span class="dark:text-white text-small">No more questions</span>
-        </div>
-      </div>
-      <div>
-        <button></button>
-      </div>
-    </div>
+    <!--    <div-->
+    <!--      v-if="chatbotStore.quizzes.length === 0"-->
+    <!--      class="h-[calc(100vh-10rem)] flex items-center justify-center"-->
+    <!--    >-->
+    <!--      <div class="flex flex-col md:space-y-8 space-y-6 md:py-8 py-4 items-center mx-auto">-->
+    <!--        <img src="@/assets/images/no-data.svg" alt="no-question-image" class="w-1/3" />-->
+    <!--        <div class="flex flex-col items-center">-->
+    <!--          <span class="dark:text-white text-center text-extra-large">You are done!</span>-->
+    <!--          <span class="dark:text-white text-small">No more questions</span>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div>-->
+    <!--        <button></button>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </template>
 
