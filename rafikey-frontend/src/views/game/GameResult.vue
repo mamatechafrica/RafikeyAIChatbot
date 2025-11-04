@@ -36,9 +36,6 @@ const remarks = () => {
     remarkStatement.value = 'Not bad! You have a fair understanding of the material.'
   }
 }
-
-// console.log('score', chatbotStore.score)
-// console.log('totalQuestion', chatbotStore.quizzes[chatbotStore.quizzes.length - 1].order)
 </script>
 
 <template>
@@ -54,20 +51,10 @@ const remarks = () => {
     >
       <div class="flex  flex-col items-center">
         <img :src="performanceImage" alt="confetti-image" class="w-1/3" />
-<!--        <img v-else src="@/assets/images/poor-score.svg" alt="poor-score-image" />-->
         <p class="text-center pb-2 dark:text-white text-2xl font-bold">Your score</p>
-        <p class="text-center w-3/4 text-lg">{{ remarkStatement }}</p>
+        <p class="text-center dark:text-white w-3/4 text-lg">{{ remarkStatement }}</p>
         <p></p>
       </div>
-      <!--      <div>-->
-      <!--        <img v-if="chatbotStore.score >= (chatbotStore.totalQuestions / 2)" src="@/assets/images/confetti.png" alt="confetti-image" />-->
-      <!--        <img v-else src="@/assets/images/poor-score.svg" alt="poor-score-image" />-->
-      <!--      </div>-->
-      <div>
-        <img v-if="scoreCard" src="@/assets/images/confetti.png" alt="confetti-image" />
-        <!--        <span class="">&#128542;</span>-->
-      </div>
-
       <div>
         <p class="font-semibold text-extra-large dark:text-white">
           {{ chatbotStore.score }} out of {{ chatbotStore.totalQuestions }}
