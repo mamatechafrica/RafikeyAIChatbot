@@ -91,7 +91,8 @@ const startGame = () => {
             <button
               @click="startGame"
               :disabled="!selectedCategory"
-              class="btn btn-sm py-4 px-10 rounded-[12px] bg-casablanca-300 shadow-none border-none"
+              :class="[!selectedCategory ? 'bg-gray-400 cursor-not-allowed' : 'bg-casablanca-300 hover:scale-105', 'transition-all duration-300 ease-in-out']"
+              class="btn btn-sm py-4 px-10 rounded-[12px]  shadow-none border-none"
             >
               <span class="text-extra-small">Start Game</span>
             </button>
@@ -113,12 +114,6 @@ const startGame = () => {
           <span class="material-icons-outlined text-coral-red-600">error</span>
           <p class="dark:text-white">Unable to load please reload</p>
         </div>
-
-        <!--        <button-->
-        <!--          class="btn btn-sm py-2 px-6 rounded-[12px] bg-casablanca-300 shadow-none border-none"-->
-        <!--        >-->
-        <!--          <span class="text-extra-small">Refresh</span>-->
-        <!--        </button>-->
       </div>
       <div class="md:w-2/5 pt-10">
         <p class="text-center dark:text-white text-small">
