@@ -765,10 +765,10 @@ const goToServiceFInder = () => {
           </div>
           <div class="space-y-4">
             <div class="border border-casablanca-300 px-2 py-1 rounded-lg w-full">
-              <span class="dark:text-white text-sm"
+              <span v-if="!hideForIframes" class="dark:text-white text-sm"
                 >Heads up! Your chat is temporary unless you're logged in.</span
               >
-              <p class="dark:text-white text-sm">
+              <p v-if="!hideForIframes" class="">
                 <RouterLink to="/auth/register" class="text-casablanca-300 lg:text-lg text-sm"
                   >Create an account
                 </RouterLink>
@@ -777,6 +777,11 @@ const goToServiceFInder = () => {
                   >Log in
                 </RouterLink>
                 to save your conversations and access them anytime.
+              </p>
+              <p v-else class="dark:text-white text-sm">
+                click on the start chat button to create an account for a personalized experience.
+                Enjoy!
+                <span>&#128526;</span>
               </p>
             </div>
           </div>
