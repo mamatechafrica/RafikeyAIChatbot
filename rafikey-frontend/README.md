@@ -51,6 +51,7 @@ VITE_APP_RAFIKEY_CHATBOT_FRONTEND=your_rafikey_frontend_url
 VITE_APP_VAPID_PUBLIC=your_vapid_public_key
 VITE_APP_VAPID_PRIVATE=your_vapid_private_key
 VITE_APP_PUSH_NOTIFICATION_API=your_push_notification_backend_api_url
+VITE_APP_NODE_ENV=your_node_environment_production_or_development
 ```
 
 ### 5️⃣ Type-Check, Compile and Minify for Production
