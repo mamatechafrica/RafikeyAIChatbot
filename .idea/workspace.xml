@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="hide some ui on iframes">
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="add styling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/PersonalizationComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/custom-sw.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/custom-sw.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,36 +40,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.clear-pub.executor&quot;: &quot;Run&quot;,
-    &quot;npm.serve.executor&quot;: &quot;Run&quot;,
-    &quot;npm.sync-pub.executor&quot;: &quot;Run&quot;,
-    &quot;npm.zip-pub.executor&quot;: &quot;Run&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.localhost:4173.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.clear-pub.executor": "Run",
+    "npm.serve.executor": "Run",
+    "npm.sync-pub.executor": "Run",
+    "npm.zip-pub.executor": "Run",
+    "prettierjs.PrettierConfiguration.Package": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
@@ -85,7 +87,10 @@
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/views/error" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="JavaScript Debug.localhost:4173">
+    <configuration name="localhost:4173" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:4173/">
+      <method v="2" />
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
       <command value="run" />
@@ -126,23 +131,13 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="zip-pub" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/rafikey-frontend/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="zip-pub" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.localhost:4173" />
         <item itemvalue="npm.build" />
         <item itemvalue="npm.sync-pub" />
         <item itemvalue="npm.clear-pub" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.zip-pub" />
       </list>
     </recent_temporary>
   </component>
@@ -328,39 +323,7 @@
       <workItem from="1762146704526" duration="1837000" />
       <workItem from="1762178177196" duration="2651000" />
       <workItem from="1762194371414" duration="30660000" />
-      <workItem from="1762247064232" duration="1672000" />
-    </task>
-    <task id="LOCAL-00669" summary="add workbox-precaching strategies package">
-      <option name="closed" value="true" />
-      <created>1761581843161</created>
-      <option name="number" value="00669" />
-      <option name="presentableId" value="LOCAL-00669" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581843161</updated>
-    </task>
-    <task id="LOCAL-00670" summary="add custom service worker file for listen push even from backend">
-      <option name="closed" value="true" />
-      <created>1761581879733</created>
-      <option name="number" value="00670" />
-      <option name="presentableId" value="LOCAL-00670" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581879733</updated>
-    </task>
-    <task id="LOCAL-00671" summary="add service worker registration">
-      <option name="closed" value="true" />
-      <created>1761581989543</created>
-      <option name="number" value="00671" />
-      <option name="presentableId" value="LOCAL-00671" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581989543</updated>
-    </task>
-    <task id="LOCAL-00672" summary="add logic for push notification subscription and subscription removal">
-      <option name="closed" value="true" />
-      <created>1761582051175</created>
-      <option name="number" value="00672" />
-      <option name="presentableId" value="LOCAL-00672" />
-      <option name="project" value="LOCAL" />
-      <updated>1761582051175</updated>
+      <workItem from="1762247064232" duration="11138000" />
     </task>
     <task id="LOCAL-00673" summary="add FindAService component">
       <option name="closed" value="true" />
@@ -722,7 +685,39 @@
       <option name="project" value="LOCAL" />
       <updated>1762229806382</updated>
     </task>
-    <option name="localTasksCounter" value="718" />
+    <task id="LOCAL-00718" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1762249008013</created>
+      <option name="number" value="00718" />
+      <option name="presentableId" value="LOCAL-00718" />
+      <option name="project" value="LOCAL" />
+      <updated>1762249008014</updated>
+    </task>
+    <task id="LOCAL-00719" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1762249055467</created>
+      <option name="number" value="00719" />
+      <option name="presentableId" value="LOCAL-00719" />
+      <option name="project" value="LOCAL" />
+      <updated>1762249055467</updated>
+    </task>
+    <task id="LOCAL-00720" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1762249071904</created>
+      <option name="number" value="00720" />
+      <option name="presentableId" value="LOCAL-00720" />
+      <option name="project" value="LOCAL" />
+      <updated>1762249071904</updated>
+    </task>
+    <task id="LOCAL-00721" summary="add styling">
+      <option name="closed" value="true" />
+      <created>1762249080725</created>
+      <option name="number" value="00721" />
+      <option name="presentableId" value="LOCAL-00721" />
+      <option name="project" value="LOCAL" />
+      <updated>1762249080725</updated>
+    </task>
+    <option name="localTasksCounter" value="722" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -747,7 +742,6 @@
     <MESSAGE value="log out user if inactive if no response" />
     <MESSAGE value="add  loginCount function" />
     <MESSAGE value="add abort timeout time" />
-    <MESSAGE value="add styling" />
     <MESSAGE value="change tracking inactivity to 3 minutes" />
     <MESSAGE value="add fiveTimesCountLogin to count the feedback dialog modal to show only once on every fifth time login" />
     <MESSAGE value="add condition for feedback dialog modal show flag" />
@@ -765,7 +759,8 @@
     <MESSAGE value="add leavePage logic" />
     <MESSAGE value="add fallingConfetti for welcome message" />
     <MESSAGE value="hide some ui on iframes" />
-    <option name="LAST_COMMIT_MESSAGE" value="hide some ui on iframes" />
+    <MESSAGE value="add styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="add styling" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
