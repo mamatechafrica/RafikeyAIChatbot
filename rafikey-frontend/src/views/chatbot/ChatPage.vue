@@ -37,6 +37,7 @@ import FeebackDialog from '@/components/chat/FeebackDialog.vue'
 import { useColorGenerator } from '@/composables/colorGenerator.ts'
 import { useInactivity } from '@/composables/useInactivity.ts'
 import { imageToggleSmallDevice } from '@/composables/imageToggle.ts'
+import { fallingConfetti } from '@/composables/useConfetti.ts'
 
 export interface HistoryConv {
   bot_response: string
@@ -600,6 +601,8 @@ watch(
   },
 )
 
+const showWelcomeDialog = ref()
+
 //check whether there is a string parameter if there is then  you should get the cha history
 onMounted(() => {
   const activeSessionId = route.params.sessionId as string
@@ -620,13 +623,29 @@ onMounted(() => {
     .then((resp) => {
       if (resp.result === 'ok') {
         const count = resp.data
-        // console.log("we are at login count---", count)
-        if (count % 5 === 0 && count !== 0) {
+        console.log('we are at login count---', count)
+        if (count === 1) {
+
+
+          // setTimeout(() => {
+          //   // showWelcomeDialog.value = false
+          //   fallingConfetti()
+          // }, 1000)
+          if (rafikeyChatbotStore.welcomeMessageCount === 0) {
+            showWelcomeDialog.value = true
+
+            setTimeout(() => {
+              fallingConfetti()
+            }, 1000)
+          }
+          rafikeyChatbotStore.welcomeMessageCount += 1
+        } else if (count % 5 === 0 && count !== 0) {
           if (rafikeyChatbotStore.fiveTimesCountLogin <= 0) {
-            rafikeyChatbotStore.setShowFeedbackDialog(true)
+           setTimeout(()=>{
+             rafikeyChatbotStore.setShowFeedbackDialog(true)
+           }, 3000 * 60)
           }
           rafikeyChatbotStore.fiveTimesCountLogin += 1
-
         }
       } else {
         return
@@ -773,16 +792,6 @@ const shareOn = (value: string) => {
   window.open(shareUrl, '_blank')
 }
 
-// const showFeedbackDialog = ref(false)
-// const closeGameButton = ()=>{
-//   isShowPlayButton.value = false
-// }
-
-// const showFeedbackDialogHandler = () => {
-//   showFeedbackDialog.value = !showFeedbackDialog.value
-//   console.log("Feedack dialog", showFeedbackDialog.value)
-// }
-
 const userString = authStore.user
 let username = ''
 try {
@@ -817,28 +826,6 @@ const closeInactiveDialogHandler = () => {
 }
 
 const isLogUserOut = ref(false)
-// watch(
-//   () => isActive.value,
-//   (newValue) => {
-//     if (!newValue && openInactiveDialog.value && !isLogUserOut.value) {
-//       setTimeout(() => {
-//         closeInactiveDialogHandler()
-//
-//       }, 1000)
-//     }
-//   },
-// )
-
-// watch(
-//   () => isActive.value,
-//   (newValue) => {
-//     if (newValue) {
-//       window.alert("Hello")
-//       console.log("Chat is active")
-//     }
-//   },
-// )
-
 watch(
   () => openInactiveDialog.value,
   (newValue) => {
@@ -855,8 +842,9 @@ const logMeOut = () => {
 const donotLogMeOut = () => {
   isActive.value = true
   openInactiveDialog.value = false
-  // startTracking()
 }
+
+
 </script>
 
 <template>
@@ -996,12 +984,6 @@ const donotLogMeOut = () => {
         </div>
       </div>
     </div>
-    <!--    <div-->
-    <!--      v-if="showFeedbackDialog"-->
-    <!--    >-->
-    <!--      <FeebackDialog @close-feedback-dialog="showFeedbackDialog = false" />-->
-    <!--    </div>-->
-
     <teleport to="body">
       <DialogModal
         :is-open="showLogoutDialogModal"
@@ -1242,6 +1224,28 @@ const donotLogMeOut = () => {
             >
               <span class="dark:text-white">No</span>
             </button>
+          </div>
+        </template>
+      </DialogModal>
+      <DialogModal :is-open="showWelcomeDialog" @close-modal="showWelcomeDialog = false">
+        <template #title>
+          <div class="flex flex-col leading-none items-center">
+            <h2 class="fw-bold text-center text-lg dark:text-white font-bold">Hooray🎉</h2>
+            <p class="dark:text-white font-bold">Welcome to Rafikey!</p>
+          </div>
+        </template>
+        <template #body>
+          <div class="flex justify-center flex-col pt-4">
+            <p class="dark:text-white">
+              We’re thrilled to have you join us. Rafikey is ready to assist with queries around
+              sexual reproductive health.
+            </p>
+            <!--            <p class="dark:text-white"></p>-->
+          </div>
+        </template>
+        <template #footer>
+          <div class="flex justify-center">
+            <p class="dark:text-white font-bold text-lg">Enjoy your stay here!</p>
           </div>
         </template>
       </DialogModal>
