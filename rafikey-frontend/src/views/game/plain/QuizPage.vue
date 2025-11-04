@@ -120,33 +120,18 @@ watch(
       <button
         v-if="!moveNextQuestion"
         @click="skipQuestionHandler"
-        class="btn btn-sm dark:bg-transparent bg-button-light text-extra-small shadow-none dark:text-white py-5 px-20 btn-ghost dark:bg-darkgray rounded-[12px] border-casablanca-300 borer-[1px]"
+        class="btn btn-sm bg-button-light text-extra-small shadow-none  py-5 px-20 btn-ghost rounded-[12px] border-casablanca-300 borer-[1px]"
       >
         <span>Skip</span>
       </button>
       <button
         v-else
         @click="moveNextQuestionHandler"
-        class="btn btn-sm dark:bg-transparent bg-button-light text-extra-small shadow-none dark:text-white py-5 px-20 btn-ghost dark:bg-darkgray rounded-[12px] border-casablanca-300 borer-[1px]"
+        class="btn btn-sm  bg-button-light text-extra-small shadow-none py-5 px-20 btn-ghost rounded-[12px] border-casablanca-300 borer-[1px]"
       >
         <span>Next</span>
       </button>
     </div>
-    <!--    <div-->
-    <!--      v-if="chatbotStore.quizzes.length === 0"-->
-    <!--      class="h-[calc(100vh-10rem)] flex items-center justify-center"-->
-    <!--    >-->
-    <!--      <div class="flex flex-col md:space-y-8 space-y-6 md:py-8 py-4 items-center mx-auto">-->
-    <!--        <img src="@/assets/images/no-data.svg" alt="no-question-image" class="w-1/3" />-->
-    <!--        <div class="flex flex-col items-center">-->
-    <!--          <span class="dark:text-white text-center text-extra-large">You are done!</span>-->
-    <!--          <span class="dark:text-white text-small">No more questions</span>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div>-->
-    <!--        <button></button>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 </template>
 

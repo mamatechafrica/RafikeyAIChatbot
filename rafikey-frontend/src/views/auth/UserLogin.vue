@@ -201,7 +201,7 @@ onBeforeUnmount(() => {
             </div>
 
             <!--          login form-->
-            <div class="">
+            <div>
               <form
                 class="flex flex-col w-10/12"
                 :class="[
