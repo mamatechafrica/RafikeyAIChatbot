@@ -35,22 +35,46 @@ function urlBase64ToUint8Array(base64String: string) {
 
 //Checks for serviceWorker support and existence of a registered service worker
 const subscribeUser = async () => {
+  // if ('serviceWorker' in navigator) {
+  //   try {
+  //     //   check if service worker is registered
+  //     const registeredSW = await navigator.serviceWorker.getRegistration()
+  //     if (!registeredSW) {
+  //       const newRegistration = await navigator.serviceWorker.register('/custom-sw.js')
+  //       await generateSubscriptionEndpoint(newRegistration)
+  //     } else {
+  //       await generateSubscriptionEndpoint(registeredSW)
+  //     }
+  //   } catch (err) {
+  //     console.error('Error during service worker registration:', err)
+  //     notificationStore.addNotification(
+  //       'Failed to register service worker for notifications',
+  //       'error',
+  //     )
+  //     selected.value = false
+  //   }
+  // } else {
+  //   notificationStore.addNotification('Service Worker is not supported in this browser', 'error')
+  //   selected.value = false
+  // }
+  // try {
+  //   const registration = await navigator.serviceWorker.ready
+  //   await generateSubscriptionEndpoint(registration)
+  // } catch (err) {
+  //   console.error('Error during service worker registration:', err)
+  //   notificationStore.addNotification(
+  //     'Failed to register service worker for notifications',
+  //     'error',
+  //   )
+  //   selected.value = false
+  // }
   if ('serviceWorker' in navigator) {
     try {
-      //   check if service worker is registered
-      const registeredSW = await navigator.serviceWorker.getRegistration()
-      if (!registeredSW) {
-        const newRegistration = await navigator.serviceWorker.register('/custom-sw.js')
-        await generateSubscriptionEndpoint(newRegistration)
-      } else {
-        await generateSubscriptionEndpoint(registeredSW)
-      }
+      const registration = await navigator.serviceWorker.ready
+      await generateSubscriptionEndpoint(registration)
     } catch (err) {
-      console.error('Error during service worker registration:', err)
-      notificationStore.addNotification(
-        'Failed to register service worker for notifications',
-        'error',
-      )
+      console.error('Error getting service worker registration:', err)
+      notificationStore.addNotification('Failed to register for notifications', 'error')
       selected.value = false
     }
   } else {
@@ -219,7 +243,7 @@ onMounted(async () => {
       </div>
       <div class="">
         <div class="relative">
-          <div class="flex gap-2 ">
+          <div class="flex gap-2">
             <span class="dark:text-white">Off</span>
             <span class="dark:text-white">On</span>
           </div>
