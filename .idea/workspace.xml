@@ -4,26 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="remove .idea file">
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/average-score.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/poor-score.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/images/well-done.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rafikey-frontend/src/composables/useConfetti.ts" afterDir="false" />
+    <list default="true" id="3dbb3004-6d12-489b-a118-23e5f9a7e7c0" name="Changes" comment="hide some ui on iframes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/assets/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/assets/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/components/settingsTab/SecurityComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/stores/rafikeyChatbotStore.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/chatbot/guest/ChatPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GamePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserLogin.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/auth/UserPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/GameResult.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/QuizPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/src/views/game/plain/WelcomeGame.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tailwind.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rafikey-frontend/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/rafikey-frontend/tsconfig.app.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,36 +39,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.build.executor": "Run",
-    "npm.clear-pub.executor": "Run",
-    "npm.serve.executor": "Run",
-    "npm.sync-pub.executor": "Run",
-    "npm.zip-pub.executor": "Run",
-    "prettierjs.PrettierConfiguration.Package": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/src/assets/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/dev-lyn/.config/JetBrains/WebStorm2024.3/node/versions/20.18.3/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.clear-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.serve.executor&quot;: &quot;Run&quot;,
+    &quot;npm.sync-pub.executor&quot;: &quot;Run&quot;,
+    &quot;npm.zip-pub.executor&quot;: &quot;Run&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/dev-lyn/Documents/mama-tech/RafikeyAIChatbot/rafikey-frontend/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/rafikey-frontend/src/assets/images" />
@@ -341,103 +327,8 @@
       <workItem from="1762141357609" duration="16000" />
       <workItem from="1762146704526" duration="1837000" />
       <workItem from="1762178177196" duration="2651000" />
-      <workItem from="1762194371414" duration="29680000" />
-    </task>
-    <task id="LOCAL-00657" summary="service worker updates">
-      <option name="closed" value="true" />
-      <created>1761581271629</created>
-      <option name="number" value="00657" />
-      <option name="presentableId" value="LOCAL-00657" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581271630</updated>
-    </task>
-    <task id="LOCAL-00658" summary="add config for own service worker file">
-      <option name="closed" value="true" />
-      <created>1761581320733</created>
-      <option name="number" value="00658" />
-      <option name="presentableId" value="LOCAL-00658" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581320733</updated>
-    </task>
-    <task id="LOCAL-00659" summary="update screenshots to reflect new branding">
-      <option name="closed" value="true" />
-      <created>1761581355693</created>
-      <option name="number" value="00659" />
-      <option name="presentableId" value="LOCAL-00659" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581355694</updated>
-    </task>
-    <task id="LOCAL-00660" summary="update screenshots to reflect new branding">
-      <option name="closed" value="true" />
-      <created>1761581373451</created>
-      <option name="number" value="00660" />
-      <option name="presentableId" value="LOCAL-00660" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581373451</updated>
-    </task>
-    <task id="LOCAL-00661" summary="update input ids">
-      <option name="closed" value="true" />
-      <created>1761581429675</created>
-      <option name="number" value="00661" />
-      <option name="presentableId" value="LOCAL-00661" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581429675</updated>
-    </task>
-    <task id="LOCAL-00662" summary="import Subscription interface">
-      <option name="closed" value="true" />
-      <created>1761581471400</created>
-      <option name="number" value="00662" />
-      <option name="presentableId" value="LOCAL-00662" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581471400</updated>
-    </task>
-    <task id="LOCAL-00663" summary="add PUSH_NOTIFICATION_API endpoint">
-      <option name="closed" value="true" />
-      <created>1761581522204</created>
-      <option name="number" value="00663" />
-      <option name="presentableId" value="LOCAL-00663" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581522204</updated>
-    </task>
-    <task id="LOCAL-00664" summary="add isAcceptNotification flag">
-      <option name="closed" value="true" />
-      <created>1761581575612</created>
-      <option name="number" value="00664" />
-      <option name="presentableId" value="LOCAL-00664" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581575612</updated>
-    </task>
-    <task id="LOCAL-00665" summary="add savePushNotificationSubscription function">
-      <option name="closed" value="true" />
-      <created>1761581595299</created>
-      <option name="number" value="00665" />
-      <option name="presentableId" value="LOCAL-00665" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581595299</updated>
-    </task>
-    <task id="LOCAL-00666" summary="add ServiceWorkerRegistration type">
-      <option name="closed" value="true" />
-      <created>1761581740257</created>
-      <option name="number" value="00666" />
-      <option name="presentableId" value="LOCAL-00666" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581740257</updated>
-    </task>
-    <task id="LOCAL-00667" summary="remove unused image">
-      <option name="closed" value="true" />
-      <created>1761581758187</created>
-      <option name="number" value="00667" />
-      <option name="presentableId" value="LOCAL-00667" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581758187</updated>
-    </task>
-    <task id="LOCAL-00668" summary="add screenshots with updated branding">
-      <option name="closed" value="true" />
-      <created>1761581789861</created>
-      <option name="number" value="00668" />
-      <option name="presentableId" value="LOCAL-00668" />
-      <option name="project" value="LOCAL" />
-      <updated>1761581789861</updated>
+      <workItem from="1762194371414" duration="30660000" />
+      <workItem from="1762247064232" duration="1672000" />
     </task>
     <task id="LOCAL-00669" summary="add workbox-precaching strategies package">
       <option name="closed" value="true" />
@@ -735,7 +626,103 @@
       <option name="project" value="LOCAL" />
       <updated>1762010245115</updated>
     </task>
-    <option name="localTasksCounter" value="706" />
+    <task id="LOCAL-00706" summary="add images">
+      <option name="closed" value="true" />
+      <created>1762229324248</created>
+      <option name="number" value="00706" />
+      <option name="presentableId" value="LOCAL-00706" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229324248</updated>
+    </task>
+    <task id="LOCAL-00707" summary="add useConfetti composable">
+      <option name="closed" value="true" />
+      <created>1762229402428</created>
+      <option name="number" value="00707" />
+      <option name="presentableId" value="LOCAL-00707" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229402428</updated>
+    </task>
+    <task id="LOCAL-00708" summary="add lib configuration">
+      <option name="closed" value="true" />
+      <created>1762229453320</created>
+      <option name="number" value="00708" />
+      <option name="presentableId" value="LOCAL-00708" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229453320</updated>
+    </task>
+    <task id="LOCAL-00709" summary="remove logout of all devices ui">
+      <option name="closed" value="true" />
+      <created>1762229479645</created>
+      <option name="number" value="00709" />
+      <option name="presentableId" value="LOCAL-00709" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229479645</updated>
+    </task>
+    <task id="LOCAL-00710" summary="add more variables">
+      <option name="closed" value="true" />
+      <created>1762229491809</created>
+      <option name="number" value="00710" />
+      <option name="presentableId" value="LOCAL-00710" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229491809</updated>
+    </task>
+    <task id="LOCAL-00711" summary="reset gamesConfettiCount  variable">
+      <option name="closed" value="true" />
+      <created>1762229517390</created>
+      <option name="number" value="00711" />
+      <option name="presentableId" value="LOCAL-00711" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229517390</updated>
+    </task>
+    <task id="LOCAL-00712" summary="remove unused ui">
+      <option name="closed" value="true" />
+      <created>1762229540724</created>
+      <option name="number" value="00712" />
+      <option name="presentableId" value="LOCAL-00712" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229540724</updated>
+    </task>
+    <task id="LOCAL-00713" summary="add confetti library">
+      <option name="closed" value="true" />
+      <created>1762229580729</created>
+      <option name="number" value="00713" />
+      <option name="presentableId" value="LOCAL-00713" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229580729</updated>
+    </task>
+    <task id="LOCAL-00714" summary="add game performance remarks">
+      <option name="closed" value="true" />
+      <created>1762229613174</created>
+      <option name="number" value="00714" />
+      <option name="presentableId" value="LOCAL-00714" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229613174</updated>
+    </task>
+    <task id="LOCAL-00715" summary="add leavePage logic">
+      <option name="closed" value="true" />
+      <created>1762229652214</created>
+      <option name="number" value="00715" />
+      <option name="presentableId" value="LOCAL-00715" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229652214</updated>
+    </task>
+    <task id="LOCAL-00716" summary="add fallingConfetti for welcome message">
+      <option name="closed" value="true" />
+      <created>1762229702850</created>
+      <option name="number" value="00716" />
+      <option name="presentableId" value="LOCAL-00716" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229702850</updated>
+    </task>
+    <task id="LOCAL-00717" summary="hide some ui on iframes">
+      <option name="closed" value="true" />
+      <created>1762229806382</created>
+      <option name="number" value="00717" />
+      <option name="presentableId" value="LOCAL-00717" />
+      <option name="project" value="LOCAL" />
+      <updated>1762229806382</updated>
+    </task>
+    <option name="localTasksCounter" value="718" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -753,18 +740,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add the profile arrays of data" />
-    <MESSAGE value="add Dialog for profile update" />
-    <MESSAGE value="add abort logic for the fetch API" />
-    <MESSAGE value="add  FindAService component" />
-    <MESSAGE value="add goToServiceFInder function" />
-    <MESSAGE value="remove the quick access buttons" />
-    <MESSAGE value="add tooltip and the hamburger menu icon" />
-    <MESSAGE value="remove the age profile data" />
-    <MESSAGE value="add inactivity tracking" />
-    <MESSAGE value="add  goToServiceFInder function" />
-    <MESSAGE value="add  updateProfile function" />
-    <MESSAGE value="add URLSearchParams as a global object" />
     <MESSAGE value="add logic to check query params in the embed iframe link" />
     <MESSAGE value="hide div elements for iframes" />
     <MESSAGE value="add styling for edit button on dark mode" />
@@ -778,7 +753,19 @@
     <MESSAGE value="add condition for feedback dialog modal show flag" />
     <MESSAGE value="update README file" />
     <MESSAGE value="remove .idea file" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove .idea file" />
+    <MESSAGE value="add images" />
+    <MESSAGE value="add useConfetti composable" />
+    <MESSAGE value="add lib configuration" />
+    <MESSAGE value="remove logout of all devices ui" />
+    <MESSAGE value="add more variables" />
+    <MESSAGE value="reset gamesConfettiCount  variable" />
+    <MESSAGE value="remove unused ui" />
+    <MESSAGE value="add confetti library" />
+    <MESSAGE value="add game performance remarks" />
+    <MESSAGE value="add leavePage logic" />
+    <MESSAGE value="add fallingConfetti for welcome message" />
+    <MESSAGE value="hide some ui on iframes" />
+    <option name="LAST_COMMIT_MESSAGE" value="hide some ui on iframes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -842,7 +829,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/rafikey-frontend/src/main.ts</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>

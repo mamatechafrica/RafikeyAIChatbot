@@ -75,7 +75,7 @@ const updateAppHandler = () => {
               Cancel
             </button>
             <button
-              class="rounded-lg w-1/2 btn bg-transparent shadow-none border-button-light"
+              class="rounded-lg w-1/2 btn bg-transparent shadow-none border-[1px] border-button-light"
               @click="updateAppHandler"
             >
               <span v-if="!isLoadingUpdates" class="text-button-light"> Refresh</span>
